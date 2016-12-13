@@ -38,8 +38,8 @@ pathString(['foo', 'bar', 0]);
 
 ### pathError
 ```js
-pathError('Problem')(['foo']);
-// Returns 'Problem in `foo`'
+pathError('Problem')(['foo', 'bar', 0]);
+// Returns 'Problem in `foo.bar.0`'
 ```
 
 ### composeRules
