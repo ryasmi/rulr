@@ -1,6 +1,10 @@
 # rulr
 A package for rules
 
+```js
+npm install --save git+https://git@github.com/visionmedia/express.git
+```
+
 ## Example
 ```js
 isString = data =>
