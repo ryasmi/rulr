@@ -2,7 +2,7 @@
 A package for rules
 
 ```js
-npm install --save git+https://git@github.com/visionmedia/express.git
+npm install --save git+https://git@github.com/ryansmith94/rulr.git
 ```
 
 ## Example
