@@ -2,6 +2,7 @@
 A package for rules
 
 ## Example
+```js
 isString = data =>
   data.constructor === String;
 
@@ -22,6 +23,7 @@ validateMyModel = restrictToSchema({
 validateMyModel(data, ['data']);
 
 // Returns: ["Invalid String in `data.d.0.a`", "Expected an object in `data.d.1`"]
+```
 
 ## API
 ### pathString
