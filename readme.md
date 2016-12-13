@@ -1,9 +1,14 @@
 # rulr
-A package for rules
+A package for rules.
 
 ```js
 npm install --save git+https://git@github.com/ryansmith94/rulr.git
 ```
+
+## Why?
+1. Find and return all of the problems with data in one function call.
+2. Use any library to actually validate the data (i.e. Lodash.isString to validate strings).
+3. Localized error messages.
 
 ## Example
 ```js
