@@ -56,6 +56,21 @@ composeRules([
 // Returns ['10 is incorrect in `foo`', '10 is invalid in `foo`']
 ```
 
+### first
+```js
+first([
+  (data, path) => [pathError(`${data} is incorrect`)(path)],
+  (data, path) => [pathError(`${data} is invalid`)(path)],
+])(10, ['foo']);
+// Returns ['10 is incorrect in `foo`']
+
+first([
+  (data, path) => [],
+  (data, path) => [pathError(`${data} is invalid`)(path)],
+])(10, ['foo']);
+// Returns ['10 is invalid in `foo`']
+```
+
 ### checkBool
 ```js
 checkBool(
@@ -72,6 +87,27 @@ checkThrow(
   data => pathError(`${data} is incorrect`)
 )(10, ['foo']);
 // Returns ['10 is incorrect in `foo`']
+```
+
+### checkType
+```js
+checkType(String, type => data => pathError(`${data} is not a ${type}`))(10, ['foo']);
+// Returns ['10 is not a String in `foo`']
+```
+
+### checkType
+```js
+checkType(String, type => data => pathError(`${data} is not a ${type}`))(10, ['foo']);
+// Returns ['10 is not a String in `foo`']
+
+checkType(String, type => data => pathError(`${data} is not a ${type}`))('Hello', ['foo']);
+// Returns []
+```
+
+### checkRegex
+```js
+checkRegex(/hello/, data => pathError(`${data} is incorrect`))('blabla', ['foo'])
+// Returns ['blabla is incorrect in `foo`']
 ```
 
 ### optional
@@ -100,24 +136,10 @@ required(
 // Returns ['10 is incorrect in `foo`']
 ```
 
-### restrictToKeys
-```js
-restrictToKeys(['foo'])({foo: 1, bar: 2}, ['data']);
-// Returns ['Invalid keys `bar` found in `data`']
-```
-
 ### typeError
 ```js
 typeError('string')(data)(['foo']);
 // Returns ['Invalid string in `foo`']
-```
-
-### hasSchema
-```js
-hasSchema({
-  foo: (data, path) => [pathError(`${data} is incorrect`)(path)],
-})({foo: 1, bar 2}, ['data']);
-// Returns ['1 is incorrect in `data.foo`']
 ```
 
 ### restrictToSchema
