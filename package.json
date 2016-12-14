@@ -1,5 +1,6 @@
 {
   "name": "rulr",
   "author": "ryansmith94",
-  "main": "index.js"
+  "main": "index.js",
+  "version": "0.0.1"
 }
