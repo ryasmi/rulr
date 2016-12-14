@@ -12,11 +12,6 @@ npm install --save git+https://git@github.com/ryansmith94/rulr.git
 
 ## Example
 ```js
-isString = data =>
-  data.constructor === String;
-
-checkString = checkBool(isString, typeError('string'));
-
 data = {
   a: 'hello',
   d: [{
@@ -25,7 +20,7 @@ data = {
 };
 
 validateMyModel = restrictToSchema({
-  a: required(checkString),
+  a: required(checkType(String)),
   d: optional(restrictToCollection(index => validateMyModel))
 });
 
