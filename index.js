@@ -50,7 +50,7 @@ const checkType = (
   type, error = typeError
 ) => (data, path) => (
   data == null || data.constructor !== type ?
-  [error(type.constructor.name)(data)(path)] :
+  [error(type.name)(data)(path)] :
   []
 );
 
