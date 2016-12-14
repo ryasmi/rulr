@@ -15,6 +15,13 @@ const composeRules = rules => (data, path) =>
     errors.concat(rule(data, path))
   , []);
 
+// (Rule, Rule) -> Rule
+const first = (preReq, rule) => (data, path) => {
+  const preReqErrors = preReq(data, path);
+  if (preReqErrors.length > 0) return preReqErrors;
+  return rule(data, path);
+};
+
 // ((Data -> Bool), (Data -> PathError)) -> Rule
 const checkBool = (checker, error) => (data, path) =>
   checker(data) ? [] : [error(data)(path)];
@@ -34,6 +41,26 @@ const checkThrow = (checker, error = failedCheckError) => (data, path) => {
   }
 };
 
+// String -> Data -> PathError
+const typeError = type => data =>
+  pathError(`Invalid ${type}`);
+
+// (Any, (Data, Any) -> PathError) -> Rule
+const checkType = (
+  type, error = typeError
+) => (data, path) => (
+  data == null || data.constructor !== type ?
+  [error(type.constructor.name)(data)(path)] :
+  []
+);
+
+// (Regex, Data -> PathError) -> Rule
+const checkRegex = (
+  regex, error = () => pathError()
+) => first(checkType(String), (data, path) =>
+  regex.test(data) ? [] : [error(data)(path)]
+);
+
 
 // Rule -> Rule
 const optional = rule => (data, path) =>
@@ -50,7 +77,7 @@ const required = (rule, error = missingKeyError) => (data, path) =>
 // String[] -> PathError
 const invalidKeyError = invalidKeys =>
   pathError(`Invalid keys \`${invalidKeys.join('\`, \`')}\` found`);
-  
+
 // (String[] -> (String -> PathError)) -> Rule
 const restrictToKeys = (keys, error = invalidKeyError) => (data, path) => {
   const invalidKeys = Object.keys(data).filter(key => !keys.includes(key));
@@ -58,43 +85,42 @@ const restrictToKeys = (keys, error = invalidKeyError) => (data, path) => {
 };
 
 
-// String -> Data -> PathError
-const typeError = type => data =>
-  pathError(`Invalid ${type}`);
-
 // Schema = {String: Rule}
-// (Schema, (Data -> PathError)) -> Rule
-const hasSchema = (schema, error = typeError('object')) => (data, path) =>
-  data.constructor !== Object ? [error(data)(path)] : Object.keys(schema).reduce((errors, key) =>
+// Schema -> Rule
+const hasSchema = schema => (data, path) =>
+  Object.keys(schema).reduce((errors, key) =>
     errors.concat(schema[key](data[key], path.concat([key])))
   , []);
 
 // (Schema, (Data -> PathError), (String -> PathError)) -> Rule
 const restrictToSchema = (schema, objectError, invalidKeyError) =>
-  composeRules([
-    hasSchema(schema, objectError), 
+  first(checkType(Object, objectError), composeRules([
+    hasSchema(schema),
     restrictToKeys(Object.keys(schema), invalidKeyError)
-  ])
+  ]));
 
 
 // (Rule, (Data -> PathError)) -> Rule
-const restrictToCollection = (rule, error = typeError('array')) => (data, path) =>
-  !Array.isArray(data) ? [error(data)(path)] : data.reduce((errors, elem, index) =>
+const restrictToCollection = (
+  rule, error
+) => first(checkType(Array, error), (data, path) =>
+  data.reduce((errors, elem, index) =>
     errors.concat(rule(index)(elem, path.concat([index])))
-  , []);
+  , [])
+);
 
 
 module.exports = {
   pathString,
   pathError,
   composeRules,
+  first,
   checkBool,
-  checkThrow,  
+  checkThrow,
+  checkType,
+  checkRegex,
   optional,
   required,
-  restrictToKeys,
-  typeError,
-  hasSchema,
   restrictToSchema,
   restrictToCollection,
 };
