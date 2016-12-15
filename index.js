@@ -43,7 +43,7 @@ const checkThrow = (checker, error = failedCheckError) => (data, path) => {
 
 // String -> Data -> PathError
 const typeError = type => data =>
-  pathError(`Invalid ${type}`);
+  pathError(`\`${JSON.stringify(data)}\` is not a valid ${type}`);
 
 // (Any, (Data, Any) -> PathError) -> Rule
 const checkType = (
@@ -67,7 +67,7 @@ const optional = rule => (data, path) =>
   data === undefined ? [] : rule(data, path);
 
 // PathError
-const missingKeyError = pathError('Missing required property');
+const missingKeyError = pathError('Missing required value');
 
 // Rule = (Data, Path) -> Error[]
 // (Rule, PathError) -> Rule
@@ -78,19 +78,20 @@ const required = (rule, error = missingKeyError) => (data, path) =>
 const invalidKeyError = invalidKeys =>
   pathError(`Invalid keys \`${invalidKeys.join('\`, \`')}\` found`);
 
-// (String[] -> (String -> PathError)) -> Rule
-const restrictToKeys = (keys, error = invalidKeyError) => (data, path) => {
-  const invalidKeys = Object.keys(data).filter(key => !keys.includes(key));
-  return invalidKeys.length === 0 ? [] : [error(invalidKeys)(path)];
-};
-
+// (String[] -> (String -> PathError), (Data -> PathError)) -> Rule
+const restrictToKeys = (keys, error = invalidKeyError, objectError) =>
+  first(checkType(Object, objectError), (data, path) => {
+    const invalidKeys = Object.keys(data).filter(key => !keys.includes(key));
+    return invalidKeys.length === 0 ? [] : [error(invalidKeys)(path)];
+  });
 
 // Schema = {String: Rule}
-// Schema -> Rule
-const hasSchema = schema => (data, path) =>
+// (Schema, (Data -> PathError)) -> Rule
+const hasSchema = (schema, objectError) => first(checkType(Object, objectError), (data, path) =>
   Object.keys(schema).reduce((errors, key) =>
     errors.concat(schema[key](data[key], path.concat([key])))
-  , []);
+  , [])
+);
 
 // (Schema, (Data -> PathError), (String -> PathError)) -> Rule
 const restrictToSchema = (schema, objectError, invalidKeyError) =>
@@ -113,6 +114,7 @@ const restrictToCollection = (
 module.exports = {
   pathString,
   pathError,
+  typeError,
   composeRules,
   first,
   checkBool,
@@ -121,6 +123,8 @@ module.exports = {
   checkRegex,
   optional,
   required,
+  restrictToKeys,
+  hasSchema,
   restrictToSchema,
   restrictToCollection,
 };
