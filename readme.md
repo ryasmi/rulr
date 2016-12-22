@@ -42,58 +42,62 @@ pathError('Problem')(['foo', 'bar', 0]);
 // Returns 'Problem in `foo.bar.0`'
 ```
 
+### typeError
+```js
+typeError('String')(data)(['foo']);
+// Returns ['Invalid String in `foo`']
+```
+
 ### composeRules
 ```js
-composeRules([
-  (data, path) => [pathError(`${data} is incorrect`)(path)],
-  (data, path) => [pathError(`${data} is invalid`)(path)],
-])(10, ['foo']);
-// Returns ['10 is incorrect in `foo`', '10 is invalid in `foo`']
+const data = 'hello';
+const number = checkType(Number);
+const lessThan10 = (data, path) => data < 10 ? [] : [pathError(`${data} should be less than 10`)(path)];
+composeRules([number, lessThan10])(data, ['data']);
+// Returns ['hello is not a Number in `data`', 'hello should be less than 10 in `data`']
 ```
 
 ### first
 ```js
-first([
-  (data, path) => [pathError(`${data} is incorrect`)(path)],
-  (data, path) => [pathError(`${data} is invalid`)(path)],
-])(10, ['foo']);
-// Returns ['10 is incorrect in `foo`']
+const data = 'hello';
+const number = checkType(Number);
+const lessThan10 = (data, path) => data < 10 ? [] : [pathError(`${data} should be less than 10`)(path)];
+first([number, lessThan10])(10, ['data']);
+// Returns ['hello is not a Number in `data`']
 
-first([
-  (data, path) => [],
-  (data, path) => [pathError(`${data} is invalid`)(path)],
-])(10, ['foo']);
-// Returns ['10 is invalid in `foo`']
+const data = 10;
+const number = checkType(number);
+const lessThan10 = (data, path) => data < 10 ? [] : [pathError(`${data} should be less than 10`)(path)];
+first([number, lessThan10])(10, ['data']);
+// Returns ['10 should be less than 10 in `data`']
 ```
 
 ### checkBool
 ```js
+const data = 10;
+const isString = data => data.constructor === String;
 checkBool(
-  (data, path) => false,
+  isString,
   data => pathError(`${data} is incorrect`)
-)(10, ['foo']);
-// Returns ['10 is incorrect in `foo`']
+)(data, ['data']);
+// Returns ['10 is incorrect in `data`']
 ```
 
 ### checkThrow
 ```js
-checkThrow(
-  (data, path) => { throw new Error() },
-  data => pathError(`${data} is incorrect`)
-)(10, ['foo']);
-// Returns ['10 is incorrect in `foo`']
+const data = 10;
+const isString = (data) => {
+  if (data.constructor !== String) throw new Error(`${data} is incorrect`); 
+};
+checkThrow(isString)(data, ['data']);
+// Returns ['10 is incorrect in `data`']
 ```
 
 ### checkType
 ```js
-checkType(String, type => data => pathError(`${data} is not a ${type}`))(10, ['foo']);
-// Returns ['10 is not a String in `foo`']
-```
-
-### checkType
-```js
-checkType(String, type => data => pathError(`${data} is not a ${type}`))(10, ['foo']);
-// Returns ['10 is not a String in `foo`']
+const data = 10;
+checkType(String, typeError)(data, ['data']);
+// Returns ['data is not a String in `data`']
 
 checkType(String, type => data => pathError(`${data} is not a ${type}`))('Hello', ['foo']);
 // Returns []
@@ -107,53 +111,41 @@ checkRegex(/hello/, data => pathError(`${data} is incorrect`))('blabla', ['foo']
 
 ### optional
 ```js
-optional(
-  (data, path) => [pathError(`${data} is incorrect`)(path)],
-)(undefined, ['foo']);
+const data = undefined;
+optional(checkType(String))(data, ['data']);
 // Returns []
 
-optional(
-  (data, path) => [pathError(`${data} is incorrect`)(path)],
-)(10, ['foo']);
-// Returns ['10 is incorrect in `foo`']
+const data = 10;
+optional(checkType(String))(data, ['data']);
+// Returns ['10 is not a String in `data`']
 ```
 
 ### required
 ```js
-required(
-  (data, path) => [pathError(`${data} is incorrect`)(path)],
-)(undefined, ['foo']);
-// Returns ['Missing required property in `foo`']
+const data = undefined;
+required(checkType(String))(data, ['data']);
+// Returns ['Missing required value in `data`']
 
-required(
-  (data, path) => [pathError(`${data} is incorrect`)(path)],
-)(10, ['foo']);
-// Returns ['10 is incorrect in `foo`']
-```
-
-### typeError
-```js
-typeError('string')(data)(['foo']);
-// Returns ['Invalid string in `foo`']
+const data = 10;
+required(checkType(String))(data, ['data']);
+// Returns ['10 is not a String in `data`']
 ```
 
 ### restrictToSchema
 ```js
-restrictToSchema({
-  foo: (data, path) => [pathError(`${data} is incorrect`)(path)],
-})({foo: 1, bar 2}, ['data']);
-// Returns ['1 is incorrect in `data.foo`', 'Invalid keys `bar` found in `data`']
+const data = { foo: 10, bar 10 };
+const schema = { foo: checkType(String) }
+restrictToSchema(schema)(data, ['data']);
+// Returns ['10 is not a String in `data.foo`', 'Invalid keys `bar` found in `data`']
 ```
 
 ### restrictToCollection
 ```js
-restrictToCollection(
-  (data, path) => [pathError(`${data} is incorrect`)(path)],
-)([10], ['foo']);
-// Returns ['10 is incorrect in `foo.0`']
+const data = [10];
+restrictToCollection(checkType(String))(data, ['data']);
+// Returns ['10 is not a String in `data.0`']
 
-restrictToCollection(
-  (data, path) => [pathError(`${data} is incorrect`)(path)],
-)(10, ['foo']);
-// Returns ['Invalid array in `foo`']
+const data = 10;
+restrictToCollection(checkType(String))(data, ['data']);
+// Returns ['Invalid array in `data`']
 ```
