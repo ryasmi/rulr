@@ -142,10 +142,10 @@ restrictToSchema(schema)(data, ['data']);
 ### restrictToCollection
 ```js
 const data = [10];
-restrictToCollection(checkType(String))(data, ['data']);
+restrictToCollection(index => checkType(String))(data, ['data']);
 // Returns ['10 is not a valid String in `data.0`']
 
 const data = 10;
-restrictToCollection(checkType(String))(data, ['data']);
+restrictToCollection(index => checkType(String))(data, ['data']);
 // Returns ['10 is not a valid Array in `data`']
 ```
