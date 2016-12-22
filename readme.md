@@ -26,7 +26,7 @@ validateMyModel = restrictToSchema({
 
 validateMyModel(data, ['data']);
 
-// Returns: ["Invalid String in `data.d.0.a`", "Expected an object in `data.d.1`"]
+// Returns: ["10 is not a valid String in `data.d.0.a`", "10 is not a valid Object in `data.d.1`"]
 ```
 
 ## API
@@ -44,8 +44,9 @@ pathError('Problem')(['foo', 'bar', 0]);
 
 ### typeError
 ```js
-typeError('String')(data)(['foo']);
-// Returns ['Invalid String in `foo`']
+const data = 10;
+typeError('String')(data)(['data']);
+// Returns ['10 is not a valid String in `data`']
 ```
 
 ### composeRules
@@ -54,7 +55,7 @@ const data = 'hello';
 const number = checkType(Number);
 const lessThan10 = (data, path) => data < 10 ? [] : [pathError(`${data} should be less than 10`)(path)];
 composeRules([number, lessThan10])(data, ['data']);
-// Returns ['hello is not a Number in `data`', 'hello should be less than 10 in `data`']
+// Returns ['hello is not a valid Number in `data`', 'hello should be less than 10 in `data`']
 ```
 
 ### first
@@ -63,7 +64,7 @@ const data = 'hello';
 const number = checkType(Number);
 const lessThan10 = (data, path) => data < 10 ? [] : [pathError(`${data} should be less than 10`)(path)];
 first([number, lessThan10])(10, ['data']);
-// Returns ['hello is not a Number in `data`']
+// Returns ['hello is not a valid Number in `data`']
 
 const data = 10;
 const number = checkType(number);
@@ -117,7 +118,7 @@ optional(checkType(String))(data, ['data']);
 
 const data = 10;
 optional(checkType(String))(data, ['data']);
-// Returns ['10 is not a String in `data`']
+// Returns ['10 is not a valid String in `data`']
 ```
 
 ### required
@@ -128,7 +129,7 @@ required(checkType(String))(data, ['data']);
 
 const data = 10;
 required(checkType(String))(data, ['data']);
-// Returns ['10 is not a String in `data`']
+// Returns ['10 is not a valid String in `data`']
 ```
 
 ### restrictToSchema
@@ -136,16 +137,16 @@ required(checkType(String))(data, ['data']);
 const data = { foo: 10, bar 10 };
 const schema = { foo: checkType(String) }
 restrictToSchema(schema)(data, ['data']);
-// Returns ['10 is not a String in `data.foo`', 'Invalid keys `bar` found in `data`']
+// Returns ['10 is not a valid String in `data.foo`', 'Invalid keys `bar` found in `data`']
 ```
 
 ### restrictToCollection
 ```js
 const data = [10];
 restrictToCollection(checkType(String))(data, ['data']);
-// Returns ['10 is not a String in `data.0`']
+// Returns ['10 is not a valid String in `data.0`']
 
 const data = 10;
 restrictToCollection(checkType(String))(data, ['data']);
-// Returns ['Invalid array in `data`']
+// Returns ['10 is not a valid Array in `data`']
 ```
