@@ -12,21 +12,20 @@ npm install --save git+https://git@github.com/ryansmith94/rulr.git
 
 ## Example
 ```js
-data = {
+const data = {
   a: 'hello',
   d: [{
     a: 10
   }, 11]
 };
 
-validateMyModel = restrictToSchema({
+const validateMyModel = restrictToSchema({
   a: required(checkType(String)),
   d: optional(restrictToCollection(index => validateMyModel))
 });
 
 validateMyModel(data, ['data']);
-
-// Returns: ["10 is not a valid String in `data.d.0.a`", "10 is not a valid Object in `data.d.1`"]
+// Returns: ["10 is not a valid String in `data.d.0.a`", "11 is not a valid Object in `data.d.1`"]
 ```
 
 ## API
