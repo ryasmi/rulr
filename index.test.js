@@ -1,6 +1,11 @@
 const assert = require('assert');
 const rulr = require('./index');
 
+const number = rulr.checkType(Number);
+
+const lessThan10 = (data, path) =>
+  data < 10 ? [] : [rulr.pathError(`${data} should be less than 10`)(path)];
+
 describe('pathString', () => {
   it('should join keys with dots', () => {
     const path = ['foo', 'bar', 0];
@@ -53,9 +58,6 @@ describe('composeRules', () => {
     assert.deepEqual(actualResult, expectedResult);
   });
   it('should return a new rule', () => {
-    const number = rulr.checkType(Number);
-    const lessThan10 = (data, path) =>
-      data < 10 ? [] : [rulr.pathError(`${data} should be less than 10`)(path)];
     const rules = [number, lessThan10];
     const data = 'hello';
     const path = ['data'];
@@ -63,6 +65,27 @@ describe('composeRules', () => {
     const expectedResult = [
       '`\"hello\"` is not a valid Number in `data`',
       'hello should be less than 10 in `data`'
+    ];
+    assert.deepEqual(actualResult, expectedResult);
+  });
+});
+
+describe('first', () => {
+  it('should use the pre-requisite first', () => {
+    const data = 'hello';
+    const path = ['data'];
+    const actualResult = rulr.first(number, lessThan10)(data, path);
+    const expectedResult = [
+      '`\"hello\"` is not a valid Number in `data`'
+    ];
+    assert.deepEqual(actualResult, expectedResult);
+  });
+  it('should use the post-requisite second', () => {
+    const data = 10;
+    const path = ['data'];
+    const actualResult = rulr.first(number, lessThan10)(data, path);
+    const expectedResult = [
+      '10 should be less than 10 in `data`'
     ];
     assert.deepEqual(actualResult, expectedResult);
   });
