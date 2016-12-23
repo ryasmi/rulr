@@ -2,5 +2,12 @@
   "name": "rulr",
   "author": "ryansmith94",
   "main": "index.js",
-  "version": "0.0.2"
+  "version": "0.0.2",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha **/*.test.js",
+    "watch-test": "./node_modules/mocha/bin/mocha **/*.test.js --watch"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0"
+  }
 }
