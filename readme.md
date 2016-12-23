@@ -29,6 +29,26 @@ validateMyModel(data, ['data']);
 ```
 
 ## API
+- Rule = (data: Any, path: String[]) -> errors: String[]
+- Schema = {String: Rule}
+- pathString = path: String[] -> error: String
+- pathError = message: String -> path: String[] -> error: String
+- typeError = type: String -> message: String -> path: String[] -> String
+- missingValueError = path: String[] -> error: String
+- invalidKeysError = invalidKeys: String[] -> path: String[] -> error: String
+- composeRules = rules: Rule[] -> result: Rule
+- first = (preReq: Rule, postReq: Rule) -> result: Rule
+- checkBool = ((data: Any, result: Boolean), (data: Any -> error: pathError)) -> Rule
+- checkThrow = ((data: Any -> result: Any), (data: Any -> error: pathError)) -> Rule
+- checkType = (type: Any, error: typeError) -> Rule
+- checkRegex = (regex: Regex, error: (path: String[] -> error: String)) -> Rule
+- optional = rule: Rule -> result: Rule
+- required = (rule: Rule, error: missingValueError) -> result: Rule
+- hasSchema = (schema: Schema, objectError: typeError) -> Rule
+- restrictToKeys = (keys: String[], keyError: invalidKeysError) -> Rule
+- restrictToSchema = (schema: Schema, objectError: typeError, keyError: invalidKeysError) -> Rule
+- restrictToCollection = ((index: Number) -> Rule, arrayError: typeError) -> Rule
+
 ### pathString
 ```js
 pathString(['foo', 'bar', 0]);
