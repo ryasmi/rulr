@@ -90,3 +90,26 @@ describe('first', () => {
     assert.deepEqual(actualResult, expectedResult);
   });
 });
+
+describe('checkBool', () => {
+  const isString = data => data.constructor === String;
+
+  it('should return an error if result is false', () => {
+    const data = 10;
+    const actualResult = rulr.checkBool(
+      isString,
+      data => rulr.pathError(`${data} is incorrect`)
+    )(data, ['data']);
+    const expectedResult = ['10 is incorrect in `data`'];
+    assert.deepEqual(actualResult, expectedResult);
+  });
+  it('should not return an error if result is true', () => {
+    const data = 'hello';
+    const actualResult = rulr.checkBool(
+      isString,
+      data => rulr.pathError(`${data} is incorrect`)
+    )(data, ['data']);
+    const expectedResult = [];
+    assert.deepEqual(actualResult, expectedResult);
+  });
+});
