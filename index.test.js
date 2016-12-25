@@ -214,3 +214,31 @@ describe('required', () => {
     assert.deepEqual(actualResult, expectedResult);
   });
 });
+
+describe('restrictToSchema', () => {
+  const schema = { foo: rulr.checkType(String) };
+  const objectError = rulr.typeError;
+  const keyError = rulr.invalidKeyError;
+
+  it('should return an error if keys are invalid', () => {
+    const data = { foo: 'hello', bar: 10 };
+    const validator = rulr.restrictToSchema(schema, objectError, keyError);
+    const actualResult = validator(data, ['data']);
+    const expectedResult = ['Invalid keys `bar` found in `data`'];
+    assert.deepEqual(actualResult, expectedResult);
+  });
+  it('should return an error if data is incorrect', () => {
+    const data = { foo: 10 };
+    const validator = rulr.restrictToSchema(schema, objectError, keyError);
+    const actualResult = validator(data, ['data']);
+    const expectedResult = ['`10` is not a valid String in `data.foo`'];
+    assert.deepEqual(actualResult, expectedResult);
+  });
+  it('should not return an error if data is correct', () => {
+    const data = { foo: 'hello' };
+    const validator = rulr.restrictToSchema(schema, objectError, keyError);
+    const actualResult = validator(data, ['data']);
+    const expectedResult = [];
+    assert.deepEqual(actualResult, expectedResult);
+  });
+});
