@@ -190,3 +190,27 @@ describe('optional', () => {
     assert.deepEqual(actualResult, expectedResult);
   });
 });
+
+describe('required', () => {
+  const rule = rulr.checkType(String);
+  const error = rulr.missingKeyError;
+
+  it('should return an error if data is defined and incorrect', () => {
+    const data = 10;
+    const actualResult = rulr.required(rule, error)(data, ['data']);
+    const expectedResult = ['`10` is not a valid String in `data`'];
+    assert.deepEqual(actualResult, expectedResult);
+  });
+  it('should return an error if data is undefined', () => {
+    const data = undefined;
+    const actualResult = rulr.required(rule, error)(data, ['data']);
+    const expectedResult = ['Missing required value in `data`'];
+    assert.deepEqual(actualResult, expectedResult);
+  });
+  it('should not return an error if data is defined and correct', () => {
+    const data = 'hello';
+    const actualResult = rulr.required(rule, error)(data, ['data']);
+    const expectedResult = [];
+    assert.deepEqual(actualResult, expectedResult);
+  });
+});
