@@ -258,6 +258,12 @@ describe('restrictToCollection', () => {
   const arrayError = rulr.typeError;
   const validator = rulr.restrictToCollection(rule, arrayError);
 
+  it('should return an error data is not an array', () => {
+    const data = 10;
+    const actualResult = validator(data, ['data']);
+    const expectedResult = ['`10` is not a valid Array in `data`'];
+    assert.deepEqual(actualResult, expectedResult);
+  });
   it('should return an error if data is incorrect', () => {
     const data = [10];
     const actualResult = validator(data, ['data']);
