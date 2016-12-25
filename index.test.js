@@ -227,6 +227,12 @@ describe('restrictToSchema', () => {
   const keyError = rulr.invalidKeyError;
   const validator = rulr.restrictToSchema(schema, objectError, keyError);
 
+  it('should return an error data is not an object', () => {
+    const data = 10;
+    const actualResult = validator(data, ['data']);
+    const expectedResult = ['`10` is not a valid Object in `data`'];
+    assert.deepEqual(actualResult, expectedResult);
+  });
   it('should return an error if keys are invalid', () => {
     const data = { foo: 'hello', bar: 10 };
     const actualResult = validator(data, ['data']);
