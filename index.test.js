@@ -167,3 +167,26 @@ describe('checkRegex', () => {
     assert.deepEqual(actualResult, expectedResult);
   });
 });
+
+describe('optional', () => {
+  const rule = rulr.checkType(String);
+
+  it('should return an error if data is defined and incorrect', () => {
+    const data = 10;
+    const actualResult = rulr.optional(rule)(data, ['data']);
+    const expectedResult = ['`10` is not a valid String in `data`'];
+    assert.deepEqual(actualResult, expectedResult);
+  });
+  it('should not return an error if data is undefined', () => {
+    const data = undefined;
+    const actualResult = rulr.optional(rule)(data, ['data']);
+    const expectedResult = [];
+    assert.deepEqual(actualResult, expectedResult);
+  });
+  it('should not return an error if data is defined and correct', () => {
+    const data = 'hello';
+    const actualResult = rulr.optional(rule)(data, ['data']);
+    const expectedResult = [];
+    assert.deepEqual(actualResult, expectedResult);
+  });
+});
