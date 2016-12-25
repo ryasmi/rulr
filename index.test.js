@@ -127,9 +127,24 @@ describe('checkThrow', () => {
     const expectedResult = ['10 error - 10 is incorrect in `data`'];
     assert.deepEqual(actualResult, expectedResult);
   });
-  it('should not return an error if an exception is thrown', () => {
+  it('should not return an error if an exception is not thrown', () => {
     const data = 'hello';
     const actualResult = rulr.checkThrow(isString)(data, ['data']);
+    const expectedResult = [];
+    assert.deepEqual(actualResult, expectedResult);
+  });
+});
+
+describe('checkType', () => {
+  it('should return an error if the constructor is incorrect', () => {
+    const data = 10;
+    const actualResult = rulr.checkType(String, rulr.typeError)(data, ['data']);
+    const expectedResult = ['`10` is not a valid String in `data`'];
+    assert.deepEqual(actualResult, expectedResult);
+  });
+  it('should not return an error if the constructor is correct', () => {
+    const data = 'hello';
+    const actualResult = rulr.checkType(String, rulr.typeError)(data, ['data']);
     const expectedResult = [];
     assert.deepEqual(actualResult, expectedResult);
   });
