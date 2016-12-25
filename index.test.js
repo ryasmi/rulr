@@ -93,22 +93,43 @@ describe('first', () => {
 
 describe('checkBool', () => {
   const isString = data => data.constructor === String;
+  const error = data => rulr.pathError(`${data} is incorrect`);
 
   it('should return an error if result is false', () => {
     const data = 10;
-    const actualResult = rulr.checkBool(
-      isString,
-      data => rulr.pathError(`${data} is incorrect`)
-    )(data, ['data']);
+    const actualResult = rulr.checkBool(isString, error)(data, ['data']);
     const expectedResult = ['10 is incorrect in `data`'];
     assert.deepEqual(actualResult, expectedResult);
   });
   it('should not return an error if result is true', () => {
     const data = 'hello';
-    const actualResult = rulr.checkBool(
-      isString,
-      data => rulr.pathError(`${data} is incorrect`)
-    )(data, ['data']);
+    const actualResult = rulr.checkBool(isString, error)(data, ['data']);
+    const expectedResult = [];
+    assert.deepEqual(actualResult, expectedResult);
+  });
+});
+
+describe('checkThrow', () => {
+  const isString = (data) => {
+    if (data.constructor !== String) throw new Error(`${data} is incorrect`);
+  };
+  const error = (data, ex) => rulr.pathError(`${data} error - ${ex.message}`);
+
+  it('should return an exception message', () => {
+    const data = 10;
+    const actualResult = rulr.checkThrow(isString)(data, ['data']);
+    const expectedResult = ['10 is incorrect in `data`'];
+    assert.deepEqual(actualResult, expectedResult);
+  });
+  it('should return an error if an exception is thrown', () => {
+    const data = 10;
+    const actualResult = rulr.checkThrow(isString, error)(data, ['data']);
+    const expectedResult = ['10 error - 10 is incorrect in `data`'];
+    assert.deepEqual(actualResult, expectedResult);
+  });
+  it('should not return an error if an exception is thrown', () => {
+    const data = 'hello';
+    const actualResult = rulr.checkThrow(isString)(data, ['data']);
     const expectedResult = [];
     assert.deepEqual(actualResult, expectedResult);
   });
