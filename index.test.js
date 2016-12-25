@@ -154,6 +154,12 @@ describe('checkRegex', () => {
   const pattern = /hello/;
   const error = data => rulr.pathError(`${data} is incorrect`);
 
+  it('should return an error if the data is not a string', () => {
+    const data = 10;
+    const actualResult = rulr.checkRegex(pattern, error)(data, ['data']);
+    const expectedResult = ['`10` is not a valid String in `data`'];
+    assert.deepEqual(actualResult, expectedResult);
+  });
   it('should return an error if the pattern is incorrect', () => {
     const data = 'blabla';
     const actualResult = rulr.checkRegex(pattern, error)(data, ['data']);
