@@ -149,3 +149,21 @@ describe('checkType', () => {
     assert.deepEqual(actualResult, expectedResult);
   });
 });
+
+describe('checkRegex', () => {
+  const pattern = /hello/;
+  const error = data => rulr.pathError(`${data} is incorrect`);
+
+  it('should return an error if the pattern is incorrect', () => {
+    const data = 'blabla';
+    const actualResult = rulr.checkRegex(pattern, error)(data, ['data']);
+    const expectedResult = ['blabla is incorrect in `data`'];
+    assert.deepEqual(actualResult, expectedResult);
+  });
+  it('should not return an error if the pattern is correct', () => {
+    const data = 'hello';
+    const actualResult = rulr.checkRegex(pattern, error)(data, ['data']);
+    const expectedResult = [];
+    assert.deepEqual(actualResult, expectedResult);
+  });
+});
