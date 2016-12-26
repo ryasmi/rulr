@@ -1,7 +1,7 @@
 {
   "name": "rulr",
   "author": "ryansmith94",
-  "main": "index.js",
+  "main": "src/index.js",
   "version": "0.0.2",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha **/*.test.js",
