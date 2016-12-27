@@ -50,7 +50,7 @@ const typeError = type => data =>
 const checkType = (
   type, error = typeError
 ) => (data, path) => (
-  data == null || data.constructor !== type ?
+  data === undefined || data === null || data.constructor !== type ?
   [error(type.name)(data)(path)] :
   []
 );
@@ -98,7 +98,7 @@ const hasSchema = (schema, objectError) => first(checkType(Object, objectError),
 const restrictToSchema = (schema, objectError, invalidKeyError) =>
   first(checkType(Object, objectError), composeRules([
     hasSchema(schema),
-    restrictToKeys(Object.keys(schema), invalidKeyError)
+    restrictToKeys(Object.keys(schema), invalidKeyError),
   ]));
 
 
