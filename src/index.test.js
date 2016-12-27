@@ -161,15 +161,15 @@ describe('checkRegex', () => {
   it(
     'should return an error if the data is not a string',
     test(10, ['`10` is not a valid String in `data`'])
-  });
+  );
   it(
     'should return an error if the pattern is incorrect',
     test('blabla', ['blabla is incorrect in `data`'])
-  });
+  );
   it(
     'should not return an error if the pattern is correct',
     test('hello', [])
-  });
+  );
 });
 
 describe('optional', () => {
