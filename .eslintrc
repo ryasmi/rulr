@@ -6,7 +6,7 @@ env:
   browser: false
   es6: true
   jquery: false
-  node: false
+  node: true
 
 # http://eslint.org/docs/rules/
 rules:
