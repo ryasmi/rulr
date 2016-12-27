@@ -2,7 +2,8 @@
 A package for rules.
 
 [![Build Status](https://travis-ci.org/ryansmith94/rulr.svg?branch=master)](https://travis-ci.org/ryansmith94/rulr)
-[![Dependencies](https://david-dm.org/ryansmith94/rulr.png)]()
+[![Dependencies](https://david-dm.org/ryansmith94/rulr.png)](https://david-dm.org/ryansmith94/rulr)
+[![Dev Dependencies](https://david-dm.org/ryansmith94/rulr/dev-status.png)](https://david-dm.org/ryansmith94/rulr?type=dev)
 
 ```js
 npm install --save git+https://git@github.com/ryansmith94/rulr.git
