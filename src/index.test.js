@@ -94,19 +94,19 @@ describe('first', () => {
 describe('checkBool', () => {
   const isString = data => data.constructor === String;
   const error = data => rulr.pathError(`${data} is incorrect`);
+  const test = (data, expectedResult) => () => {
+    const actualResult = rulr.checkBool(isString, error)(data, ['data']);
+    assert.deepEqual(actualResult, expectedResult);
+  };
 
-  it('should return an error if result is false', () => {
-    const data = 10;
-    const actualResult = rulr.checkBool(isString, error)(data, ['data']);
-    const expectedResult = ['10 is incorrect in `data`'];
-    assert.deepEqual(actualResult, expectedResult);
-  });
-  it('should not return an error if result is true', () => {
-    const data = 'hello';
-    const actualResult = rulr.checkBool(isString, error)(data, ['data']);
-    const expectedResult = [];
-    assert.deepEqual(actualResult, expectedResult);
-  });
+  it(
+    'should return an error if result is false',
+    test(10, ['10 is incorrect in `data`'])
+  );
+  it(
+    'should not return an error if result is true',
+    test('hello', [])
+  )
 });
 
 describe('checkThrow', () => {
