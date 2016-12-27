@@ -4,6 +4,7 @@ A package for rules.
 [![Build Status](https://travis-ci.org/ryansmith94/rulr.svg?branch=master)](https://travis-ci.org/ryansmith94/rulr)
 [![Dependencies](https://david-dm.org/ryansmith94/rulr.svg)](https://david-dm.org/ryansmith94/rulr)
 [![Dev Dependencies](https://david-dm.org/ryansmith94/rulr/dev-status.svg)](https://david-dm.org/ryansmith94/rulr?type=dev)
+[![Code Climate](https://codeclimate.com/github/ryansmith94/rulr/badges/gpa.svg)](https://codeclimate.com/github/ryansmith94/rulr)
 
 ```js
 npm install --save git+https://git@github.com/ryansmith94/rulr.git
