@@ -153,24 +153,22 @@ describe('checkType', () => {
 describe('checkRegex', () => {
   const pattern = /hello/;
   const error = data => rulr.pathError(`${data} is incorrect`);
+  const test = (data, expectedResult) => () => {
+    const actualResult = rulr.checkRegex(pattern, error)(data, ['data']);
+    assert.deepEqual(actualResult, expectedResult);
+  };
 
-  it('should return an error if the data is not a string', () => {
-    const data = 10;
-    const actualResult = rulr.checkRegex(pattern, error)(data, ['data']);
-    const expectedResult = ['`10` is not a valid String in `data`'];
-    assert.deepEqual(actualResult, expectedResult);
+  it(
+    'should return an error if the data is not a string',
+    test(10, ['`10` is not a valid String in `data`'])
   });
-  it('should return an error if the pattern is incorrect', () => {
-    const data = 'blabla';
-    const actualResult = rulr.checkRegex(pattern, error)(data, ['data']);
-    const expectedResult = ['blabla is incorrect in `data`'];
-    assert.deepEqual(actualResult, expectedResult);
+  it(
+    'should return an error if the pattern is incorrect',
+    test('blabla', ['blabla is incorrect in `data`'])
   });
-  it('should not return an error if the pattern is correct', () => {
-    const data = 'hello';
-    const actualResult = rulr.checkRegex(pattern, error)(data, ['data']);
-    const expectedResult = [];
-    assert.deepEqual(actualResult, expectedResult);
+  it(
+    'should not return an error if the pattern is correct',
+    test('hello', [])
   });
 });
 
