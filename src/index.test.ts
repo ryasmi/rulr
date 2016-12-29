@@ -1,8 +1,8 @@
-'use strict';
-const assert = require('assert');
-const rulr = require('./index');
+import * as assert from 'assert';
+import * as rulr from './index';
+import { describe, it } from 'mocha';
 
-const number = rulr.checkType(Number);
+const isNumber = rulr.checkType(Number);
 
 const assertRule = (rule, data, expectedResult) => {
   const actualResult = rule(data, ['data']);
@@ -59,7 +59,7 @@ describe('composeRules', () => {
     assertRule(rulr.composeRules([]), 10, []);
   });
   it('should return a new rule', () => {
-    const rules = [number, lessThan10];
+    const rules = [isNumber, lessThan10];
     assertRule(rulr.composeRules(rules), 'hello', [
       '`\"hello\"` is not a valid Number in `data`',
       'hello should be less than 10 in `data`',
@@ -68,7 +68,7 @@ describe('composeRules', () => {
 });
 
 describe('first', () => {
-  const rule = rulr.first(number, lessThan10);
+  const rule = rulr.first(isNumber, lessThan10);
 
   it('should use the pre-requisite first', () => {
     assertRule(rule, 'hello', ['`\"hello\"` is not a valid Number in `data`']);

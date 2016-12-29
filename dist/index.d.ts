@@ -1,0 +1,18 @@
+export declare const pathString: (path: any) => string;
+export declare const pathError: (msg?: string) => (path: any) => string;
+export declare const composeRules: (rules: any) => (data: any, path: any) => any;
+export declare const first: (preReq: any, rule: any) => (data: any, path: any) => any;
+export declare const checkBool: (checker: any, error: any) => (data: any, path: any) => any[];
+export declare const failedCheckError: (data: any, ex: any) => (path: any) => string;
+export declare const checkThrow: (checker: any, error?: (data: any, ex: any) => (path: any) => string) => (data: any, path: any) => string[];
+export declare const typeError: (type: any) => (data: any) => (path: any) => string;
+export declare const checkType: (type: any, error?: (type: any) => (data: any) => (path: any) => string) => (data: any, path: any) => string[];
+export declare const checkRegex: (regex: any, error?: (data: any) => (path: any) => string) => (data: any, path: any) => any;
+export declare const optional: (rule: any) => (data: any, path: any) => any;
+export declare const missingKeyError: (path: any) => string;
+export declare const required: (rule: any, error?: (path: any) => string) => (data: any, path: any) => any;
+export declare const invalidKeyError: (invalidKeys: any) => (path: any) => string;
+export declare const restrictToKeys: (keys: any, error?: (invalidKeys: any) => (path: any) => string, objectError?: any) => (data: any, path: any) => any;
+export declare const hasSchema: (schema: any, objectError?: any) => (data: any, path: any) => any;
+export declare const restrictToSchema: (schema: any, objectError: any, invalidKeyError: any) => (data: any, path: any) => any;
+export declare const restrictToCollection: (rule: any, error: any) => (data: any, path: any) => any;

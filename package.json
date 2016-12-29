@@ -8,23 +8,16 @@
     "test-watch": "./node_modules/mocha/bin/mocha dist/**/*.test.js --watch",
     "cover": "./node_modules/mocha/bin/mocha dist/**/*.test.js --require blanket --reporter mocha-lcov-reporter > coverage/coverage.lcov",
     "codecov": "./node_modules/codecov/bin/codecov",
-    "build": "babel src --out-dir dist --source-maps",
-    "build-watch": "babel src --out-dir dist --source-maps --watch"
-
+    "build": "tsc",
+    "build-watch": "tsc --watch"
   },
   "devDependencies": {
-    "babel-cli": "^6.18.0",
-    "babel-core": "^6.21.0",
-    "babel-preset-es2015": "^6.18.0",
+    "assert": "^1.4.1",
     "blanket": "1.1.9",
     "codecov": "^1.0.1",
     "mocha": "^3.2.0",
-    "mocha-lcov-reporter": "^1.2.0"
-  },
-  "babel": {
-    "presets": [
-      "es2015"
-    ]
+    "mocha-lcov-reporter": "^1.2.0",
+    "typescript": "^2.1.4"
   },
   "config": {
     "blanket": {
