@@ -2,8 +2,8 @@ language: node_js
 node_js: node
 sudo: false
 after_script:
-  - npm run build
   - mkdir coverage
   - npm run cover
-  - node ./mapCoverage.js
   - npm run codecov
+  - npm run lint
+  - npm run duplication
