@@ -7,7 +7,7 @@
     "test": "./node_modules/mocha/bin/mocha src/**/*.test.js",
     "watch-test": "./node_modules/mocha/bin/mocha src/**/*.test.js --watch",
     "cover": "./node_modules/mocha/bin/mocha dist/**/*.test.js --require blanket --reporter mocha-lcov-reporter > coverage/coverage.lcov",
-    "codecov": "./node_modules/codecov/bin/codecov -t 24d0edca-c938-4149-b473-d482937114f3",
+    "codecov": "./node_modules/codecov/bin/codecov",
     "build": "babel src -d dist"
   },
   "devDependencies": {
