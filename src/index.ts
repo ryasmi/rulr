@@ -61,9 +61,10 @@ export const checkRegexWarning = (data: any): PathWarning =>
 
 export const checkRegex = (
   regex: RegExp,
-  warning = checkRegexWarning
-) => first(checkType(String), (data, path) =>
-  regex.test(data) ? [] : [warning(data)(path)]
+  regexWarning = checkRegexWarning,
+  stringError?
+) => first(checkType(String, stringError), (data, path) =>
+  regex.test(data) ? [] : [regexWarning(data)(path)]
 );
 
 export const optional = (rule: Rule): Rule => (data, path) =>

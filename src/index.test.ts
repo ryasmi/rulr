@@ -135,16 +135,21 @@ describe('checkType', () => {
 describe('checkRegex', () => {
   const pattern = /hello/;
 
-  it('should return the given warning if the pattern is incorrect', () => {
-    const error = data => rulr.warn(`${data} is incorrect`);
-    const rule = rulr.checkRegex(pattern, error);
+  it('should return the given regex warning if the pattern is incorrect', () => {
+    const regexWarning = data => rulr.warn(`${data} is incorrect`);
+    const rule = rulr.checkRegex(pattern, regexWarning);
     assertRule(rule, 'blabla', ['blabla is incorrect in `data`']);
   });
   it('should return the default warning if the data is not a string', () => {
     const rule = rulr.checkRegex(pattern);
-    assertRule(rule, 10, ['`10` is not a valid String in `data`']);
+    assertRule(rule, 'blabla', ['Problem in `data`']);
   });
-  it('should return a warning if the data is not a string', () => {
+  it('should return the given type warning if the data is not a string', () => {
+    const typeWarning = type => data => rulr.warn(`${data} ${type}`);
+    const rule = rulr.checkRegex(pattern, undefined, typeWarning);
+    assertRule(rule, 10, ['10 String in `data`']);
+  });
+  it('should return the default type warning if the data is not a string', () => {
     const rule = rulr.checkRegex(pattern);
     assertRule(rule, 10, ['`10` is not a valid String in `data`']);
   });

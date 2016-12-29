@@ -122,16 +122,21 @@ mocha_1.describe('checkType', function () {
 });
 mocha_1.describe('checkRegex', function () {
     var pattern = /hello/;
-    mocha_1.it('should return the given warning if the pattern is incorrect', function () {
-        var error = function (data) { return rulr.warn(data + " is incorrect"); };
-        var rule = rulr.checkRegex(pattern, error);
+    mocha_1.it('should return the given regex warning if the pattern is incorrect', function () {
+        var regexWarning = function (data) { return rulr.warn(data + " is incorrect"); };
+        var rule = rulr.checkRegex(pattern, regexWarning);
         assertRule(rule, 'blabla', ['blabla is incorrect in `data`']);
     });
     mocha_1.it('should return the default warning if the data is not a string', function () {
         var rule = rulr.checkRegex(pattern);
-        assertRule(rule, 10, ['`10` is not a valid String in `data`']);
+        assertRule(rule, 'blabla', ['Problem in `data`']);
     });
-    mocha_1.it('should return a warning if the data is not a string', function () {
+    mocha_1.it('should return the given type warning if the data is not a string', function () {
+        var typeWarning = function (type) { return function (data) { return rulr.warn(data + " " + type); }; };
+        var rule = rulr.checkRegex(pattern, undefined, typeWarning);
+        assertRule(rule, 10, ['10 String in `data`']);
+    });
+    mocha_1.it('should return the default type warning if the data is not a string', function () {
         var rule = rulr.checkRegex(pattern);
         assertRule(rule, 10, ['`10` is not a valid String in `data`']);
     });

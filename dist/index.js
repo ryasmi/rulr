@@ -55,10 +55,10 @@ exports.checkType = function (type, warning) {
 exports.checkRegexWarning = function (data) {
     return exports.warn();
 };
-exports.checkRegex = function (regex, warning) {
-    if (warning === void 0) { warning = exports.checkRegexWarning; }
-    return exports.first(exports.checkType(String), function (data, path) {
-        return regex.test(data) ? [] : [warning(data)(path)];
+exports.checkRegex = function (regex, regexWarning, stringError) {
+    if (regexWarning === void 0) { regexWarning = exports.checkRegexWarning; }
+    return exports.first(exports.checkType(String, stringError), function (data, path) {
+        return regex.test(data) ? [] : [regexWarning(data)(path)];
     });
 };
 exports.optional = function (rule) { return function (data, path) {

@@ -13,7 +13,7 @@ export declare const checkThrow: (checker: (data: any) => any, warning?: (data: 
 export declare const typeWarning: (type: string) => (data: any) => PathWarning;
 export declare const checkType: (type: any, warning?: (type: string) => (data: any) => PathWarning) => Rule;
 export declare const checkRegexWarning: (data: any) => PathWarning;
-export declare const checkRegex: (regex: RegExp, warning?: (data: any) => PathWarning) => Rule;
+export declare const checkRegex: (regex: RegExp, regexWarning?: (data: any) => PathWarning, stringError?: any) => Rule;
 export declare const optional: (rule: Rule) => Rule;
 export declare const missingKeyWarning: PathWarning;
 export declare const required: (rule: Rule, warning?: PathWarning) => Rule;
