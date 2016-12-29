@@ -5,5 +5,4 @@ after_script:
   - npm run build
   - touch coverage/coverage.lcov
   - npm run cover
-after_success:
   - npm run codecov
