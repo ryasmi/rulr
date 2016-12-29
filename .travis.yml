@@ -6,3 +6,4 @@ after_script:
   - npm run cover
   - npm run codecov
   - npm run lint
+  - npm run duplication
