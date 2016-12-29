@@ -1,5 +1,9 @@
 language: node_js
 node_js: node
 sudo: false
+after_script:
+  - npm run build
+  - touch coverage/coverage.lcov
+  - npm run cover
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - npm run codecov
