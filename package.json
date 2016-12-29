@@ -6,9 +6,9 @@
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha src/**/*.test.js",
     "watch-test": "./node_modules/mocha/bin/mocha src/**/*.test.js --watch",
-    "cover": "./node_modules/mocha/bin/mocha dist/**/*.test.js --require blanket --reporter mocha-lcov-reporter > coverage/coverage.lcov",
+    "cover": "./node_modules/mocha/bin/mocha dist/**/*.test.js --require blanket --reporter mocha-lcov-reporter > coverage/coverage.lcov; node ./mapCoverage.js",
     "codecov": "./node_modules/codecov/bin/codecov",
-    "build": "babel src -d dist"
+    "build": "babel src --out-dir dist --source-maps"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
@@ -16,12 +16,14 @@
     "babel-preset-es2015": "^6.18.0",
     "blanket": "1.1.9",
     "codecov": "^1.0.1",
+    "lcov-sourcemap": "git+https://git@github.com/ryansmith94/lcov-sourcemap.git",
     "mocha": "^3.2.0",
-    "mocha-lcov-reporter": "^1.2.0",
-    "mocha-text-cov": "^0.1.1"
+    "mocha-lcov-reporter": "^1.2.0"
   },
   "babel": {
-    "presets": ["es2015"]
+    "presets": [
+      "es2015"
+    ]
   },
   "config": {
     "blanket": {

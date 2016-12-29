@@ -216,3 +216,4 @@ describe('restrictToCollection', function () {
     assertRule(rule, ['hello'], []);
   });
 });
+//# sourceMappingURL=index.test.js.map

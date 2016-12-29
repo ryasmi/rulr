@@ -5,4 +5,5 @@ after_script:
   - npm run build
   - mkdir coverage
   - npm run cover
+  - node ./mapCoverage.js
   - npm run codecov

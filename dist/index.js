@@ -161,3 +161,4 @@ module.exports = {
   restrictToSchema: restrictToSchema,
   restrictToCollection: restrictToCollection
 };
+//# sourceMappingURL=index.js.map
