@@ -5,3 +5,4 @@ after_script:
   - mkdir coverage
   - npm run cover
   - npm run codecov
+  - npm run lint

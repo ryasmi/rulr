@@ -10,7 +10,8 @@
     "cover": "./node_modules/mocha/bin/mocha dist/**/*.test.js --require blanket --reporter mocha-lcov-reporter > coverage/coverage.lcov",
     "codecov": "./node_modules/codecov/bin/codecov",
     "build": "tsc",
-    "build-watch": "tsc --watch"
+    "build-watch": "tsc --watch",
+    "lint": "./node_modules/tslint/bin/tslint --project ./tsconfig.json -c ./tslint.json"
   },
   "devDependencies": {
     "assert": "^1.4.1",
@@ -18,6 +19,7 @@
     "codecov": "^1.0.1",
     "mocha": "^3.2.0",
     "mocha-lcov-reporter": "^1.2.0",
+    "tslint": "^4.2.0",
     "typescript": "^2.1.4"
   },
   "config": {
