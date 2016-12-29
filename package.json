@@ -20,6 +20,9 @@
     "mocha-lcov-reporter": "^1.2.0",
     "mocha-text-cov": "^0.1.1"
   },
+  "babel": {
+    "presets": ["es2015"]
+  },
   "config": {
     "blanket": {
       "pattern": [
