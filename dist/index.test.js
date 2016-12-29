@@ -72,116 +72,159 @@ mocha_1.describe('first', function () {
 });
 mocha_1.describe('checkBool', function () {
     var isString = function (data) { return data.constructor === String; };
-    var error = function (data) { return rulr.warn(data + " is incorrect"); };
-    var rule = rulr.checkBool(isString, error);
-    mocha_1.it('should return an error if result is false', function () {
-        assertRule(rule, 10, ['10 is incorrect in `data`']);
+    var error = function (data) { return rulr.warn("" + data); };
+    mocha_1.it('should return the given warning if result is false', function () {
+        var rule = rulr.checkBool(isString, error);
+        assertRule(rule, 10, ['10 in `data`']);
     });
-    mocha_1.it('should not return an error if result is true', function () {
+    mocha_1.it('should return the default warning if the result is false', function () {
+        var rule = rulr.checkBool(isString);
+        assertRule(rule, 10, ['Problem in `data`']);
+    });
+    mocha_1.it('should not return a warning if result is true', function () {
+        var rule = rulr.checkBool(isString);
         assertRule(rule, 'hello', []);
     });
 });
 mocha_1.describe('checkThrow', function () {
     var isString = function (data) {
         if (data.constructor !== String)
-            throw new Error(data + " is incorrect");
+            throw new Error(data + " exception");
     };
-    var error = function (data, ex) { return rulr.warn(data + " error - " + ex.message); };
-    mocha_1.it('should return an exception message', function () {
-        assertRule(rulr.checkThrow(isString), 10, ['10 is incorrect in `data`']);
-    });
-    mocha_1.it('should return an error if an exception is thrown', function () {
+    mocha_1.it('should return the given warning if an exception is thrown', function () {
+        var error = function (data, ex) { return rulr.warn(data + " " + ex.message); };
         var rule = rulr.checkThrow(isString, error);
-        assertRule(rule, 10, ['10 error - 10 is incorrect in `data`']);
+        assertRule(rule, 10, ['10 10 exception in `data`']);
     });
-    mocha_1.it('should not return an error if an exception is not thrown', function () {
-        assertRule(rulr.checkThrow(isString), 'hello', []);
+    mocha_1.it('should return an exception message', function () {
+        var rule = rulr.checkThrow(isString);
+        assertRule(rule, 10, ['10 exception in `data`']);
+    });
+    mocha_1.it('should not return a warning if an exception is not thrown', function () {
+        var rule = rulr.checkThrow(isString);
+        assertRule(rule, 'hello', []);
     });
 });
 mocha_1.describe('checkType', function () {
-    var rule = rulr.checkType(String, rulr.typeWarning);
-    mocha_1.it('should return an error if the constructor is incorrect', function () {
+    mocha_1.it('should return the given warning if the constructor is incorrect', function () {
+        var error = function (type) { return function (data) { return rulr.warn(data + " " + type); }; };
+        var rule = rulr.checkType(String, error);
+        assertRule(rule, 10, ['10 String in `data`']);
+    });
+    mocha_1.it('should return the default warning if the constructor is incorrect', function () {
+        var rule = rulr.checkType(String);
         assertRule(rule, 10, ['`10` is not a valid String in `data`']);
     });
-    mocha_1.it('should not return an error if the constructor is correct', function () {
+    mocha_1.it('should not return a warning if the constructor is correct', function () {
+        var rule = rulr.checkType(String);
         assertRule(rule, 'hello', []);
     });
 });
 mocha_1.describe('checkRegex', function () {
     var pattern = /hello/;
-    var error = function (data) { return rulr.warn(data + " is incorrect"); };
-    var rule = rulr.checkRegex(pattern, error);
-    mocha_1.it('should return an error if the data is not a string', function () {
-        assertRule(rule, 10, ['`10` is not a valid String in `data`']);
-    });
-    mocha_1.it('should return an error if the pattern is incorrect', function () {
+    mocha_1.it('should return the given warning if the pattern is incorrect', function () {
+        var error = function (data) { return rulr.warn(data + " is incorrect"); };
+        var rule = rulr.checkRegex(pattern, error);
         assertRule(rule, 'blabla', ['blabla is incorrect in `data`']);
     });
-    mocha_1.it('should not return an error if the pattern is correct', function () {
+    mocha_1.it('should return the default warning if the data is not a string', function () {
+        var rule = rulr.checkRegex(pattern);
+        assertRule(rule, 10, ['`10` is not a valid String in `data`']);
+    });
+    mocha_1.it('should return a warning if the data is not a string', function () {
+        var rule = rulr.checkRegex(pattern);
+        assertRule(rule, 10, ['`10` is not a valid String in `data`']);
+    });
+    mocha_1.it('should not return a warning if the pattern is correct', function () {
+        var rule = rulr.checkRegex(pattern);
         assertRule(rule, 'hello', []);
     });
 });
 mocha_1.describe('optional', function () {
     var postReq = rulr.checkType(String);
     var rule = rulr.optional(postReq);
-    mocha_1.it('should return an error if data is defined and incorrect', function () {
+    mocha_1.it('should return a warning if data is defined and incorrect', function () {
         assertRule(rule, 10, ['`10` is not a valid String in `data`']);
     });
-    mocha_1.it('should not return an error if data is undefined', function () {
+    mocha_1.it('should not return a warning if data is undefined', function () {
         assertRule(rule, undefined, []);
     });
-    mocha_1.it('should not return an error if data is defined and correct', function () {
+    mocha_1.it('should not return a warning if data is defined and correct', function () {
         assertRule(rule, 'hello', []);
     });
 });
 mocha_1.describe('required', function () {
     var postReq = rulr.checkType(String);
-    var error = rulr.missingKeyWarning;
-    var rule = rulr.required(postReq, error);
-    mocha_1.it('should return an error if data is defined and incorrect', function () {
+    mocha_1.it('should return the given warning if data is undefined', function () {
+        var error = rulr.warn('Warning');
+        var rule = rulr.required(postReq, error);
+        assertRule(rule, undefined, ['Warning in `data`']);
+    });
+    mocha_1.it('should return a warning if data is defined and incorrect', function () {
+        var rule = rulr.required(postReq);
         assertRule(rule, 10, ['`10` is not a valid String in `data`']);
     });
-    mocha_1.it('should return an error if data is undefined', function () {
+    mocha_1.it('should return the default warning if data is undefined', function () {
+        var rule = rulr.required(postReq);
         assertRule(rule, undefined, ['Missing required value in `data`']);
     });
-    mocha_1.it('should not return an error if data is defined and correct', function () {
+    mocha_1.it('should not return a warning if data is defined and correct', function () {
+        var rule = rulr.required(postReq);
         assertRule(rule, 'hello', []);
     });
 });
 mocha_1.describe('restrictToSchema', function () {
     var schema = { foo: rulr.checkType(String) };
-    var objectError = rulr.typeWarning;
-    var keyError = rulr.invalidKeyWarning;
-    var rule = rulr.restrictToSchema(schema, objectError, keyError);
-    mocha_1.it('should return an error data is not an object', function () {
+    mocha_1.it('should return the given object warning if data is not an object', function () {
+        var objectWarning = function (type) { return function (data) { return rulr.warn(data + " " + type); }; };
+        var rule = rulr.restrictToSchema(schema, objectWarning);
+        assertRule(rule, 10, ['10 Object in `data`']);
+    });
+    mocha_1.it('should return the given key warning if keys are invalid', function () {
+        var keyWarning = function (keys) { return rulr.warn("" + keys.join(',')); };
+        var rule = rulr.restrictToSchema(schema, undefined, keyWarning);
+        var expectedResult = ['bar in `data`'];
+        assertRule(rule, { foo: 'hello', bar: 10 }, expectedResult);
+    });
+    mocha_1.it('should return the default object warning if data is not an object', function () {
+        var rule = rulr.restrictToSchema(schema);
         assertRule(rule, 10, ['`10` is not a valid Object in `data`']);
     });
-    mocha_1.it('should return an error if keys are invalid', function () {
+    mocha_1.it('should return the default key warning if keys are invalid', function () {
+        var rule = rulr.restrictToSchema(schema);
         var expectedResult = ['Invalid keys `bar` found in `data`'];
         assertRule(rule, { foo: 'hello', bar: 10 }, expectedResult);
     });
-    mocha_1.it('should return an error if data is incorrect', function () {
+    mocha_1.it('should return a warning if data is incorrect', function () {
+        var rule = rulr.restrictToSchema(schema);
         var expectedResult = ['`10` is not a valid String in `data.foo`'];
         assertRule(rule, { foo: 10 }, expectedResult);
     });
-    mocha_1.it('should not return an error if data is correct', function () {
-        var data = { foo: 'hello' };
+    mocha_1.it('should not return a warning if data is correct', function () {
+        var rule = rulr.restrictToSchema(schema);
         assertRule(rule, { foo: 'hello' }, []);
     });
 });
 mocha_1.describe('restrictToCollection', function () {
     var postReq = function (index) { return rulr.checkType(String); };
-    var arrayError = rulr.typeWarning;
-    var rule = rulr.restrictToCollection(postReq, arrayError);
-    mocha_1.it('should return an error data is not an array', function () {
+    mocha_1.it('should return the given array warning if data is not an array', function () {
+        var arrayWarning = function (type) { return function (data) { return rulr.warn(data + " " + type); }; };
+        var rule = rulr.restrictToCollection(postReq, arrayWarning);
+        var expectedResult = ['10 Array in `data`'];
+        assertRule(rule, 10, expectedResult);
+    });
+    mocha_1.it('should return the default array warning if data is not an array', function () {
+        var rule = rulr.restrictToCollection(postReq);
         var expectedResult = ['`10` is not a valid Array in `data`'];
         assertRule(rule, 10, expectedResult);
     });
     mocha_1.it('should return an error if data is incorrect', function () {
+        var rule = rulr.restrictToCollection(postReq);
         var expectedResult = ['`10` is not a valid String in `data.0`'];
         assertRule(rule, [10], expectedResult);
     });
     mocha_1.it('should not return an error if data is correct', function () {
+        var rule = rulr.restrictToCollection(postReq);
         assertRule(rule, ['hello'], []);
     });
 });
