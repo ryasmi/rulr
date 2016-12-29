@@ -64,9 +64,9 @@ exports.checkRegex = function (regex, regexWarning, stringError) {
 exports.optional = function (rule) { return function (data, path) {
     return data === undefined ? [] : rule(data, path);
 }; };
-exports.missingKeyWarning = exports.warn('Missing required value');
+exports.requiredWarning = exports.warn('Missing required value');
 exports.required = function (rule, warning) {
-    if (warning === void 0) { warning = exports.missingKeyWarning; }
+    if (warning === void 0) { warning = exports.requiredWarning; }
     return function (data, path) {
         return data === undefined ? [warning(path)] : rule(data, path);
     };

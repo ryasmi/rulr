@@ -15,7 +15,7 @@ export declare const checkType: (type: any, warning?: (type: string) => (data: a
 export declare const checkRegexWarning: (data: any) => PathWarning;
 export declare const checkRegex: (regex: RegExp, regexWarning?: (data: any) => PathWarning, stringError?: any) => Rule;
 export declare const optional: (rule: Rule) => Rule;
-export declare const missingKeyWarning: PathWarning;
+export declare const requiredWarning: PathWarning;
 export declare const required: (rule: Rule, warning?: PathWarning) => Rule;
 export declare const invalidKeyWarning: (invalidKeys: string[]) => PathWarning;
 export declare const restrictToKeys: (keys: string[], warning?: (invalidKeys: string[]) => PathWarning, objectWarning?: any) => Rule;

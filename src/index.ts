@@ -70,11 +70,11 @@ export const checkRegex = (
 export const optional = (rule: Rule): Rule => (data, path) =>
   data === undefined ? [] : rule(data, path);
 
-export const missingKeyWarning: PathWarning = warn('Missing required value');
+export const requiredWarning: PathWarning = warn('Missing required value');
 
 export const required = (
   rule: Rule,
-  warning = missingKeyWarning
+  warning = requiredWarning
 ): Rule => (data, path) =>
   data === undefined ? [warning(path)] : rule(data, path);
 
