@@ -5,7 +5,7 @@
   "version": "0.0.2",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha dist/**/*.test.js",
-    "watch-test": "./node_modules/mocha/bin/mocha dist/**/*.test.js --watch",
+    "test-watch": "./node_modules/mocha/bin/mocha dist/**/*.test.js --watch",
     "cover": "./node_modules/mocha/bin/mocha dist/**/*.test.js --require blanket --reporter mocha-lcov-reporter > coverage/coverage.lcov",
     "codecov": "./node_modules/codecov/bin/codecov",
     "build": "babel src --out-dir dist --source-maps",
