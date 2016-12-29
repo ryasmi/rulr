@@ -13,15 +13,15 @@ export declare const checkThrow: (checker: (data: any) => any, warning?: (data: 
 export declare const checkTypeWarning: (type: string) => (data: any) => PathWarning;
 export declare const checkType: (type: any, warning?: (type: string) => (data: any) => PathWarning) => Rule;
 export declare const checkRegexWarning: (data: any) => PathWarning;
-export declare const checkRegex: (regex: RegExp, regexWarning?: (data: any) => PathWarning, stringError?: any) => Rule;
+export declare const checkRegex: (regex: RegExp, regexWarning?: (data: any) => PathWarning, stringWarning?: (type: string) => (data: any) => PathWarning) => Rule;
 export declare const optional: (rule: Rule) => Rule;
 export declare const requiredWarning: PathWarning;
 export declare const required: (rule: Rule, warning?: PathWarning) => Rule;
 export declare const invalidKeyWarning: (invalidKeys: string[]) => PathWarning;
-export declare const restrictToKeys: (keys: string[], warning?: (invalidKeys: string[]) => PathWarning, objectWarning?: any) => Rule;
+export declare const restrictToKeys: (keys: string[], warning?: (invalidKeys: string[]) => PathWarning, objectWarning?: (type: string) => (data: any) => PathWarning) => Rule;
 export declare type Schema = {
     [key: string]: Rule;
 };
-export declare const hasSchema: (schema: Schema, objectWarning?: any) => Rule;
-export declare const restrictToSchema: (schema: Schema, objectWarning?: any, invalidKeyWarning?: any) => Rule;
-export declare const restrictToCollection: (rule: (index: number) => Rule, arrayWarning?: any) => Rule;
+export declare const hasSchema: (schema: Schema, objectWarning?: (type: string) => (data: any) => PathWarning) => Rule;
+export declare const restrictToSchema: (schema: Schema, objectWarning?: (type: string) => (data: any) => PathWarning, keyWarning?: (invalidKeys: string[]) => PathWarning) => Rule;
+export declare const restrictToCollection: (rule: (index: number) => Rule, arrayWarning?: (type: string) => (data: any) => PathWarning) => Rule;

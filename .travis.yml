@@ -1,6 +1,8 @@
 language: node_js
 node_js: node
 sudo: false
+before_script:
+  - npm run typings
 after_script:
   - mkdir coverage
   - npm run cover
