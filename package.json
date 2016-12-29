@@ -12,6 +12,7 @@
     "build": "tsc",
     "build-watch": "tsc --watch",
     "lint": "./node_modules/tslint/bin/tslint --project ./tsconfig.json -c ./tslint.json",
+    "duplication-limit": "./node_modules/jscpd/bin/jscpd --limit=1",
     "duplication": "./node_modules/jscpd/bin/jscpd",
     "typings": "node ./node_modules/typings/dist/bin.js install"
   },
