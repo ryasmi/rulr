@@ -1,0 +1,6 @@
+{
+  "globalDependencies": {
+    "assert": "registry:dt/assert#0.0.0+20161116022913",
+    "mocha": "registry:dt/mocha#2.2.5+20161221010438"
+  }
+}

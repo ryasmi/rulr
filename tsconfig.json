@@ -9,13 +9,14 @@
     "preserveConstEnums": true,
     "declaration": true,
     "strictNullChecks": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "alwaysStrict": true
   },
   "filesGlob": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "typings/index.d.ts"
   ],
   "exclude": [
     "node_modules"
@@ -23,7 +24,8 @@
   "compileOnSave": false,
   "files": [
     "src/index.test.ts",
-    "src/index.ts"
+    "src/index.ts",
+    "typings/index.d.ts"
   ],
   "atom": {
     "rewriteTsconfig": true

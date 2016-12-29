@@ -1,15 +1,15 @@
 import * as assert from 'assert';
-import { describe, it } from 'mocha';
+import * as mocha from 'mocha';
 import * as rulr from './index';
 
 const isNumber = rulr.checkType(Number);
 
-const assertRule = (rule, data, expectedResult) => {
+const assertRule = (rule: rulr.Rule, data: any, expectedResult: rulr.Warning[]) => {
   const actualResult = rule(data, ['data']);
   assert.deepEqual(actualResult, expectedResult);
 };
 
-const lessThan10 = (data, path) =>
+const lessThan10: rulr.Rule = (data, path) =>
   data < 10 ? [] : [rulr.warn(`${data} should be less than 10`)(path)];
 
 describe('pathString', () => {
@@ -20,7 +20,7 @@ describe('pathString', () => {
     assert.equal(actualResult, expectedResult);
   });
   it('should an empty path', () => {
-    const path = [];
+    const path: string[] = [];
     const actualResult = rulr.pathString(path);
     const expectedResult = '``';
     assert.equal(actualResult, expectedResult);
@@ -79,8 +79,8 @@ describe('first', () => {
 });
 
 describe('checkBool', () => {
-  const isString = data => data.constructor === String;
-  const error = data => rulr.warn(`${data}`);
+  const isString = (data: any) => data.constructor === String;
+  const error = (data: any) => rulr.warn(`${data}`);
 
   it('should return the given warning if result is false', () => {
     const rule = rulr.checkBool(isString, error);
@@ -97,12 +97,13 @@ describe('checkBool', () => {
 });
 
 describe('checkThrow', () => {
-  const isString = (data) => {
+  const isString = (data: any) => {
     if (data.constructor !== String) throw new Error(`${data} exception`);
   };
 
   it('should return the given warning if an exception is thrown', () => {
-    const error = (data, ex) => rulr.warn(`${data} ${ex.message}`);
+    const error = (data: any, ex: Error) =>
+      rulr.warn(`${data} ${ex.message}`);
     const rule = rulr.checkThrow(isString, error);
     assertRule(rule, 10, ['10 10 exception in `data`']);
   });
@@ -118,7 +119,8 @@ describe('checkThrow', () => {
 
 describe('checkType', () => {
   it('should return the given warning if the constructor is incorrect', () => {
-    const error = type => data => rulr.warn(`${data} ${type}`);
+    const error = (type: any) => (data: any) =>
+      rulr.warn(`${data} ${type}`);
     const rule = rulr.checkType(String, error);
     assertRule(rule, 10, ['10 String in `data`']);
   });
@@ -136,7 +138,7 @@ describe('checkRegex', () => {
   const pattern = /hello/;
 
   it('should return the given regex warning if the pattern is incorrect', () => {
-    const regexWarning = data => rulr.warn(`${data} is incorrect`);
+    const regexWarning = (data: any) => rulr.warn(`${data} is incorrect`);
     const rule = rulr.checkRegex(pattern, regexWarning);
     assertRule(rule, 'blabla', ['blabla is incorrect in `data`']);
   });
@@ -145,7 +147,7 @@ describe('checkRegex', () => {
     assertRule(rule, 'blabla', ['Problem in `data`']);
   });
   it('should return the given type warning if the data is not a string', () => {
-    const typeWarning = type => data => rulr.warn(`${data} ${type}`);
+    const typeWarning = (type: any) => (data: any) => rulr.warn(`${data} ${type}`);
     const rule = rulr.checkRegex(pattern, undefined, typeWarning);
     assertRule(rule, 10, ['10 String in `data`']);
   });
@@ -200,12 +202,12 @@ describe('restrictToSchema', () => {
   const schema = { foo: rulr.checkType(String) };
 
   it('should return the given object warning if data is not an object', () => {
-    const objectWarning = type => data => rulr.warn(`${data} ${type}`);
+    const objectWarning = (type: any) => (data: any) => rulr.warn(`${data} ${type}`);
     const rule = rulr.restrictToSchema(schema, objectWarning);
     assertRule(rule, 10, ['10 Object in `data`']);
   });
   it('should return the given key warning if keys are invalid', () => {
-    const keyWarning = keys => rulr.warn(`${keys.join(',')}`);
+    const keyWarning = (keys: string[]) => rulr.warn(`${keys.join(',')}`);
     const rule = rulr.restrictToSchema(schema, undefined, keyWarning);
     const expectedResult = ['bar in `data`'];
     assertRule(rule, { foo: 'hello', bar: 10 }, expectedResult);
@@ -231,10 +233,10 @@ describe('restrictToSchema', () => {
 });
 
 describe('restrictToCollection', () => {
-  const postReq = index => rulr.checkType(String);
+  const postReq = (index: number) => rulr.checkType(String);
 
   it('should return the given array warning if data is not an array', () => {
-    const arrayWarning = type => data => rulr.warn(`${data} ${type}`);
+    const arrayWarning = (type: any) => (data: any) => rulr.warn(`${data} ${type}`);
     const rule = rulr.restrictToCollection(postReq, arrayWarning);
     const expectedResult = ['10 Array in `data`'];
     assertRule(rule, 10, expectedResult);

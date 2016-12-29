@@ -62,8 +62,8 @@ export const checkRegexWarning = (data: any): PathWarning =>
 export const checkRegex = (
   regex: RegExp,
   regexWarning = checkRegexWarning,
-  stringError?
-) => first(checkType(String, stringError), (data, path) =>
+  stringWarning = checkTypeWarning
+) => first(checkType(String, stringWarning), (data, path) =>
   regex.test(data) ? [] : [regexWarning(data)(path)]
 );
 
@@ -85,7 +85,7 @@ export const invalidKeyWarning = (invalidKeys: string[]): PathWarning =>
 export const restrictToKeys = (
   keys: string[],
   warning = invalidKeyWarning,
-  objectWarning?
+  objectWarning = checkTypeWarning
 ): Rule => first(checkType(Object, objectWarning), (data, path) => {
     const invalidKeys = Object.keys(data).filter((key: string) =>
       keys.indexOf(key) === -1
@@ -96,7 +96,7 @@ export const restrictToKeys = (
 export type Schema = {[key: string]: Rule};
 export const hasSchema = (
   schema: Schema,
-  objectWarning?
+  objectWarning = checkTypeWarning
 ): Rule =>
   first(checkType(Object, objectWarning), (data, path) =>
     Object.keys(schema).reduce((warnings: Warning[], key: string) =>
@@ -106,18 +106,18 @@ export const hasSchema = (
 
 export const restrictToSchema = (
   schema: Schema,
-  objectWarning?,
-  invalidKeyWarning?
+  objectWarning = checkTypeWarning,
+  keyWarning = invalidKeyWarning
 ): Rule =>
   first(checkType(Object, objectWarning), composeRules([
     hasSchema(schema),
-    restrictToKeys(Object.keys(schema), invalidKeyWarning),
+    restrictToKeys(Object.keys(schema), keyWarning),
   ]));
 
 
 export const restrictToCollection = (
   rule: (index: number) => Rule,
-  arrayWarning?
+  arrayWarning = checkTypeWarning
 ) =>
   first(checkType(Array, arrayWarning), (data, path) =>
     data.reduce((warnings: Warning[], elem: any, index: number) =>

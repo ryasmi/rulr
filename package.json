@@ -12,7 +12,8 @@
     "build": "tsc",
     "build-watch": "tsc --watch",
     "lint": "./node_modules/tslint/bin/tslint --project ./tsconfig.json -c ./tslint.json",
-    "duplication": "./node_modules/jscpd/bin/jscpd"
+    "duplication": "./node_modules/jscpd/bin/jscpd",
+    "typings": "node ./node_modules/typings/dist/bin.js install"
   },
   "devDependencies": {
     "assert": "^1.4.1",
@@ -22,7 +23,8 @@
     "mocha": "^3.2.0",
     "mocha-lcov-reporter": "^1.2.0",
     "tslint": "^4.2.0",
-    "typescript": "^2.1.4"
+    "typescript": "^2.1.4",
+    "typings": "^2.1.0"
   },
   "config": {
     "blanket": {

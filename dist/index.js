@@ -55,9 +55,10 @@ exports.checkType = function (type, warning) {
 exports.checkRegexWarning = function (data) {
     return exports.warn();
 };
-exports.checkRegex = function (regex, regexWarning, stringError) {
+exports.checkRegex = function (regex, regexWarning, stringWarning) {
     if (regexWarning === void 0) { regexWarning = exports.checkRegexWarning; }
-    return exports.first(exports.checkType(String, stringError), function (data, path) {
+    if (stringWarning === void 0) { stringWarning = exports.checkTypeWarning; }
+    return exports.first(exports.checkType(String, stringWarning), function (data, path) {
         return regex.test(data) ? [] : [regexWarning(data)(path)];
     });
 };
@@ -76,6 +77,7 @@ exports.invalidKeyWarning = function (invalidKeys) {
 };
 exports.restrictToKeys = function (keys, warning, objectWarning) {
     if (warning === void 0) { warning = exports.invalidKeyWarning; }
+    if (objectWarning === void 0) { objectWarning = exports.checkTypeWarning; }
     return exports.first(exports.checkType(Object, objectWarning), function (data, path) {
         var invalidKeys = Object.keys(data).filter(function (key) {
             return keys.indexOf(key) === -1;
@@ -84,19 +86,23 @@ exports.restrictToKeys = function (keys, warning, objectWarning) {
     });
 };
 exports.hasSchema = function (schema, objectWarning) {
+    if (objectWarning === void 0) { objectWarning = exports.checkTypeWarning; }
     return exports.first(exports.checkType(Object, objectWarning), function (data, path) {
         return Object.keys(schema).reduce(function (warnings, key) {
             return warnings.concat(schema[key](data[key], path.concat([key])));
         }, []);
     });
 };
-exports.restrictToSchema = function (schema, objectWarning, invalidKeyWarning) {
+exports.restrictToSchema = function (schema, objectWarning, keyWarning) {
+    if (objectWarning === void 0) { objectWarning = exports.checkTypeWarning; }
+    if (keyWarning === void 0) { keyWarning = exports.invalidKeyWarning; }
     return exports.first(exports.checkType(Object, objectWarning), exports.composeRules([
         exports.hasSchema(schema),
-        exports.restrictToKeys(Object.keys(schema), invalidKeyWarning),
+        exports.restrictToKeys(Object.keys(schema), keyWarning),
     ]));
 };
 exports.restrictToCollection = function (rule, arrayWarning) {
+    if (arrayWarning === void 0) { arrayWarning = exports.checkTypeWarning; }
     return exports.first(exports.checkType(Array, arrayWarning), function (data, path) {
         return data.reduce(function (warnings, elem, index) {
             return warnings.concat(rule(index)(elem, path.concat(["" + index])));
