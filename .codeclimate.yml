@@ -8,5 +8,5 @@ engines:
     enabled: true
 ratings:
   paths:
-    - "src/**.js"
+    - "src/**.ts"
 exclude_paths: []
