@@ -1,18 +1,18 @@
 "use strict";
 var assert = require("assert");
-var rulr = require("./index");
 var mocha_1 = require("mocha");
+var rulr = require("./index");
 var isNumber = rulr.checkType(Number);
 var assertRule = function (rule, data, expectedResult) {
     var actualResult = rule(data, ['data']);
     assert.deepEqual(actualResult, expectedResult);
 };
 var lessThan10 = function (data, path) {
-    return data < 10 ? [] : [rulr.pathError(data + " should be less than 10")(path)];
+    return data < 10 ? [] : [rulr.warn(data + " should be less than 10")(path)];
 };
 mocha_1.describe('pathString', function () {
     mocha_1.it('should join keys with dots', function () {
-        var path = ['foo', 'bar', 0];
+        var path = ['foo', 'bar', '0'];
         var actualResult = rulr.pathString(path);
         var expectedResult = '`foo.bar.0`';
         assert.equal(actualResult, expectedResult);
@@ -24,27 +24,27 @@ mocha_1.describe('pathString', function () {
         assert.equal(actualResult, expectedResult);
     });
 });
-mocha_1.describe('pathError', function () {
+mocha_1.describe('warn', function () {
     mocha_1.it('should return a string with a message and path', function () {
         var message = 'Problem';
-        var path = ['foo', 'bar', 0];
-        var actualResult = rulr.pathError(message)(path);
+        var path = ['foo', 'bar', '0'];
+        var actualResult = rulr.warn(message)(path);
         var expectedResult = 'Problem in `foo.bar.0`';
         assert.equal(actualResult, expectedResult);
     });
     mocha_1.it('should return a string with a default message and no path', function () {
-        var path = ['foo', 'bar', 0];
-        var actualResult = rulr.pathError()(path);
+        var path = ['foo', 'bar', '0'];
+        var actualResult = rulr.warn()(path);
         var expectedResult = 'Problem in `foo.bar.0`';
         assert.equal(actualResult, expectedResult);
     });
 });
-mocha_1.describe('typeError', function () {
+mocha_1.describe('typeWarning', function () {
     mocha_1.it('should return a string with data, type, and path', function () {
         var type = 'String';
         var data = 10;
         var path = ['data'];
-        var actualResult = rulr.typeError(type)(data)(path);
+        var actualResult = rulr.typeWarning(type)(data)(path);
         var expectedResult = '`10` is not a valid String in `data`';
         assert.equal(actualResult, expectedResult);
     });
@@ -72,7 +72,7 @@ mocha_1.describe('first', function () {
 });
 mocha_1.describe('checkBool', function () {
     var isString = function (data) { return data.constructor === String; };
-    var error = function (data) { return rulr.pathError(data + " is incorrect"); };
+    var error = function (data) { return rulr.warn(data + " is incorrect"); };
     var rule = rulr.checkBool(isString, error);
     mocha_1.it('should return an error if result is false', function () {
         assertRule(rule, 10, ['10 is incorrect in `data`']);
@@ -86,7 +86,7 @@ mocha_1.describe('checkThrow', function () {
         if (data.constructor !== String)
             throw new Error(data + " is incorrect");
     };
-    var error = function (data, ex) { return rulr.pathError(data + " error - " + ex.message); };
+    var error = function (data, ex) { return rulr.warn(data + " error - " + ex.message); };
     mocha_1.it('should return an exception message', function () {
         assertRule(rulr.checkThrow(isString), 10, ['10 is incorrect in `data`']);
     });
@@ -99,7 +99,7 @@ mocha_1.describe('checkThrow', function () {
     });
 });
 mocha_1.describe('checkType', function () {
-    var rule = rulr.checkType(String, rulr.typeError);
+    var rule = rulr.checkType(String, rulr.typeWarning);
     mocha_1.it('should return an error if the constructor is incorrect', function () {
         assertRule(rule, 10, ['`10` is not a valid String in `data`']);
     });
@@ -109,7 +109,7 @@ mocha_1.describe('checkType', function () {
 });
 mocha_1.describe('checkRegex', function () {
     var pattern = /hello/;
-    var error = function (data) { return rulr.pathError(data + " is incorrect"); };
+    var error = function (data) { return rulr.warn(data + " is incorrect"); };
     var rule = rulr.checkRegex(pattern, error);
     mocha_1.it('should return an error if the data is not a string', function () {
         assertRule(rule, 10, ['`10` is not a valid String in `data`']);
@@ -136,7 +136,7 @@ mocha_1.describe('optional', function () {
 });
 mocha_1.describe('required', function () {
     var postReq = rulr.checkType(String);
-    var error = rulr.missingKeyError;
+    var error = rulr.missingKeyWarning;
     var rule = rulr.required(postReq, error);
     mocha_1.it('should return an error if data is defined and incorrect', function () {
         assertRule(rule, 10, ['`10` is not a valid String in `data`']);
@@ -150,8 +150,8 @@ mocha_1.describe('required', function () {
 });
 mocha_1.describe('restrictToSchema', function () {
     var schema = { foo: rulr.checkType(String) };
-    var objectError = rulr.typeError;
-    var keyError = rulr.invalidKeyError;
+    var objectError = rulr.typeWarning;
+    var keyError = rulr.invalidKeyWarning;
     var rule = rulr.restrictToSchema(schema, objectError, keyError);
     mocha_1.it('should return an error data is not an object', function () {
         assertRule(rule, 10, ['`10` is not a valid Object in `data`']);
@@ -171,7 +171,7 @@ mocha_1.describe('restrictToSchema', function () {
 });
 mocha_1.describe('restrictToCollection', function () {
     var postReq = function (index) { return rulr.checkType(String); };
-    var arrayError = rulr.typeError;
+    var arrayError = rulr.typeWarning;
     var rule = rulr.restrictToCollection(postReq, arrayError);
     mocha_1.it('should return an error data is not an array', function () {
         var expectedResult = ['`10` is not a valid Array in `data`'];

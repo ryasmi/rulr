@@ -1,6 +1,6 @@
 import * as assert from 'assert';
-import * as rulr from './index';
 import { describe, it } from 'mocha';
+import * as rulr from './index';
 
 const isNumber = rulr.checkType(Number);
 
@@ -10,11 +10,11 @@ const assertRule = (rule, data, expectedResult) => {
 };
 
 const lessThan10 = (data, path) =>
-  data < 10 ? [] : [rulr.pathError(`${data} should be less than 10`)(path)];
+  data < 10 ? [] : [rulr.warn(`${data} should be less than 10`)(path)];
 
 describe('pathString', () => {
   it('should join keys with dots', () => {
-    const path = ['foo', 'bar', 0];
+    const path = ['foo', 'bar', '0'];
     const actualResult = rulr.pathString(path);
     const expectedResult = '`foo.bar.0`';
     assert.equal(actualResult, expectedResult);
@@ -27,28 +27,28 @@ describe('pathString', () => {
   });
 });
 
-describe('pathError', () => {
+describe('warn', () => {
   it('should return a string with a message and path', () => {
     const message = 'Problem';
-    const path = ['foo', 'bar', 0];
-    const actualResult = rulr.pathError(message)(path);
+    const path = ['foo', 'bar', '0'];
+    const actualResult = rulr.warn(message)(path);
     const expectedResult = 'Problem in `foo.bar.0`';
     assert.equal(actualResult, expectedResult);
   });
   it('should return a string with a default message and no path', () => {
-    const path = ['foo', 'bar', 0];
-    const actualResult = rulr.pathError()(path);
+    const path = ['foo', 'bar', '0'];
+    const actualResult = rulr.warn()(path);
     const expectedResult = 'Problem in `foo.bar.0`';
     assert.equal(actualResult, expectedResult);
   });
 });
 
-describe('typeError', () => {
+describe('typeWarning', () => {
   it('should return a string with data, type, and path', () => {
     const type = 'String';
     const data = 10;
     const path = ['data'];
-    const actualResult = rulr.typeError(type)(data)(path);
+    const actualResult = rulr.typeWarning(type)(data)(path);
     const expectedResult = '`10` is not a valid String in `data`';
     assert.equal(actualResult, expectedResult);
   });
@@ -80,7 +80,7 @@ describe('first', () => {
 
 describe('checkBool', () => {
   const isString = data => data.constructor === String;
-  const error = data => rulr.pathError(`${data} is incorrect`);
+  const error = data => rulr.warn(`${data} is incorrect`);
   const rule = rulr.checkBool(isString, error);
 
   it('should return an error if result is false', () => {
@@ -95,7 +95,7 @@ describe('checkThrow', () => {
   const isString = (data) => {
     if (data.constructor !== String) throw new Error(`${data} is incorrect`);
   };
-  const error = (data, ex) => rulr.pathError(`${data} error - ${ex.message}`);
+  const error = (data, ex) => rulr.warn(`${data} error - ${ex.message}`);
 
   it('should return an exception message', () => {
     assertRule(rulr.checkThrow(isString), 10, ['10 is incorrect in `data`']);
@@ -110,7 +110,7 @@ describe('checkThrow', () => {
 });
 
 describe('checkType', () => {
-  const rule = rulr.checkType(String, rulr.typeError);
+  const rule = rulr.checkType(String, rulr.typeWarning);
 
   it('should return an error if the constructor is incorrect', () => {
     assertRule(rule, 10, ['`10` is not a valid String in `data`']);
@@ -122,7 +122,7 @@ describe('checkType', () => {
 
 describe('checkRegex', () => {
   const pattern = /hello/;
-  const error = data => rulr.pathError(`${data} is incorrect`);
+  const error = data => rulr.warn(`${data} is incorrect`);
   const rule = rulr.checkRegex(pattern, error);
 
   it('should return an error if the data is not a string', () => {
@@ -153,7 +153,7 @@ describe('optional', () => {
 
 describe('required', () => {
   const postReq = rulr.checkType(String);
-  const error = rulr.missingKeyError;
+  const error = rulr.missingKeyWarning;
   const rule = rulr.required(postReq, error);
 
   it('should return an error if data is defined and incorrect', () => {
@@ -169,8 +169,8 @@ describe('required', () => {
 
 describe('restrictToSchema', () => {
   const schema = { foo: rulr.checkType(String) };
-  const objectError = rulr.typeError;
-  const keyError = rulr.invalidKeyError;
+  const objectError = rulr.typeWarning;
+  const keyError = rulr.invalidKeyWarning;
   const rule = rulr.restrictToSchema(schema, objectError, keyError);
 
   it('should return an error data is not an object', () => {
@@ -192,7 +192,7 @@ describe('restrictToSchema', () => {
 
 describe('restrictToCollection', () => {
   const postReq = index => rulr.checkType(String);
-  const arrayError = rulr.typeError;
+  const arrayError = rulr.typeWarning;
   const rule = rulr.restrictToCollection(postReq, arrayError);
 
   it('should return an error data is not an array', () => {

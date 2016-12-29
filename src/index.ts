@@ -1,111 +1,125 @@
-// Path = String[]
-// Path -> String
-export const pathString = path =>
+export type Path = string[];
+export type Warning = string;
+export type PathWarning = (path: Path) => Warning;
+export type Rule = (data: any, path: Path) => Warning[];
+
+export const pathString = (path: string[]): Warning =>
   `\`${path.join('.')}\``;
 
-// PathError = Path -> Error
-// String -> PathError
-export const pathError = (msg = 'Problem') => path =>
+export const warn = (msg: string = 'Problem'): PathWarning => path =>
   `${msg} in ${pathString(path)}`;
 
-
-// Rule[] -> Rule
-export const composeRules = rules => (data, path) =>
-  rules.reduce((errors, rule) =>
-    errors.concat(rule(data, path))
+export const composeRules = (rules: Rule[]): Rule => (data, path) =>
+  rules.reduce((warnings: Warning[], rule: Rule) =>
+    warnings.concat(rule(data, path))
   , []);
 
-// (Rule, Rule) -> Rule
-export const first = (preReq, rule) => (data, path) => {
-  const preReqErrors = preReq(data, path);
-  if (preReqErrors.length > 0) return preReqErrors;
-  return rule(data, path);
+export const first = (preReq: Rule, postReq: Rule): Rule => (data, path) => {
+  const preReqWarnings = preReq(data, path);
+  if (preReqWarnings.length > 0) return preReqWarnings;
+  return postReq(data, path);
 };
 
-// ((Data -> Bool), (Data -> PathError)) -> Rule
-export const checkBool = (checker, error) => (data, path) =>
-  checker(data) ? [] : [error(data)(path)];
+export const checkBoolWarning = (data: any): PathWarning =>
+  warn();
 
-// Data = Any
-// (Data, Exception) -> PathError
-export const failedCheckError = (data, ex) =>
-  pathError(ex.message);
+export const checkBool = (
+  checker: (data: any) => boolean,
+  warning = checkBoolWarning
+): Rule => (data, path) =>
+  checker(data) ? [] : [warning(data)(path)];
 
-// ((Data -> Void), (Data -> PathError)) -> Rule
-export const checkThrow = (checker, error = failedCheckError) => (data, path) => {
+export const checkThrowWarning = (data: any, ex: Error): PathWarning =>
+  warn(ex.message);
+
+export const checkThrow = (
+  checker: (data: any) => any,
+  warning = checkThrowWarning
+): Rule => (data, path) => {
   try {
     checker(data);
     return [];
   } catch (ex) {
-    return [error(data, ex)(path)];
+    return [warning(data, ex)(path)];
   }
 };
 
-// String -> Data -> PathError
-export const typeError = type => data =>
-  pathError(`\`${JSON.stringify(data)}\` is not a valid ${type}`);
+export const typeWarning = (type: string) => (data: any): PathWarning =>
+  warn(`\`${JSON.stringify(data)}\` is not a valid ${type}`);
 
-// (Any, (Data, Any) -> PathError) -> Rule
 export const checkType = (
-  type, error = typeError
-) => (data, path) => (
+  type: any,
+  warning = typeWarning
+): Rule => (data, path) => (
   data === undefined || data === null || data.constructor !== type ?
-  [error(type.name)(data)(path)] :
+  [warning(type.name)(data)(path)] :
   []
 );
 
-// (Regex, Data -> PathError) -> Rule
+export const checkRegexWarning = (data: any): PathWarning =>
+  warn();
+
 export const checkRegex = (
-  regex, error = data => pathError()
+  regex: RegExp,
+  warning = checkRegexWarning
 ) => first(checkType(String), (data, path) =>
-  regex.test(data) ? [] : [error(data)(path)]
+  regex.test(data) ? [] : [warning(data)(path)]
 );
 
-
-// Rule -> Rule
-export const optional = rule => (data, path) =>
+export const optional = (rule: Rule): Rule => (data, path) =>
   data === undefined ? [] : rule(data, path);
 
-// PathError
-export const missingKeyError = pathError('Missing required value');
+export const missingKeyWarning: PathWarning = warn('Missing required value');
 
-// Rule = (Data, Path) -> Error[]
-// (Rule, PathError) -> Rule
-export const required = (rule, error = missingKeyError) => (data, path) =>
-  data === undefined ? [error(path)] : rule(data, path);
+export const required = (
+  rule: Rule,
+  warning = missingKeyWarning
+): Rule => (data, path) =>
+  data === undefined ? [warning(path)] : rule(data, path);
 
-// String[] -> PathError
-export const invalidKeyError = invalidKeys =>
-  pathError(`Invalid keys \`${invalidKeys.join('\`, \`')}\` found`);
+export const invalidKeyWarning = (invalidKeys: string[]): PathWarning =>
+  warn(`Invalid keys \`${invalidKeys.join('\`, \`')}\` found`);
 
-// (String[] -> (String -> PathError), (Data -> PathError)) -> Rule
-export const restrictToKeys = (keys, error = invalidKeyError, objectError?) =>
-  first(checkType(Object, objectError), (data, path) => {
-    const invalidKeys = Object.keys(data).filter(key => !keys.includes(key));
-    return invalidKeys.length === 0 ? [] : [error(invalidKeys)(path)];
+// (String[] -> (String -> PathWarning), (Data -> PathWarning)) -> Rule
+export const restrictToKeys = (
+  keys: string[],
+  warning = invalidKeyWarning,
+  objectWarning?
+): Rule => first(checkType(Object, objectWarning), (data, path) => {
+    const invalidKeys = Object.keys(data).filter((key: string) =>
+      keys.indexOf(key) === -1
+    );
+    return invalidKeys.length === 0 ? [] : [warning(invalidKeys)(path)];
   });
 
-// Schema = {String: Rule}
-// (Schema, (Data -> PathError)) -> Rule
-export const hasSchema = (schema, objectError?) => first(checkType(Object, objectError), (data, path) =>
-  Object.keys(schema).reduce((errors, key) =>
-    errors.concat(schema[key](data[key], path.concat([key])))
-  , [])
-);
+export type Schema = {[key: string]: Rule};
+export const hasSchema = (
+  schema: Schema,
+  objectWarning?
+): Rule =>
+  first(checkType(Object, objectWarning), (data, path) =>
+    Object.keys(schema).reduce((warnings: Warning[], key: string) =>
+      warnings.concat(schema[key](data[key], path.concat([key])))
+    , [])
+  );
 
-// (Schema, (Data -> PathError), (String -> PathError)) -> Rule
-export const restrictToSchema = (schema, objectError, invalidKeyError) =>
-  first(checkType(Object, objectError), composeRules([
+export const restrictToSchema = (
+  schema: Schema,
+  objectWarning?,
+  invalidKeyWarning?
+): Rule =>
+  first(checkType(Object, objectWarning), composeRules([
     hasSchema(schema),
-    restrictToKeys(Object.keys(schema), invalidKeyError),
+    restrictToKeys(Object.keys(schema), invalidKeyWarning),
   ]));
 
 
-// (Rule, (Data -> PathError)) -> Rule
 export const restrictToCollection = (
-  rule, error
-) => first(checkType(Array, error), (data, path) =>
-  data.reduce((errors, elem, index) =>
-    errors.concat(rule(index)(elem, path.concat([index])))
-  , [])
-);
+  rule: (index: number) => Rule,
+  arrayWarning?
+) =>
+  first(checkType(Array, arrayWarning), (data, path) =>
+    data.reduce((warnings: Warning[], elem: any, index: number) =>
+      warnings.concat(rule(index)(elem, path.concat([`${index}`])))
+    , [])
+  );
