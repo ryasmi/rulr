@@ -1,7 +1,8 @@
 {
   "name": "rulr",
   "author": "ryansmith94",
-  "main": "src/index.js",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "version": "0.0.2",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha dist/**/*.test.js",
