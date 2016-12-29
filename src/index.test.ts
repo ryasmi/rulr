@@ -43,12 +43,12 @@ describe('warn', () => {
   });
 });
 
-describe('typeWarning', () => {
+describe('checkTypeWarning', () => {
   it('should return a string with data, type, and path', () => {
     const type = 'String';
     const data = 10;
     const path = ['data'];
-    const actualResult = rulr.typeWarning(type)(data)(path);
+    const actualResult = rulr.checkTypeWarning(type)(data)(path);
     const expectedResult = '`10` is not a valid String in `data`';
     assert.equal(actualResult, expectedResult);
   });

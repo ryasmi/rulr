@@ -44,12 +44,12 @@ export const checkThrow = (
   }
 };
 
-export const typeWarning = (type: string) => (data: any): PathWarning =>
+export const checkTypeWarning = (type: string) => (data: any): PathWarning =>
   warn(`\`${JSON.stringify(data)}\` is not a valid ${type}`);
 
 export const checkType = (
   type: any,
-  warning = typeWarning
+  warning = checkTypeWarning
 ): Rule => (data, path) => (
   data === undefined || data === null || data.constructor !== type ?
   [warning(type.name)(data)(path)] :

@@ -39,12 +39,12 @@ mocha_1.describe('warn', function () {
         assert.equal(actualResult, expectedResult);
     });
 });
-mocha_1.describe('typeWarning', function () {
+mocha_1.describe('checkTypeWarning', function () {
     mocha_1.it('should return a string with data, type, and path', function () {
         var type = 'String';
         var data = 10;
         var path = ['data'];
-        var actualResult = rulr.typeWarning(type)(data)(path);
+        var actualResult = rulr.checkTypeWarning(type)(data)(path);
         var expectedResult = '`10` is not a valid String in `data`';
         assert.equal(actualResult, expectedResult);
     });

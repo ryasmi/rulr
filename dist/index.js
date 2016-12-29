@@ -43,11 +43,11 @@ exports.checkThrow = function (checker, warning) {
         }
     };
 };
-exports.typeWarning = function (type) { return function (data) {
+exports.checkTypeWarning = function (type) { return function (data) {
     return exports.warn("`" + JSON.stringify(data) + "` is not a valid " + type);
 }; };
 exports.checkType = function (type, warning) {
-    if (warning === void 0) { warning = exports.typeWarning; }
+    if (warning === void 0) { warning = exports.checkTypeWarning; }
     return function (data, path) { return (data === undefined || data === null || data.constructor !== type ?
         [warning(type.name)(data)(path)] :
         []); };

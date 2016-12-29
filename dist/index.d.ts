@@ -10,7 +10,7 @@ export declare const checkBoolWarning: (data: any) => PathWarning;
 export declare const checkBool: (checker: (data: any) => boolean, warning?: (data: any) => PathWarning) => Rule;
 export declare const checkThrowWarning: (data: any, ex: Error) => PathWarning;
 export declare const checkThrow: (checker: (data: any) => any, warning?: (data: any, ex: Error) => PathWarning) => Rule;
-export declare const typeWarning: (type: string) => (data: any) => PathWarning;
+export declare const checkTypeWarning: (type: string) => (data: any) => PathWarning;
 export declare const checkType: (type: any, warning?: (type: string) => (data: any) => PathWarning) => Rule;
 export declare const checkRegexWarning: (data: any) => PathWarning;
 export declare const checkRegex: (regex: RegExp, regexWarning?: (data: any) => PathWarning, stringError?: any) => Rule;
