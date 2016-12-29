@@ -1,164 +1,105 @@
-'use strict';
-// Path = String[]
-// Path -> String
-
-var pathString = function pathString(path) {
-  return '`' + path.join('.') + '`';
+"use strict";
+exports.pathString = function (path) {
+    return "`" + path.join('.') + "`";
 };
-
-// PathError = Path -> Error
-// String -> PathError
-var pathError = function pathError() {
-  var msg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Problem';
-  return function (path) {
-    return msg + ' in ' + pathString(path);
-  };
+exports.warn = function (msg) {
+    if (msg === void 0) { msg = 'Problem'; }
+    return function (path) {
+        return msg + " in " + exports.pathString(path);
+    };
 };
-
-// Rule[] -> Rule
-var composeRules = function composeRules(rules) {
-  return function (data, path) {
-    return rules.reduce(function (errors, rule) {
-      return errors.concat(rule(data, path));
+exports.composeRules = function (rules) { return function (data, path) {
+    return rules.reduce(function (warnings, rule) {
+        return warnings.concat(rule(data, path));
     }, []);
-  };
+}; };
+exports.first = function (preReq, postReq) { return function (data, path) {
+    var preReqWarnings = preReq(data, path);
+    if (preReqWarnings.length > 0)
+        return preReqWarnings;
+    return postReq(data, path);
+}; };
+exports.checkBoolWarning = function (data) {
+    return exports.warn();
 };
-
-// (Rule, Rule) -> Rule
-var first = function first(preReq, rule) {
-  return function (data, path) {
-    var preReqErrors = preReq(data, path);
-    if (preReqErrors.length > 0) return preReqErrors;
-    return rule(data, path);
-  };
+exports.checkBool = function (checker, warning) {
+    if (warning === void 0) { warning = exports.checkBoolWarning; }
+    return function (data, path) {
+        return checker(data) ? [] : [warning(data)(path)];
+    };
 };
-
-// ((Data -> Bool), (Data -> PathError)) -> Rule
-var checkBool = function checkBool(checker, error) {
-  return function (data, path) {
-    return checker(data) ? [] : [error(data)(path)];
-  };
+exports.checkThrowWarning = function (data, ex) {
+    return exports.warn(ex.message);
 };
-
-// Data = Any
-// (Data, Exception) -> PathError
-var failedCheckError = function failedCheckError(data, ex) {
-  return pathError(ex.message);
+exports.checkThrow = function (checker, warning) {
+    if (warning === void 0) { warning = exports.checkThrowWarning; }
+    return function (data, path) {
+        try {
+            checker(data);
+            return [];
+        }
+        catch (ex) {
+            return [warning(data, ex)(path)];
+        }
+    };
 };
-
-// ((Data -> Void), (Data -> PathError)) -> Rule
-var checkThrow = function checkThrow(checker) {
-  var error = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : failedCheckError;
-  return function (data, path) {
-    try {
-      checker(data);
-      return [];
-    } catch (ex) {
-      return [error(data, ex)(path)];
-    }
-  };
+exports.typeWarning = function (type) { return function (data) {
+    return exports.warn("`" + JSON.stringify(data) + "` is not a valid " + type);
+}; };
+exports.checkType = function (type, warning) {
+    if (warning === void 0) { warning = exports.typeWarning; }
+    return function (data, path) { return (data === undefined || data === null || data.constructor !== type ?
+        [warning(type.name)(data)(path)] :
+        []); };
 };
-
-// String -> Data -> PathError
-var typeError = function typeError(type) {
-  return function (data) {
-    return pathError('`' + JSON.stringify(data) + '` is not a valid ' + type);
-  };
+exports.checkRegexWarning = function (data) {
+    return exports.warn();
 };
-
-// (Any, (Data, Any) -> PathError) -> Rule
-var checkType = function checkType(type) {
-  var error = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : typeError;
-  return function (data, path) {
-    return data === undefined || data === null || data.constructor !== type ? [error(type.name)(data)(path)] : [];
-  };
-};
-
-// (Regex, Data -> PathError) -> Rule
-var checkRegex = function checkRegex(regex) {
-  var error = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {
-    return pathError();
-  };
-  return first(checkType(String), function (data, path) {
-    return regex.test(data) ? [] : [error(data)(path)];
-  });
-};
-
-// Rule -> Rule
-var optional = function optional(rule) {
-  return function (data, path) {
-    return data === undefined ? [] : rule(data, path);
-  };
-};
-
-// PathError
-var missingKeyError = pathError('Missing required value');
-
-// Rule = (Data, Path) -> Error[]
-// (Rule, PathError) -> Rule
-var required = function required(rule) {
-  var error = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : missingKeyError;
-  return function (data, path) {
-    return data === undefined ? [error(path)] : rule(data, path);
-  };
-};
-
-// String[] -> PathError
-var invalidKeyError = function invalidKeyError(invalidKeys) {
-  return pathError('Invalid keys `' + invalidKeys.join('\`, \`') + '` found');
-};
-
-// (String[] -> (String -> PathError), (Data -> PathError)) -> Rule
-var restrictToKeys = function restrictToKeys(keys) {
-  var error = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : invalidKeyError;
-  var objectError = arguments[2];
-  return first(checkType(Object, objectError), function (data, path) {
-    var invalidKeys = Object.keys(data).filter(function (key) {
-      return !keys.includes(key);
+exports.checkRegex = function (regex, regexWarning, stringError) {
+    if (regexWarning === void 0) { regexWarning = exports.checkRegexWarning; }
+    return exports.first(exports.checkType(String, stringError), function (data, path) {
+        return regex.test(data) ? [] : [regexWarning(data)(path)];
     });
-    return invalidKeys.length === 0 ? [] : [error(invalidKeys)(path)];
-  });
 };
-
-// Schema = {String: Rule}
-// (Schema, (Data -> PathError)) -> Rule
-var hasSchema = function hasSchema(schema, objectError) {
-  return first(checkType(Object, objectError), function (data, path) {
-    return Object.keys(schema).reduce(function (errors, key) {
-      return errors.concat(schema[key](data[key], path.concat([key])));
-    }, []);
-  });
+exports.optional = function (rule) { return function (data, path) {
+    return data === undefined ? [] : rule(data, path);
+}; };
+exports.missingKeyWarning = exports.warn('Missing required value');
+exports.required = function (rule, warning) {
+    if (warning === void 0) { warning = exports.missingKeyWarning; }
+    return function (data, path) {
+        return data === undefined ? [warning(path)] : rule(data, path);
+    };
 };
-
-// (Schema, (Data -> PathError), (String -> PathError)) -> Rule
-var restrictToSchema = function restrictToSchema(schema, objectError, invalidKeyError) {
-  return first(checkType(Object, objectError), composeRules([hasSchema(schema), restrictToKeys(Object.keys(schema), invalidKeyError)]));
+exports.invalidKeyWarning = function (invalidKeys) {
+    return exports.warn("Invalid keys `" + invalidKeys.join('\`, \`') + "` found");
 };
-
-// (Rule, (Data -> PathError)) -> Rule
-var restrictToCollection = function restrictToCollection(rule, error) {
-  return first(checkType(Array, error), function (data, path) {
-    return data.reduce(function (errors, elem, index) {
-      return errors.concat(rule(index)(elem, path.concat([index])));
-    }, []);
-  });
+exports.restrictToKeys = function (keys, warning, objectWarning) {
+    if (warning === void 0) { warning = exports.invalidKeyWarning; }
+    return exports.first(exports.checkType(Object, objectWarning), function (data, path) {
+        var invalidKeys = Object.keys(data).filter(function (key) {
+            return keys.indexOf(key) === -1;
+        });
+        return invalidKeys.length === 0 ? [] : [warning(invalidKeys)(path)];
+    });
 };
-
-module.exports = {
-  pathString: pathString,
-  pathError: pathError,
-  typeError: typeError,
-  composeRules: composeRules,
-  first: first,
-  checkBool: checkBool,
-  checkThrow: checkThrow,
-  checkType: checkType,
-  checkRegex: checkRegex,
-  optional: optional,
-  required: required,
-  restrictToKeys: restrictToKeys,
-  hasSchema: hasSchema,
-  restrictToSchema: restrictToSchema,
-  restrictToCollection: restrictToCollection
+exports.hasSchema = function (schema, objectWarning) {
+    return exports.first(exports.checkType(Object, objectWarning), function (data, path) {
+        return Object.keys(schema).reduce(function (warnings, key) {
+            return warnings.concat(schema[key](data[key], path.concat([key])));
+        }, []);
+    });
 };
-//# sourceMappingURL=index.js.map
+exports.restrictToSchema = function (schema, objectWarning, invalidKeyWarning) {
+    return exports.first(exports.checkType(Object, objectWarning), exports.composeRules([
+        exports.hasSchema(schema),
+        exports.restrictToKeys(Object.keys(schema), invalidKeyWarning),
+    ]));
+};
+exports.restrictToCollection = function (rule, arrayWarning) {
+    return exports.first(exports.checkType(Array, arrayWarning), function (data, path) {
+        return data.reduce(function (warnings, elem, index) {
+            return warnings.concat(rule(index)(elem, path.concat(["" + index])));
+        }, []);
+    });
+};

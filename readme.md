@@ -1,6 +1,7 @@
 # rulr
 A package for rules.
 
+
 [![Build Status](https://travis-ci.org/ryansmith94/rulr.svg?branch=master)](https://travis-ci.org/ryansmith94/rulr)
 [![Dependencies](https://david-dm.org/ryansmith94/rulr.svg)](https://david-dm.org/ryansmith94/rulr)
 [![Dev Dependencies](https://david-dm.org/ryansmith94/rulr/dev-status.svg)](https://david-dm.org/ryansmith94/rulr?type=dev)
@@ -113,7 +114,7 @@ checkBool(
 ```js
 const data = 10;
 const isString = (data) => {
-  if (data.constructor !== String) throw new Error(`${data} is incorrect`); 
+  if (data.constructor !== String) throw new Error(`${data} is incorrect`);
 };
 checkThrow(isString)(data, ['data']);
 // Returns ['10 is incorrect in `data`']
