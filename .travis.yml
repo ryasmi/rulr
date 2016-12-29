@@ -3,6 +3,6 @@ node_js: node
 sudo: false
 after_script:
   - npm run build
-  - touch coverage/coverage.lcov
+  - mkdir coverage
   - npm run cover
   - npm run codecov
