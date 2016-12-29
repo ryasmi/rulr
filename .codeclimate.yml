@@ -3,10 +3,8 @@ engines:
     enabled: true
     config:
       languages:
-        - javascript
-  eslint:
-    enabled: true
-  fixme:
+        - typescript
+  tslint:
     enabled: true
 ratings:
   paths:
