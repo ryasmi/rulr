@@ -1,0 +1,1813 @@
+{
+	"id": 0,
+	"name": "rulr",
+	"kind": 0,
+	"flags": {},
+	"children": [
+		{
+			"id": 1,
+			"name": "\"index\"",
+			"kind": 1,
+			"kindString": "External module",
+			"flags": {
+				"isExported": true
+			},
+			"originalName": "/Applications/AMPPS/www/rulr/src/index.ts",
+			"children": [
+				{
+					"id": 2,
+					"name": "Path",
+					"kind": 4194304,
+					"kindString": "Type alias",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 1,
+							"character": 16
+						}
+					],
+					"type": {
+						"type": "instrinct",
+						"isArray": true,
+						"name": "string"
+					}
+				},
+				{
+					"id": 4,
+					"name": "PathWarning",
+					"kind": 4194304,
+					"kindString": "Type alias",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 3,
+							"character": 23
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 5,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 6,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 7,
+											"name": "path",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Path",
+												"id": 2
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Warning",
+										"id": 3
+									}
+								}
+							],
+							"sources": [
+								{
+									"fileName": "index.ts",
+									"line": 3,
+									"character": 25
+								}
+							]
+						}
+					}
+				},
+				{
+					"id": 8,
+					"name": "Rule",
+					"kind": 4194304,
+					"kindString": "Type alias",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 4,
+							"character": 16
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 9,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 10,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 11,
+											"name": "data",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "instrinct",
+												"name": "any"
+											}
+										},
+										{
+											"id": 12,
+											"name": "path",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Path",
+												"id": 2
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"isArray": true,
+										"name": "Warning",
+										"id": 3
+									}
+								}
+							],
+							"sources": [
+								{
+									"fileName": "index.ts",
+									"line": 4,
+									"character": 18
+								}
+							]
+						}
+					}
+				},
+				{
+					"id": 85,
+					"name": "Schema",
+					"kind": 4194304,
+					"kindString": "Type alias",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 96,
+							"character": 18
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 86,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"indexSignature": [
+								{
+									"id": 87,
+									"name": "__index",
+									"kind": 8192,
+									"kindString": "Index signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 88,
+											"name": "key",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "instrinct",
+												"name": "string"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Rule",
+										"id": 8
+									}
+								}
+							],
+							"sources": [
+								{
+									"fileName": "index.ts",
+									"line": 96,
+									"character": 20
+								}
+							]
+						}
+					}
+				},
+				{
+					"id": 3,
+					"name": "Warning",
+					"kind": 4194304,
+					"kindString": "Type alias",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 2,
+							"character": 19
+						}
+					],
+					"type": {
+						"type": "instrinct",
+						"name": "string"
+					}
+				},
+				{
+					"id": 69,
+					"name": "requiredWarning",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 73,
+							"character": 28
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "PathWarning",
+						"id": 4
+					},
+					"defaultValue": " warn('Missing required value')"
+				},
+				{
+					"id": 29,
+					"name": "checkBool",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 30,
+							"name": "checkBool",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 31,
+									"name": "checker",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reflection",
+										"declaration": {
+											"id": 32,
+											"name": "__type",
+											"kind": 65536,
+											"kindString": "Type literal",
+											"flags": {},
+											"signatures": [
+												{
+													"id": 33,
+													"name": "__call",
+													"kind": 4096,
+													"kindString": "Call signature",
+													"flags": {},
+													"parameters": [
+														{
+															"id": 34,
+															"name": "data",
+															"kind": 32768,
+															"kindString": "Parameter",
+															"flags": {},
+															"type": {
+																"type": "instrinct",
+																"name": "any"
+															}
+														}
+													],
+													"type": {
+														"type": "instrinct",
+														"name": "boolean"
+													}
+												}
+											],
+											"sources": [
+												{
+													"fileName": "index.ts",
+													"line": 27,
+													"character": 10
+												}
+											]
+										}
+									}
+								},
+								{
+									"id": 35,
+									"name": "warning",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "(Anonymous function)",
+										"id": 27
+									},
+									"defaultValue": " checkBoolWarning"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Rule",
+								"id": 8
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 26,
+							"character": 22
+						}
+					]
+				},
+				{
+					"id": 26,
+					"name": "checkBoolWarning",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 27,
+							"name": "checkBoolWarning",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 28,
+									"name": "data",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "instrinct",
+										"name": "any"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "PathWarning",
+								"id": 4
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 23,
+							"character": 29
+						}
+					]
+				},
+				{
+					"id": 57,
+					"name": "checkRegex",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 58,
+							"name": "checkRegex",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 59,
+									"name": "regex",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "RegExp"
+									}
+								},
+								{
+									"id": 60,
+									"name": "regexWarning",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "(Anonymous function)",
+										"id": 55
+									},
+									"defaultValue": " checkRegexWarning"
+								},
+								{
+									"id": 61,
+									"name": "stringWarning",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "(Anonymous function)",
+										"id": 48
+									},
+									"defaultValue": " checkTypeWarning"
+								}
+							],
+							"type": {
+								"type": "reflection",
+								"declaration": {
+									"id": 62,
+									"name": "__type",
+									"kind": 65536,
+									"kindString": "Type literal",
+									"flags": {},
+									"signatures": [
+										{
+											"id": 63,
+											"name": "__call",
+											"kind": 4096,
+											"kindString": "Call signature",
+											"flags": {},
+											"parameters": [
+												{
+													"id": 64,
+													"name": "data",
+													"kind": 32768,
+													"kindString": "Parameter",
+													"flags": {},
+													"type": {
+														"type": "instrinct",
+														"name": "any"
+													}
+												},
+												{
+													"id": 65,
+													"name": "path",
+													"kind": 32768,
+													"kindString": "Parameter",
+													"flags": {},
+													"type": {
+														"type": "reference",
+														"name": "Path",
+														"id": 2
+													}
+												}
+											],
+											"type": {
+												"type": "reference",
+												"isArray": true,
+												"name": "Warning",
+												"id": 3
+											}
+										}
+									]
+								}
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 62,
+							"character": 23
+						}
+					]
+				},
+				{
+					"id": 54,
+					"name": "checkRegexWarning",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 55,
+							"name": "checkRegexWarning",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 56,
+									"name": "data",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "instrinct",
+										"name": "any"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "PathWarning",
+								"id": 4
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 59,
+							"character": 30
+						}
+					]
+				},
+				{
+					"id": 40,
+					"name": "checkThrow",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 41,
+							"name": "checkThrow",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 42,
+									"name": "checker",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reflection",
+										"declaration": {
+											"id": 43,
+											"name": "__type",
+											"kind": 65536,
+											"kindString": "Type literal",
+											"flags": {},
+											"signatures": [
+												{
+													"id": 44,
+													"name": "__call",
+													"kind": 4096,
+													"kindString": "Call signature",
+													"flags": {},
+													"parameters": [
+														{
+															"id": 45,
+															"name": "data",
+															"kind": 32768,
+															"kindString": "Parameter",
+															"flags": {},
+															"type": {
+																"type": "instrinct",
+																"name": "any"
+															}
+														}
+													],
+													"type": {
+														"type": "instrinct",
+														"name": "any"
+													}
+												}
+											],
+											"sources": [
+												{
+													"fileName": "index.ts",
+													"line": 36,
+													"character": 10
+												}
+											]
+										}
+									}
+								},
+								{
+									"id": 46,
+									"name": "warning",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "(Anonymous function)",
+										"id": 37
+									},
+									"defaultValue": " checkThrowWarning"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Rule",
+								"id": 8
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 35,
+							"character": 23
+						}
+					]
+				},
+				{
+					"id": 36,
+					"name": "checkThrowWarning",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 37,
+							"name": "checkThrowWarning",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 38,
+									"name": "data",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "instrinct",
+										"name": "any"
+									}
+								},
+								{
+									"id": 39,
+									"name": "ex",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Error"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "PathWarning",
+								"id": 4
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 32,
+							"character": 30
+						}
+					]
+				},
+				{
+					"id": 50,
+					"name": "checkType",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 51,
+							"name": "checkType",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 52,
+									"name": "type",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "instrinct",
+										"name": "any"
+									}
+								},
+								{
+									"id": 53,
+									"name": "warning",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "(Anonymous function)",
+										"id": 48
+									},
+									"defaultValue": " checkTypeWarning"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Rule",
+								"id": 8
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 50,
+							"character": 22
+						}
+					]
+				},
+				{
+					"id": 47,
+					"name": "checkTypeWarning",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 48,
+							"name": "checkTypeWarning",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 49,
+									"name": "type",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "instrinct",
+										"name": "string"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "(Anonymous function)"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 47,
+							"character": 29
+						}
+					]
+				},
+				{
+					"id": 19,
+					"name": "composeRules",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 20,
+							"name": "composeRules",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 21,
+									"name": "rules",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"isArray": true,
+										"name": "Rule",
+										"id": 8
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Rule",
+								"id": 8
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 12,
+							"character": 25
+						}
+					]
+				},
+				{
+					"id": 22,
+					"name": "first",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 23,
+							"name": "first",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 24,
+									"name": "preReq",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Rule",
+										"id": 8
+									}
+								},
+								{
+									"id": 25,
+									"name": "postReq",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Rule",
+										"id": 8
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Rule",
+								"id": 8
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 17,
+							"character": 18
+						}
+					]
+				},
+				{
+					"id": 89,
+					"name": "hasSchema",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 90,
+							"name": "hasSchema",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 91,
+									"name": "schema",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Schema",
+										"id": 85
+									}
+								},
+								{
+									"id": 92,
+									"name": "objectWarning",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "(Anonymous function)",
+										"id": 48
+									},
+									"defaultValue": " checkTypeWarning"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Rule",
+								"id": 8
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 97,
+							"character": 22
+						}
+					]
+				},
+				{
+					"id": 77,
+					"name": "invalidKeyWarning",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 78,
+							"name": "invalidKeyWarning",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 79,
+									"name": "invalidKeys",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "instrinct",
+										"isArray": true,
+										"name": "string"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "PathWarning",
+								"id": 4
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 81,
+							"character": 30
+						}
+					]
+				},
+				{
+					"id": 66,
+					"name": "optional",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 67,
+							"name": "optional",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 68,
+									"name": "rule",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Rule",
+										"id": 8
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Rule",
+								"id": 8
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 70,
+							"character": 21
+						}
+					]
+				},
+				{
+					"id": 13,
+					"name": "pathString",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 14,
+							"name": "pathString",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 15,
+									"name": "path",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "instrinct",
+										"isArray": true,
+										"name": "string"
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Warning",
+								"id": 3
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 6,
+							"character": 23
+						}
+					]
+				},
+				{
+					"id": 70,
+					"name": "required",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 71,
+							"name": "required",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 72,
+									"name": "rule",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Rule",
+										"id": 8
+									}
+								},
+								{
+									"id": 73,
+									"name": "warning",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reflection",
+										"declaration": {
+											"id": 74,
+											"name": "__type",
+											"kind": 65536,
+											"kindString": "Type literal",
+											"flags": {},
+											"signatures": [
+												{
+													"id": 75,
+													"name": "__call",
+													"kind": 4096,
+													"kindString": "Call signature",
+													"flags": {},
+													"parameters": [
+														{
+															"id": 76,
+															"name": "path",
+															"kind": 32768,
+															"kindString": "Parameter",
+															"flags": {},
+															"type": {
+																"type": "reference",
+																"name": "Path",
+																"id": 2
+															}
+														}
+													],
+													"type": {
+														"type": "reference",
+														"name": "Warning",
+														"id": 3
+													}
+												}
+											]
+										}
+									},
+									"defaultValue": " requiredWarning"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Rule",
+								"id": 8
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 75,
+							"character": 21
+						}
+					]
+				},
+				{
+					"id": 98,
+					"name": "restrictToCollection",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 99,
+							"name": "restrictToCollection",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 100,
+									"name": "rule",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reflection",
+										"declaration": {
+											"id": 101,
+											"name": "__type",
+											"kind": 65536,
+											"kindString": "Type literal",
+											"flags": {},
+											"signatures": [
+												{
+													"id": 102,
+													"name": "__call",
+													"kind": 4096,
+													"kindString": "Call signature",
+													"flags": {},
+													"parameters": [
+														{
+															"id": 103,
+															"name": "index",
+															"kind": 32768,
+															"kindString": "Parameter",
+															"flags": {},
+															"type": {
+																"type": "instrinct",
+																"name": "number"
+															}
+														}
+													],
+													"type": {
+														"type": "reference",
+														"name": "Rule",
+														"id": 8
+													}
+												}
+											],
+											"sources": [
+												{
+													"fileName": "index.ts",
+													"line": 119,
+													"character": 7
+												}
+											]
+										}
+									}
+								},
+								{
+									"id": 104,
+									"name": "arrayWarning",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "(Anonymous function)",
+										"id": 48
+									},
+									"defaultValue": " checkTypeWarning"
+								}
+							],
+							"type": {
+								"type": "reflection",
+								"declaration": {
+									"id": 105,
+									"name": "__type",
+									"kind": 65536,
+									"kindString": "Type literal",
+									"flags": {},
+									"signatures": [
+										{
+											"id": 106,
+											"name": "__call",
+											"kind": 4096,
+											"kindString": "Call signature",
+											"flags": {},
+											"parameters": [
+												{
+													"id": 107,
+													"name": "data",
+													"kind": 32768,
+													"kindString": "Parameter",
+													"flags": {},
+													"type": {
+														"type": "instrinct",
+														"name": "any"
+													}
+												},
+												{
+													"id": 108,
+													"name": "path",
+													"kind": 32768,
+													"kindString": "Parameter",
+													"flags": {},
+													"type": {
+														"type": "reference",
+														"name": "Path",
+														"id": 2
+													}
+												}
+											],
+											"type": {
+												"type": "reference",
+												"isArray": true,
+												"name": "Warning",
+												"id": 3
+											}
+										}
+									]
+								}
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 118,
+							"character": 33
+						}
+					]
+				},
+				{
+					"id": 80,
+					"name": "restrictToKeys",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 81,
+							"name": "restrictToKeys",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 82,
+									"name": "keys",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "instrinct",
+										"isArray": true,
+										"name": "string"
+									}
+								},
+								{
+									"id": 83,
+									"name": "warning",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "(Anonymous function)",
+										"id": 78
+									},
+									"defaultValue": " invalidKeyWarning"
+								},
+								{
+									"id": 84,
+									"name": "objectWarning",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "(Anonymous function)",
+										"id": 48
+									},
+									"defaultValue": " checkTypeWarning"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Rule",
+								"id": 8
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 85,
+							"character": 27
+						}
+					]
+				},
+				{
+					"id": 93,
+					"name": "restrictToSchema",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 94,
+							"name": "restrictToSchema",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 95,
+									"name": "schema",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Schema",
+										"id": 85
+									}
+								},
+								{
+									"id": 96,
+									"name": "objectWarning",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "(Anonymous function)",
+										"id": 48
+									},
+									"defaultValue": " checkTypeWarning"
+								},
+								{
+									"id": 97,
+									"name": "keyWarning",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "(Anonymous function)",
+										"id": 78
+									},
+									"defaultValue": " invalidKeyWarning"
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Rule",
+								"id": 8
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 107,
+							"character": 29
+						}
+					]
+				},
+				{
+					"id": 16,
+					"name": "warn",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 17,
+							"name": "warn",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 18,
+									"name": "msg",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "instrinct",
+										"name": "string"
+									},
+									"defaultValue": "\"Problem\""
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "PathWarning",
+								"id": 4
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 9,
+							"character": 17
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Type aliases",
+					"kind": 4194304,
+					"children": [
+						2,
+						4,
+						8,
+						85,
+						3
+					]
+				},
+				{
+					"title": "Variables",
+					"kind": 32,
+					"children": [
+						69
+					]
+				},
+				{
+					"title": "Functions",
+					"kind": 64,
+					"children": [
+						29,
+						26,
+						57,
+						54,
+						40,
+						36,
+						50,
+						47,
+						19,
+						22,
+						89,
+						77,
+						66,
+						13,
+						70,
+						98,
+						80,
+						93,
+						16
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "index.ts",
+					"line": 1,
+					"character": 0
+				}
+			]
+		},
+		{
+			"id": 109,
+			"name": "\"index.test\"",
+			"kind": 1,
+			"kindString": "External module",
+			"flags": {
+				"isExported": true
+			},
+			"originalName": "/Applications/AMPPS/www/rulr/src/index.test.ts",
+			"children": [
+				{
+					"id": 110,
+					"name": "isNumber",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "index.test.ts",
+							"line": 5,
+							"character": 14
+						}
+					],
+					"type": {
+						"type": "reflection",
+						"declaration": {
+							"id": 111,
+							"name": "__type",
+							"kind": 65536,
+							"kindString": "Type literal",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 112,
+									"name": "__call",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 113,
+											"name": "data",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "instrinct",
+												"name": "any"
+											}
+										},
+										{
+											"id": 114,
+											"name": "path",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Path",
+												"id": 2
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"isArray": true,
+										"name": "Warning",
+										"id": 3
+									}
+								}
+							]
+						}
+					},
+					"defaultValue": " rulr.checkType(Number)"
+				},
+				{
+					"id": 115,
+					"name": "assertRule",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"signatures": [
+						{
+							"id": 116,
+							"name": "assertRule",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 117,
+									"name": "rule",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "rulr.Rule"
+									}
+								},
+								{
+									"id": 118,
+									"name": "data",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "instrinct",
+										"name": "any"
+									}
+								},
+								{
+									"id": 119,
+									"name": "expectedResult",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"isArray": true,
+										"name": "rulr.Warning"
+									}
+								}
+							],
+							"type": {
+								"type": "instrinct",
+								"name": "void"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "index.test.ts",
+							"line": 7,
+							"character": 16
+						}
+					]
+				},
+				{
+					"id": 120,
+					"name": "lessThan10",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {},
+					"signatures": [
+						{
+							"id": 121,
+							"name": "lessThan10",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 122,
+									"name": "data",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "instrinct",
+										"name": "any"
+									}
+								},
+								{
+									"id": 123,
+									"name": "path",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Array",
+										"typeArguments": [
+											{
+												"type": "instrinct",
+												"name": "string"
+											}
+										]
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Array",
+								"typeArguments": [
+									{
+										"type": "instrinct",
+										"name": "string"
+									}
+								]
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "index.test.ts",
+							"line": 12,
+							"character": 16
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Variables",
+					"kind": 32,
+					"children": [
+						110
+					]
+				},
+				{
+					"title": "Functions",
+					"kind": 64,
+					"children": [
+						115,
+						120
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "index.test.ts",
+					"line": 1,
+					"character": 0
+				}
+			]
+		}
+	],
+	"groups": [
+		{
+			"title": "External modules",
+			"kind": 1,
+			"children": [
+				1,
+				109
+			]
+		}
+	]
+}
