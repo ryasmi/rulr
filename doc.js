@@ -24,7 +24,7 @@ const renderParameter = param => {
 
 const renderSources = sources => {
   const source = sources[0];
-  return `${source.fileName}#L${source.line}`;
+  return `../${source.fileName}#L${source.line}`;
 };
 
 const renderType = type => {
