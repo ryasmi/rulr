@@ -41,6 +41,7 @@ const renderType = type => {
     case 'reflection':
       return renderDeclaration(type.declaration);
     case 'reference':
+      if (type.name === '(Anonymous function)') return `**function**`;
       return `**${type.name}**`;
   }
 };
