@@ -15,7 +15,8 @@
     "duplication-limit": "./node_modules/jscpd/bin/jscpd --limit=1",
     "duplication": "./node_modules/jscpd/bin/jscpd",
     "typings": "node ./node_modules/typings/dist/bin.js install",
-    "typedoc": "./node_modules/typedoc/bin/typedoc --json ts.json src/**.ts"
+    "typedoc": "./node_modules/typedoc/bin/typedoc --json ts.json --includeDeclarations src/**.ts",
+    "doc": "node ./doc.js"
   },
   "devDependencies": {
     "assert": "^1.4.1",
