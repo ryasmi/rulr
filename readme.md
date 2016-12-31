@@ -35,4 +35,4 @@ validateMyModel(data, ['data']);
 
 ## Usage
 - [API](/dist/index.d.ts)
-- [Examples](/src/index.test.js)
+- [Examples](/src/index.test.ts)
