@@ -15,7 +15,10 @@ npm install --save git+https://git@github.com/ryansmith94/rulr.git
 2. Use any library to actually validate the data (i.e. Lodash.isString to validate strings).
 3. Localized error messages.
 
-## Example
+## Usage
+- [API](/dist/index.d.ts)
+- [Examples](/src/index.test.ts)
+
 ```js
 const data = {
   a: 'hello',
@@ -32,7 +35,3 @@ const validateMyModel = restrictToSchema({
 validateMyModel(data, ['data']);
 // Returns: ["10 is not a valid String in `data.d.0.a`", "11 is not a valid Object in `data.d.1`"]
 ```
-
-## Usage
-- [API](/dist/index.d.ts)
-- [Examples](/src/index.test.ts)
