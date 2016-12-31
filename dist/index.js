@@ -72,11 +72,11 @@ exports.required = function (rule, warning) {
         return data === undefined ? [warning(path)] : rule(data, path);
     };
 };
-exports.invalidKeyWarning = function (invalidKeys) {
+exports.restrictToKeysWarning = function (invalidKeys) {
     return exports.warn("Invalid keys `" + invalidKeys.join('\`, \`') + "` found");
 };
 exports.restrictToKeys = function (keys, warning, objectWarning) {
-    if (warning === void 0) { warning = exports.invalidKeyWarning; }
+    if (warning === void 0) { warning = exports.restrictToKeysWarning; }
     if (objectWarning === void 0) { objectWarning = exports.checkTypeWarning; }
     return exports.first(exports.checkType(Object, objectWarning), function (data, path) {
         var invalidKeys = Object.keys(data).filter(function (key) {
@@ -95,7 +95,7 @@ exports.hasSchema = function (schema, objectWarning) {
 };
 exports.restrictToSchema = function (schema, objectWarning, keyWarning) {
     if (objectWarning === void 0) { objectWarning = exports.checkTypeWarning; }
-    if (keyWarning === void 0) { keyWarning = exports.invalidKeyWarning; }
+    if (keyWarning === void 0) { keyWarning = exports.restrictToKeysWarning; }
     return exports.first(exports.checkType(Object, objectWarning), exports.composeRules([
         exports.hasSchema(schema),
         exports.restrictToKeys(Object.keys(schema), keyWarning),

@@ -78,13 +78,13 @@ export const required = (
 ): Rule => (data, path) =>
   data === undefined ? [warning(path)] : rule(data, path);
 
-export const invalidKeyWarning = (invalidKeys: string[]): PathWarning =>
+export const restrictToKeysWarning = (invalidKeys: string[]): PathWarning =>
   warn(`Invalid keys \`${invalidKeys.join('\`, \`')}\` found`);
 
 // (String[] -> (String -> PathWarning), (Data -> PathWarning)) -> Rule
 export const restrictToKeys = (
   keys: string[],
-  warning = invalidKeyWarning,
+  warning = restrictToKeysWarning,
   objectWarning = checkTypeWarning
 ): Rule => first(checkType(Object, objectWarning), (data, path) => {
     const invalidKeys = Object.keys(data).filter((key: string) =>
@@ -107,7 +107,7 @@ export const hasSchema = (
 export const restrictToSchema = (
   schema: Schema,
   objectWarning = checkTypeWarning,
-  keyWarning = invalidKeyWarning
+  keyWarning = restrictToKeysWarning
 ): Rule =>
   first(checkType(Object, objectWarning), composeRules([
     hasSchema(schema),

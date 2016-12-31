@@ -17,7 +17,7 @@ export declare const checkRegex: (regex: RegExp, regexWarning?: (data: any) => P
 export declare const optional: (rule: Rule) => Rule;
 export declare const requiredWarning: PathWarning;
 export declare const required: (rule: Rule, warning?: PathWarning) => Rule;
-export declare const invalidKeyWarning: (invalidKeys: string[]) => PathWarning;
+export declare const restrictToKeysWarning: (invalidKeys: string[]) => PathWarning;
 export declare const restrictToKeys: (keys: string[], warning?: (invalidKeys: string[]) => PathWarning, objectWarning?: (type: string) => (data: any) => PathWarning) => Rule;
 export declare type Schema = {
     [key: string]: Rule;
