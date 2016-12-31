@@ -8,19 +8,26 @@ const renderToken = token => {
     case functionKind: {
       const source = token.sources && renderSources(token.sources);
       const sig = renderSignatures(token.signatures);
-      return `${token.kindString} [${token.name}](${source}) = ${sig}`;
+      const kind = renderKind(token.kindString);
+      return `${kind}[${token.name}](${source}) = ${sig}`;
     } default: {
       const source = token.sources && renderSources(token.sources);
       const sig = renderType(token.type);
-      return `${token.kindString} [${token.name}](${source}) = ${sig}`;
+      const kind = renderKind(token.kindString);
+      return `${kind}[${token.name}](${source}) = ${sig}`;
     }
   }
+};
+
+const renderKind = kindString => {
+  if (kindString === 'Type alias') return `${kindString} `;
+  return '';
 };
 
 const renderParameter = param => {
   const sig = renderType(param.type);
   return `${param.name}: ${sig}`;
-}
+};
 
 const renderSources = sources => {
   const source = sources[0];
@@ -36,7 +43,7 @@ const renderType = type => {
     case 'reference':
       return `**${type.name}**`;
   }
-}
+};
 
 const renderSignatures = signatures => {
   const signature = signatures[0];
@@ -55,7 +62,7 @@ const renderSignatures = signatures => {
     default:
       return signature;
   }
-}
+};
 
 const renderDeclaration = declaration => {
   const literalKind = 65536;
@@ -70,13 +77,13 @@ const renderDeclaration = declaration => {
     default:
       return declaration;
   }
-}
+};
 
 const renderTokens = tokens => {
   return tokens.map(t =>
     `- ${renderToken(t)}`
   ).join('\r\n');
-}
+};
 
 const renderedTokens = renderTokens(docTokens.children[0].children);
 const readme = `# API\r\n${renderedTokens}\r\n`;

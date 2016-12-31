@@ -4,23 +4,23 @@
 - Type alias [Rule](../src/index.ts#L4) = (data: **any**, path: **Path**) => **Warning**
 - Type alias [Schema](../src/index.ts#L96) = {[key: **string**]: **Rule**}
 - Type alias [Warning](../src/index.ts#L2) = **string**
-- Variable [requiredWarning](../src/index.ts#L73) = **PathWarning**
-- Function [checkBool](../src/index.ts#L26) = (checker: (data: **any**) => **boolean**, warning: **(Anonymous function)**) => **Rule**
-- Function [checkBoolWarning](../src/index.ts#L23) = (data: **any**) => **PathWarning**
-- Function [checkRegex](../src/index.ts#L62) = (regex: **RegExp**, regexWarning: **(Anonymous function)**, stringWarning: **(Anonymous function)**) => (data: **any**, path: **Path**) => **Warning**
-- Function [checkRegexWarning](../src/index.ts#L59) = (data: **any**) => **PathWarning**
-- Function [checkThrow](../src/index.ts#L35) = (checker: (data: **any**) => **any**, warning: **(Anonymous function)**) => **Rule**
-- Function [checkThrowWarning](../src/index.ts#L32) = (data: **any**, ex: **Error**) => **PathWarning**
-- Function [checkType](../src/index.ts#L50) = (type: **any**, warning: **(Anonymous function)**) => **Rule**
-- Function [checkTypeWarning](../src/index.ts#L47) = (type: **string**) => **(Anonymous function)**
-- Function [composeRules](../src/index.ts#L12) = (rules: **Rule**) => **Rule**
-- Function [first](../src/index.ts#L17) = (preReq: **Rule**, postReq: **Rule**) => **Rule**
-- Function [hasSchema](../src/index.ts#L97) = (schema: **Schema**, objectWarning: **(Anonymous function)**) => **Rule**
-- Function [invalidKeyWarning](../src/index.ts#L81) = (invalidKeys: **string[]**) => **PathWarning**
-- Function [optional](../src/index.ts#L70) = (rule: **Rule**) => **Rule**
-- Function [pathString](../src/index.ts#L6) = (path: **string[]**) => **Warning**
-- Function [required](../src/index.ts#L75) = (rule: **Rule**, warning: (path: **Path**) => **Warning**) => **Rule**
-- Function [restrictToCollection](../src/index.ts#L118) = (rule: (index: **number**) => **Rule**, arrayWarning: **(Anonymous function)**) => (data: **any**, path: **Path**) => **Warning**
-- Function [restrictToKeys](../src/index.ts#L85) = (keys: **string[]**, warning: **(Anonymous function)**, objectWarning: **(Anonymous function)**) => **Rule**
-- Function [restrictToSchema](../src/index.ts#L107) = (schema: **Schema**, objectWarning: **(Anonymous function)**, keyWarning: **(Anonymous function)**) => **Rule**
-- Function [warn](../src/index.ts#L9) = (msg: **string**) => **PathWarning**
+- [requiredWarning](../src/index.ts#L73) = **PathWarning**
+- [checkBool](../src/index.ts#L26) = (checker: (data: **any**) => **boolean**, warning: **(Anonymous function)**) => **Rule**
+- [checkBoolWarning](../src/index.ts#L23) = (data: **any**) => **PathWarning**
+- [checkRegex](../src/index.ts#L62) = (regex: **RegExp**, regexWarning: **(Anonymous function)**, stringWarning: **(Anonymous function)**) => (data: **any**, path: **Path**) => **Warning**
+- [checkRegexWarning](../src/index.ts#L59) = (data: **any**) => **PathWarning**
+- [checkThrow](../src/index.ts#L35) = (checker: (data: **any**) => **any**, warning: **(Anonymous function)**) => **Rule**
+- [checkThrowWarning](../src/index.ts#L32) = (data: **any**, ex: **Error**) => **PathWarning**
+- [checkType](../src/index.ts#L50) = (type: **any**, warning: **(Anonymous function)**) => **Rule**
+- [checkTypeWarning](../src/index.ts#L47) = (type: **string**) => **(Anonymous function)**
+- [composeRules](../src/index.ts#L12) = (rules: **Rule**) => **Rule**
+- [first](../src/index.ts#L17) = (preReq: **Rule**, postReq: **Rule**) => **Rule**
+- [hasSchema](../src/index.ts#L97) = (schema: **Schema**, objectWarning: **(Anonymous function)**) => **Rule**
+- [invalidKeyWarning](../src/index.ts#L81) = (invalidKeys: **string[]**) => **PathWarning**
+- [optional](../src/index.ts#L70) = (rule: **Rule**) => **Rule**
+- [pathString](../src/index.ts#L6) = (path: **string[]**) => **Warning**
+- [required](../src/index.ts#L75) = (rule: **Rule**, warning: (path: **Path**) => **Warning**) => **Rule**
+- [restrictToCollection](../src/index.ts#L118) = (rule: (index: **number**) => **Rule**, arrayWarning: **(Anonymous function)**) => (data: **any**, path: **Path**) => **Warning**
+- [restrictToKeys](../src/index.ts#L85) = (keys: **string[]**, warning: **(Anonymous function)**, objectWarning: **(Anonymous function)**) => **Rule**
+- [restrictToSchema](../src/index.ts#L107) = (schema: **Schema**, objectWarning: **(Anonymous function)**, keyWarning: **(Anonymous function)**) => **Rule**
+- [warn](../src/index.ts#L9) = (msg: **string**) => **PathWarning**
