@@ -7,7 +7,7 @@
 [![Test Coverage](https://codecov.io/gh/ryansmith94/rulr/branch/master/graph/badge.svg)](https://codecov.io/gh/ryansmith94/rulr)
 
 ```js
-npm install --save git+https://git@github.com/ryansmith94/rulr.git
+npm install --save rulr
 ```
 
 ## Why?
