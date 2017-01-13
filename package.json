@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "assert": "^1.4.1",
-    "blanket": "1.1.9",
+    "blanket": "1.2.3",
     "codecov": "^1.0.1",
     "jscpd": "^0.6.6",
     "mocha": "^3.2.0",
