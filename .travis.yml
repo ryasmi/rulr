@@ -3,7 +3,8 @@ node_js: node
 sudo: false
 before_script:
   - npm run typings
-after_script:
+script:
+  - npm test
   - npm run build
   - mkdir coverage
   - npm run cover
