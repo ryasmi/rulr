@@ -16,8 +16,8 @@
     "duplication": "./node_modules/jscpd/bin/jscpd"
   },
   "devDependencies": {
-    "@types/assert": "0.0.31",
     "@types/mocha": "^2.2.37",
+    "@types/node": "^7.0.0",
     "assert": "^1.4.1",
     "blanket": "1.1.9",
     "codecov": "^1.0.1",

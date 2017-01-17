@@ -1,2 +1,0 @@
-import 'assert';
-import 'mocha';

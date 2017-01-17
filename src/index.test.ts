@@ -1,5 +1,5 @@
-import 'assert';
-import 'mocha';
+import * as assert from 'assert';
+import * as mocha from 'mocha';
 import * as rulr from './index';
 
 const isNumber = rulr.checkType(Number);
