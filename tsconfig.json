@@ -14,20 +14,11 @@
     "noFallthroughCasesInSwitch": true,
     "alwaysStrict": true
   },
-  "filesGlob": [
-    "src/**/*.ts",
-    "typings/index.d.ts"
+  "include": [
+    "src/**/*.ts"
   ],
   "exclude": [
     "node_modules"
   ],
-  "compileOnSave": false,
-  "files": [
-    "src/index.test.ts",
-    "src/index.ts",
-    "typings/index.d.ts"
-  ],
-  "atom": {
-    "rewriteTsconfig": true
-  }
+  "compileOnSave": true
 }
