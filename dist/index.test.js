@@ -181,6 +181,19 @@ describe('required', function () {
         assertRule(rule, 'hello', []);
     });
 });
+describe('nullable', function () {
+    var postReq = rulr.checkType(String);
+    var rule = rulr.nullable(postReq);
+    it('should return a warning if data is not null and incorrect', function () {
+        assertRule(rule, 10, ['`10` is not a valid String in `data`']);
+    });
+    it('should not return a warning if data is null', function () {
+        assertRule(rule, null, []);
+    });
+    it('should not return a warning if data is not null and correct', function () {
+        assertRule(rule, 'hello', []);
+    });
+});
 describe('restrictToSchema', function () {
     var schema = { foo: rulr.checkType(String) };
     it('should return the given object warning if data is not an object', function () {

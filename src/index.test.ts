@@ -198,6 +198,21 @@ describe('required', () => {
   });
 });
 
+describe('nullable', () => {
+  const postReq = rulr.checkType(String);
+  const rule = rulr.nullable(postReq);
+
+  it('should return a warning if data is not null and incorrect', () => {
+    assertRule(rule, 10, ['`10` is not a valid String in `data`']);
+  });
+  it('should not return a warning if data is null', () => {
+    assertRule(rule, null, []);
+  });
+  it('should not return a warning if data is not null and correct', () => {
+    assertRule(rule, 'hello', []);
+  });
+});
+
 describe('restrictToSchema', () => {
   const schema = { foo: rulr.checkType(String) };
 
