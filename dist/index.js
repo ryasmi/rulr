@@ -72,6 +72,9 @@ exports.required = function (rule, warning) {
         return data === undefined ? [warning(path)] : rule(data, path);
     };
 };
+exports.nullable = function (rule) { return function (data, path) {
+    return data === null ? [] : rule(data, path);
+}; };
 exports.restrictToKeysWarning = function (invalidKeys) {
     return exports.warn("Invalid keys `" + invalidKeys.join('\`, \`') + "` found");
 };

@@ -78,6 +78,9 @@ export const required = (
 ): Rule => (data, path) =>
   data === undefined ? [warning(path)] : rule(data, path);
 
+export const nullable = (rule: Rule): Rule => (data, path) =>
+  data === null ? [] : rule(data, path);
+
 export const restrictToKeysWarning = (invalidKeys: string[]): PathWarning =>
   warn(`Invalid keys \`${invalidKeys.join('\`, \`')}\` found`);
 
