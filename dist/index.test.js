@@ -1,5 +1,6 @@
 "use strict";
-var assert = require("assert");
+require("assert");
+require("mocha");
 var rulr = require("./index");
 var isNumber = rulr.checkType(Number);
 var assertRule = function (rule, data, expectedResult) {
