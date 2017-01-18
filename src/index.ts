@@ -9,7 +9,7 @@ export const pathString = (path: string[]): Warning =>
 export const warn = (msg: string = 'Problem'): PathWarning => path =>
   `${msg} in ${pathString(path)}`;
 
-export const maybe = (rule: Rule): any =>
+export const maybe = (rule: Rule) =>
   (data: any, path: Path): any => {
     const warnings = rule(data, path);
     if (warnings.length > 0) {
