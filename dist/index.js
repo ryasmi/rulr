@@ -8,6 +8,15 @@ exports.warn = function (msg) {
         return msg + " in " + exports.pathString(path);
     };
 };
+exports.maybe = function (rule) {
+    return function (data, path) {
+        var warnings = rule(data, path);
+        if (warnings.length > 0) {
+            throw new Error("Warnings: " + JSON.stringify(warnings, null, 2));
+        }
+        return data;
+    };
+};
 exports.composeRules = function (rules) { return function (data, path) {
     return rules.reduce(function (warnings, rule) {
         return warnings.concat(rule(data, path));

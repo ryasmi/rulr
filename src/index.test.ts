@@ -43,6 +43,29 @@ describe('warn', () => {
   });
 });
 
+describe('maybe', () => {
+  const rule = rulr.checkType(String);
+  const validator = rulr.maybe(rule);
+  const path = ['data'];
+
+  it('should throw an for invalid data', () => {
+    try {
+      const data = 10;
+      validator(data, path);
+    } catch (err) {
+      const warnings = ['`10` is not a valid String in `data`'];
+      const expectedResult = `Warnings: ${JSON.stringify(warnings, null, 2)}`;
+      const actualResult = err.message;
+      assert.equal(actualResult, expectedResult);
+    }
+  });
+  it('should return data for correct data', () => {
+    const data = 'hello';
+    const actualResult = validator(data, path);
+    assert.equal(actualResult, data);
+  });
+});
+
 describe('checkTypeWarning', () => {
   it('should return a string with data, type, and path', () => {
     const type = 'String';
