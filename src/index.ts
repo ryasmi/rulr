@@ -9,6 +9,15 @@ export const pathString = (path: string[]): Warning =>
 export const warn = (msg: string = 'Problem'): PathWarning => path =>
   `${msg} in ${pathString(path)}`;
 
+export const maybe = (rule: Rule): any =>
+  (data: any, path: Path): any => {
+    const warnings = rule(data, path);
+    if (warnings.length > 0) {
+      throw new Error(`Warnings: ${JSON.stringify(warnings, null, 2)}`);
+    }
+    return data;
+  };
+
 export const composeRules = (rules: Rule[]): Rule => (data, path) =>
   rules.reduce((warnings: Warning[], rule: Rule) =>
     warnings.concat(rule(data, path))

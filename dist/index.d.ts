@@ -4,6 +4,7 @@ export declare type PathWarning = (path: Path) => Warning;
 export declare type Rule = (data: any, path: Path) => Warning[];
 export declare const pathString: (path: string[]) => string;
 export declare const warn: (msg?: string) => PathWarning;
+export declare const maybe: (rule: Rule) => any;
 export declare const composeRules: (rules: Rule[]) => Rule;
 export declare const first: (preReq: Rule, postReq: Rule) => Rule;
 export declare const checkBoolWarning: (data: any) => PathWarning;

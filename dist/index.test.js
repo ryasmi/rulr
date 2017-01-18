@@ -38,6 +38,28 @@ describe('warn', function () {
         assert.equal(actualResult, expectedResult);
     });
 });
+describe('maybe', function () {
+    var rule = rulr.checkType(String);
+    var validator = rulr.maybe(rule);
+    var path = ['data'];
+    it('should throw an for invalid data', function () {
+        try {
+            var data = 10;
+            validator(data, path);
+        }
+        catch (err) {
+            var warnings = ['`10` is not a valid String in `data`'];
+            var expectedResult = "Warnings: " + JSON.stringify(warnings, null, 2);
+            var actualResult = err.message;
+            assert.equal(actualResult, expectedResult);
+        }
+    });
+    it('should return data for correct data', function () {
+        var data = 'hello';
+        var actualResult = validator(data, path);
+        assert.equal(actualResult, data);
+    });
+});
 describe('checkTypeWarning', function () {
     it('should return a string with data, type, and path', function () {
         var type = 'String';
