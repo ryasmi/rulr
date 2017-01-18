@@ -3,7 +3,7 @@
   "author": "ryansmith94",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha dist/**/*.test.js",
     "test-watch": "./node_modules/mocha/bin/mocha dist/**/*.test.js --watch",
