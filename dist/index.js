@@ -1,12 +1,69 @@
 "use strict";
-exports.pathString = function (path) {
-    return "`" + path.join('.') + "`";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-exports.warn = function (msg) {
-    if (msg === void 0) { msg = 'Problem'; }
-    return function (path) {
-        return msg + " in " + exports.pathString(path);
-    };
+var Warning = (function () {
+    function Warning(data, path) {
+        this.data = data;
+        this.path = path;
+    }
+    return Warning;
+}());
+exports.Warning = Warning;
+var ExceptionWarning = (function (_super) {
+    __extends(ExceptionWarning, _super);
+    function ExceptionWarning(data, path, exception) {
+        var _this = _super.call(this, data, path) || this;
+        _this.exception = exception;
+        return _this;
+    }
+    return ExceptionWarning;
+}(Warning));
+exports.ExceptionWarning = ExceptionWarning;
+var TypeWarning = (function (_super) {
+    __extends(TypeWarning, _super);
+    function TypeWarning(data, path, type) {
+        var _this = _super.call(this, data, path) || this;
+        _this.type = type;
+        return _this;
+    }
+    return TypeWarning;
+}(Warning));
+exports.TypeWarning = TypeWarning;
+var RequiredWarning = (function (_super) {
+    __extends(RequiredWarning, _super);
+    function RequiredWarning(data, path) {
+        return _super.call(this, data, path) || this;
+    }
+    return RequiredWarning;
+}(Warning));
+exports.RequiredWarning = RequiredWarning;
+var RestrictedKeysWarning = (function (_super) {
+    __extends(RestrictedKeysWarning, _super);
+    function RestrictedKeysWarning(data, path, keys) {
+        var _this = _super.call(this, data, path) || this;
+        _this.keys = keys;
+        return _this;
+    }
+    return RestrictedKeysWarning;
+}(Warning));
+exports.RestrictedKeysWarning = RestrictedKeysWarning;
+exports.createWarning = function (data, path) {
+    return new Warning(data, path);
+};
+exports.createExceptionWarning = function (data, path, exception) {
+    return new ExceptionWarning(data, path, exception);
+};
+exports.createTypeWarning = function (data, path, type) {
+    return new TypeWarning(data, path, type);
+};
+exports.createRequiredWarning = function (data, path) {
+    return new RequiredWarning(data, path);
+};
+exports.createRestrictedKeysWarning = function (data, path, keys) {
+    return new RestrictedKeysWarning(data, path, keys);
 };
 exports.maybe = function (rule) {
     return function (data, path) {
@@ -28,96 +85,66 @@ exports.first = function (preReq, postReq) { return function (data, path) {
         return preReqWarnings;
     return postReq(data, path);
 }; };
-exports.checkBoolWarning = function (data) {
-    return exports.warn();
-};
 exports.checkBool = function (checker, warning) {
-    if (warning === void 0) { warning = exports.checkBoolWarning; }
+    if (warning === void 0) { warning = exports.createWarning; }
     return function (data, path) {
-        return checker(data) ? [] : [warning(data)(path)];
+        return checker(data) ? [] : [warning(data, path)];
     };
 };
-exports.checkThrowWarning = function (data, ex) {
-    return exports.warn(ex.message);
-};
-exports.checkThrow = function (checker, warning) {
-    if (warning === void 0) { warning = exports.checkThrowWarning; }
-    return function (data, path) {
-        try {
-            checker(data);
-            return [];
-        }
-        catch (ex) {
-            return [warning(data, ex)(path)];
-        }
-    };
-};
-exports.checkTypeWarning = function (type) { return function (data) {
-    return exports.warn("`" + JSON.stringify(data) + "` is not a valid " + type);
+exports.checkThrow = function (checker) { return function (data, path) {
+    try {
+        checker(data);
+        return [];
+    }
+    catch (ex) {
+        return [exports.createExceptionWarning(data, path, ex)];
+    }
 }; };
-exports.checkType = function (type, warning) {
-    if (warning === void 0) { warning = exports.checkTypeWarning; }
-    return function (data, path) { return (data === undefined || data === null || data.constructor !== type ?
-        [warning(type.name)(data)(path)] :
-        []); };
-};
-exports.checkRegexWarning = function (data) {
-    return exports.warn();
-};
-exports.checkRegex = function (regex, regexWarning, stringWarning) {
-    if (regexWarning === void 0) { regexWarning = exports.checkRegexWarning; }
-    if (stringWarning === void 0) { stringWarning = exports.checkTypeWarning; }
-    return exports.first(exports.checkType(String, stringWarning), function (data, path) {
-        return regex.test(data) ? [] : [regexWarning(data)(path)];
+exports.checkType = function (type) { return function (data, path) {
+    return (data === undefined || data === null || data.constructor !== type ?
+        [exports.createTypeWarning(data, path, type)] :
+        []);
+}; };
+exports.checkRegex = function (regex, regexWarning) {
+    if (regexWarning === void 0) { regexWarning = exports.createWarning; }
+    return exports.first(exports.checkType(String), function (data, path) {
+        return regex.test(data) ? [] : [regexWarning(data, path)];
     });
 };
 exports.optional = function (rule) { return function (data, path) {
     return data === undefined ? [] : rule(data, path);
 }; };
-exports.requiredWarning = exports.warn('Missing required value');
-exports.required = function (rule, warning) {
-    if (warning === void 0) { warning = exports.requiredWarning; }
-    return function (data, path) {
-        return data === undefined ? [warning(path)] : rule(data, path);
-    };
-};
+exports.required = function (rule) { return function (data, path) {
+    return data === undefined ? [exports.createRequiredWarning(data, path)] : rule(data, path);
+}; };
 exports.nullable = function (rule) { return function (data, path) {
     return data === null ? [] : rule(data, path);
 }; };
-exports.restrictToKeysWarning = function (invalidKeys) {
-    return exports.warn("Invalid keys `" + invalidKeys.join('\`, \`') + "` found");
-};
-exports.restrictToKeys = function (keys, warning, objectWarning) {
-    if (warning === void 0) { warning = exports.restrictToKeysWarning; }
-    if (objectWarning === void 0) { objectWarning = exports.checkTypeWarning; }
-    return exports.first(exports.checkType(Object, objectWarning), function (data, path) {
+exports.restrictToKeys = function (keys) {
+    return exports.first(exports.checkType(Object), function (data, path) {
         var invalidKeys = Object.keys(data).filter(function (key) {
             return keys.indexOf(key) === -1;
         });
-        return invalidKeys.length === 0 ? [] : [warning(invalidKeys)(path)];
+        return invalidKeys.length === 0 ? [] : [exports.createRestrictedKeysWarning(data, path, invalidKeys)];
     });
 };
-exports.hasSchema = function (schema, objectWarning) {
-    if (objectWarning === void 0) { objectWarning = exports.checkTypeWarning; }
-    return exports.first(exports.checkType(Object, objectWarning), function (data, path) {
+exports.hasSchema = function (schema) {
+    return exports.first(exports.checkType(Object), function (data, path) {
         return Object.keys(schema).reduce(function (warnings, key) {
             return warnings.concat(schema[key](data[key], path.concat([key])));
         }, []);
     });
 };
-exports.restrictToSchema = function (schema, objectWarning, keyWarning) {
-    if (objectWarning === void 0) { objectWarning = exports.checkTypeWarning; }
-    if (keyWarning === void 0) { keyWarning = exports.restrictToKeysWarning; }
-    return exports.first(exports.checkType(Object, objectWarning), exports.composeRules([
+exports.restrictToSchema = function (schema) {
+    return exports.first(exports.checkType(Object), exports.composeRules([
         exports.hasSchema(schema),
-        exports.restrictToKeys(Object.keys(schema), keyWarning),
+        exports.restrictToKeys(Object.keys(schema)),
     ]));
 };
-exports.restrictToCollection = function (rule, arrayWarning) {
-    if (arrayWarning === void 0) { arrayWarning = exports.checkTypeWarning; }
-    return exports.first(exports.checkType(Array, arrayWarning), function (data, path) {
+exports.restrictToCollection = function (rule) {
+    return exports.first(exports.checkType(Array), function (data, path) {
         return data.reduce(function (warnings, elem, index) {
-            return warnings.concat(rule(index)(elem, path.concat(["" + index])));
+            return warnings.concat(rule(index)(elem, path.concat([index.toString()])));
         }, []);
     });
 };
