@@ -33,5 +33,8 @@ const validateMyModel = restrictToSchema({
 });
 
 validateMyModel(data, ['data']);
-// Returns: ["10 is not a valid String in `data.d.0.a`", "11 is not a valid Object in `data.d.1`"]
+// Returns: [
+//  {data: 10, path: ['data', 'd', '0', 'a'], type: String},
+//  {data: 11, path: ['data', 'd', '1'], type: Object}
+// ]
 ```
