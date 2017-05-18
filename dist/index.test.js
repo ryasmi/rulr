@@ -152,18 +152,12 @@ describe('optional', function () {
 describe('required', function () {
     var type = String;
     var postReq = rulr.checkType(type);
-    it('should return the given warning if data is undefined', function () {
-        var data = undefined;
-        var error = rulr.createWarning;
-        var rule = rulr.required(postReq, error);
-        assertRule(rule, data, [rulr.createWarning(data, testPath)]);
-    });
     it('should return a warning if data is defined and incorrect', function () {
         var data = 10;
         var rule = rulr.required(postReq);
         assertRule(rule, data, [rulr.createTypeWarning(data, testPath, type)]);
     });
-    it('should return the default warning if data is undefined', function () {
+    it('should return the warning if data is undefined', function () {
         var data = undefined;
         var rule = rulr.required(postReq);
         assertRule(rule, data, [rulr.createRequiredWarning(data, testPath)]);

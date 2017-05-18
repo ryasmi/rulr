@@ -69,7 +69,7 @@ describe('first', () => {
 
 describe('checkBool', () => {
   const isString = (data: any) => data.constructor === String;
-  const error = (data: any, path: string) => rulr.createWarning(data, path);
+  const error = (data: any, path: rulr.Path) => rulr.createWarning(data, path);
 
   it('should return the given warning if result is false', () => {
     const data = 10;
@@ -169,18 +169,12 @@ describe('required', () => {
   const type = String;
   const postReq = rulr.checkType(type);
 
-  it('should return the given warning if data is undefined', () => {
-    const data = undefined;
-    const error = rulr.createWarning;
-    const rule = rulr.required(postReq, error);
-    assertRule(rule, data, [rulr.createWarning(data, testPath)]);
-  });
   it('should return a warning if data is defined and incorrect', () => {
     const data = 10;
     const rule = rulr.required(postReq);
     assertRule(rule, data, [rulr.createTypeWarning(data, testPath, type)]);
   });
-  it('should return the default warning if data is undefined', () => {
+  it('should return the warning if data is undefined', () => {
     const data = undefined;
     const rule = rulr.required(postReq);
     assertRule(rule, data, [rulr.createRequiredWarning(data, testPath)]);
