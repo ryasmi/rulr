@@ -33,7 +33,7 @@ export declare const createExceptionWarning: (data: any, path: string[], excepti
 export declare const createTypeWarning: (data: any, path: string[], type: Function) => Warning;
 export declare const createRequiredWarning: (data: any, path: string[]) => Warning;
 export declare const createRestrictedKeysWarning: (data: any, path: string[], keys: string[]) => Warning;
-export declare const maybe: (rule: Rule) => (data: any, path: string[]) => any;
+export declare const maybe: (rule: Rule) => <T>(data: T, path: string[]) => Warnings | T;
 export declare const composeRules: (rules: Rule[]) => Rule;
 export declare const first: (preReq: Rule, postReq: Rule) => Rule;
 export declare const checkBool: (checker: (data: any) => boolean, warning?: (data: any, path: string[]) => Warning) => Rule;

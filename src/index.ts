@@ -61,7 +61,7 @@ export const createRestrictedKeysWarning = (data: any, path: Path, keys: string[
   new RestrictedKeysWarning(data, path, keys);
 
 export const maybe = (rule: Rule) =>
-  (data: any, path: Path): any => {
+  <T>(data: T, path: Path): T|Warnings => {
     const warnings = rule(data, path);
     if (warnings.length > 0) {
       throw new Warnings(data, path, warnings);
