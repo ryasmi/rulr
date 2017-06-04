@@ -65,15 +65,11 @@ describe('first', function () {
     var rule = rulr.first(isNumber, lessThan10);
     it('should use the pre-requisite first', function () {
         var data = 'hello';
-        assertRule(rule, data, [
-            rulr.createTypeWarning(data, testPath, Number),
-        ]);
+        assertRule(rule, data, [rulr.createTypeWarning(data, testPath, Number)]);
     });
     it('should use the post-requisite second', function () {
         var data = 10;
-        assertRule(rule, data, [
-            rulr.createWarning(data, testPath),
-        ]);
+        assertRule(rule, data, [rulr.createWarning(data, testPath)]);
     });
 });
 describe('checkBool', function () {
@@ -105,7 +101,9 @@ describe('checkThrow', function () {
         var data = 10;
         var rule = rulr.checkThrow(isString);
         var actualResult = rule(data, testPath);
-        assertRule(rule, data, [rulr.createExceptionWarning(data, testPath, exception)]);
+        assertRule(rule, data, [
+            rulr.createExceptionWarning(data, testPath, exception),
+        ]);
     });
     it('should not return a warning if an exception is not thrown', function () {
         var data = 'hello';
@@ -209,12 +207,16 @@ describe('restrictToSchema', function () {
     it('should return the key warning if keys are invalid', function () {
         var data = { foo: 'hello', bar: 10 };
         var rule = rulr.restrictToSchema(schema);
-        assertRule(rule, data, [rulr.createRestrictedKeysWarning(data, testPath, ['bar'])]);
+        assertRule(rule, data, [
+            rulr.createRestrictedKeysWarning(data, testPath, ['bar']),
+        ]);
     });
     it('should return a warning if data is incorrect', function () {
         var data = 10;
         var rule = rulr.restrictToSchema(schema);
-        assertRule(rule, { foo: data }, [rulr.createTypeWarning(data, ['data', 'foo'], String)]);
+        assertRule(rule, { foo: data }, [
+            rulr.createTypeWarning(data, ['data', 'foo'], String),
+        ]);
     });
     it('should not return a warning if data is correct', function () {
         var rule = rulr.restrictToSchema(schema);
@@ -231,7 +233,10 @@ describe('restrictToCollection', function () {
     it('should return an error if data is incorrect', function () {
         var data = 10;
         var rule = rulr.restrictToCollection(postReq);
-        assertRule(rule, [data], [rulr.createTypeWarning(data, testPath.concat(['0']), String)]);
+        var expectedWarnings = [
+            rulr.createTypeWarning(data, testPath.concat(['0']), String),
+        ];
+        assertRule(rule, [data], expectedWarnings);
     });
     it('should not return an error if data is correct', function () {
         var rule = rulr.restrictToCollection(postReq);

@@ -7,7 +7,7 @@ const testPath = ['data'];
 
 const assertWarning = (
   actualWarning: rulr.Warning,
-  expectedWarning: rulr.Warning
+  expectedWarning: rulr.Warning,
 ) => {
   delete actualWarning.stack;
   delete expectedWarning.stack;
@@ -16,7 +16,7 @@ const assertWarning = (
 
 const assertWarnings = (
   actualWarnings: rulr.Warning[],
-  expectedWarnings: rulr.Warning[]
+  expectedWarnings: rulr.Warning[],
 ) => {
   assert.equal(actualWarnings.length, expectedWarnings.length);
   actualWarnings.forEach((actualWarning, index) => {
@@ -28,7 +28,7 @@ const assertWarnings = (
 const assertRule = (
   rule: rulr.Rule,
   data: any,
-  expectedWarnings: rulr.Warning[]
+  expectedWarnings: rulr.Warning[],
 ) => {
   const actualWarnings = rule(data, testPath);
   assertWarnings(actualWarnings, expectedWarnings);
@@ -83,15 +83,11 @@ describe('first', () => {
 
   it('should use the pre-requisite first', () => {
     const data = 'hello';
-    assertRule(rule, data, [
-      rulr.createTypeWarning(data, testPath, Number),
-    ]);
+    assertRule(rule, data, [rulr.createTypeWarning(data, testPath, Number)]);
   });
   it('should use the post-requisite second', () => {
     const data = 10;
-    assertRule(rule, data, [
-      rulr.createWarning(data, testPath),
-    ]);
+    assertRule(rule, data, [rulr.createWarning(data, testPath)]);
   });
 });
 
@@ -126,7 +122,9 @@ describe('checkThrow', () => {
     const data = 10;
     const rule = rulr.checkThrow(isString);
     const actualResult = rule(data, testPath);
-    assertRule(rule, data, [rulr.createExceptionWarning(data, testPath, exception)]);
+    assertRule(rule, data, [
+      rulr.createExceptionWarning(data, testPath, exception),
+    ]);
   });
   it('should not return a warning if an exception is not thrown', () => {
     const data = 'hello';
@@ -242,12 +240,16 @@ describe('restrictToSchema', () => {
   it('should return the key warning if keys are invalid', () => {
     const data = { foo: 'hello', bar: 10 };
     const rule = rulr.restrictToSchema(schema);
-    assertRule(rule, data, [rulr.createRestrictedKeysWarning(data, testPath, ['bar'])]);
+    assertRule(rule, data, [
+      rulr.createRestrictedKeysWarning(data, testPath, ['bar']),
+    ]);
   });
   it('should return a warning if data is incorrect', () => {
     const data = 10;
     const rule = rulr.restrictToSchema(schema);
-    assertRule(rule, { foo: data }, [rulr.createTypeWarning(data, ['data', 'foo'], String)]);
+    assertRule(rule, { foo: data }, [
+      rulr.createTypeWarning(data, ['data', 'foo'], String),
+    ]);
   });
   it('should not return a warning if data is correct', () => {
     const rule = rulr.restrictToSchema(schema);
@@ -266,7 +268,10 @@ describe('restrictToCollection', () => {
   it('should return an error if data is incorrect', () => {
     const data = 10;
     const rule = rulr.restrictToCollection(postReq);
-    assertRule(rule, [data], [rulr.createTypeWarning(data, [...testPath, '0'], String)]);
+    const expectedWarnings = [
+      rulr.createTypeWarning(data, [...testPath, '0'], String),
+    ];
+    assertRule(rule, [data], expectedWarnings);
   });
   it('should not return an error if data is correct', () => {
     const rule = rulr.restrictToCollection(postReq);
