@@ -8,6 +8,9 @@ var Warning = (function () {
     function Warning(data, path) {
         this.data = data;
         this.path = path;
+        this.message = 'Validation Error';
+        this.name = this.constructor.name;
+        this.stack = (new Error(this.message)).stack;
     }
     return Warning;
 }());
@@ -50,6 +53,16 @@ var RestrictedKeysWarning = (function (_super) {
     return RestrictedKeysWarning;
 }(Warning));
 exports.RestrictedKeysWarning = RestrictedKeysWarning;
+var Warnings = (function (_super) {
+    __extends(Warnings, _super);
+    function Warnings(data, path, warnings) {
+        var _this = _super.call(this, data, path) || this;
+        _this.warnings = warnings;
+        return _this;
+    }
+    return Warnings;
+}(Warning));
+exports.Warnings = Warnings;
 exports.createWarning = function (data, path) {
     return new Warning(data, path);
 };
@@ -69,7 +82,7 @@ exports.maybe = function (rule) {
     return function (data, path) {
         var warnings = rule(data, path);
         if (warnings.length > 0) {
-            throw new Error("Warnings: " + JSON.stringify(warnings, null, 2));
+            throw new Warnings(data, path, warnings);
         }
         return data;
     };

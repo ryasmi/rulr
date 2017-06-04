@@ -3,9 +3,21 @@ var assert = require("assert");
 var rulr = require("./index");
 var isNumber = rulr.checkType(Number);
 var testPath = ['data'];
-var assertRule = function (rule, data, expectedResult) {
-    var actualResult = rule(data, testPath);
-    assert.deepEqual(actualResult, expectedResult);
+var assertWarning = function (actualWarning, expectedWarning) {
+    delete actualWarning.stack;
+    delete expectedWarning.stack;
+    assert.deepEqual(actualWarning, expectedWarning);
+};
+var assertWarnings = function (actualWarnings, expectedWarnings) {
+    assert.equal(actualWarnings.length, expectedWarnings.length);
+    actualWarnings.forEach(function (actualWarning, index) {
+        var expectedWarning = expectedWarnings[index];
+        assertWarning(actualWarning, expectedWarning);
+    });
+};
+var assertRule = function (rule, data, expectedWarnings) {
+    var actualWarnings = rule(data, testPath);
+    assertWarnings(actualWarnings, expectedWarnings);
 };
 var lessThan10 = function (data, path) {
     return data < 10 ? [] : [rulr.createWarning(data, path)];
@@ -19,11 +31,15 @@ describe('maybe', function () {
         try {
             validator(data, testPath);
         }
-        catch (err) {
+        catch (actualWarning) {
             var warnings = [rulr.createTypeWarning(data, testPath, type)];
-            var expectedResult = "Warnings: " + JSON.stringify(warnings, null, 2);
-            var actualResult = err.message;
-            assert.equal(actualResult, expectedResult);
+            var expectedWarning = new rulr.Warnings(data, testPath, warnings);
+            assert.equal(actualWarning.constructor, expectedWarning.constructor);
+            assert.equal(actualWarning.name, expectedWarning.name);
+            assert.equal(actualWarning.data, expectedWarning.data);
+            assert.equal(actualWarning.path, expectedWarning.path);
+            assert.equal(actualWarning.message, expectedWarning.message);
+            assertWarnings(actualWarning.warnings, expectedWarning.warnings);
         }
     });
     it('should return data for correct data', function () {

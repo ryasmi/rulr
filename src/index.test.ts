@@ -5,9 +5,33 @@ import * as rulr from './index';
 const isNumber = rulr.checkType(Number);
 const testPath = ['data'];
 
-const assertRule = (rule: rulr.Rule, data: any, expectedResult: rulr.Warning[]) => {
-  const actualResult = rule(data, testPath);
-  assert.deepEqual(actualResult, expectedResult);
+const assertWarning = (
+  actualWarning: rulr.Warning,
+  expectedWarning: rulr.Warning
+) => {
+  delete actualWarning.stack;
+  delete expectedWarning.stack;
+  assert.deepEqual(actualWarning, expectedWarning);
+};
+
+const assertWarnings = (
+  actualWarnings: rulr.Warning[],
+  expectedWarnings: rulr.Warning[]
+) => {
+  assert.equal(actualWarnings.length, expectedWarnings.length);
+  actualWarnings.forEach((actualWarning, index) => {
+    const expectedWarning = expectedWarnings[index];
+    assertWarning(actualWarning, expectedWarning);
+  });
+};
+
+const assertRule = (
+  rule: rulr.Rule,
+  data: any,
+  expectedWarnings: rulr.Warning[]
+) => {
+  const actualWarnings = rule(data, testPath);
+  assertWarnings(actualWarnings, expectedWarnings);
 };
 
 const lessThan10: rulr.Rule = (data, path) =>
@@ -22,11 +46,15 @@ describe('maybe', () => {
     const data = 10;
     try {
       validator(data, testPath);
-    } catch (err) {
+    } catch (actualWarning) {
       const warnings = [rulr.createTypeWarning(data, testPath, type)];
-      const expectedResult = `Warnings: ${JSON.stringify(warnings, null, 2)}`;
-      const actualResult = err.message;
-      assert.equal(actualResult, expectedResult);
+      const expectedWarning = new rulr.Warnings(data, testPath, warnings);
+      assert.equal(actualWarning.constructor, expectedWarning.constructor);
+      assert.equal(actualWarning.name, expectedWarning.name);
+      assert.equal(actualWarning.data, expectedWarning.data);
+      assert.equal(actualWarning.path, expectedWarning.path);
+      assert.equal(actualWarning.message, expectedWarning.message);
+      assertWarnings(actualWarning.warnings, expectedWarning.warnings);
     }
   });
   it('should return data for correct data', () => {

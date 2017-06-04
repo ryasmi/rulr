@@ -1,7 +1,15 @@
 export type Path = string[];
 
-export class Warning {
-  constructor(public data: any, public path: Path) {}
+export class Warning implements Error {
+  public name: string;
+  public message: string;
+  public stack?: string;
+
+  constructor(public data: any, public path: Path) {
+    this.message = 'Validation Error';
+    this.name = this.constructor.name;
+    this.stack = (new Error(this.message)).stack;
+  }
 }
 
 export class ExceptionWarning extends Warning {
@@ -28,6 +36,12 @@ export class RestrictedKeysWarning extends Warning {
   }
 }
 
+export class Warnings extends Warning {
+  constructor(data: any, path: Path, public warnings: Warning[]) {
+    super(data, path);
+  }
+}
+
 export type PathWarning = (path: Path) => Warning;
 export type Rule = (data: any, path: Path) => Warning[];
 
@@ -50,7 +64,7 @@ export const maybe = (rule: Rule) =>
   (data: any, path: Path): any => {
     const warnings = rule(data, path);
     if (warnings.length > 0) {
-      throw new Error(`Warnings: ${JSON.stringify(warnings, null, 2)}`);
+      throw new Warnings(data, path, warnings);
     }
     return data;
   };

@@ -1,7 +1,10 @@
 export declare type Path = string[];
-export declare class Warning {
+export declare class Warning implements Error {
     data: any;
     path: Path;
+    name: string;
+    message: string;
+    stack?: string;
     constructor(data: any, path: Path);
 }
 export declare class ExceptionWarning extends Warning {
@@ -18,6 +21,10 @@ export declare class RequiredWarning extends Warning {
 export declare class RestrictedKeysWarning extends Warning {
     keys: string[];
     constructor(data: any, path: Path, keys: string[]);
+}
+export declare class Warnings extends Warning {
+    warnings: Warning[];
+    constructor(data: any, path: Path, warnings: Warning[]);
 }
 export declare type PathWarning = (path: Path) => Warning;
 export declare type Rule = (data: any, path: Path) => Warning[];
