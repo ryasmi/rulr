@@ -4,39 +4,36 @@
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "version": "3.0.0",
+  "files": [
+    "dist",
+    "package-lock.json"
+  ],
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha dist/**/*.test.js",
-    "test-watch": "./node_modules/mocha/bin/mocha dist/**/*.test.js --watch",
-    "cover": "./node_modules/mocha/bin/mocha dist/**/*.test.js --require blanket --reporter mocha-lcov-reporter > coverage/coverage.lcov",
-    "codecov": "./node_modules/codecov/bin/codecov",
+    "acp": "git add -A && npm run commit && git push",
+    "commit": "git-cz",
     "build": "tsc",
-    "build-watch": "tsc --watch",
-    "lint": "./node_modules/tslint/bin/tslint --project ./tsconfig.json -c ./tslint.json",
-    "duplication-limit": "./node_modules/jscpd/bin/jscpd --limit=1",
-    "duplication": "./node_modules/jscpd/bin/jscpd"
+    "clean": "rimraf dist",
+    "test": "mocha dist/**/*.test.js",
+    "cover": "nyc --lines 100  --check-coverage npm run test",
+    "lint": "tslint --project ./tsconfig.json -c ./tslint.json",
+    "duplication": "jscpd"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   },
   "devDependencies": {
     "@types/mocha": "^2.2.37",
     "@types/node": "^8.0.0",
     "assert": "^1.4.1",
-    "blanket": "1.1.9",
-    "codecov": "^2.0.1",
+    "commitizen": "^2.9.6",
+    "cz-conventional-changelog": "^2.0.0",
+    "jscommons": "^1.0.2",
     "jscpd": "^0.6.6",
     "mocha": "^3.4.0",
-    "mocha-lcov-reporter": "^1.2.0",
+    "semantic-release": "^8.0.3",
     "tslint": "^5.0.0",
     "typescript": "^2.1.4"
-  },
-  "config": {
-    "blanket": {
-      "pattern": [
-        "dist"
-      ],
-      "data-cover-never": [
-        "node_modules",
-        "dist/**/*.test.js"
-      ],
-      "data-cover-ecmaVersion": "6"
-    }
   }
 }
