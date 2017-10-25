@@ -1,5 +1,8 @@
 {
-  "extends": [
-    "config:js-lib"
-  ]
+  "extends": [":library"],
+  "automerge": true,
+  "automergeType": "branch-push",
+  "major": {
+    "automerge": false
+  }
 }
