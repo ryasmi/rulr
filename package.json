@@ -5,9 +5,9 @@
   "typings": "dist/index.d.ts",
   "version": "3.0.0",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha dist/**/*.test.js",
+    "test": "./node_modules/mocha/bin/mocha dist/**/*.test.js --exit",
     "test-watch": "./node_modules/mocha/bin/mocha dist/**/*.test.js --watch",
-    "cover": "./node_modules/mocha/bin/mocha dist/**/*.test.js --require blanket --reporter mocha-lcov-reporter > coverage/coverage.lcov",
+    "cover": "./node_modules/mocha/bin/mocha dist/**/*.test.js --exit --require blanket --reporter mocha-lcov-reporter > coverage/coverage.lcov",
     "codecov": "./node_modules/codecov/bin/codecov",
     "build": "tsc",
     "build-watch": "tsc --watch",
