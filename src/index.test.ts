@@ -1,5 +1,6 @@
+// tslint:disable:max-file-line-count
 import * as assert from 'assert';
-import * as mocha from 'mocha';
+import 'mocha'; // tslint:disable-line:no-import-side-effect
 import * as rulr from './index';
 
 const isNumber = rulr.checkType(Number);
@@ -34,8 +35,9 @@ const assertRule = (
   assertWarnings(actualWarnings, expectedWarnings);
 };
 
-const lessThan10: rulr.Rule = (data, path) =>
-  data < 10 ? [] : [rulr.createWarning(data, path)];
+const ten = 10;
+const lessThanTen: rulr.Rule = (data, path) =>
+  data < ten ? [] : [rulr.createWarning(data, path)];
 
 describe('maybe', () => {
   const type = String;
@@ -66,11 +68,12 @@ describe('maybe', () => {
 
 describe('composeRules', () => {
   it('should return a new empty rule', () => {
-    assertRule(rulr.composeRules([]), 10, []);
+    const data = 10;
+    assertRule(rulr.composeRules([]), data, []);
   });
   it('should return a new rule', () => {
     const data = 'hello';
-    const rules = [isNumber, lessThan10];
+    const rules = [isNumber, lessThanTen];
     assertRule(rulr.composeRules(rules), data, [
       rulr.createTypeWarning(data, testPath, Number),
       rulr.createWarning(data, testPath),
@@ -79,7 +82,7 @@ describe('composeRules', () => {
 });
 
 describe('first', () => {
-  const rule = rulr.first(isNumber, lessThan10);
+  const rule = rulr.first(isNumber, lessThanTen);
 
   it('should use the pre-requisite first', () => {
     const data = 'hello';
@@ -115,13 +118,12 @@ describe('checkBool', () => {
 describe('checkThrow', () => {
   const exception = new Error();
   const isString = (data: any) => {
-    if (data.constructor !== String) throw exception;
+    if (data.constructor !== String) { throw exception; }
   };
 
   it('should return an exception message', () => {
     const data = 10;
     const rule = rulr.checkThrow(isString);
-    const actualResult = rule(data, testPath);
     assertRule(rule, data, [
       rulr.createExceptionWarning(data, testPath, exception),
     ]);
@@ -187,7 +189,7 @@ describe('optional', () => {
   });
   it('should not return a warning if data is defined and correct', () => {
     const data = 'hello';
-    assertRule(rule, 'hello', []);
+    assertRule(rule, data, []);
   });
 });
 
@@ -258,7 +260,7 @@ describe('restrictToSchema', () => {
 });
 
 describe('restrictToCollection', () => {
-  const postReq = (index: number) => rulr.checkType(String);
+  const postReq = () => rulr.checkType(String);
 
   it('should return the array warning if data is not an array', () => {
     const data = 10;

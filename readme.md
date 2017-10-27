@@ -1,10 +1,10 @@
 # rulr
 [![NPM Package Version](https://badge.fury.io/js/rulr.svg)](https://www.npmjs.com/package/rulr)
 [![Build Status](https://travis-ci.org/ryansmith94/rulr.svg?branch=master)](https://travis-ci.org/ryansmith94/rulr)
-[![Greenkeeper badge](https://badges.greenkeeper.io/ryansmith94/rulr.svg)](https://greenkeeper.io/)
+[![Renovate badge](https://img.shields.io/badge/Renovate-enabled-brightgreen.svg)](https://renovateapp.com/)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-In this package, a "rule" is a function that takes some data and returns an array of "warnings", where warnings are objects constructed from classes to support localised error messages. This package allows rules to be created and composed to return all of the warnings for some data in a single function call. Rules can also be created using the functions of other libraries (such as the `isString` function in Lodash).
+In this package, a "rule" is a function that takes some data and returns an array of "warnings", where warnings are objects constructed from classes to support **localised error messages**. This package allows rules to be created and composed to **return all of the warnings for some data in a single function call**. You can **use the functions of other libraries** to create rules (such as the `isString` function in Lodash).
 
 ### Usage
 To install Rulr in your own JavaScript project, you can just use the npm command below.
@@ -14,6 +14,8 @@ npm i rulr
 
 The example JavaScript code below demonstrates how Rulr's functions for creating and composing rules allows you to retrieve all of the problems with a data object in a single function call.
 ```js
+const { restrictToSchema, required, checkType, optional, restrictToCollection } = require('rulr');
+
 const data = {
   a: 'hello',
   d: [{
@@ -23,7 +25,7 @@ const data = {
 
 const validateMyModel = restrictToSchema({
   a: required(checkType(String)),
-  d: optional(restrictToCollection(index => validateMyModel))
+  d: optional(restrictToCollection(() => validateMyModel))
 });
 
 validateMyModel(data, ['data']);
