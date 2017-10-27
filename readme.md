@@ -30,8 +30,8 @@ const validateMyModel = restrictToSchema({
 
 validateMyModel(data, ['data']);
 // Returns: [
-//  {data: 10, path: ['data', 'd', '0', 'a'], type: String},
-//  {data: 11, path: ['data', 'd', '1'], type: Object}
+//  TypeWarning {data: 10, path: ['data', 'd', '0', 'a'], type: String},
+//  TypeWarning {data: 11, path: ['data', 'd', '1'], type: Object}
 // ]
 ```
 
