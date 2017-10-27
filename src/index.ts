@@ -1,9 +1,10 @@
+// tslint:disable:no-this no-class max-classes-per-file max-file-line-count
 export type Path = string[];
 
 export class Warning implements Error {
-  public name: string;
-  public message: string;
-  public stack?: string;
+  public readonly name: string;
+  public readonly message: string;
+  public stack?: string; // tslint:disable-line:readonly-keyword
 
   constructor(public data: any, public path: Path) {
     this.message = 'Validation Error';
@@ -76,13 +77,13 @@ export const composeRules = (rules: Rule[]): Rule => (data, path) =>
 
 export const first = (preReq: Rule, postReq: Rule): Rule => (data, path) => {
   const preReqWarnings = preReq(data, path);
-  if (preReqWarnings.length > 0) return preReqWarnings;
+  if (preReqWarnings.length > 0) { return preReqWarnings; }
   return postReq(data, path);
 };
 
 export const checkBool = (
   checker: (data: any) => boolean,
-  warning = createWarning
+  warning = createWarning,
 ): Rule => (data, path) =>
   checker(data) ? [] : [warning(data, path)];
 
@@ -104,7 +105,7 @@ export const checkType = (type: any): Rule => (data, path) =>
 
 export const checkRegex = (regex: RegExp, regexWarning = createWarning) =>
   first(checkType(String), (data, path) =>
-    regex.test(data) ? [] : [regexWarning(data, path)]
+    regex.test(data) ? [] : [regexWarning(data, path)],
   );
 
 export const optional = (rule: Rule): Rule => (data, path) =>
@@ -120,17 +121,17 @@ export const nullable = (rule: Rule): Rule => (data, path) =>
 export const restrictToKeys = (keys: string[]): Rule =>
   first(checkType(Object), (data, path) => {
     const invalidKeys = Object.keys(data).filter((key: string) =>
-      keys.indexOf(key) === -1
+      keys.indexOf(key) === -1,
     );
     return invalidKeys.length === 0 ? [] : [createRestrictedKeysWarning(data, path, invalidKeys)];
   });
 
-export type Schema = {[key: string]: Rule};
+export interface Schema { readonly [key: string]: Rule; }
 export const hasSchema = (schema: Schema): Rule =>
   first(checkType(Object), (data, path) =>
     Object.keys(schema).reduce((warnings: Warning[], key: string) =>
       [...warnings, ...schema[key](data[key], [...path, key])]
-    , [])
+    , []),
   );
 
 export const restrictToSchema = (schema: Schema): Rule =>
@@ -143,5 +144,5 @@ export const restrictToCollection = (rule: (index: number) => Rule) =>
   first(checkType(Array), (data, path) =>
     data.reduce((warnings: Warning[], elem: any, index: number) =>
       [...warnings, ...rule(index)(elem, [...path, index.toString()])]
-    , [])
+    , []),
   );
