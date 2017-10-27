@@ -1,6 +1,7 @@
 .DS_STORE
-node_modules
-coverage
-npm-debug.log
-.nyc_output
-notes.md
+/.nyc_output
+/coverage
+/dist
+/node_modules
+/notes.md
+/npm-debug.log

@@ -15,5 +15,4 @@ script:
   - npm run duplication -- --limit 1
 
 after_success:
-  - npm prune --production
   - npm run semantic-release
