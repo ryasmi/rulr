@@ -35,7 +35,7 @@
     "nyc": "11.3.0",
     "semantic-release": "9.1.0",
     "tslint": "5.8.0",
-    "tslint-consistent-codestyle": "1.9.0",
+    "tslint-consistent-codestyle": "1.9.1",
     "tslint-immutable": "4.4.0",
     "typescript": "2.6.1"
   },
