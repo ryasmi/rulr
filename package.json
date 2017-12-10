@@ -33,7 +33,7 @@
     "jscpd": "0.6.17",
     "mocha": "4.0.1",
     "nyc": "11.3.0",
-    "semantic-release": "11.0.1",
+    "semantic-release": "11.0.2",
     "tslint": "5.8.0",
     "tslint-consistent-codestyle": "1.11.0",
     "tslint-immutable": "4.4.0",
