@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@types/mocha": "2.2.44",
-    "@types/node": "8.5.1",
+    "@types/node": "8.5.2",
     "assert": "1.4.1",
     "commitizen": "2.9.6",
     "cz-conventional-changelog": "2.1.0",
