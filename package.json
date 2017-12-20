@@ -29,7 +29,7 @@
     "assert": "1.4.1",
     "commitizen": "2.9.6",
     "cz-conventional-changelog": "2.1.0",
-    "jscommons": "2.1.1",
+    "jscommons": "2.1.2",
     "jscpd": "0.6.17",
     "mocha": "4.0.1",
     "nyc": "11.4.1",
