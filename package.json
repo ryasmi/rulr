@@ -4,6 +4,10 @@
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "version": "0.0.0-development",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ryansmith94/rulr.git"
+  },
   "files": [
     "dist"
   ],
@@ -16,7 +20,7 @@
     "cover": "nyc --lines 100  --check-coverage npm run test",
     "lint": "tslint --project ./tsconfig.json -c ./tslint.json",
     "duplication": "jscpd",
-    "semantic-release": "semantic-release"
+    "semantic-release": "ht2-release-public-travisci-lib"
   },
   "config": {
     "commitizen": {
@@ -24,6 +28,7 @@
     }
   },
   "devDependencies": {
+    "@ht2-labs/semantic-release": "1.0.21",
     "@types/mocha": "2.2.46",
     "@types/node": "8.5.5",
     "assert": "1.4.1",
@@ -33,14 +38,12 @@
     "jscpd": "0.6.17",
     "mocha": "4.1.0",
     "nyc": "11.4.1",
-    "semantic-release": "11.0.2",
     "tslint": "5.8.0",
     "tslint-consistent-codestyle": "1.11.0",
     "tslint-immutable": "4.5.0",
     "typescript": "2.6.2"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ryansmith94/rulr.git"
+  "publishConfig": {
+    "access": "public"
   }
 }
