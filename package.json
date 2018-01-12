@@ -28,7 +28,7 @@
     }
   },
   "devDependencies": {
-    "@ht2-labs/semantic-release": "1.0.21",
+    "@ht2-labs/semantic-release": "1.0.22",
     "@types/mocha": "2.2.46",
     "@types/node": "9.3.0",
     "assert": "1.4.1",
