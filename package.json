@@ -39,7 +39,7 @@
     "mocha": "4.1.0",
     "nyc": "11.4.1",
     "tslint": "5.9.1",
-    "tslint-consistent-codestyle": "1.11.0",
+    "tslint-consistent-codestyle": "1.11.1",
     "tslint-immutable": "4.5.1",
     "typescript": "2.7.1"
   },
