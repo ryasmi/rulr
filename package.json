@@ -30,7 +30,7 @@
   "devDependencies": {
     "@ht2-labs/semantic-release": "1.0.31",
     "@types/mocha": "2.2.48",
-    "@types/node": "9.4.6",
+    "@types/node": "9.4.7",
     "assert": "1.4.1",
     "commitizen": "2.9.6",
     "cz-conventional-changelog": "2.1.0",
