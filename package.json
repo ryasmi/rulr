@@ -38,7 +38,7 @@
     "jscpd": "0.6.17",
     "mocha": "4.1.0",
     "nyc": "11.7.1",
-    "tslint": "5.9.1",
+    "tslint": "5.10.0",
     "tslint-consistent-codestyle": "1.13.0",
     "tslint-immutable": "4.5.4",
     "typescript": "2.8.3"
