@@ -32,7 +32,7 @@
     "@types/mocha": "2.2.48",
     "@types/node": "9.6.18",
     "assert": "1.4.1",
-    "commitizen": "2.10.0",
+    "commitizen": "2.10.1",
     "cz-conventional-changelog": "2.1.0",
     "jscommons": "2.1.4",
     "jscpd": "0.6.17",
