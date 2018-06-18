@@ -35,7 +35,7 @@
     "commitizen": "2.10.1",
     "cz-conventional-changelog": "2.1.0",
     "jscommons": "2.1.4",
-    "jscpd": "0.6.19",
+    "jscpd": "0.6.20",
     "mocha": "4.1.0",
     "nyc": "11.9.0",
     "tslint": "5.10.0",
