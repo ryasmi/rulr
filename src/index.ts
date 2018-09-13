@@ -19,10 +19,10 @@ const myData = { a: true, b: [true], x: 10, y: { z: '' } };
 const myRule = hasObjectWhere({
   a: either([hasBoolean, hasUndefined]),
   b: optionally(hasArrayWhere(() => either([hasBoolean, hasNull]))),
-  x: firstly(hasNumber, hasValueBetween(0, 1)),
+  x: firstly([hasNumber, hasValueBetween(0, 1)]),
   y: hasObjectWhere({
     z: either([
-      firstly(hasString, hasLengthBetween(0, 1)),
+      firstly([hasString, hasLengthBetween(0, 1)]),
       hasValueMatching(true),
       hasInteger,
     ]),
