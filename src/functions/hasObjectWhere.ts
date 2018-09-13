@@ -1,10 +1,10 @@
 import ValidationError from '../errors/ValidationError';
 import Rule from '../Rule';
 
-export type UnruleProp<T> = T extends Rule<infer V> ? V : T;
-export type Unschema<T> = { readonly [P in keyof T]: UnruleProp<T[P]>; };
+export type InferType<T> = T extends Rule<infer V> ? V : T;
+export type InferSchema<T> = { readonly [P in keyof T]: InferType<T[P]>; };
 export type Schema<T> = { readonly [P in keyof T]: Rule<T[P]>; };
-export type HasObjectWhere = <S extends Schema<any>>(schema: S) => Rule<Unschema<S>>;
+export type HasObjectWhere = <S extends Schema<any>>(schema: S) => Rule<InferSchema<S>>;
 
 const hasObjectWhere: HasObjectWhere = (schema) => (data) => {
   type SchemaKeys = keyof (typeof schema);
