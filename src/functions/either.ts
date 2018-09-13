@@ -1,20 +1,17 @@
-import ValidationError from '../errors/ValidationError';
 import Rule from '../Rule';
 
-export type Either = <V>(...rules: Rule<any>[]) => Rule<V>;
+export type Either = <V1, V2>(rule1: Rule<V1>, rule2: Rule<V2>) => Rule<V1 | V2>;
 
-const either: Either = (...rules) => (data) => {
-  const errorsOfRules = rules.map((rule) => {
-    return rule(data);
-  });
-  const hasRuleWithoutErrors = errorsOfRules.filter((errors) => {
-    return errors.length === 0;
-  }).length !== 0;
+const either: Either = (rule1, rule2) => (data) => {
+  const errorsOfRule1 = rule1(data as any);
+  const errorsOfRule2 = rule2(data as any);
+  const hasRuleWithoutErrors = errorsOfRule1.length === 0 || errorsOfRule2.length === 0;
 
   if (hasRuleWithoutErrors) {
     return [];
   }
-  return ([] as ValidationError[]).concat(...errorsOfRules);
+
+  return [...errorsOfRule1, ...errorsOfRule2];
 };
 
 export default either;

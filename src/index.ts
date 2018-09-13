@@ -6,20 +6,22 @@ import hasLengthBetween from './functions/hasLengthBetween';
 import hasNumber from './functions/hasNumber';
 import hasObjectWhere from './functions/hasObjectWhere';
 import hasString from './functions/hasString';
+import hasUndefined from './functions/hasUndefined';
 import hasValueBetween from './functions/hasValueBetween';
 import hasValueMatching from './functions/hasValueMatching';
-import optionally from './functions/optionally';
 import validateData from './functions/validateData';
 
-const myData = { x: 10, y: { z: '' } };
+const myData = { a: undefined, x: 10, y: { z: '' } };
 const myRule = hasObjectWhere({
-  a: optionally(hasBoolean),
+  a: either(hasBoolean, hasUndefined),
   x: firstly(hasNumber, hasValueBetween(0, 1)),
   y: hasObjectWhere({
-    z: either<string | number | boolean>(
+    z: either(
       firstly(hasString, hasLengthBetween(0, 1)),
-      hasValueMatching(true),
-      hasInteger,
+      either(
+        hasValueMatching(true),
+        hasInteger,
+      ),
     ),
   }),
 });
