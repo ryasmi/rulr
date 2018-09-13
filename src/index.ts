@@ -1,5 +1,4 @@
 import either from './functions/either';
-import either from './functions/either';
 import firstly from './functions/firstly';
 import hasArrayWhere from './functions/hasArrayWhere';
 import hasBoolean from './functions/hasBoolean';
