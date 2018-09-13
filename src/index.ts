@@ -11,7 +11,7 @@ import hasValueBetween from './functions/hasValueBetween';
 import hasValueMatching from './functions/hasValueMatching';
 import validateData from './functions/validateData';
 
-const myData = { x: 10, y: { z: '' } };
+const myData = { a: true, x: 10, y: { z: '' } };
 const myRule = hasObjectWhere({
   a: either(hasBoolean, hasUndefined),
   x: firstly(hasNumber, hasValueBetween(0, 1)),
@@ -27,6 +27,7 @@ const myRule = hasObjectWhere({
 });
 
 // If the `as any` is removed, TS will actually throw type errors
-const myValidData = validateData(myRule)(myData as any);
+const myValidData = validateData(myRule)(myData);
+const myValidA = myValidData.a; // Type is: boolean | undefined
 const myValidX = myValidData.x; // Type is: number
 const myValidZ = myValidData.y.z; // Type is: string | number | boolean.

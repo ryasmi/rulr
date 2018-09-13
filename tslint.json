@@ -3,6 +3,10 @@
     "./node_modules/jscommons/tslint.json"
   ],
   "rules": {
-    "match-default-export-name": false
+    "match-default-export-name": false,
+    "comment-format": [
+      true,
+      "check-space"
+    ]
   }
 }
