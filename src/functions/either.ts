@@ -1,17 +1,22 @@
+import ValidationError from '../errors/ValidationError';
 import Rule from '../Rule';
+import { InferType } from './hasObjectWhere';
 
-export type Either = <V1, V2>(rule1: Rule<V1>, rule2: Rule<V2>) => Rule<V1 | V2>;
+export type Either = <R extends Rule<any>>(rules: R[]) => Rule<InferType<R>>;
 
-const either: Either = (rule1, rule2) => (data) => {
-  const errorsOfRule1 = rule1(data as any);
-  const errorsOfRule2 = rule2(data as any);
-  const hasRuleWithoutErrors = errorsOfRule1.length === 0 || errorsOfRule2.length === 0;
+const either: Either = (rules) => (data) => {
+  const errorsOfRules = rules.map((rule) => {
+    return rule(data);
+  });
+  const hasRuleWithoutErrors = errorsOfRules.filter((errorsOfRule) => {
+    return errorsOfRule.length === 0;
+  }).length !== 0;
 
   if (hasRuleWithoutErrors) {
     return [];
   }
 
-  return [...errorsOfRule1, ...errorsOfRule2];
+  return ([] as ValidationError[]).concat(...errorsOfRules);
 };
 
 export default either;

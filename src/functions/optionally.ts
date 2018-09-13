@@ -3,7 +3,7 @@ import either from './either';
 import hasUndefined from './hasUndefined';
 
 const optionally = <V>(rule: Rule<V>) => {
-  return either<undefined | V>(hasUndefined, rule);
+  return either([hasUndefined, rule]);
 };
 
 export default optionally;
