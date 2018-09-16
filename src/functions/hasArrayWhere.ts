@@ -1,13 +1,19 @@
 import ValidationError from '../errors/ValidationError';
 import Rule from '../Rule';
+import always from './always';
+import hasArray from './hasArray';
 
-export type HasArrayWhere = <T>(rule: (index: number) => Rule<T>) => Rule<T[]>;
-
-const hasArrayWhere: HasArrayWhere = (itemRule) => (data) => {
-  const itemErrors = data.map((item, index) => {
-    return itemRule(index)(item);
-  });
-  return ([] as ValidationError[]).concat(...itemErrors);
+const hasArrayWhere = <T>(itemRule: (index: number) => Rule<T>) => {
+  return always([hasArray, (data: T[]) => {
+    const itemErrors = data.map((item, index) => {
+      const errorsOfRule = itemRule(index)(item);
+      errorsOfRule.forEach((error) => {
+        error.prefixPath(index.toString());
+      });
+      return errorsOfRule;
+    });
+    return ([] as ValidationError[]).concat(...itemErrors);
+  }]);
 };
 
 export default hasArrayWhere;

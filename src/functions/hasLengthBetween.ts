@@ -1,10 +1,14 @@
 import ValidationError from '../errors/ValidationError';
 import Rule from '../Rule';
 
-// tslint:disable-next-line:no-class
+// tslint:disable:no-class no-this
 export class LengthValidationError extends ValidationError {
   constructor(data: any, public min: number, public max: number) {
     super('not of correct length', data);
+  }
+
+  public getMessage() {
+    return `${super.getMessage()} (should be between ${this.min} and ${this.max} inclusive)`;
   }
 }
 

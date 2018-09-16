@@ -1,5 +1,7 @@
 import ValidationError from '../errors/ValidationError';
 import Rule from '../Rule';
+import always from './always';
+import hasObject from './hasObject';
 
 // Copied from:
 // https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/prop-types/index.d.ts
@@ -31,13 +33,19 @@ export type InferSchema<V> =
 export type Schema<T> = { readonly [P in keyof T]: Rule<T[P]>; };
 export type HasObjectWhere = <S extends Schema<any>>(schema: S) => Rule<InferSchema<S>>;
 
-const hasObjectWhere: HasObjectWhere = (schema) => (data) => {
-  type SchemaKeys = keyof (typeof schema);
-  const keys: SchemaKeys[] = Object.keys(schema) as any;
-  return keys.reduce((errors, key) => {
-    const rule = schema[key];
-    return [...errors, ...rule((data as any)[key])];
-  }, [] as ValidationError[]);
+const hasObjectWhere = <S extends Schema<any>>(schema: S) => {
+  return always<Rule<InferSchema<S>>>([hasObject, (data) => {
+    type SchemaKeys = keyof (typeof schema);
+    const keys: SchemaKeys[] = Object.keys(schema) as any;
+    return keys.reduce((errors, key) => {
+      const rule = schema[key];
+      const errorsOfRule = rule((data as any)[key]);
+      errorsOfRule.forEach((error) => {
+        error.prefixPath(key.toString());
+      });
+      return [...errors, ...errorsOfRule];
+    }, [] as ValidationError[]);
+  }]);
 };
 
 export default hasObjectWhere;

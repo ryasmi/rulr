@@ -2,9 +2,9 @@ import ValidationError from '../errors/ValidationError';
 import Rule from '../Rule';
 import { InferType } from './hasObjectWhere';
 
-export type Firstly = <R extends Rule<any>>(rules: R[]) => Rule<InferType<R>>;
+export type Always = <R extends Rule<any>>(rules: R[]) => Rule<InferType<R>>;
 
-const firstly: Firstly = (rules) => (data) => {
+const always: Always = (rules) => (data) => {
   return rules.reduce((errors, rule) => {
     if (errors.length === 0) {
       return rule(data);
@@ -13,4 +13,4 @@ const firstly: Firstly = (rules) => (data) => {
   }, [] as ValidationError[]);
 };
 
-export default firstly;
+export default always;

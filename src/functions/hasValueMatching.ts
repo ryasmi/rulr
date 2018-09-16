@@ -1,10 +1,14 @@
 import ValidationError from '../errors/ValidationError';
 import Rule from '../Rule';
 
-// tslint:disable-next-line:no-class
+// tslint:disable:no-class no-this
 export class MatchingValidationError<V> extends ValidationError {
   constructor(data: any, public value: V) {
     super('not a matching value', data);
+  }
+
+  public getMessage() {
+    return `${super.getMessage()} (should match ${JSON.stringify(this.value)})`;
   }
 }
 

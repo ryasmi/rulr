@@ -12,4 +12,10 @@ export default class ValidationErrors implements Error {
     this.name = this.constructor.name;
     this.stack = (new Error(this.message)).stack;
   }
+
+  public getMessage() {
+    return this.errors.map((error) => {
+      return error.getMessage();
+    }).join('\n');
+  }
 }
