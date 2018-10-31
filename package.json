@@ -41,7 +41,7 @@
     "tslint": "5.11.0",
     "tslint-consistent-codestyle": "1.14.0",
     "tslint-immutable": "4.8.0",
-    "typescript": "3.1.4"
+    "typescript": "3.1.5"
   },
   "publishConfig": {
     "access": "public"
