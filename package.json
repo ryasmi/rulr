@@ -37,7 +37,7 @@
     "jscommons": "2.1.4",
     "jscpd": "0.6.25",
     "mocha": "4.1.0",
-    "nyc": "11.9.0",
+    "nyc": "13.1.0",
     "tslint": "5.11.0",
     "tslint-consistent-codestyle": "1.14.1",
     "tslint-immutable": "4.9.1",
