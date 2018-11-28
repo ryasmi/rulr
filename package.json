@@ -34,7 +34,7 @@
     "assert": "1.4.1",
     "commitizen": "2.10.1",
     "cz-conventional-changelog": "2.1.0",
-    "jscommons": "2.1.4",
+    "jscommons": "2.4.6",
     "jscpd": "0.6.25",
     "mocha": "4.1.0",
     "nyc": "11.9.0",
