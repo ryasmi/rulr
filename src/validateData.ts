@@ -1,5 +1,5 @@
-import ValidationErrors from '../errors/ValidationErrors';
-import Rule from '../Rule';
+import Rule from './Rule';
+import ValidationErrors from './ValidationErrors';
 
 export type ValidateData = <D>(rule: Rule<D>) => (data: D) => D;
 

@@ -1,9 +1,9 @@
-import ValidationError from '../errors/ValidationError';
-import Rule from '../Rule';
-import { InferType } from './Record';
+import { Static } from './Record';
+import Rule from './Rule';
+import ValidationError from './ValidationError';
 
 export default function<R extends Rule<any>>(rules: R[]) {
-  return (data: InferType<R>) => {
+  return (data: Static<R>) => {
     return rules.reduce(
       (errors, rule) => {
         if (errors.length === 0) {

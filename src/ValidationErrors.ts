@@ -10,12 +10,14 @@ export default class ValidationErrors implements Error {
   constructor(public readonly errors: ValidationError[]) {
     this.message = 'Validation Errors';
     this.name = this.constructor.name;
-    this.stack = (new Error(this.message)).stack;
+    this.stack = new Error(this.message).stack;
   }
 
   public getMessage() {
-    return this.errors.map((error) => {
-      return error.getMessage();
-    }).join('\n');
+    return this.errors
+      .map((error) => {
+        return error.getMessage();
+      })
+      .join('\n');
   }
 }

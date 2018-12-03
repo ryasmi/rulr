@@ -1,4 +1,4 @@
-import ValidationError from './errors/ValidationError';
+import ValidationError from './ValidationError';
 
 type Rule<D> = (data: D) => ValidationError[];
 

@@ -1,11 +1,11 @@
-import ValidationError from '../errors/ValidationError';
 import Intersection from './Intersection';
 import Number from './Number';
+import ValidationError from './ValidationError';
 
 // tslint:disable-next-line:no-class
 export class IntegerValidationError extends ValidationError {
   constructor(data: any) {
-    super('not an integer', data);
+    super('expected', data);
   }
 }
 

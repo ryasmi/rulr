@@ -1,9 +1,9 @@
-import Rule from '../Rule';
+import Rule from './Rule';
 import Undefined from './Undefined';
-import either from './Union';
+import Union from './Union';
 
 const optionally = <V>(rule: Rule<V>) => {
-  return either([Undefined, rule]);
+  return Union([Undefined, rule]);
 };
 
 export default optionally;

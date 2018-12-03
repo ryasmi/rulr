@@ -1,21 +1,21 @@
-import ValidationErrors from './errors/ValidationErrors';
-import Boolean from './functions/Boolean';
-import Collection from './functions/Collection';
-import Constant from './functions/Constant';
-import Integer from './functions/Integer';
-import Null from './functions/Null';
-import Number from './functions/Number';
-import Optional from './functions/Optional';
-import Record from './functions/Record';
-import String from './functions/String';
-import Undefined from './functions/Undefined';
-import Union from './functions/Union';
-import validateData from './functions/validateData';
+import Boolean from './Boolean';
+import Collection from './Collection';
+import Constant from './Constant';
+import Integer from './Integer';
+import Null from './Null';
+import Number from './Number';
+import Optional from './Optional';
+import Record from './Record';
+import String from './String';
+import Undefined from './Undefined';
+import Union from './Union';
+import validateData from './validateData';
+import ValidationErrors from './ValidationErrors';
 
-const myData = { y: { z: '' }, x: 1 };
-const hasMyRule = Record({
+// tslint:disable-next-line:variable-name
+const MyRecord = Record({
   a: Union([Boolean, Undefined]),
-  b: Optional(Collection(() => Union([Boolean, Null]))),
+  b: Optional(Collection(Union([Boolean, Null]))),
   x: Number(0, 1),
   y: Record({
     z: Union([String(0, 1), Constant(true), Integer()]),
@@ -23,7 +23,10 @@ const hasMyRule = Record({
 });
 
 try {
-  validateData(hasMyRule)(myData);
+  const myData = { y: { z: '' }, x: 1 };
+  const myRecord = validateData(MyRecord)(myData);
+  // tslint:disable-next-line:no-console
+  console.log(myRecord);
 } catch (err) {
   if (err instanceof ValidationErrors) {
     // tslint:disable-next-line:no-console

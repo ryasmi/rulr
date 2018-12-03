@@ -1,9 +1,9 @@
-import ValidationError from '../errors/ValidationError';
+import ValidationError from './ValidationError';
 
 // tslint:disable-next-line:no-class
 export class UndefinedValidationError extends ValidationError {
   constructor(data: any) {
-    super('not undefined', data);
+    super('expected undefined', data);
   }
 }
 

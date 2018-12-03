@@ -1,9 +1,9 @@
-import ValidationError from '../errors/ValidationError';
+import ValidationError from './ValidationError';
 
 // tslint:disable-next-line:no-class
 export class BooleanValidationError extends ValidationError {
   constructor(data: any) {
-    super('not a boolean', data);
+    super('expected boolean', data);
   }
 }
 

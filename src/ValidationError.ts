@@ -6,7 +6,7 @@ export default class ValidationError implements Error {
 
   constructor(public readonly message: string, public readonly data: any) {
     this.name = this.constructor.name;
-    this.stack = (new Error(this.message)).stack;
+    this.stack = new Error(this.message).stack;
   }
 
   public prefixPath(key: string) {
