@@ -7,11 +7,10 @@ export class ArrayValidationError extends ValidationError {
   }
 }
 
-const hasArray = <T>(data: T[]): ValidationError[] => {
+// tslint:disable-next-line:only-arrow-functions
+export default function<T>(data: T[]): ValidationError[] {
   if (Array.isArray(data)) {
     return [];
   }
   return [new ArrayValidationError(data)];
-};
-
-export default hasArray;
+}

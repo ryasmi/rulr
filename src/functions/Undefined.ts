@@ -1,5 +1,4 @@
 import ValidationError from '../errors/ValidationError';
-import Rule from '../Rule';
 
 // tslint:disable-next-line:no-class
 export class UndefinedValidationError extends ValidationError {
@@ -8,11 +7,11 @@ export class UndefinedValidationError extends ValidationError {
   }
 }
 
-const hasUndefined: Rule<undefined> = (data) => {
+// tslint:disable-next-line:only-arrow-functions
+export default function(data: undefined) {
+  // tslint:disable-next-line:strict-type-predicates
   if (data === undefined) {
     return [];
   }
   return [new UndefinedValidationError(data)];
-};
-
-export default hasUndefined;
+}

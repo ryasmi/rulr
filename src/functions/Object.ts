@@ -7,11 +7,9 @@ export class ObjectValidationError extends ValidationError {
   }
 }
 
-const hasObject = <T>(data: T): ValidationError[] => {
+export default function<T>(data: T) {
   if (data.constructor === Object) {
     return [];
   }
   return [new ObjectValidationError(data)];
-};
-
-export default hasObject;
+}

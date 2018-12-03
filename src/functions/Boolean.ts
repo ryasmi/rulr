@@ -1,5 +1,4 @@
 import ValidationError from '../errors/ValidationError';
-import Rule from '../Rule';
 
 // tslint:disable-next-line:no-class
 export class BooleanValidationError extends ValidationError {
@@ -8,11 +7,11 @@ export class BooleanValidationError extends ValidationError {
   }
 }
 
-const hasBoolean: Rule<boolean> = (data) => {
+// tslint:disable-next-line:only-arrow-functions
+export default function(data: boolean) {
+  // tslint:disable-next-line:strict-type-predicates
   if (typeof data === 'boolean') {
     return [];
   }
   return [new BooleanValidationError(data)];
-};
-
-export default hasBoolean;
+}
