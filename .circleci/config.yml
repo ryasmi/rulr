@@ -1,0 +1,30 @@
+version: 2
+machine:
+  services:
+    - docker
+
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8@sha256:ff2c2a3fd5105396697de4c20139435fe9f47d62716fa241d225122deb711d50
+    environment:
+      - NPM_CONFIG_LOGLEVEL: warn
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package-lock.json" }}
+      - run:
+          name: Installing Dependencies
+          command: npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package-lock.json" }}
+      - run:
+          name: Test Code
+          command: npm test
+      - deploy:
+          name: Release Code
+          command: npm run release
