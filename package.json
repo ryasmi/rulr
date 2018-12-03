@@ -9,10 +9,11 @@
     "url": "https://github.com/ryansmith94/rulr.git"
   },
   "scripts": {
+    "test": "npm run build && npm run lint",
     "build": "tsc",
     "clean": "rimraf dist",
     "lint": "tslint -p ./tsconfig.json",
-    "semantic-release": "ht2-release-public-circleci-lib-dist"
+    "release": "ht2-release-public-circleci-lib-dist"
   },
   "devDependencies": {
     "@ht2-labs/semantic-release": "1.1.22",
