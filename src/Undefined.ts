@@ -2,7 +2,7 @@ import ValidationError from './ValidationError';
 
 // tslint:disable-next-line:no-class
 export class UndefinedValidationError extends ValidationError {
-  constructor(data: any) {
+  constructor(data: unknown) {
     super('expected undefined', data);
   }
 }

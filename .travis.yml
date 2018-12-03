@@ -5,12 +5,8 @@ sudo: false
 notifications:
   email: false
 
-before_script:
-  - npm prune
-
 script:
   - npm run build
-  - npm run cover
   - npm run lint
 
 after_success:

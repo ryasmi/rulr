@@ -2,7 +2,7 @@ import ValidationError from './ValidationError';
 
 // tslint:disable-next-line:no-class
 export class BooleanValidationError extends ValidationError {
-  constructor(data: any) {
+  constructor(data: unknown) {
     super('expected boolean', data);
   }
 }

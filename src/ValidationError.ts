@@ -4,7 +4,7 @@ export default class ValidationError implements Error {
   public stack?: string; // tslint:disable-line:readonly-keyword
   private path: string[] = []; // tslint:disable-line:readonly-keyword
 
-  constructor(public readonly message: string, public readonly data: any) {
+  constructor(public readonly message: string, public readonly data: unknown) {
     this.name = this.constructor.name;
     this.stack = new Error(this.message).stack;
   }

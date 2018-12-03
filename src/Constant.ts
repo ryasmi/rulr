@@ -3,7 +3,7 @@ import ValidationError from './ValidationError';
 
 // tslint:disable:no-class no-this
 export class ConstantValidationError<V> extends ValidationError {
-  constructor(data: any, public value: V) {
+  constructor(data: unknown, public value: V) {
     super(`expected \`${JSON.stringify(value)}\``, data);
   }
 }

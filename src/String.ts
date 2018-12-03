@@ -2,7 +2,7 @@ import ValidationError from './ValidationError';
 
 // tslint:disable-next-line:no-class
 export class StringValidationError extends ValidationError {
-  constructor(data: any, public minLength: number, public maxLength: number) {
+  constructor(data: unknown, public minLength: number, public maxLength: number) {
     super(`expected string with a length between ${minLength} and ${maxLength}`, data);
   }
 }
