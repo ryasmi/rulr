@@ -16,7 +16,7 @@
     "release": "ht2-release-public-circleci-lib-dist"
   },
   "devDependencies": {
-    "@ht2-labs/semantic-release": "1.1.50",
+    "@ht2-labs/semantic-release": "1.1.51",
     "@ht2-labs/typescript-project": "2.0.15",
     "@types/node": "9.6.40"
   },
