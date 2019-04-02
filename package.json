@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@ht2-labs/semantic-release": "1.1.64",
-    "@ht2-labs/typescript-project": "2.0.28",
+    "@ht2-labs/typescript-project": "2.0.29",
     "@types/node": "9.6.47"
   },
   "publishConfig": {
