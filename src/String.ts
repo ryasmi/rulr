@@ -11,7 +11,7 @@ export class StringValidationError extends ValidationError {
 export default function(minLength = 0, maxLength = Infinity) {
   return (data: string) => {
     // tslint:disable-next-line:strict-type-predicates
-    if (typeof data === 'string' && minLength < data.length && data.length < maxLength) {
+    if (typeof data === 'string' && minLength <= data.length && data.length <= maxLength) {
       return [];
     }
     return [new StringValidationError(data, minLength, maxLength)];
