@@ -11,7 +11,7 @@ export class NumberValidationError extends ValidationError {
 export default function(min = -Infinity, max = Infinity) {
   return (data: number) => {
     // tslint:disable-next-line:strict-type-predicates
-    if (typeof data === 'number' && min < data && data < max) {
+    if (typeof data === 'number' && min <= data && data <= max) {
       return [];
     }
     return [new NumberValidationError(data, min, max)];
