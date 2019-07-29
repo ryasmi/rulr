@@ -1,32 +1,36 @@
-import Boolean from 'rulr/Boolean';
-import Collection from 'rulr/Collection';
-import Constant from 'rulr/Constant';
-import Integer from 'rulr/Integer';
-import Null from 'rulr/Null';
-import Number from 'rulr/Number';
-import Optional from 'rulr/Optional';
-import Record from 'rulr/Record';
-import String from 'rulr/String';
-import Undefined from 'rulr/Undefined';
-import Union from 'rulr/Union';
+import Integer from 'rulr/constraints/Integer';
+import NumberRange from 'rulr/constraints/NumberRange';
+import Collection from 'rulr/generics/Collection';
+import Constant from 'rulr/generics/Constant';
+import Intersection from 'rulr/generics/Intersection';
+import Optional from 'rulr/generics/Optional';
+import Record, { Static } from 'rulr/generics/Record';
+import Union from 'rulr/generics/Union';
+import Boolean from 'rulr/primitives/Boolean';
+import Null from 'rulr/primitives/Null';
+import Number from 'rulr/primitives/Number';
+import String from 'rulr/primitives/String';
+import Undefined from 'rulr/primitives/Undefined';
 import validateData from 'rulr/validateData';
 import ValidationErrors from 'rulr/ValidationErrors';
 
-// tslint:disable-next-line:variable-name
-const MyRecord = Record({
+const validateMyRecord = Record({
   a: Union([Boolean, Undefined]),
-  b: Optional(Collection(Union([Boolean, Null]))),
-  x: Number(0, 1),
+  b: Optional(Collection(Union([Boolean, Null, Undefined]))),
+  // c: Integer,
+  x: Number,
   y: Record({
-    z: Union([String(0, 1), Constant(true), Integer()]),
+    z: Union([String, Constant(true), Intersection([Integer, NumberRange(0, 1)])]),
   }),
 });
+type MyRecord = Static<typeof validateMyRecord>;
 
 try {
-  const myData = { y: { z: '' }, x: 1 };
-  const myRecord = validateData(MyRecord)(myData);
+  const myData = { a: false, y: { z: '' }, x: 1 };
+  const myValidatedRecord: MyRecord = validateData(validateMyRecord)(myData);
+  const myUnvalidatedRecord: MyRecord = myData;
   // tslint:disable-next-line:no-console
-  console.log(myRecord);
+  console.log(myValidatedRecord, myUnvalidatedRecord);
 } catch (err) {
   if (err instanceof ValidationErrors) {
     // tslint:disable-next-line:no-console

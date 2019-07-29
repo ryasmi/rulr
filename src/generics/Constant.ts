@@ -1,5 +1,5 @@
-import Rule from './Rule';
-import ValidationError from './ValidationError';
+import Rule from '../Rule';
+import ValidationError from '../ValidationError';
 
 // tslint:disable:no-class no-this
 export class ConstantValidationError<V> extends ValidationError {
@@ -8,7 +8,7 @@ export class ConstantValidationError<V> extends ValidationError {
   }
 }
 
-export default function<V>(value: V): Rule<V> {
+export default function <V>(value: V): Rule<V> {
   return (data) => {
     if (data === value) {
       return [];

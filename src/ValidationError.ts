@@ -1,7 +1,7 @@
 // tslint:disable:no-class no-this
 export default class ValidationError implements Error {
   public readonly name: string;
-  public stack?: string; // tslint:disable-line:readonly-keyword
+  public readonly stack?: string;
   private path: string[] = []; // tslint:disable-line:readonly-keyword
 
   constructor(public readonly message: string, public readonly data: unknown) {

@@ -1,10 +1,11 @@
+import ObjectRule from '../primitives/Object';
+import Rule from '../Rule';
+import ValidationError from '../ValidationError';
 import Intersection from './Intersection';
-import ObjectRule from './Object';
-import Rule from './Rule';
-import ValidationError from './ValidationError';
 
 // Copied from:
 // https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/prop-types/index.d.ts
+// Inspired by: https://github.com/pelotom/runtypes
 export type IsOptional<T> = undefined | null extends T
   ? true
   : (undefined extends T ? true : (null extends T ? true : false));
@@ -23,7 +24,7 @@ export type Schema<T> = { readonly [P in keyof T]: Rule<T[P]> };
 export type HasObjectWhere = <S extends Schema<any>>(schema: S) => Rule<InferSchema<S>>;
 
 // tslint:disable-next-line:only-arrow-functions
-export default function<S extends Schema<any>>(schema: S) {
+export default function <S extends Schema<any>>(schema: S) {
   return Intersection<Rule<InferSchema<S>>>([
     ObjectRule,
     (data) => {

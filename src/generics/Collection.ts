@@ -1,10 +1,10 @@
-import Array from './Array';
+import Array from '../primitives/Array';
+import Rule from '../Rule';
+import ValidationError from '../ValidationError';
 import Intersection from './Intersection';
-import Rule from './Rule';
-import ValidationError from './ValidationError';
 
 // tslint:disable-next-line:only-arrow-functions
-export default function<T>(itemRule: Rule<T>) {
+export default function <T>(itemRule: Rule<T>) {
   return Intersection([
     Array,
     (data: T[]) => {
