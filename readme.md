@@ -26,7 +26,7 @@ const adjustedPrice = price + 1; // Problem 2: This shouldn't error but does.
 
 #### Solution to Problem 1
 
-Problem 1 is caused by TypeScript's type equivalence checking. This solution isn't ideal because it requires an unnecessary property.
+Problem 1 is caused by TypeScript's type equivalence checking, but we can work around this by adding some private property. This solution isn't ideal because it requires an unnecessary property and the knowledge of this problem since TypeScript won't raise an error for this problem.
 
 ```ts
 class PositiveNumber extends Number {
