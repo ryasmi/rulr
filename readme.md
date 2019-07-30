@@ -20,8 +20,8 @@ class PositiveNumber extends Number {
     }
 }
 
-const price: PositiveNumber = 1; // Problem #1: This should error but doesn't.
-const adjustedPrice = price + 1; // Problem #2: This should not error but does.
+const price: PositiveNumber = -1; // Problem #1: This should error but doesn't.
+const adjustedPrice = price + 1; // Problem #2: This shouldn't error but does.
 ```
 
 #### Solution to Problem 1
@@ -40,8 +40,8 @@ class PositiveNumber extends Number {
     }
 }
 
-const price: PositiveNumber = 1; // Problem #1: Solved. This now errors.
-const adjustedPrice = price + 1; // Problem #2: This should not error but does.
+const price: PositiveNumber = -1; // Problem #1: Solved. This now errors.
+const adjustedPrice = price + 1; // Problem #2: This shouldn't error but does.
 ```
 
 #### Solution to Problem 2
@@ -60,10 +60,28 @@ class PositiveNumber extends Number {
     }
 }
 
-const price: PositiveNumber = 1; // Problem #1: Solved. This does error.
+const price: PositiveNumber = -1; // Problem #1: Solved. This does error.
 const adjustedPrice = price.valueOf() + 1; // Problem #2: Solved. This doesn't error.
 ```
 
 #### Avoiding the irritation of these two solutions
 
-Rulr doesn't require you to wrap your validation in classes, it returns all of your failed constraints in one function call, it provides you with static types so that you don't repeat yourself, and it gets around these two problems with "constrained" (nominal) types.
+Rulr doesn't require you to wrap your validation in classes, it returns all of your failed constraints in one function call, it provides you with static types so that you don't repeat yourself, and it gets around these two problems with "constrained" (nominal) type as shown below.
+
+```ts
+import Constrained from 'rulr/Constrained';
+import ValidationError from 'rulr/ValidationError';
+import { Static } from 'rulr/generics/Record';
+
+const validatePositiveNumber = (data: Constrained<number>) => {
+  if (typeof data === 'number' && data >= 0) {
+    return [];
+  }
+  return [new ValidationError('expected positive number', data)];
+}
+
+type PositiveNumber = Static<typeof validatePositiveNumber>;
+
+const price: PositiveNumber = -1; // Problem #1: Solved. This does error.
+const adjustedPrice = price + 1; // Problem #2: Solved. This doesn't error.
+```
