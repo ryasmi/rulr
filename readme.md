@@ -26,7 +26,7 @@ const adjustedPrice = price + 1; // Problem 2: This shouldn't error but does.
 
 #### Solution to Problem 1
 
-This solution isn't ideal because it requires an unnecessary property.
+Problem 1 is caused by TypeScript's type equivalence checking. This solution isn't ideal because it requires an unnecessary property.
 
 ```ts
 class PositiveNumber extends Number {
@@ -46,7 +46,7 @@ const adjustedPrice = price + 1; // Problem 2: This shouldn't error but does.
 
 #### Solution to Problem 2
 
-This solution isn't ideal because it requires an unnecessary method call.
+Problem 2 is caused by TypeScript's requirement for the plus operator to be used on `number` type values, but our `price` variable is now a `PositiveNumber`. We can use the inherited `valueOf` method from the `Number` class we extended in the `PositiveNumber` class. This solution isn't ideal because it requires an unnecessary method call.
 
 ```ts
 class PositiveNumber extends Number {
@@ -85,3 +85,5 @@ type PositiveNumber = Static<typeof validatePositiveNumber>;
 const price: PositiveNumber = -1; // Problem 1: Solved. This does error.
 const adjustedPrice = price + 1; // Problem 2: Solved. This doesn't error.
 ```
+
+[Michal Zalecki](https://michalzalecki.com) has written a great [blog post on nominal typing techniques in TypeScript](https://michalzalecki.com/nominal-typing-in-typescript/). They have also referenced a [further discussion on nominal typing in the TypeScript Github repository](https://github.com/Microsoft/TypeScript/issues/202).
