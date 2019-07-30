@@ -20,8 +20,8 @@ class PositiveNumber extends Number {
     }
 }
 
-const price: PositiveNumber = -1; // Problem #1: This should error but doesn't.
-const adjustedPrice = price + 1; // Problem #2: This shouldn't error but does.
+const price: PositiveNumber = -1; // Problem 1: This should error but doesn't.
+const adjustedPrice = price + 1; // Problem 2: This shouldn't error but does.
 ```
 
 #### Solution to Problem 1
@@ -40,8 +40,8 @@ class PositiveNumber extends Number {
     }
 }
 
-const price: PositiveNumber = -1; // Problem #1: Solved. This now errors.
-const adjustedPrice = price + 1; // Problem #2: This shouldn't error but does.
+const price: PositiveNumber = -1; // Problem 1: Solved. This now errors.
+const adjustedPrice = price + 1; // Problem 2: This shouldn't error but does.
 ```
 
 #### Solution to Problem 2
@@ -60,8 +60,8 @@ class PositiveNumber extends Number {
     }
 }
 
-const price: PositiveNumber = -1; // Problem #1: Solved. This does error.
-const adjustedPrice = price.valueOf() + 1; // Problem #2: Solved. This doesn't error.
+const price: PositiveNumber = -1; // Problem 1: Solved. This does error.
+const adjustedPrice = price.valueOf() + 1; // Problem 2: Solved. This doesn't error.
 ```
 
 #### Avoiding the irritation of these two solutions
@@ -82,6 +82,6 @@ const validatePositiveNumber = (data: Constrained<number>) => {
 
 type PositiveNumber = Static<typeof validatePositiveNumber>;
 
-const price: PositiveNumber = -1; // Problem #1: Solved. This does error.
-const adjustedPrice = price + 1; // Problem #2: Solved. This doesn't error.
+const price: PositiveNumber = -1; // Problem 1: Solved. This does error.
+const adjustedPrice = price + 1; // Problem 2: Solved. This doesn't error.
 ```
