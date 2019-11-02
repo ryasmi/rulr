@@ -6,7 +6,7 @@ machine:
 jobs:
   build:
     docker:
-      - image: circleci/node:8@sha256:8f9917311e83979bdc6fd3d399fa43acbd3d4a5ab60e019246924dc0ace31af7
+      - image: circleci/node:8@sha256:d602e7ae13fd73c78c5931d74930e6ba12d22d84a5c4fb21f9946055d2c83b20
     environment:
       - NPM_CONFIG_LOGLEVEL: warn
     working_directory: ~/repo
