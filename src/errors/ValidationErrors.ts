@@ -8,7 +8,6 @@ export class ValidationErrors extends BaseError {
     }).join('\n'));
   }
 
-
   public toJSON() {
     return this.errors;
   }

@@ -1,7 +1,20 @@
+import { ValidationError } from '../errors/ValidationError';
 import { Rule } from '../core';
 import { ComposedValidationErrors } from "../errors/ComposedValidationErrors";
 import { KeyValidationErrors } from "../errors/KeyValidationErrors";
-import { unconstrainedArray } from '../unconstrainedPrimitives/array';
+
+export class InvalidArrayError extends ValidationError {
+  constructor(input: unknown) {
+    super(`expected array`, input);
+  }
+}
+
+function validateArray(input: unknown) {
+  if (Array.isArray(input) === false) {
+    throw new InvalidArrayError(input);
+  }
+  return input as unknown[];
+}
 
 interface Result<T> {
   readonly output: T[];
@@ -10,7 +23,7 @@ interface Result<T> {
 
 export function array<T>(itemRule: Rule<T>) {
   return (input: unknown) => {
-    const arrayInput = unconstrainedArray(input);
+    const arrayInput = validateArray(input);
     const output = [] as T[];
     const errors = [] as KeyValidationErrors[];
     const initialResult = { output, errors };
@@ -28,3 +41,4 @@ export function array<T>(itemRule: Rule<T>) {
     return finalResult.output;
   };
 }
+

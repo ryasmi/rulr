@@ -1,5 +1,5 @@
 import { Rule } from '../core';
-import { ValidationErrors } from "../errors/ValidationErrors";
+import { ComposedValidationErrors } from '../errors/ComposedValidationErrors';
 
 export function allowEither<A, B>(ruleA: Rule<A>, ruleB: Rule<B>) {
   return (input: unknown) => {
@@ -9,7 +9,7 @@ export function allowEither<A, B>(ruleA: Rule<A>, ruleB: Rule<B>) {
       try {
         return ruleB(input);
       } catch (errB) {
-        throw new ValidationErrors([errA, errB]);
+        throw new ComposedValidationErrors([errA, errB]);
       }
     }
   }

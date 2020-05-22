@@ -1,29 +1,32 @@
-import { number } from './constrainedPrimitives/number';
-import { string } from './constrainedPrimitives/string';
 import { Static } from './core';
-import { object } from './constrainedPrimitives/object';
-import { array } from './constrainedPrimitives/array';
-import { unconstrainedString } from './unconstrainedPrimitives/string';
-import { dictionary } from './constrainedPrimitives/dictionary';
-import { allowEither } from './utilPrimitives/allowEither';
-import { unconstrainedBoolean } from './unconstrainedPrimitives/boolean';
+import { object } from './referenceTypes/object';
+import { array } from './referenceTypes/array';
+import { dictionary } from './referenceTypes/dictionary';
+import { allowEither } from './utils/allowEither';
+import { boolean } from './primitivesTypes/boolean';
 import { ValidationErrors } from "./errors/ValidationErrors";
-import { enumerated } from './constrainedPrimitives/enum';
-import { constant } from './constrainedPrimitives/constant';
-import { composeRules } from './utilPrimitives/composeRules';
-import { unconstrainedNumber } from './unconstrainedPrimitives/number';
+import { enumerated } from './utils/enum';
+import { constant } from './utils/constant';
+import { number } from './primitivesTypes/number';
+import { string } from './primitivesTypes/string';
 import { ValidationError } from './errors/ValidationError';
+import { constrain } from './core';
+import { uuidv4String } from './patternConstrainedStrings/uuidv4';
+import { lengthConstrainedString } from './constrainedValues/lengthConstrainedString';
+import { rangeConstrainedNumber } from './constrainedValues/rangeConstrainedNumber';
+import { allowNull } from './utils/allowNull';
 
-const constrainToName = string({ minLength: 1, maxLength: 25 });
-const constrainToPrice = number({ min: 0, max: Infinity, decimalPlaces: 2 });
+const constrainToName = lengthConstrainedString<'Name'>({ minLength: 1, maxLength: 25 });
+const constrainToPrice = rangeConstrainedNumber<'Price'>({ min: 0, decimalPlaces: 2 });
 
 const constrainToProduct = object({
   required: {
+    id: uuidv4String,
     name: constrainToName,
     price: constrainToPrice,
   },
   optional: {
-    inStock: unconstrainedBoolean,
+    inStock: boolean,
   }
 });
 type Product = Static<typeof constrainToProduct>;
@@ -35,7 +38,7 @@ function demoValidation<T>(title: string, fn: () => T[]) {
     console.info(...output);
   } catch (err) {
     if (err instanceof ValidationErrors) {
-      console.error(JSON.stringify(err, null, 2));
+      console.error(err.message);
     } else if (err instanceof Error) {
       console.error(err.message);
     } else {
@@ -47,9 +50,10 @@ function demoValidation<T>(title: string, fn: () => T[]) {
 
 
 demoValidation('Constrained Values Demo', () => {
+  const id = uuidv4String('');
   const name = constrainToName('Product 1');
   const price = constrainToPrice(1.33);
-  const product: Product = { name, price };
+  const product: Product = { id, name, price };
   return [product.name, product.price];
 });
 
@@ -70,8 +74,15 @@ demoValidation('Constrained Array Demo', () => {
 });
 
 demoValidation('Constrained Dictionary Demo', () => {
+  function dictionaryKey(input: unknown) {
+    const stringInput = string(input);
+    if (stringInput.length < 1 || stringInput.length > 2) {
+      throw new Error('expected string between 1 and 2 characters');
+    }
+    return constrain<'DictionaryKey', string>(stringInput);
+  }
   const constrainToProductDictionary = dictionary(
-    string({ minLength: 1, maxLength: 2 }),
+    dictionaryKey,
     constrainToProduct,
   );
   type ProductDictionary = Static<typeof constrainToProductDictionary>
@@ -83,8 +94,8 @@ demoValidation('Constrained Dictionary Demo', () => {
   return [productDictionary];
 });
 
-demoValidation('Allow One Demo', () => {
-  const constrainToStringOrBoolean = allowEither(unconstrainedString, unconstrainedBoolean);
+demoValidation('Allow Either Demo', () => {
+  const constrainToStringOrBoolean = allowEither(string, boolean);
   type StringOrBoolean = Static<typeof constrainToStringOrBoolean>;
   const stringOrBoolean: StringOrBoolean = constrainToStringOrBoolean(1);
   return [stringOrBoolean];
@@ -109,14 +120,45 @@ demoValidation('Constrained Constant Demo', () => {
 });
 
 demoValidation('Compose Rules Demo', () => {
-  const squareNumber = composeRules(unconstrainedNumber, (input) => {
-    const isSquareNumber = input > 0 && Math.sqrt(input) % 1 === 0;
-    if (!isSquareNumber) {
+  function constrainToSquareNumber(input: unknown) {
+    try {
+      const numberInput = number(input);
+      const isSquareNumber = numberInput > 0 && Math.sqrt(numberInput) % 1 === 0;
+      if (isSquareNumber) {
+        return numberInput;
+      }
+    } finally {
       throw new ValidationError('expected square number', input);
     }
-    return input;
-  });
-  type SquareNumber = Static<typeof squareNumber>;
-  const mySquareNumber: SquareNumber = squareNumber(4);
-  return [mySquareNumber];
+  };
+  type SquareNumber = Static<typeof constrainToSquareNumber>;
+  const squareNumber: SquareNumber = constrainToSquareNumber(4);
+  return [squareNumber];
 });
+
+demoValidation('Old Example', () => {
+  const constrainToExample = object({
+    required: {
+      x: rangeConstrainedNumber<'x'>({ min: 0, max: 1 }),
+      y: object({
+        required: {
+          z: allowEither(
+            lengthConstrainedString<'z string'>({ maxLength: 1 }),
+            allowEither(
+              constant<'z constant', boolean>(true),
+              rangeConstrainedNumber<'z number'>({ decimalPlaces: 0 })),
+          ),
+        },
+        optional: {},
+      })
+    },
+    optional: {
+      a: boolean,
+      b: array(allowNull(boolean)),
+    },
+  });
+  type ExampleRecord = Static<typeof constrainToExample>;
+  const myData = { y: { z: '' }, x: 1 };
+  const myRecord: ExampleRecord = constrainToExample(myData);
+  return [myRecord];
+})

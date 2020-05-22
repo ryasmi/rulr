@@ -1,8 +1,23 @@
+import { ValidationError } from '../errors/ValidationError';
 import { Rule, Static } from '../core';
-import { unconstrainedObject, UnconstrainedObject } from '../unconstrainedPrimitives/object';
 import { ComposedValidationErrors } from "../errors/ComposedValidationErrors";
 import { KeyValidationErrors } from "../errors/KeyValidationErrors";
-import { allowUndefined } from '../utilPrimitives/allowUndefined';
+import { allowUndefined } from '../utils/allowUndefined';
+
+export class InvalidObjectError extends ValidationError {
+  constructor(input: unknown) {
+    super(`expected object`, input);
+  }
+}
+
+export type PlainObject = { [key: string]: unknown; };
+
+export function validateObject(input: unknown) {
+  if (typeof input === 'object' && input !== null && input.constructor === Object) {
+    return input as PlainObject;
+  }
+  throw new InvalidObjectError(input);
+}
 
 type Schema = { [key: string]: Rule<any>; };
 type RequiredObject<Schema> = {
@@ -11,11 +26,11 @@ type RequiredObject<Schema> = {
 type PartialObject<Schema> = {
   [K in keyof Schema]?: Static<Schema[K]>;
 };
-type ConstrainedObject<RequiredSchema, OptionalSchema> = (
+type UnconstrainedObject<RequiredSchema, OptionalSchema> = (
   RequiredObject<RequiredSchema> & PartialObject<OptionalSchema>
 );
 
-function validateRequiredObject<T extends Schema>(schema: T, objectInput: UnconstrainedObject) {
+function validateRequiredObject<T extends Schema>(schema: T, objectInput: PlainObject) {
   const keys: (keyof T)[] = Object.keys(schema);
   const output = {} as RequiredObject<T>;
   const errors = [] as KeyValidationErrors[];
@@ -33,7 +48,7 @@ function validateRequiredObject<T extends Schema>(schema: T, objectInput: Uncons
   return finalResult;
 }
 
-function validatePartialObject<T extends Schema>(schema: T, objectInput: UnconstrainedObject) {
+function validatePartialObject<T extends Schema>(schema: T, objectInput: PlainObject) {
   const keys: (keyof T)[] = Object.keys(schema);
   const output = {} as PartialObject<T>;
   const errors = [] as KeyValidationErrors[];
@@ -56,7 +71,7 @@ export function object<Required extends Schema, Optional extends Schema>(opts: {
   readonly optional: Optional,
 }) {
   return (input: unknown) => {
-    const objectInput = unconstrainedObject(input);
+    const objectInput = validateObject(input);
     const requiredObjectResult = validateRequiredObject(opts.required, objectInput);
     const optionalObjectResult = validatePartialObject(opts.optional, objectInput);
     const errors = [...requiredObjectResult.errors, ...optionalObjectResult.errors];
@@ -66,6 +81,6 @@ export function object<Required extends Schema, Optional extends Schema>(opts: {
     return {
       ...requiredObjectResult.output,
       ...optionalObjectResult.output
-    } as ConstrainedObject<Required, Optional>;
+    } as UnconstrainedObject<Required, Optional>;
   };
 }

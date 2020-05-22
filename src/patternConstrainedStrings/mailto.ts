@@ -1,9 +1,7 @@
-import { string } from '../constrainedPrimitives/string';
 import { emailAddressRegExpString } from './emailAddress';
+import { patternConstrainedString } from '../constrainedValues/patternConstrainedString';
 
-export const mailtoString = string({
-  minLength: 3,
-  maxLength: 1024,
+export const mailtoString = patternConstrainedString<'Mailto'>({
   patternRegExp: new RegExp(`^mailto:${emailAddressRegExpString}$`, 'i'),
   patternName: 'Mailto',
 });

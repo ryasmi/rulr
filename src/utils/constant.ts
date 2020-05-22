@@ -7,10 +7,10 @@ export class ConstrainedConstantError<T> extends ValidationError<unknown> {
   }
 }
 
-export function constant<T>(constantValue: T) {
+export function constant<ConstraintId, Type>(constantValue: Type) {
   return (input: unknown) => {
     if (input === constantValue) {
-      return constrain<T>(input as T);
+      return constrain<ConstraintId, Type>(input as Type);
     }
     throw new ConstrainedConstantError(input, constantValue);
   };

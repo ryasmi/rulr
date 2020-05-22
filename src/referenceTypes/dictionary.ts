@@ -1,10 +1,10 @@
 import { Rule, Key } from '../core';
-import { unconstrainedObject } from '../unconstrainedPrimitives/object';
+import { validateObject } from './object';
 import { ValidationErrors } from "../errors/ValidationErrors";
 import { ComposedValidationErrors } from "../errors/ComposedValidationErrors";
 import { KeyValidationErrors } from "../errors/KeyValidationErrors";
 
-export type ConstrainedDictionary<Value> = { [key: string]: Value };
+export type UnconstrainedDictionary<Value> = { [key: string]: Value };
 
 export class DictionaryKeyValidationErrors extends KeyValidationErrors {
   constructor(public readonly key: Key, error: unknown) {
@@ -26,9 +26,9 @@ export function dictionary<Key extends string, Value>(
   valueRule: Rule<Value>
 ) {
   return (input: unknown) => {
-    const objectInput = unconstrainedObject(input);
+    const objectInput = validateObject(input);
     const keys: string[] = Object.keys(objectInput);
-    const output = {} as ConstrainedDictionary<Value>;
+    const output = {} as UnconstrainedDictionary<Value>;
     const errors = [] as ValidationErrors[];
     const initialResult = { output, errors };
     const finalResult = keys.reduce((result, key) => {
