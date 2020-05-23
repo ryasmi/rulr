@@ -10,25 +10,25 @@ In Rulr, a validation rule is any function that takes unknown data as input and 
 
 ```ts
 function validateNumber(input: unknown) {
-  if (typeof input === 'number') {
-    return input;
-  }
-  throw new Error('expected number');
+	if (typeof input === 'number') {
+		return input
+	}
+	throw new Error('expected number')
 }
 ```
 
 If the input is invalid, the rule can simply throw an error containing all of the problems with the input in one function call to help you correct data quickly.
 
 ```ts
-import { ValidationErrors } from 'rulr';
+import { ValidationErrors } from 'rulr'
 
-throw new ValidationErrors(errors);
+throw new ValidationErrors(errors)
 ```
 
 Defining validation rules in this way, you can use Rulr's `Static` type to gain static type checking from TypeScript's type inference functionality without redefining your data types.
 
 ```ts
-import { Static } from 'rulr';
+import { Static } from 'rulr'
 
 type ValidNumber = Static<typeof validateNumber>
 ```
@@ -36,22 +36,22 @@ type ValidNumber = Static<typeof validateNumber>
 For more constrained (branded) data like positive numbers, you can use Rulr's core `constrain` function to guarantee that data has been validated at runtime.
 
 ```ts
-import { constrain } from 'rulr';
+import { constrain } from 'rulr'
 
 function validatePositiveNumber(input: unknown) {
-  if (typeof input === 'number' && input >= 0) {
-    return constrain<'Positive Number', number>(input);
-  }
-  throw new Error('expected positive number');
+	if (typeof input === 'number' && input >= 0) {
+		return constrain<'Positive Number', number>(input)
+	}
+	throw new Error('expected positive number')
 }
 
-type PositiveNumber = Static<typeof validatePositiveNumber>;
+type PositiveNumber = Static<typeof validatePositiveNumber>
 
 // Compile-time error.
-const positiveNumber1: PositiveNumber = -1;
+const positiveNumber1: PositiveNumber = -1
 
 // Run-time error.
-const positiveNumber2: PositiveNumber = validatePositiveNumber(-1);
+const positiveNumber2: PositiveNumber = validatePositiveNumber(-1)
 ```
 
 The following validation rules that we've frequently used in our applications have been built into Rulr to save you time writing them yourself.
