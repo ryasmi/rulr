@@ -1,7 +1,7 @@
 {
 	"name": "rulr",
 	"version": "0.0.0-development",
-	"description": "A package to save you time writing validation code",
+	"description": "A package that saves you time defining validation rules and correcting data",
 	"main": "dist/index.js",
 	"author": "ryansmith94",
 	"license": "ISC",
