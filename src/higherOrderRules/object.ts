@@ -19,6 +19,7 @@ export function validateObject(input: unknown) {
 	throw new InvalidObjectError()
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Schema = { [key: string]: Rule<any> }
 type RequiredObject<Schema> = {
 	[K in keyof Schema]: Static<Schema[K]>

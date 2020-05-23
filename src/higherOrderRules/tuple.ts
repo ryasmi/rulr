@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Rule, Static } from '../core'
 
 type Tuple<Rules extends [Rule<any>, ...Rule<any>[]] | []> = {

@@ -45,6 +45,7 @@ export function rangeConstrainedNumber<ConstraintId>(opts: {
 				return constrain<ConstraintId, number>(numberInput)
 			}
 		} finally {
+			// eslint-disable-next-line	no-unsafe-finally
 			throw new NumberRangeError(min, max, decimalPlaces)
 		}
 	}

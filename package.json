@@ -13,13 +13,21 @@
 	"scripts": {
 		"test": "jest",
 		"test:dev": "jest --watch",
-		"start": "ts-node src/example.ts"
+		"start": "ts-node src/example.ts",
+		"lint": "eslint --cache --fix src"
+	},
+	"dependencies": {
+		"make-error": "^1.3.6"
 	},
 	"devDependencies": {
 		"@commitlint/config-conventional": "8.3.4",
 		"@types/jest": "25.2.2",
 		"@types/node": "9.6.55",
+		"@typescript-eslint/eslint-plugin": "3.0.0",
+		"@typescript-eslint/parser": "3.0.0",
 		"commitlint": "8.3.5",
+		"eslint": "7.1.0",
+		"eslint-config-prettier": "6.11.0",
 		"husky": "4.2.5",
 		"jest": "26.0.1",
 		"prettier": "2.0.5",
@@ -52,7 +60,7 @@
 	"husky": {
 		"hooks": {
 			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-			"pre-commit": "jest --onlyChanged && pretty-quick --staged"
+			"pre-commit": "jest --onlyChanged && pretty-quick --staged && yarn lint"
 		}
 	},
 	"commitlint": {
@@ -89,7 +97,19 @@
 			"@ht2-labs:base"
 		]
 	},
-	"dependencies": {
-		"make-error": "^1.3.6"
+	"eslintConfig": {
+		"root": true,
+		"parser": "@typescript-eslint/parser",
+		"plugins": [
+			"@typescript-eslint"
+		],
+		"extends": [
+			"eslint:recommended",
+			"plugin:@typescript-eslint/recommended",
+			"prettier/@typescript-eslint"
+		],
+		"rules": {
+			"@typescript-eslint/explicit-module-boundary-types": 0
+		}
 	}
 }

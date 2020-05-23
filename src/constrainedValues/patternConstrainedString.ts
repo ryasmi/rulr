@@ -19,6 +19,7 @@ export function patternConstrainedString<ConstraintId>(opts: {
 				return constrain<ConstraintId, string>(stringInput)
 			}
 		} finally {
+			// eslint-disable-next-line no-unsafe-finally
 			throw new StringPatternError(opts.patternName)
 		}
 	}

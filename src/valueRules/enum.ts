@@ -1,4 +1,3 @@
-import { ValidationError } from '../errors/ValidationError'
 import { BaseError } from 'make-error'
 
 export class EnumError<T> extends BaseError {
@@ -13,7 +12,7 @@ export function enumerated<Output>(enumerator: Output) {
 	return (input: unknown) => {
 		const enumValues = Object.values(enumerator)
 		if (enumValues.includes(input)) {
-			return (input as any) as Values<Output>
+			return input as Values<Output>
 		}
 		throw new EnumError<Values<Output>>(enumValues)
 	}

@@ -129,6 +129,7 @@ demoValidation('Compose Rules Demo', () => {
 				return numberInput
 			}
 		} finally {
+			// eslint-disable-next-line no-unsafe-finally
 			throw new Error('expected square number')
 		}
 	}
