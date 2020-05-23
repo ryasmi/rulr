@@ -7,8 +7,8 @@ export class ConstrainedConstantError<T> extends ValidationError<unknown> {
 	}
 }
 
-export type Tuple<T extends [any, ...any[]] | []> = {
-	[k in keyof T]: T[k] extends Rule<infer U> ? U : never
+type Tuple<Rules extends [Rule<any>, ...Rule<any>[]] | []> = {
+	[K in keyof Rules]: Rules[K] extends Rule<infer Type> ? Type : never
 }
 
 export function tuple<Rules extends [Rule<any>, ...Rule<any>[]]>(...rules: Rules) {
