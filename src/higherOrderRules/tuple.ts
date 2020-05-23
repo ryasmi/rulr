@@ -1,11 +1,4 @@
-import { ValidationError } from '../errors/ValidationError'
-import { constrain, Rule, Static } from '../core'
-
-export class ConstrainedConstantError<T> extends ValidationError<unknown> {
-	constructor(input: unknown, public readonly constantValue: T) {
-		super(`expected ${constantValue}`, input)
-	}
-}
+import { Rule, Static } from '../core'
 
 type Tuple<Rules extends [Rule<any>, ...Rule<any>[]] | []> = {
 	[K in keyof Rules]: Rules[K] extends Rule<infer Type> ? Type : never

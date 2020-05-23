@@ -1,12 +1,12 @@
-import { ValidationError } from '../errors/ValidationError'
 import { Rule, Static } from '../core'
-import { ComposedValidationErrors } from '../errors/ComposedValidationErrors'
-import { KeyValidationErrors } from '../errors/KeyValidationErrors'
 import { allowUndefined } from './allowUndefined'
+import { BaseError } from 'make-error'
+import { KeyedValidationError } from '../errors/KeyedValidationError'
+import { HigherOrderValidationError } from '../errors/HigherOrderValidationError'
 
-export class InvalidObjectError extends ValidationError {
-	constructor(input: unknown) {
-		super(`expected object`, input)
+export class InvalidObjectError extends BaseError {
+	constructor() {
+		super(`expected object`)
 	}
 }
 
@@ -16,7 +16,7 @@ export function validateObject(input: unknown) {
 	if (typeof input === 'object' && input !== null && input.constructor === Object) {
 		return input as PlainObject
 	}
-	throw new InvalidObjectError(input)
+	throw new InvalidObjectError()
 }
 
 type Schema = { [key: string]: Rule<any> }
@@ -32,7 +32,7 @@ type UnconstrainedObject<RequiredSchema, OptionalSchema> = RequiredObject<Requir
 function validateRequiredObject<T extends Schema>(schema: T, objectInput: PlainObject) {
 	const keys: (keyof T)[] = Object.keys(schema)
 	const output = {} as RequiredObject<T>
-	const errors = [] as KeyValidationErrors[]
+	const errors = [] as KeyedValidationError[]
 	const initialResult = { output, errors }
 	const finalResult = keys.reduce((result, key) => {
 		const value = objectInput[key as string]
@@ -40,7 +40,7 @@ function validateRequiredObject<T extends Schema>(schema: T, objectInput: PlainO
 			const rule = schema[key]
 			result.output[key] = rule(value)
 		} catch (err) {
-			result.errors.push(new KeyValidationErrors(key as string, value, err))
+			result.errors.push(new KeyedValidationError(value, err, key as string))
 		}
 		return result
 	}, initialResult)
@@ -50,7 +50,7 @@ function validateRequiredObject<T extends Schema>(schema: T, objectInput: PlainO
 function validatePartialObject<T extends Schema>(schema: T, objectInput: PlainObject) {
 	const keys: (keyof T)[] = Object.keys(schema)
 	const output = {} as PartialObject<T>
-	const errors = [] as KeyValidationErrors[]
+	const errors = [] as KeyedValidationError[]
 	const initialResult = { output, errors }
 	const finalResult = keys.reduce((result, key) => {
 		const value = objectInput[key as string]
@@ -58,7 +58,7 @@ function validatePartialObject<T extends Schema>(schema: T, objectInput: PlainOb
 			const rule = allowUndefined(schema[key])
 			result.output[key] = rule(value)
 		} catch (err) {
-			result.errors.push(new KeyValidationErrors(key as string, value, err))
+			result.errors.push(new KeyedValidationError(value, err, key as string))
 		}
 		return result
 	}, initialResult)
@@ -75,7 +75,7 @@ export function object<Required extends Schema, Optional extends Schema>(opts: {
 		const optionalObjectResult = validatePartialObject(opts.optional, objectInput)
 		const errors = [...requiredObjectResult.errors, ...optionalObjectResult.errors]
 		if (errors.length > 0) {
-			throw new ComposedValidationErrors(errors)
+			throw new HigherOrderValidationError(input, errors)
 		}
 		return {
 			...requiredObjectResult.output,

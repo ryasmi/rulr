@@ -3,12 +3,10 @@ import { object } from './higherOrderRules/object'
 import { array } from './higherOrderRules/array'
 import { dictionary } from './higherOrderRules/dictionary'
 import { boolean } from './valueRules/boolean'
-import { ValidationErrors } from './errors/ValidationErrors'
 import { enumerated } from './valueRules/enum'
 import { constant } from './valueRules/constant'
 import { number } from './valueRules/number'
 import { string } from './valueRules/string'
-import { ValidationError } from './errors/ValidationError'
 import { constrain } from './core'
 import { uuidv4String } from './patternConstrainedStrings/uuidv4'
 import { lengthConstrainedString } from './constrainedValues/lengthConstrainedString'
@@ -33,14 +31,13 @@ const constrainToProduct = object({
 type Product = Static<typeof constrainToProduct>
 
 function demoValidation<T>(title: string, fn: () => T[]) {
-	console.info(title.toUpperCase())
+	const trace = new Error().stack?.split('\n')[2].trim().replace('at Object.<anonymous> ', '')
+	console.info(title.toUpperCase(), trace)
 	try {
 		const output = fn()
 		console.info(...output)
 	} catch (err) {
-		if (err instanceof ValidationErrors) {
-			console.error(err.message)
-		} else if (err instanceof Error) {
+		if (err instanceof Error) {
 			console.error(err.message)
 		} else {
 			console.error(err)
@@ -66,8 +63,8 @@ demoValidation('Constrained Array Demo', () => {
 	const constrainToProducts = array(constrainToProduct)
 	type Products = Static<typeof constrainToProducts>
 	const products: Products = constrainToProducts([
-		constrainToProduct({ name: 'Product 1', price: 1.33 }),
-		{ name: constrainToName('Product 2'), price: constrainToPrice(1.33) },
+		{ name: 'Product 1', price: 1.33 },
+		{ name: 'Product 2', price: 1.33 },
 		{ name: 'Product 3', price: 1.334 },
 	])
 	return [products]
@@ -84,8 +81,8 @@ demoValidation('Constrained Dictionary Demo', () => {
 	const constrainToProductDictionary = dictionary(dictionaryKey, constrainToProduct)
 	type ProductDictionary = Static<typeof constrainToProductDictionary>
 	const productDictionary: ProductDictionary = constrainToProductDictionary({
-		'1': constrainToProduct({ name: 'Product 1', price: 1.33 }),
-		'2': { name: constrainToName('Product 2'), price: constrainToPrice(1.33) },
+		'1': { name: 'Product 1', price: 1.33 },
+		'2': { name: 'Product 2', price: 1.33 },
 		'234': { name: '', price: 1.333 },
 	})
 	return [productDictionary]
@@ -132,7 +129,7 @@ demoValidation('Compose Rules Demo', () => {
 				return numberInput
 			}
 		} finally {
-			throw new ValidationError('expected square number', input)
+			throw new Error('expected square number')
 		}
 	}
 	type SquareNumber = Static<typeof constrainToSquareNumber>

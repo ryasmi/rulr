@@ -1,8 +1,8 @@
-import { ValidationError } from '../errors/ValidationError'
+import { BaseError } from 'make-error'
 
-export class InvalidSymbolError extends ValidationError {
-	constructor(input: unknown) {
-		super(`expected bigint`, input)
+export class InvalidSymbolError extends BaseError {
+	constructor() {
+		super(`expected symbol`)
 	}
 }
 
@@ -10,5 +10,5 @@ export function symbol(input: unknown) {
 	if (typeof input === 'symbol') {
 		return input
 	}
-	throw new InvalidSymbolError(input)
+	throw new InvalidSymbolError()
 }

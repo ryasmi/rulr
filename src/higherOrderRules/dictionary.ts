@@ -1,14 +1,13 @@
 import { Rule, Key } from '../core'
 import { validateObject } from './object'
-import { ValidationErrors } from '../errors/ValidationErrors'
-import { ComposedValidationErrors } from '../errors/ComposedValidationErrors'
-import { KeyValidationErrors } from '../errors/KeyValidationErrors'
+import { KeyedValidationError } from '../errors/KeyedValidationError'
+import { HigherOrderValidationError } from '../errors/HigherOrderValidationError'
 
 export type UnconstrainedDictionary<Value> = { [key: string]: Value }
 
-export class DictionaryKeyValidationErrors extends KeyValidationErrors {
-	constructor(public readonly key: Key, error: unknown) {
-		super(key, key, error)
+export class DictionaryKeyValidationError extends KeyedValidationError {
+	constructor(error: unknown, key: Key) {
+		super(key, error, key)
 	}
 }
 
@@ -26,7 +25,7 @@ export function dictionary<Key extends string, Value>(keyRule: Rule<Key>, valueR
 		const objectInput = validateObject(input)
 		const keys: string[] = Object.keys(objectInput)
 		const output = {} as UnconstrainedDictionary<Value>
-		const errors = [] as ValidationErrors[]
+		const errors = [] as KeyedValidationError[]
 		const initialResult = { output, errors }
 		const finalResult = keys.reduce((result, key) => {
 			const value = objectInput[key]
@@ -35,13 +34,13 @@ export function dictionary<Key extends string, Value>(keyRule: Rule<Key>, valueR
 			if (dictionaryKey.output === undefined || dictionaryValue.output === undefined) {
 				if (dictionaryKey.error !== undefined && dictionaryValue.error !== undefined) {
 					result.errors.push(
-						new DictionaryKeyValidationErrors(key, dictionaryKey.error),
-						new KeyValidationErrors(key, value, dictionaryValue.error)
+						new DictionaryKeyValidationError(dictionaryKey.error, key),
+						new KeyedValidationError(value, dictionaryValue.error, key)
 					)
 				} else if (dictionaryKey.error !== undefined) {
-					result.errors.push(new DictionaryKeyValidationErrors(key, dictionaryKey.error))
+					result.errors.push(new DictionaryKeyValidationError(dictionaryKey.error, key))
 				} else if (dictionaryValue.error !== undefined) {
-					result.errors.push(new KeyValidationErrors(key, value, dictionaryValue.error))
+					result.errors.push(new KeyedValidationError(value, dictionaryValue.error, key))
 				}
 				return result
 			}
@@ -49,7 +48,7 @@ export function dictionary<Key extends string, Value>(keyRule: Rule<Key>, valueR
 			return result
 		}, initialResult)
 		if (finalResult.errors.length > 0) {
-			throw new ComposedValidationErrors(finalResult.errors)
+			throw new HigherOrderValidationError(input, finalResult.errors)
 		}
 		return finalResult.output
 	}

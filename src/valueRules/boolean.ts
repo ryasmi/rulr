@@ -1,8 +1,8 @@
-import { ValidationError } from '../errors/ValidationError'
+import { BaseError } from 'make-error'
 
-export class InvalidBooleanError extends ValidationError {
-	constructor(input: unknown) {
-		super(`expected boolean`, input)
+export class InvalidBooleanError extends BaseError {
+	constructor() {
+		super(`expected boolean`)
 	}
 }
 
@@ -10,5 +10,5 @@ export function boolean(input: unknown) {
 	if (typeof input === 'boolean') {
 		return input
 	}
-	throw new InvalidBooleanError(input)
+	throw new InvalidBooleanError()
 }

@@ -1,5 +1,12 @@
+import { BaseError } from 'make-error'
 import { string } from '../valueRules/string'
 import { constrain } from '../core'
+
+export class StringLengthError extends BaseError {
+	constructor(public readonly minLength: number, public readonly maxLength: number) {
+		super(`expected string containing between ${minLength} and ${maxLength} characters`)
+	}
+}
 
 export function lengthConstrainedString<ConstraintId>(opts: {
 	/**
@@ -23,7 +30,7 @@ export function lengthConstrainedString<ConstraintId>(opts: {
 				return constrain<ConstraintId, string>(stringInput)
 			}
 		} finally {
-			throw new Error(`expected string between ${minLength} and ${maxLength}`)
+			throw new StringLengthError(minLength, maxLength)
 		}
 	}
 }

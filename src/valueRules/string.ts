@@ -1,8 +1,8 @@
-import { ValidationError } from '../errors/ValidationError'
+import { BaseError } from 'make-error'
 
-export class InvalidStringError extends ValidationError {
-	constructor(input: unknown) {
-		super(`expected string`, input)
+export class InvalidStringError extends BaseError {
+	constructor() {
+		super(`expected string`)
 	}
 }
 
@@ -13,5 +13,5 @@ export function string(input: unknown) {
 	if (typeof input === 'string') {
 		return input
 	}
-	throw new InvalidStringError(input)
+	throw new InvalidStringError()
 }

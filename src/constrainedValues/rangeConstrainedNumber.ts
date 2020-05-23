@@ -1,5 +1,18 @@
+import { BaseError } from 'make-error'
 import { number } from '../valueRules/number'
 import { constrain } from '../core'
+
+export class NumberRangeError extends BaseError {
+	constructor(
+		public readonly min: number,
+		public readonly max: number,
+		public readonly decimalPlaces: number
+	) {
+		super(
+			`expected number between ${min} and ${max} with fewer than ${decimalPlaces} decimal places`
+		)
+	}
+}
 
 export function rangeConstrainedNumber<ConstraintId>(opts: {
 	/**
@@ -32,9 +45,7 @@ export function rangeConstrainedNumber<ConstraintId>(opts: {
 				return constrain<ConstraintId, number>(numberInput)
 			}
 		} finally {
-			throw new Error(
-				`expected number between ${min} and ${max} with fewer than ${decimalPlaces} decimal places`
-			)
+			throw new NumberRangeError(min, max, decimalPlaces)
 		}
 	}
 }

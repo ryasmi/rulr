@@ -1,35 +1,28 @@
 import { BaseError } from 'make-error'
 import { Key } from '../core'
 
-function path(keys: Key[]) {
-	return keys
-		.map((key) => {
-			return key.toString()
+export interface ErrorJson {
+	readonly error: unknown
+	readonly path: Key[]
+	readonly input?: unknown
+}
+
+export abstract class ValidationError extends BaseError {
+	constructor(public readonly input: unknown) {
+		super()
+	}
+
+	public getMessages() {
+		return this.toJSON().map((errorJson) => {
+			const path = errorJson.path.join('.')
+			const message = errorJson.error instanceof Error ? errorJson.error.message : errorJson.error
+			return `${path}: ${message}`
 		})
-		.join('.')
-}
-
-function pathPrefix(keys: Key[]) {
-	if (keys.length === 0) {
-		return ''
-	}
-	return `${path(keys)}: `
-}
-
-export class ValidationError<T = unknown> extends BaseError {
-	constructor(
-		public readonly reason: string,
-		public readonly input: T,
-		public readonly path: Key[] = []
-	) {
-		super(`${pathPrefix(path)}${reason}`)
 	}
 
-	public toJSON() {
-		return {
-			path: this.path,
-			reason: this.reason,
-			input: this.input,
-		}
+	get message() {
+		return this.getMessages().join('\n')
 	}
+
+	public abstract toJSON(): ErrorJson[]
 }

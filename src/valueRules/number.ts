@@ -1,8 +1,8 @@
-import { ValidationError } from '../errors/ValidationError'
+import { BaseError } from 'make-error'
 
-export class InvalidNumberError extends ValidationError {
-	constructor(input: unknown) {
-		super(`expected number`, input)
+export class InvalidNumberError extends BaseError {
+	constructor() {
+		super(`expected number`)
 	}
 }
 
@@ -13,5 +13,5 @@ export function number(input: unknown) {
 	if (typeof input === 'number') {
 		return input
 	}
-	throw new InvalidNumberError(input)
+	throw new InvalidNumberError()
 }

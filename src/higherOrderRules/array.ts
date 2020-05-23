@@ -1,42 +1,42 @@
-import { ValidationError } from '../errors/ValidationError'
 import { Rule } from '../core'
-import { ComposedValidationErrors } from '../errors/ComposedValidationErrors'
-import { KeyValidationErrors } from '../errors/KeyValidationErrors'
+import { BaseError } from 'make-error'
+import { KeyedValidationError } from '../errors/KeyedValidationError'
+import { HigherOrderValidationError } from '../errors/HigherOrderValidationError'
 
-export class InvalidArrayError extends ValidationError {
-	constructor(input: unknown) {
-		super(`expected array`, input)
+export class InvalidArrayError extends BaseError {
+	constructor() {
+		super(`expected array`)
 	}
 }
 
 function validateArray(input: unknown) {
-	if (Array.isArray(input) === false) {
-		throw new InvalidArrayError(input)
+	if (Array.isArray(input)) {
+		return input as unknown[]
 	}
-	return input as unknown[]
+	throw new InvalidArrayError()
 }
 
 interface Result<T> {
 	readonly output: T[]
-	readonly errors: KeyValidationErrors[]
+	readonly errors: KeyedValidationError[]
 }
 
 export function array<T>(itemRule: Rule<T>) {
 	return (input: unknown) => {
 		const arrayInput = validateArray(input)
 		const output = [] as T[]
-		const errors = [] as KeyValidationErrors[]
+		const errors = [] as KeyedValidationError[]
 		const initialResult = { output, errors }
 		const finalResult = arrayInput.reduce<Result<T>>((result, value, index) => {
 			try {
 				result.output[index] = itemRule(value)
 			} catch (err) {
-				result.errors.push(new KeyValidationErrors(index, value, err))
+				result.errors.push(new KeyedValidationError(value, err, index))
 			}
 			return result
 		}, initialResult)
 		if (finalResult.errors.length > 0) {
-			throw new ComposedValidationErrors(finalResult.errors)
+			throw new HigherOrderValidationError(input, finalResult.errors)
 		}
 		return finalResult.output
 	}

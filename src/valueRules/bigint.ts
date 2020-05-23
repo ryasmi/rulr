@@ -1,8 +1,8 @@
-import { ValidationError } from '../errors/ValidationError'
+import { BaseError } from 'make-error'
 
-export class InvalidBigIntError extends ValidationError {
-	constructor(input: unknown) {
-		super(`expected bigint`, input)
+export class InvalidBigIntError extends BaseError {
+	constructor() {
+		super(`expected bigint`)
 	}
 }
 
@@ -10,5 +10,5 @@ export function bigint(input: unknown) {
 	if (typeof input === 'bigint') {
 		return input
 	}
-	throw new InvalidBigIntError(input)
+	throw new InvalidBigIntError()
 }
