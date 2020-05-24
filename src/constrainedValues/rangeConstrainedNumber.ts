@@ -15,22 +15,13 @@ export class NumberRangeError extends BaseError {
 }
 
 export function rangeConstrainedNumber<ConstraintId>(opts: {
-	/**
-	 * You might want to consider always setting this value to avoid display and storage bugs.
-	 * Defaults to `-Infinity`.
-	 */
+	/** You might consider using this to avoid display and storage bugs. Defaults to `-Infinity`. */
 	readonly min?: number
 
-	/**
-	 * You might want to consider always setting this value to avoid display and storage bugs.
-	 * Defaults to `Infinity`.
-	 */
+	/** You might consider using this to avoid display and storage bugs. Defaults to `Infinity`. */
 	readonly max?: number
 
-	/**
-	 * You might want to consider always setting this value to avoid display and storage bugs.
-	 * Defaults to `100`.
-	 */
+	/** You might consider using this to avoid display and storage bugs. Defaults to `100`. */
 	readonly decimalPlaces?: number
 }) {
 	const min = opts.min ?? -Infinity

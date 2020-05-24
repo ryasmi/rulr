@@ -9,15 +9,10 @@ export class StringLengthError extends BaseError {
 }
 
 export function lengthConstrainedString<ConstraintId>(opts: {
-	/**
-	 * Defaults to `0`.
-	 */
+	/** Defaults to `0`. */
 	readonly minLength?: number
 
-	/**
-	 * You might want to consider always setting this value to avoid display and storage bugs.
-	 * Defaults to `Infinity`.
-	 */
+	/** You might consider use this to avoid display and storage bugs. Defaults to `Infinity`. */
 	readonly maxLength?: number
 }) {
 	const minLength = opts.minLength ?? 0

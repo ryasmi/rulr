@@ -67,13 +67,18 @@ function validatePartialObject<T extends Schema>(schema: T, objectInput: PlainOb
 }
 
 export function object<Required extends Schema, Optional extends Schema>(opts: {
-	readonly required: Required
-	readonly optional: Optional
+	/** Defaults to empty object */
+	readonly required?: Required
+
+	/** Defaults to empty object */
+	readonly optional?: Optional
 }) {
+	const required = opts.required ?? {}
+	const optional = opts.optional ?? {}
 	return (input: unknown) => {
 		const objectInput = validateObject(input)
-		const requiredObjectResult = validateRequiredObject(opts.required, objectInput)
-		const optionalObjectResult = validatePartialObject(opts.optional, objectInput)
+		const requiredObjectResult = validateRequiredObject(required, objectInput)
+		const optionalObjectResult = validatePartialObject(optional, objectInput)
 		const errors = [...requiredObjectResult.errors, ...optionalObjectResult.errors]
 		if (errors.length > 0) {
 			throw new HigherOrderValidationError(input, errors)

@@ -138,6 +138,67 @@ demoValidation('Compose Rules Demo', () => {
 	return [squareNumber]
 })
 
+demoValidation('RunTypes Example', () => {
+	const vector = tuple(number, number, number)
+
+	const asteroid = object({
+		required: {
+			type: constant('asteroid'),
+			location: vector,
+			mass: number,
+		},
+	})
+
+	const planet = object({
+		required: {
+			type: constant('planet'),
+			location: vector,
+			mass: number,
+			population: number,
+			habitable: boolean,
+		},
+	})
+
+	enum Rank {
+		Captain = 'captain',
+		FirstMate = 'firstmate',
+		Officer = 'officer',
+		Ensign = 'ensign',
+	}
+
+	const rank = enumerated(Rank)
+
+	const crewMember = object({
+		required: {
+			name: string,
+			age: number,
+			rank: rank,
+			home: planet,
+		},
+	})
+
+	const ship = object({
+		required: {
+			type: constant<'ship', string>('ship'),
+			location: vector,
+			mass: number,
+			name: string,
+			crew: array(crewMember),
+		},
+	})
+
+	const spaceObject = union(asteroid, planet, ship)
+	type SpaceObject = Static<typeof spaceObject>
+
+	const mySpaceObject: SpaceObject = spaceObject({
+		type: 'asteroi',
+		location: [0, 1, 2],
+		mass: 0,
+	})
+
+	return [mySpaceObject]
+})
+
 demoValidation('Old Example', () => {
 	const constrainToExample = object({
 		required: {
