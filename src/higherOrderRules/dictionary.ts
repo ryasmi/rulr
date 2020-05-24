@@ -3,8 +3,6 @@ import { validateObject } from './object'
 import { KeyedValidationError } from '../errors/KeyedValidationError'
 import { HigherOrderValidationError } from '../errors/HigherOrderValidationError'
 
-export type UnconstrainedDictionary<Value> = { [key: string]: Value }
-
 export class DictionaryKeyValidationError extends KeyedValidationError {
 	constructor(error: unknown, key: Key) {
 		super(key, error, key)
@@ -24,7 +22,7 @@ export function dictionary<Key extends string, Value>(keyRule: Rule<Key>, valueR
 	return (input: unknown) => {
 		const objectInput = validateObject(input)
 		const keys: string[] = Object.keys(objectInput)
-		const output = {} as UnconstrainedDictionary<Value>
+		const output = {} as Record<string, Value>
 		const errors = [] as KeyedValidationError[]
 		const initialResult = { output, errors }
 		const finalResult = keys.reduce((result, key) => {
