@@ -1,5 +1,11 @@
 import * as assert from 'assert'
-import { array, InvalidArrayError, number, HigherOrderValidationError } from '../../lib'
+import {
+	array,
+	InvalidArrayError,
+	number,
+	HigherOrderValidationError,
+	KeyedValidationError,
+} from '../../lib'
 
 test('array should allow empty array', () => {
 	const input: number[] = []
@@ -14,9 +20,18 @@ test('array should allow array valid items', () => {
 })
 
 test('array should not allow array invalid items', () => {
-	assert.throws(() => {
+	try {
 		array(number)([1, '2', 3])
-	}, HigherOrderValidationError)
+		assert.fail('Expected error')
+	} catch (error) {
+		if (error instanceof HigherOrderValidationError) {
+			assert.equal(error.errors.length, 1)
+			assert.ok(error.errors[0] instanceof KeyedValidationError)
+			return
+		} else {
+			assert.fail('Expected HigherOrderValidationError')
+		}
+	}
 })
 
 test('array should not allow non-array input', () => {
