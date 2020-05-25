@@ -1,7 +1,7 @@
-import { Rule } from '../core'
+import { Rule } from '../../core'
 import { BaseError } from 'make-error'
-import { KeyedValidationError } from '../errors/KeyedValidationError'
-import { HigherOrderValidationError } from '../errors/HigherOrderValidationError'
+import { KeyedValidationError } from '../../errors/KeyedValidationError'
+import { HigherOrderValidationError } from '../../errors/HigherOrderValidationError'
 
 export class InvalidArrayError extends BaseError {
 	constructor() {
