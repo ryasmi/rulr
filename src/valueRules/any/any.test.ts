@@ -1,35 +1,60 @@
+import * as assert from 'assert'
 import { any } from './any'
 
 test('any should allow numbers', () => {
-	any(10)
+	const input = 10
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const output: any = any(input)
+	assert.equal(output, input)
 })
 
 test('any should allow strings', () => {
-	any('')
+	const input = ''
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const output: any = any(input)
+	assert.equal(output, input)
 })
 
 test('any should allow booleans', () => {
-	any(true)
+	const input = true
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const output: any = any(input)
+	assert.equal(output, input)
 })
 
 test('any should allow objects', () => {
-	any({})
+	const input = {}
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const output: any = any(input)
+	assert.equal(output, input)
 })
 
 test('any should allow symbols', () => {
-	any(Symbol())
+	const input = Symbol()
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const output: any = any(input)
+	assert.equal(output, input)
 })
 
 test('any should allow null', () => {
-	any(null)
+	const input = null
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const output: any = any(input)
+	assert.equal(output, input)
 })
 
 test('any should allow undefined', () => {
-	any(undefined)
+	const input = undefined
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const output: any = any(input)
+	assert.equal(output, input)
 })
 
 test('any should allow functions', () => {
-	any(() => {
+	const input = () => {
 		return
-	})
+	}
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const output: any = any(input)
+	assert.equal(output, input)
 })

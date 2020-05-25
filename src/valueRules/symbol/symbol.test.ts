@@ -2,7 +2,9 @@ import * as assert from 'assert'
 import { symbol, InvalidSymbolError } from './symbol'
 
 test('should allow symbol', () => {
-	symbol(Symbol())
+	const input = Symbol()
+	const output: symbol = symbol(input)
+	assert.equal(output, input)
 })
 
 test('should allow non-symbol value', () => {

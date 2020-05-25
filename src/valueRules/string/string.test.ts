@@ -2,7 +2,9 @@ import * as assert from 'assert'
 import { string, InvalidStringError } from './string'
 
 test('should allow string', () => {
-	string('')
+	const input = ''
+	const output: string = string(input)
+	assert.equal(output, input)
 })
 
 test('should not allow non-string value', () => {

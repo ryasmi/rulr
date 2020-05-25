@@ -1,35 +1,52 @@
+import * as assert from 'assert'
 import { unknown } from './unknown'
 
 test('unknown should allow numbers', () => {
-	unknown(10)
+	const input = 10
+	const output: unknown = unknown(input)
+	assert.equal(output, input)
 })
 
 test('unknown should allow strings', () => {
-	unknown('')
+	const input = ''
+	const output: unknown = unknown(input)
+	assert.equal(output, input)
 })
 
 test('unknown should allow booleans', () => {
-	unknown(true)
+	const input = true
+	const output: unknown = unknown(input)
+	assert.equal(output, input)
 })
 
 test('unknown should allow objects', () => {
-	unknown({})
+	const input = {}
+	const output: unknown = unknown(input)
+	assert.equal(output, input)
 })
 
 test('unknown should allow symbols', () => {
-	unknown(Symbol())
+	const input = Symbol()
+	const output: unknown = unknown(input)
+	assert.equal(output, input)
 })
 
 test('unknown should allow null', () => {
-	unknown(null)
+	const input = null
+	const output: unknown = unknown(input)
+	assert.equal(output, input)
 })
 
 test('unknown should allow undefined', () => {
-	unknown(undefined)
+	const input = undefined
+	const output: unknown = unknown(input)
+	assert.equal(output, input)
 })
 
 test('unknown should allow functions', () => {
-	unknown(() => {
+	const input = () => {
 		return
-	})
+	}
+	const output: unknown = unknown(input)
+	assert.equal(output, input)
 })
