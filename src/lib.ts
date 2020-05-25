@@ -1,5 +1,6 @@
 export { constrain, Constrained, Rule, Static, Key } from './core'
 export { allowNull } from './higherOrderRules/allowNull/allowNull'
+export { allowUndefined } from './higherOrderRules/allowUndefined/allowUndefined'
 export { any } from './valueRules/any/any'
 export { bigint, InvalidBigIntError } from './valueRules/bigint/bigint'
 export { boolean, InvalidBooleanError } from './valueRules/boolean/boolean'

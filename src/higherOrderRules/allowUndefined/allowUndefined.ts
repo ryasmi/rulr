@@ -1,4 +1,4 @@
-import { Rule } from '../core'
+import { Rule } from '../../core'
 
 export function allowUndefined<T>(rule: Rule<T>) {
 	return (input: unknown) => {
