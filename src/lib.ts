@@ -1,6 +1,6 @@
 export { constrain, Constrained, Rule, Static, Key } from './core'
 export { any } from './valueRules/any/any'
-export { bigint, InvalidBigIntError } from './valueRules/bigint'
+export { bigint, InvalidBigIntError } from './valueRules/bigint/bigint'
 export { boolean, InvalidBooleanError } from './valueRules/boolean/boolean'
 export { constant, ConstrainedConstantError } from './valueRules/constant/constant'
 export { date, InvalidDateError } from './valueRules/date/date'
