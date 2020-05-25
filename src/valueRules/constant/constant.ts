@@ -1,5 +1,5 @@
 import { BaseError } from 'make-error'
-import { constrain } from '../core'
+import { constrain } from '../../core'
 
 export class ConstrainedConstantError<T> extends BaseError {
 	constructor(public readonly constantValue: T) {
