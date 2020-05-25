@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { number, InvalidNumberError } from './number'
+import { number, InvalidNumberError } from '../../lib'
 
 test('number should allow number', () => {
 	const input = 10

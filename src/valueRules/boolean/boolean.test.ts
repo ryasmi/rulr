@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { boolean, InvalidBooleanError } from './boolean'
+import { boolean, InvalidBooleanError } from '../../lib'
 
 test('boolean should allow true', () => {
 	const input = true

@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { any } from './any'
+import { any } from '../../lib'
 
 test('any should allow numbers', () => {
 	const input = 10

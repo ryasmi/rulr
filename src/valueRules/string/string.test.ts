@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { string, InvalidStringError } from './string'
+import { string, InvalidStringError } from '../../lib'
 
 test('should allow string', () => {
 	const input = ''

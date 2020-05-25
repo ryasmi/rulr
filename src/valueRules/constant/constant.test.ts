@@ -1,6 +1,5 @@
 import * as assert from 'assert'
-import { Constrained } from '../../core'
-import { constant, ConstrainedConstantError } from './constant'
+import { constant, ConstrainedConstantError, Constrained } from '../../lib'
 
 test('constant should allow same value', () => {
 	type Ten = Constrained<'ten', number>
