@@ -1,11 +1,10 @@
 import { object } from './higherOrderRules/object'
 import { array } from './higherOrderRules/array'
 import { dictionary } from './higherOrderRules/dictionary'
-import { constrain, boolean, enumerated, constant, number, string, Static } from './lib'
+import { allowNull, constrain, boolean, enumerated, constant, number, string, Static } from './lib'
 import { uuidv4String } from './patternConstrainedStrings/uuidv4'
 import { lengthConstrainedString } from './constrainedValues/lengthConstrainedString'
 import { rangeConstrainedNumber } from './constrainedValues/rangeConstrainedNumber'
-import { allowNull } from './higherOrderRules/allowNull'
 import { union } from './higherOrderRules/union'
 import { tuple } from './higherOrderRules/tuple'
 
