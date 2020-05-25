@@ -46,7 +46,7 @@ export function dictionary<Key extends string, Value>(keyRule: Rule<Key>, valueR
 			return result
 		}, initialResult)
 		if (finalResult.errors.length > 0) {
-			throw new HigherOrderValidationError(input, finalResult.errors)
+			throw new HigherOrderValidationError(finalResult.errors)
 		}
 		return finalResult.output
 	}

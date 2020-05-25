@@ -36,7 +36,7 @@ export function array<T>(itemRule: Rule<T>) {
 			return result
 		}, initialResult)
 		if (finalResult.errors.length > 0) {
-			throw new HigherOrderValidationError(input, finalResult.errors)
+			throw new HigherOrderValidationError(finalResult.errors)
 		}
 		return finalResult.output
 	}

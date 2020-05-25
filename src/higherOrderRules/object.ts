@@ -81,7 +81,7 @@ export function object<Required extends Schema, Optional extends Schema>(opts: {
 		const optionalObjectResult = validatePartialObject(optional, objectInput)
 		const errors = [...requiredObjectResult.errors, ...optionalObjectResult.errors]
 		if (errors.length > 0) {
-			throw new HigherOrderValidationError(input, errors)
+			throw new HigherOrderValidationError(errors)
 		}
 		return {
 			...requiredObjectResult.output,

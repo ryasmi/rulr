@@ -2,8 +2,12 @@ import { ValidationError, ErrorJson } from './ValidationError'
 import { Key } from '../core'
 
 export class KeyedValidationError extends ValidationError {
-	constructor(input: unknown, public readonly error: unknown, public readonly key: Key) {
-		super(input)
+	constructor(
+		public readonly input: unknown,
+		public readonly error: unknown,
+		public readonly key: Key
+	) {
+		super()
 	}
 
 	public toJSON(): ErrorJson[] {

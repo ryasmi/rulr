@@ -8,7 +8,7 @@ export interface ErrorJson {
 }
 
 export abstract class ValidationError extends BaseError {
-	constructor(public readonly input: unknown) {
+	constructor() {
 		super()
 	}
 
