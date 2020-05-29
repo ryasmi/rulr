@@ -1,7 +1,16 @@
-import { object } from './higherOrderRules/object'
-import { array } from './higherOrderRules/array'
-import { dictionary } from './higherOrderRules/dictionary'
-import { allowNull, constrain, boolean, enumerated, constant, number, string, Static } from './lib'
+import {
+	allowNull,
+	array,
+	constrain,
+	boolean,
+	dictionary,
+	enumerated,
+	constant,
+	number,
+	object,
+	string,
+	Static,
+} from './lib'
 import { uuidv4String } from './patternConstrainedStrings/uuidv4'
 import { lengthConstrainedString } from './constrainedValues/lengthConstrainedString'
 import { rangeConstrainedNumber } from './constrainedValues/rangeConstrainedNumber'

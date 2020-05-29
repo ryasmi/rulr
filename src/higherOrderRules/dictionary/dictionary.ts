@@ -1,7 +1,7 @@
-import { Rule, Key } from '../core'
-import { validateObject } from './object'
-import { KeyedValidationError } from '../errors/KeyedValidationError'
-import { HigherOrderValidationError } from '../errors/HigherOrderValidationError'
+import { Rule, Key } from '../../core'
+import { validateObject } from '../object/object'
+import { KeyedValidationError } from '../../errors/KeyedValidationError'
+import { HigherOrderValidationError } from '../../errors/HigherOrderValidationError'
 
 export class DictionaryKeyValidationError extends KeyedValidationError {
 	constructor(error: unknown, key: Key) {
@@ -18,11 +18,11 @@ function validate<Input, Output>(rule: Rule<Output>, input: Input) {
 	}
 }
 
-export function dictionary<Key extends string, Value>(keyRule: Rule<Key>, valueRule: Rule<Value>) {
+export function dictionary<K extends Key, Value>(keyRule: Rule<K>, valueRule: Rule<Value>) {
 	return (input: unknown) => {
 		const objectInput = validateObject(input)
 		const keys: string[] = Object.keys(objectInput)
-		const output = {} as Record<string, Value>
+		const output = {} as Record<K, Value>
 		const errors = [] as KeyedValidationError[]
 		const initialResult = { output, errors }
 		const finalResult = keys.reduce((result, key) => {

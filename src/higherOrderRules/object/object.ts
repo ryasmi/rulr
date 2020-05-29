@@ -1,8 +1,7 @@
-import { Rule, Static } from '../core'
-import { allowUndefined } from './allowUndefined'
 import { BaseError } from 'make-error'
-import { KeyedValidationError } from '../errors/KeyedValidationError'
-import { HigherOrderValidationError } from '../errors/HigherOrderValidationError'
+import { Rule, Static } from '../../core'
+import { KeyedValidationError } from '../../errors/KeyedValidationError'
+import { HigherOrderValidationError } from '../../errors/HigherOrderValidationError'
 
 export class InvalidObjectError extends BaseError {
 	constructor() {
@@ -56,8 +55,10 @@ function validatePartialObject<T extends Schema>(schema: T, objectInput: PlainOb
 	const finalResult = keys.reduce((result, key) => {
 		const value = objectInput[key as string]
 		try {
-			const rule = allowUndefined(schema[key])
-			result.output[key] = rule(value)
+			if (value !== undefined) {
+				const rule = schema[key]
+				result.output[key] = rule(value)
+			}
 		} catch (err) {
 			result.errors.push(new KeyedValidationError(value, err, key as string))
 		}

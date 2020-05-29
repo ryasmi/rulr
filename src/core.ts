@@ -1,4 +1,4 @@
-export type Rule<Output, Input = unknown> = (input: Input) => Output
+export type Rule<Output> = (input: unknown) => Output
 export type Static<Output> = Output extends Rule<infer V> ? V : Output
 export type Key = string | number
 
