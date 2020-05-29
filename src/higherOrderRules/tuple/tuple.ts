@@ -1,19 +1,11 @@
-import { Rule } from '../../core'
-import { BaseError } from 'make-error'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Rule, Static } from '../../core'
+import { validateArray } from '../array/array'
 import { KeyedValidationError } from '../../errors/KeyedValidationError'
 import { HigherOrderValidationError } from '../../errors/HigherOrderValidationError'
 
-export class InvalidArrayError extends BaseError {
-	constructor() {
-		super(`expected array`)
-	}
-}
-
-export function validateArray(input: unknown) {
-	if (Array.isArray(input)) {
-		return input as unknown[]
-	}
-	throw new InvalidArrayError()
+type Tuple<Rules extends [Rule<any>, ...Rule<any>[]] | []> = {
+	[K in keyof Rules]: Rules[K] extends Rule<infer Type> ? Type : never
 }
 
 interface Result<T> {
@@ -21,13 +13,14 @@ interface Result<T> {
 	readonly errors: KeyedValidationError[]
 }
 
-export function array<T>(itemRule: Rule<T>) {
-	return (input: unknown) => {
+export function tuple<Rules extends [Rule<any>, ...Rule<any>[]]>(...rules: Rules) {
+	return (input: unknown): Tuple<Rules> => {
 		const arrayInput = validateArray(input)
-		const output = [] as T[]
+		const output = [] as any[]
 		const errors = [] as KeyedValidationError[]
 		const initialResult = { output, errors }
-		const finalResult = arrayInput.reduce<Result<T>>((result, value, index) => {
+		const finalResult = rules.reduce<Result<any>>((result, itemRule, index) => {
+			const value = arrayInput[index]
 			try {
 				result.output[index] = itemRule(value)
 			} catch (err) {
@@ -38,6 +31,6 @@ export function array<T>(itemRule: Rule<T>) {
 		if (finalResult.errors.length > 0) {
 			throw new HigherOrderValidationError(finalResult.errors)
 		}
-		return finalResult.output
+		return finalResult.output as Tuple<Rules>
 	}
 }

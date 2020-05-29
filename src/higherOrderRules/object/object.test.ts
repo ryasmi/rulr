@@ -7,16 +7,20 @@ test('dictionary should not allow non-object input', () => {
 })
 
 test('object should allow empty object with empty schema', () => {
+	// eslint-disable-next-line @typescript-eslint/no-empty-interface
+	interface Output {}
 	const input = {}
 	const rule = object({})
-	const output = rule(input)
+	const output: Output = rule(input)
 	assert.deepEqual(output, input)
 })
 
 test('object should allow and remove properties not specified in schema', () => {
+	// eslint-disable-next-line @typescript-eslint/no-empty-interface
+	interface Output {}
 	const input = { test: 1 }
 	const rule = object({})
-	const output = rule(input)
+	const output: Output = rule(input)
 	assert.deepEqual(output, {})
 })
 
@@ -26,9 +30,12 @@ test('object should not allow missing required properties', () => {
 })
 
 test('object should allow missing optional properties', () => {
+	interface Output {
+		test?: number
+	}
 	const input = {}
 	const rule = object({ optional: { test: number } })
-	const output = rule(input)
+	const output: Output = rule(input)
 	assert.deepEqual(output, {})
 })
 
@@ -45,23 +52,33 @@ test('object should not allow invalid optional property values', () => {
 })
 
 test('object should allow valid required property values', () => {
+	interface Output {
+		test: number
+	}
 	const input = { test: 0 }
 	const rule = object({ required: { test: number } })
-	const output = rule(input)
+	const output: Output = rule(input)
 	assert.deepEqual(output, input)
 })
 
 test('object should allow valid optional property values', () => {
+	interface Output {
+		test?: number
+	}
 	const input = { test: 0 }
 	const rule = object({ optional: { test: number } })
-	const output = rule(input)
+	const output: Output = rule(input)
 	assert.deepEqual(output, input)
 })
 
 test('object should allow valid required and optional property values', () => {
+	interface Output {
+		required: number
+		optional?: number
+	}
 	const input = { required: 0, optional: 0 }
 	const rule = object({ required: { required: number }, optional: { optional: number } })
-	const output = rule(input)
+	const output: Output = rule(input)
 	assert.deepEqual(output, input)
 })
 

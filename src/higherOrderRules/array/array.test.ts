@@ -13,13 +13,13 @@ test('array should allow empty array', () => {
 	assert.deepEqual(output, input)
 })
 
-test('array should allow array valid items', () => {
+test('array should allow array with valid items', () => {
 	const input = [1, 2, 3]
 	const output: number[] = array(number)(input)
 	assert.deepEqual(output, input)
 })
 
-test('array should not allow array invalid items', () => {
+test('array should not allow array with invalid items', () => {
 	try {
 		array(number)([1, '2', 3])
 		assert.fail('Expected error')
