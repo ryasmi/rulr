@@ -8,7 +8,7 @@ export class StringPatternError extends BaseError {
 	}
 }
 
-export function patternConstrainedString<ConstraintId>(opts: {
+export function patternConstrainedString<ConstraintId extends string>(opts: {
 	readonly patternRegExp: RegExp
 	readonly patternName: string
 }) {

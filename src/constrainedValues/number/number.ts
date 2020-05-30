@@ -14,7 +14,7 @@ export class ConstrainedNumberError extends BaseError {
 	}
 }
 
-export function number<ConstraintId>(opts: {
+export function number<ConstraintId extends string>(opts: {
 	/** You might consider using this to avoid display and storage bugs. Defaults to `-Infinity`. */
 	readonly min?: number
 

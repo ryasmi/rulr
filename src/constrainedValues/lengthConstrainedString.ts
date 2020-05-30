@@ -8,7 +8,7 @@ export class StringLengthError extends BaseError {
 	}
 }
 
-export function lengthConstrainedString<ConstraintId>(opts: {
+export function lengthConstrainedString<ConstraintId extends string>(opts: {
 	/** Defaults to `0`. */
 	readonly minLength?: number
 
