@@ -1,5 +1,5 @@
 import { BaseError } from 'make-error'
-import { string } from '../valueRules/string'
+import { string } from '../valueRules/string/string'
 import { constrain } from '../core'
 
 export class StringLengthError extends BaseError {

@@ -1,10 +1,9 @@
 import * as rulr from './lib'
-import { uuidv4String } from './patternConstrainedStrings/uuidv4'
+import { uuidv4String } from './constrainedStrings/uuidv4'
 import { lengthConstrainedString } from './constrainedValues/lengthConstrainedString'
-import { rangeConstrainedNumber } from './constrainedValues/rangeConstrainedNumber'
 
 const constrainToName = lengthConstrainedString<'Name'>({ minLength: 1, maxLength: 25 })
-const constrainToPrice = rangeConstrainedNumber<'Price'>({ min: 0, decimalPlaces: 2 })
+const constrainToPrice = rulr.number<'Price'>({ min: 0, decimalPlaces: 2 })
 
 const constrainToProduct = rulr.object({
 	required: {
@@ -111,7 +110,7 @@ demoValidation('Constrained Constant Demo', () => {
 demoValidation('Compose Rules Demo', () => {
 	function constrainToSquareNumber(input: unknown) {
 		try {
-			const numberInput = rulr.number(input)
+			const numberInput = rulr.unconstrainedNumber(input)
 			const isSquareNumber = numberInput > 0 && Math.sqrt(numberInput) % 1 === 0
 			if (isSquareNumber) {
 				return numberInput
@@ -127,13 +126,17 @@ demoValidation('Compose Rules Demo', () => {
 })
 
 demoValidation('RunTypes Example', () => {
-	const vector = rulr.tuple(rulr.number, rulr.number, rulr.number)
+	const vector = rulr.tuple(
+		rulr.unconstrainedNumber,
+		rulr.unconstrainedNumber,
+		rulr.unconstrainedNumber
+	)
 
 	const asteroid = rulr.object({
 		required: {
 			type: rulr.constant('asteroid'),
 			location: vector,
-			mass: rulr.number,
+			mass: rulr.unconstrainedNumber,
 		},
 	})
 
@@ -141,8 +144,8 @@ demoValidation('RunTypes Example', () => {
 		required: {
 			type: rulr.constant('planet'),
 			location: vector,
-			mass: rulr.number,
-			population: rulr.number,
+			mass: rulr.unconstrainedNumber,
+			population: rulr.unconstrainedNumber,
 			habitable: rulr.boolean,
 		},
 	})
@@ -159,7 +162,7 @@ demoValidation('RunTypes Example', () => {
 	const crewMember = rulr.object({
 		required: {
 			name: rulr.string,
-			age: rulr.number,
+			age: rulr.unconstrainedNumber,
 			rank: rank,
 			home: planet,
 		},
@@ -169,7 +172,7 @@ demoValidation('RunTypes Example', () => {
 		required: {
 			type: rulr.constant<'ship', string>('ship'),
 			location: vector,
-			mass: rulr.number,
+			mass: rulr.unconstrainedNumber,
 			name: rulr.string,
 			crew: rulr.array(crewMember),
 		},
@@ -190,13 +193,13 @@ demoValidation('RunTypes Example', () => {
 demoValidation('Old Example', () => {
 	const constrainToExample = rulr.object({
 		required: {
-			x: rangeConstrainedNumber<'x'>({ min: 0, max: 1 }),
+			x: rulr.number<'x'>({ min: 0, max: 1 }),
 			y: rulr.object({
 				required: {
 					z: rulr.union(
 						lengthConstrainedString<'z string'>({ maxLength: 1 }),
 						rulr.constant<'z constant', boolean>(true),
-						rangeConstrainedNumber<'z number'>({ decimalPlaces: 0 })
+						rulr.number<'z number'>({ decimalPlaces: 0 })
 					),
 				},
 				optional: {},

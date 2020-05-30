@@ -1,25 +1,31 @@
 import * as assert from 'assert'
-import { number, string, union, UnionValidationError, InvalidNumberError } from '../../lib'
+import {
+	unconstrainedNumber,
+	string,
+	union,
+	UnionValidationError,
+	InvalidNumberError,
+} from '../../lib'
 import { KeyedValidationError } from '../../errors/KeyedValidationError'
 import { HigherOrderValidationError } from '../../errors/HigherOrderValidationError'
 
 test('union should allow valid input', () => {
 	const input = 0
-	const rule = union(number)
+	const rule = union(unconstrainedNumber)
 	const output: number = rule(input)
 	assert.equal(output, input)
 })
 
 test('union should allow valid input for one rule and invalid input for another', () => {
 	const input = 0
-	const rule = union(number, string)
+	const rule = union(unconstrainedNumber, string)
 	const output: number | string = rule(input)
 	assert.equal(output, input)
 })
 
 test('union should not allow invalid input', () => {
 	const input = '0'
-	const rule = union(number)
+	const rule = union(unconstrainedNumber)
 	assert.throws(() => rule(input), UnionValidationError)
 })
 

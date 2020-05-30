@@ -7,7 +7,7 @@ export class InvalidNumberError extends BaseError {
 }
 
 /** You might want to consider constraining this somehow to avoid display and storage bugs. */
-export function number(input: unknown) {
+export function unconstrainedNumber(input: unknown) {
 	if (typeof input === 'number' && Number.isNaN(input) === false) {
 		return input
 	}

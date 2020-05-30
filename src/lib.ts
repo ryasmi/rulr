@@ -1,4 +1,5 @@
 export { constrain, Constrained, Rule, Static, Key } from './core'
+export { number, ConstrainedNumberError } from './constrainedValues/number/number'
 export { HigherOrderValidationError } from './errors/HigherOrderValidationError'
 export { KeyedValidationError } from './errors/KeyedValidationError'
 export { ValidationError } from './errors/ValidationError'
@@ -15,7 +16,10 @@ export { boolean, InvalidBooleanError } from './valueRules/boolean/boolean'
 export { constant, ConstrainedConstantError } from './valueRules/constant/constant'
 export { date, InvalidDateError } from './valueRules/date/date'
 export { enumerated, EnumError } from './valueRules/enum/enum'
-export { number, InvalidNumberError } from './valueRules/number/number'
+export {
+	unconstrainedNumber,
+	InvalidNumberError,
+} from './valueRules/unconstrainedNumber/unconstrainedNumber'
 export { string, InvalidStringError } from './valueRules/string/string'
 export { symbol, InvalidSymbolError } from './valueRules/symbol/symbol'
 export { unknown } from './valueRules/unknown/unknown'

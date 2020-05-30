@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { object, InvalidObjectError, number, string } from '../../lib'
+import { object, InvalidObjectError, unconstrainedNumber, string } from '../../lib'
 
 test('dictionary should not allow non-object input', () => {
 	const rule = object({})
@@ -25,7 +25,7 @@ test('object should allow and remove properties not specified in schema', () => 
 })
 
 test('object should not allow missing required properties', () => {
-	const rule = object({ required: { test: number } })
+	const rule = object({ required: { test: unconstrainedNumber } })
 	assert.throws(() => rule({}))
 })
 
@@ -34,20 +34,20 @@ test('object should allow missing optional properties', () => {
 		test?: number
 	}
 	const input = {}
-	const rule = object({ optional: { test: number } })
+	const rule = object({ optional: { test: unconstrainedNumber } })
 	const output: Output = rule(input)
 	assert.deepEqual(output, {})
 })
 
 test('object should not allow invalid required property values', () => {
 	const input = { test: '0' }
-	const rule = object({ required: { test: number } })
+	const rule = object({ required: { test: unconstrainedNumber } })
 	assert.throws(() => rule(input))
 })
 
 test('object should not allow invalid optional property values', () => {
 	const input = { test: '0' }
-	const rule = object({ optional: { test: number } })
+	const rule = object({ optional: { test: unconstrainedNumber } })
 	assert.throws(() => rule(input))
 })
 
@@ -56,7 +56,7 @@ test('object should allow valid required property values', () => {
 		test: number
 	}
 	const input = { test: 0 }
-	const rule = object({ required: { test: number } })
+	const rule = object({ required: { test: unconstrainedNumber } })
 	const output: Output = rule(input)
 	assert.deepEqual(output, input)
 })
@@ -66,7 +66,7 @@ test('object should allow valid optional property values', () => {
 		test?: number
 	}
 	const input = { test: 0 }
-	const rule = object({ optional: { test: number } })
+	const rule = object({ optional: { test: unconstrainedNumber } })
 	const output: Output = rule(input)
 	assert.deepEqual(output, input)
 })
@@ -77,25 +77,31 @@ test('object should allow valid required and optional property values', () => {
 		optional?: number
 	}
 	const input = { required: 0, optional: 0 }
-	const rule = object({ required: { required: number }, optional: { optional: number } })
+	const rule = object({
+		required: { required: unconstrainedNumber },
+		optional: { optional: unconstrainedNumber },
+	})
 	const output: Output = rule(input)
 	assert.deepEqual(output, input)
 })
 
 test('object should not allow missing property that is required and optional', () => {
 	const input = {}
-	const rule = object({ required: { test: number }, optional: { test: number } })
+	const rule = object({
+		required: { test: unconstrainedNumber },
+		optional: { test: unconstrainedNumber },
+	})
 	assert.throws(() => rule(input))
 })
 
 test('object should not allow invalid required property that is valid optional property', () => {
 	const input = { test: 0 }
-	const rule = object({ required: { test: string }, optional: { test: number } })
+	const rule = object({ required: { test: string }, optional: { test: unconstrainedNumber } })
 	assert.throws(() => rule(input))
 })
 
 test('object should not allow invalid optional property that is valid required property', () => {
 	const input = { test: '0' }
-	const rule = object({ required: { test: string }, optional: { test: number } })
+	const rule = object({ required: { test: string }, optional: { test: unconstrainedNumber } })
 	assert.throws(() => rule(input))
 })
