@@ -1,36 +1,22 @@
-import {
-	allowNull,
-	array,
-	constrain,
-	boolean,
-	dictionary,
-	enumerated,
-	constant,
-	number,
-	object,
-	string,
-	Static,
-} from './lib'
+import * as rulr from './lib'
 import { uuidv4String } from './patternConstrainedStrings/uuidv4'
 import { lengthConstrainedString } from './constrainedValues/lengthConstrainedString'
 import { rangeConstrainedNumber } from './constrainedValues/rangeConstrainedNumber'
-import { union } from './higherOrderRules/union'
-import { tuple } from './higherOrderRules/tuple'
 
 const constrainToName = lengthConstrainedString<'Name'>({ minLength: 1, maxLength: 25 })
 const constrainToPrice = rangeConstrainedNumber<'Price'>({ min: 0, decimalPlaces: 2 })
 
-const constrainToProduct = object({
+const constrainToProduct = rulr.object({
 	required: {
 		id: uuidv4String,
 		name: constrainToName,
 		price: constrainToPrice,
 	},
 	optional: {
-		inStock: boolean,
+		inStock: rulr.boolean,
 	},
 })
-type Product = Static<typeof constrainToProduct>
+type Product = rulr.Static<typeof constrainToProduct>
 
 function demoValidation<T>(title: string, fn: () => T[]) {
 	const trace = new Error().stack?.split('\n')[2].trim().replace('at Object.<anonymous> ', '')
@@ -62,8 +48,8 @@ demoValidation('Constrained Object Demo', () => {
 })
 
 demoValidation('Constrained Array Demo', () => {
-	const constrainToProducts = array(constrainToProduct)
-	type Products = Static<typeof constrainToProducts>
+	const constrainToProducts = rulr.array(constrainToProduct)
+	type Products = rulr.Static<typeof constrainToProducts>
 	const products: Products = constrainToProducts([
 		{ name: 'Product 1', price: 1.33 },
 		{ name: 'Product 2', price: 1.33 },
@@ -74,14 +60,14 @@ demoValidation('Constrained Array Demo', () => {
 
 demoValidation('Constrained Dictionary Demo', () => {
 	function dictionaryKey(input: unknown) {
-		const stringInput = string(input)
+		const stringInput = rulr.string(input)
 		if (stringInput.length < 1 || stringInput.length > 2) {
 			throw new Error('expected string between 1 and 2 characters')
 		}
-		return constrain<'DictionaryKey', string>(stringInput)
+		return rulr.constrain<'DictionaryKey', string>(stringInput)
 	}
-	const constrainToProductDictionary = dictionary(dictionaryKey, constrainToProduct)
-	type ProductDictionary = Static<typeof constrainToProductDictionary>
+	const constrainToProductDictionary = rulr.dictionary(dictionaryKey, constrainToProduct)
+	type ProductDictionary = rulr.Static<typeof constrainToProductDictionary>
 	const productDictionary: ProductDictionary = constrainToProductDictionary({
 		'1': { name: 'Product 1', price: 1.33 },
 		'2': { name: 'Product 2', price: 1.33 },
@@ -91,15 +77,15 @@ demoValidation('Constrained Dictionary Demo', () => {
 })
 
 demoValidation('Union Demo', () => {
-	const constrainToStringOrBoolean = union(string, boolean)
-	type StringOrBoolean = Static<typeof constrainToStringOrBoolean>
+	const constrainToStringOrBoolean = rulr.union(rulr.string, rulr.boolean)
+	type StringOrBoolean = rulr.Static<typeof constrainToStringOrBoolean>
 	const stringOrBoolean: StringOrBoolean = constrainToStringOrBoolean(1)
 	return [stringOrBoolean]
 })
 
 demoValidation('Tuple Demo', () => {
-	const stringBooleanTuple = tuple(string, boolean)
-	type StringBooleanTuple = Static<typeof stringBooleanTuple>
+	const stringBooleanTuple = rulr.tuple(rulr.string, rulr.boolean)
+	type StringBooleanTuple = rulr.Static<typeof stringBooleanTuple>
 	const myStringBooleanTuple: StringBooleanTuple = stringBooleanTuple(1)
 	return [myStringBooleanTuple]
 })
@@ -110,14 +96,14 @@ demoValidation('Constrained Enum Demo', () => {
 		Orange,
 		Green,
 	}
-	const constrainToTrafficLight = enumerated(TrafficLight)
+	const constrainToTrafficLight = rulr.enumerated(TrafficLight)
 	const trafficLight = constrainToTrafficLight(TrafficLight.Green)
 	return [trafficLight]
 })
 
 demoValidation('Constrained Constant Demo', () => {
-	const constrainToTen = constant(10)
-	type Ten = Static<typeof constrainToTen>
+	const constrainToTen = rulr.constant(10)
+	type Ten = rulr.Static<typeof constrainToTen>
 	const ten: Ten = constrainToTen(10)
 	return [ten]
 })
@@ -125,7 +111,7 @@ demoValidation('Constrained Constant Demo', () => {
 demoValidation('Compose Rules Demo', () => {
 	function constrainToSquareNumber(input: unknown) {
 		try {
-			const numberInput = number(input)
+			const numberInput = rulr.number(input)
 			const isSquareNumber = numberInput > 0 && Math.sqrt(numberInput) % 1 === 0
 			if (isSquareNumber) {
 				return numberInput
@@ -135,29 +121,29 @@ demoValidation('Compose Rules Demo', () => {
 			throw new Error('expected square number')
 		}
 	}
-	type SquareNumber = Static<typeof constrainToSquareNumber>
+	type SquareNumber = rulr.Static<typeof constrainToSquareNumber>
 	const squareNumber: SquareNumber = constrainToSquareNumber(4)
 	return [squareNumber]
 })
 
 demoValidation('RunTypes Example', () => {
-	const vector = tuple(number, number, number)
+	const vector = rulr.tuple(rulr.number, rulr.number, rulr.number)
 
-	const asteroid = object({
+	const asteroid = rulr.object({
 		required: {
-			type: constant('asteroid'),
+			type: rulr.constant('asteroid'),
 			location: vector,
-			mass: number,
+			mass: rulr.number,
 		},
 	})
 
-	const planet = object({
+	const planet = rulr.object({
 		required: {
-			type: constant('planet'),
+			type: rulr.constant('planet'),
 			location: vector,
-			mass: number,
-			population: number,
-			habitable: boolean,
+			mass: rulr.number,
+			population: rulr.number,
+			habitable: rulr.boolean,
 		},
 	})
 
@@ -168,29 +154,29 @@ demoValidation('RunTypes Example', () => {
 		Ensign = 'ensign',
 	}
 
-	const rank = enumerated(Rank)
+	const rank = rulr.enumerated(Rank)
 
-	const crewMember = object({
+	const crewMember = rulr.object({
 		required: {
-			name: string,
-			age: number,
+			name: rulr.string,
+			age: rulr.number,
 			rank: rank,
 			home: planet,
 		},
 	})
 
-	const ship = object({
+	const ship = rulr.object({
 		required: {
-			type: constant<'ship', string>('ship'),
+			type: rulr.constant<'ship', string>('ship'),
 			location: vector,
-			mass: number,
-			name: string,
-			crew: array(crewMember),
+			mass: rulr.number,
+			name: rulr.string,
+			crew: rulr.array(crewMember),
 		},
 	})
 
-	const spaceObject = union(asteroid, planet, ship)
-	type SpaceObject = Static<typeof spaceObject>
+	const spaceObject = rulr.union(asteroid, planet, ship)
+	type SpaceObject = rulr.Static<typeof spaceObject>
 
 	const mySpaceObject: SpaceObject = spaceObject({
 		type: 'asteroi',
@@ -202,14 +188,14 @@ demoValidation('RunTypes Example', () => {
 })
 
 demoValidation('Old Example', () => {
-	const constrainToExample = object({
+	const constrainToExample = rulr.object({
 		required: {
 			x: rangeConstrainedNumber<'x'>({ min: 0, max: 1 }),
-			y: object({
+			y: rulr.object({
 				required: {
-					z: union(
+					z: rulr.union(
 						lengthConstrainedString<'z string'>({ maxLength: 1 }),
-						constant<'z constant', boolean>(true),
+						rulr.constant<'z constant', boolean>(true),
 						rangeConstrainedNumber<'z number'>({ decimalPlaces: 0 })
 					),
 				},
@@ -217,11 +203,11 @@ demoValidation('Old Example', () => {
 			}),
 		},
 		optional: {
-			a: boolean,
-			b: array(allowNull(boolean)),
+			a: rulr.boolean,
+			b: rulr.array(rulr.allowNull(rulr.boolean)),
 		},
 	})
-	type ExampleRecord = Static<typeof constrainToExample>
+	type ExampleRecord = rulr.Static<typeof constrainToExample>
 	const myData = { y: { z: '' }, x: 1 }
 	const myRecord: ExampleRecord = constrainToExample(myData)
 	return [myRecord]
