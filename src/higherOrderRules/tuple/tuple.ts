@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Rule, Static } from '../../core'
+import { Rule } from '../../core'
 import { validateArray } from '../array/array'
 import { KeyedValidationError } from '../../errors/KeyedValidationError'
 import { HigherOrderValidationError } from '../../errors/HigherOrderValidationError'
