@@ -64,7 +64,7 @@ The following validation rules that we've frequently used in our applications ha
 - [boolean](./src/valueRules/boolean/readme.md)
 - [constant](./src/valueRules/constant/readme.md)
 - [date](./src/valueRules/date/readme.md)
-- dictionary
+- [dictionary](./src/higherOrderRules/dictionary/readme.md)
 - enum
 - number
 - object
