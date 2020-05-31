@@ -60,7 +60,7 @@ The following validation rules that we've frequently used in our applications ha
 - [allowUndefined](./src/higherOrderRules/allowUndefined/readme.md)
 - [any](./src/valueRules/any/readme.md)
 - [array](./src/higherOrderRules/array/readme.md)
-- bigint
+- [bigint](./src/valueRules/bigint/readme.md)
 - boolean
 - constant
 - date
