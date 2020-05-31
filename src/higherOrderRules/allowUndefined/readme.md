@@ -1,4 +1,4 @@
-# allowNull
+# allowUndefined
 
 [Back to root readme.md](../../../readme.md)
 
