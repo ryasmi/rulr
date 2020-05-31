@@ -57,7 +57,7 @@ const positiveNumber2: PositiveNumber = validatePositiveNumber(-1)
 The following validation rules that we've frequently used in our applications have been built into Rulr to save you time writing them yourself. We plan to expand this list in the future.
 
 - [allowNull](./src/higherOrderRules/allowNull/readme.md)
-- allowUndefined
+- [allowUndefined](./src/higherOrderRules/allowUndefined/readme.md)
 - [any](./src/valueRules/any/readme.md)
 - array
 - bigint
