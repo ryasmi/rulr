@@ -59,7 +59,7 @@ The following validation rules that we've frequently used in our applications ha
 - [allowNull](./src/higherOrderRules/allowNull/readme.md)
 - [allowUndefined](./src/higherOrderRules/allowUndefined/readme.md)
 - [any](./src/valueRules/any/readme.md)
-- array
+- [array](./src/valueRules/array/readme.md)
 - bigint
 - boolean
 - constant
