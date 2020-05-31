@@ -29,7 +29,7 @@ const exampleRecord2: ExampleRecord = constrainToExampleRecord({
 })
 
 // Invalid
-const exampleRecord2: ExampleRecord = constrainToExampleRecord({
+const exampleRecord3: ExampleRecord = constrainToExampleRecord({
 	example: '1',
 })
 ```
