@@ -49,13 +49,23 @@ test('constrained string should allow input greater than min length', () => {
 
 test('constrained string should allow input matching pattern', () => {
 	const input = '1'
-	const rule = string<'Test'>({ constraintId: 'Test', patternRegExp: /^1$/ })
+	const rule = string<'Test'>({
+		constraintId: 'Test',
+		patternTest: (stringInput) => {
+			return /^1$/.test(stringInput)
+		},
+	})
 	const output: Constrained<'Test', string> = rule(input)
 	assert.equal(output, input)
 })
 
 test('constrained string should not allow input not matching pattern', () => {
 	const input = '12'
-	const rule = string<'Test'>({ constraintId: 'Test', patternRegExp: /^1$/ })
+	const rule = string<'Test'>({
+		constraintId: 'Test',
+		patternTest: (stringInput) => {
+			return /^1$/.test(stringInput)
+		},
+	})
 	assert.throws(() => rule(input), ConstrainedStringError)
 })

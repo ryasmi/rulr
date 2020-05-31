@@ -1,5 +1,4 @@
 import * as rulr from './lib'
-import { uuidv4String } from './constrainedStrings/uuidv4'
 
 const constrainToName = rulr.string<'Name'>({
 	constraintId: 'Name',
@@ -7,10 +6,17 @@ const constrainToName = rulr.string<'Name'>({
 	maxLength: 25,
 })
 const constrainToPrice = rulr.number<'Price'>({ min: 0, decimalPlaces: 2 })
+const constrainToUuidV4String = rulr.string<'UUID v4'>({
+	constraintId: 'UUID v4',
+	patternTest: (stringInput) => {
+		const regex = /^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i
+		return regex.test(stringInput)
+	},
+})
 
 const constrainToProduct = rulr.object({
 	required: {
-		id: uuidv4String,
+		id: constrainToUuidV4String,
 		name: constrainToName,
 		price: constrainToPrice,
 	},
@@ -37,7 +43,7 @@ function demoValidation<T>(title: string, fn: () => T[]) {
 }
 
 demoValidation('Constrained Values Demo', () => {
-	const id = uuidv4String('')
+	const id = constrainToUuidV4String('')
 	const name = constrainToName('Product 1')
 	const price = constrainToPrice(1.33)
 	const product: Product = { id, name, price }
