@@ -7,29 +7,29 @@ This function can be used when you want to allow an input to be undefined as sho
 ```ts
 import * as rulr from 'rulr'
 
-const constrainToExampleRecord = rulr.object({
+const constrainToExample = rulr.object({
 	required: {
 		example: rulr.allowUndefined(rulr.unconstrainedNumber),
 	},
 })
 
-type ExampleRecord = rulr.Static<typeof constrainToExampleRecord>
+type Example = rulr.Static<typeof constrainToExample>
 // {
 //   example: number | undefined
 // }
 
 // Valid
-const exampleRecord1: ExampleRecord = constrainToExampleRecord({
+const example1: Example = constrainToExample({
 	example: undefined,
 })
 
 // Valid
-const exampleRecord2: ExampleRecord = constrainToExampleRecord({
+const example2: Example = constrainToExample({
 	example: 1,
 })
 
 // Invalid
-const exampleRecord3: ExampleRecord = constrainToExampleRecord({
+const example3: Example = constrainToExample({
 	example: '1',
 })
 ```
@@ -39,27 +39,27 @@ Note that when using this function as part of an object schema, the property is 
 ```ts
 import * as rulr from 'rulr'
 
-const constrainToExampleRecord = rulr.object({
+const constrainToExample = rulr.object({
 	optional: {
 		example: rulr.unconstrainedNumber,
 	},
 })
 
-type ExampleRecord = rulr.Static<typeof constrainToExampleRecord>
+type Example = rulr.Static<typeof constrainToExample>
 // {
 //   example?: number
 // }
 
 // Valid
-const exampleRecord1: ExampleRecord = constrainToExampleRecord({})
+const example1: Example = constrainToExample({})
 
 // Valid
-const exampleRecord2: ExampleRecord = constrainToExampleRecord({
+const example2: Example = constrainToExample({
 	example: 1,
 })
 
 // Invalid
-const exampleRecord3: ExampleRecord = constrainToExampleRecord({
+const example3: Example = constrainToExample({
 	example: '1',
 })
 ```

@@ -7,18 +7,18 @@ This function can be used when you don't need to validate part of an input as sh
 ```ts
 import * as rulr from 'rulr'
 
-const constrainToExampleRecord = rulr.object({
+const constrainToExample = rulr.object({
 	required: {
 		example: rulr.any,
 	},
 })
 
-type ExampleRecord = rulr.Static<typeof constrainToExampleRecord>
+type Example = rulr.Static<typeof constrainToExample>
 // {
 //   example: any
 // }
 
-const exampleRecord: ExampleRecord = constrainToExampleRecord({
+const example: Example = constrainToExample({
 	example: 10,
 })
 ```

@@ -9,15 +9,15 @@ import * as rulr from 'rulr'
 
 const constrainToExample = rulr.array(rulr.unconstrainedNumber)
 
-type ExampleRecord = rulr.Static<typeof constrainToExample>
+type Example = rulr.Static<typeof constrainToExample>
 // number[]
 
 // Valid
-const exampleRecord1: ExampleRecord = constrainToExample([1])
+const example1: Example = constrainToExample([1])
 
 // Valid
-const exampleRecord2: ExampleRecord = constrainToExample([])
+const example2: Example = constrainToExample([])
 
 // Invalid
-const exampleRecord3: ExampleRecord = constrainToExample(['1'])
+const example3: Example = constrainToExample(['1'])
 ```
