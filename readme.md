@@ -33,7 +33,7 @@ import { Static } from 'rulr'
 type ValidNumber = Static<typeof validateNumber>
 ```
 
-For more constrained (branded) data like positive numbers, you can use Rulr's core `constrain` function to guarantee that data has been validated at runtime.
+For more constrained (branded) data like positive numbers, you can use Rulr's core `constrain` function to guarantee at compile-time that data will be validated at runtime.
 
 ```ts
 import { constrain } from 'rulr'
@@ -54,29 +54,24 @@ const positiveNumber1: PositiveNumber = -1
 const positiveNumber2: PositiveNumber = validatePositiveNumber(-1)
 ```
 
-The following validation rules that we've frequently used in our applications have been built into Rulr to save you time writing them yourself.
+The following validation rules that we've frequently used in our applications have been built into Rulr to save you time writing them yourself. We plan to expand this list in the future.
 
-- boolean
-- number
-- string
-- array
-- dictionary
-- object
-- allowEither
 - allowNull
 - allowUndefined
+- [any](./src/valueRules/any/readme.md)
+- array
+- bigint
+- boolean
 - constant
+- date
+- dictionary
 - enum
-- lengthConstrainedString
-- patternConstrainedString
-- rangeConstrainedNumber
-- emailAddress
-- imt (Internet Media Type)
-- iri (Internationalized Resource Identifier)
-- iso8601Duration
-- iso8601Timestamp
-- languageCode
-- mailto
-- semanticVersion
-- sha1
-- uuidv4
+- number
+- object
+- string
+- symbol
+- tuple
+- unconstrainedNumber
+- unconstrainedString
+- union
+- unknown
