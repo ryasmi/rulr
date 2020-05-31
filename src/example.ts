@@ -1,7 +1,7 @@
 import * as rulr from './lib'
 import { uuidv4String } from './constrainedStrings/uuidv4'
 
-const constrainToName = rulr.constrainedString<'Name'>({
+const constrainToName = rulr.string<'Name'>({
 	constraintId: 'Name',
 	minLength: 1,
 	maxLength: 25,
@@ -200,7 +200,7 @@ demoValidation('Old Example', () => {
 			y: rulr.object({
 				required: {
 					z: rulr.union(
-						rulr.constrainedString<'z string'>({ constraintId: 'z string', maxLength: 1 }),
+						rulr.string<'z string'>({ constraintId: 'z string', maxLength: 1 }),
 						rulr.constant<'z constant', boolean>(true),
 						rulr.number<'z number'>({ decimalPlaces: 0 })
 					),
