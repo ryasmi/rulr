@@ -63,7 +63,7 @@ The following validation rules that we've frequently used in our applications ha
 - [bigint](./src/valueRules/bigint/readme.md)
 - [boolean](./src/valueRules/boolean/readme.md)
 - [constant](./src/valueRules/constant/readme.md)
-- date
+- [date](./src/valueRules/date/readme.md)
 - dictionary
 - enum
 - number
