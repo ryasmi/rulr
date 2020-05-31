@@ -1,8 +1,11 @@
 import * as rulr from './lib'
 import { uuidv4String } from './constrainedStrings/uuidv4'
-import { lengthConstrainedString } from './constrainedValues/lengthConstrainedString'
 
-const constrainToName = lengthConstrainedString<'Name'>({ minLength: 1, maxLength: 25 })
+const constrainToName = rulr.constrainedString<'Name'>({
+	constraintId: 'Name',
+	minLength: 1,
+	maxLength: 25,
+})
 const constrainToPrice = rulr.number<'Price'>({ min: 0, decimalPlaces: 2 })
 
 const constrainToProduct = rulr.object({
@@ -197,7 +200,7 @@ demoValidation('Old Example', () => {
 			y: rulr.object({
 				required: {
 					z: rulr.union(
-						lengthConstrainedString<'z string'>({ maxLength: 1 }),
+						rulr.constrainedString<'z string'>({ constraintId: 'z string', maxLength: 1 }),
 						rulr.constant<'z constant', boolean>(true),
 						rulr.number<'z number'>({ decimalPlaces: 0 })
 					),

@@ -1,6 +1,6 @@
-import { patternConstrainedString } from '../constrainedValues/patternConstrainedString'
+import { string } from '../constrainedValues/string/string'
 
-export const semanticVersionString = patternConstrainedString<'Semantic Version'>({
+export const semanticVersionString = string<'Semantic Version'>({
 	patternRegExp: /^1\.0(\.[0-9]+)?$/,
-	patternName: 'Semantic Version',
+	constraintId: 'Semantic Version',
 })

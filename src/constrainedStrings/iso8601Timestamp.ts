@@ -1,4 +1,4 @@
-import { patternConstrainedString } from '../constrainedValues/patternConstrainedString'
+import { string } from '../constrainedValues/string/string'
 
 const year = '(\\d{4})'
 const month = '((0[1-9])|(1[012]))'
@@ -31,7 +31,7 @@ const extZone = `(Z|${extPZone}|${extNZone})`
 const extendedFormat = `(${extDate}(T${extTime}${extZone})?)`
 const timestampRegExp = new RegExp(`^(${extendedFormat}|${basicFormat})$`)
 
-export const iso8601TimestampString = patternConstrainedString<'ISO 8601 Timestamp'>({
+export const iso8601TimestampString = string<'ISO 8601 Timestamp'>({
 	patternRegExp: timestampRegExp,
-	patternName: 'ISO 8601 Timestamp',
+	constraintId: 'ISO 8601 Timestamp',
 })

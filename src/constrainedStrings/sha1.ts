@@ -1,6 +1,6 @@
-import { patternConstrainedString } from '../constrainedValues/patternConstrainedString'
+import { string } from '../constrainedValues/string/string'
 
-export const sha1String = patternConstrainedString<'SHA1'>({
+export const sha1String = string<'SHA1'>({
 	patternRegExp: /^\b[0-9a-f]{5,40}$/i,
-	patternName: 'SHA1',
+	constraintId: 'SHA1',
 })

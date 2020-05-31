@@ -1,6 +1,6 @@
-import { patternConstrainedString } from '../constrainedValues/patternConstrainedString'
+import { string } from '../constrainedValues/string/string'
 
-export const imtString = patternConstrainedString<'IMT'>({
+export const imtString = string<'Internet Media Type'>({
 	patternRegExp: /^((application|audio|example|image|message|model|multipart|text|video)(\/[-\w+.]+)(;\s*[-\w]+=[-\w]+)*;?)$/,
-	patternName: 'Internet Media Type (IMT)',
+	constraintId: 'Internet Media Type',
 })

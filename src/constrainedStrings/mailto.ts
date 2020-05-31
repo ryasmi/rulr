@@ -1,7 +1,7 @@
 import { emailAddressRegExpString } from './emailAddress'
-import { patternConstrainedString } from '../constrainedValues/patternConstrainedString'
+import { string } from '../constrainedValues/string/string'
 
-export const mailtoString = patternConstrainedString<'Mailto'>({
+export const mailtoString = string<'Mailto'>({
 	patternRegExp: new RegExp(`^mailto:${emailAddressRegExpString}$`, 'i'),
-	patternName: 'Mailto',
+	constraintId: 'Mailto',
 })

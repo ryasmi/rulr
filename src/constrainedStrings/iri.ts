@@ -1,6 +1,6 @@
-import { patternConstrainedString } from '../constrainedValues/patternConstrainedString'
+import { string } from '../constrainedValues/string/string'
 
-export const iriString = patternConstrainedString<'IRI'>({
+export const iriString = string<'Internationalized Resource Identifier'>({
 	patternRegExp: /^\w+:/i,
-	patternName: 'Internationalized Resource Identifier (IRI)',
+	constraintId: 'Internationalized Resource Identifier',
 })
