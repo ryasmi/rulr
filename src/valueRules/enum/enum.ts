@@ -1,6 +1,6 @@
 import { BaseError } from 'make-error'
 
-export class EnumError<T> extends BaseError {
+export class InvalidEnumError<T> extends BaseError {
 	constructor(public readonly enumValues: T[]) {
 		super(`expected value from enum`)
 	}
@@ -14,6 +14,6 @@ export function enumerated<Output>(enumerator: Output) {
 		if (enumValues.includes(input)) {
 			return input as Values<Output>
 		}
-		throw new EnumError<Values<Output>>(enumValues)
+		throw new InvalidEnumError<Values<Output>>(enumValues)
 	}
 }

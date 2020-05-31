@@ -16,7 +16,7 @@ export { bigint, InvalidBigIntError } from './valueRules/bigint/bigint'
 export { boolean, InvalidBooleanError } from './valueRules/boolean/boolean'
 export { constant, InvalidConstantError } from './valueRules/constant/constant'
 export { date, InvalidDateError } from './valueRules/date/date'
-export { enumerated, EnumError } from './valueRules/enum/enum'
+export { enumerated, InvalidEnumError } from './valueRules/enum/enum'
 export {
 	unconstrainedNumber,
 	InvalidNumberError,

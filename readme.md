@@ -65,7 +65,7 @@ The following validation rules that we've frequently used in our applications ha
 - [constant](./src/valueRules/constant/readme.md)
 - [date](./src/valueRules/date/readme.md)
 - [dictionary](./src/higherOrderRules/dictionary/readme.md)
-- enum
+- [enum](./src/valueRules/enum/readme.md)
 - number
 - object
 - string
