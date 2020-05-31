@@ -30,7 +30,7 @@ const example1: Example = constrainToExample({
 })
 
 // Invalid
-const example1: Example = constrainToExample({
+const example2: Example = constrainToExample({
 	example: 'red',
 })
 ```

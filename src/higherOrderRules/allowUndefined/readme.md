@@ -51,15 +51,15 @@ type Example = rulr.Static<typeof constrainToExample>
 // }
 
 // Valid
-const example1: Example = constrainToExample({})
+const example4: Example = constrainToExample({})
 
 // Valid
-const example2: Example = constrainToExample({
+const example5: Example = constrainToExample({
 	example: 1,
 })
 
 // Invalid
-const example3: Example = constrainToExample({
+const example6: Example = constrainToExample({
 	example: '1',
 })
 ```

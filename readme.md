@@ -66,7 +66,7 @@ The following validation rules that we've frequently used in our applications ha
 - [date](./src/valueRules/date/readme.md)
 - [dictionary](./src/higherOrderRules/dictionary/readme.md)
 - [enum](./src/valueRules/enum/readme.md)
-- number
+- [number](./src/constrainedValues/number/readme.md)
 - object
 - string
 - symbol
