@@ -7,7 +7,7 @@ export class ConstrainedConstantError<T> extends BaseError {
 	}
 }
 
-export function constant<ConstraintId, Type>(constantValue: Type) {
+export function constant<ConstraintId extends string, Type>(constantValue: Type) {
 	return (input: unknown) => {
 		if (input === constantValue) {
 			return constrain<ConstraintId, Type>(input as Type)

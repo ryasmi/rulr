@@ -1,7 +1,7 @@
 import * as assert from 'assert'
 import {
 	unconstrainedNumber,
-	string,
+	unconstrainedString,
 	union,
 	UnionValidationError,
 	InvalidNumberError,
@@ -18,7 +18,7 @@ test('union should allow valid input', () => {
 
 test('union should allow valid input for one rule and invalid input for another', () => {
 	const input = 0
-	const rule = union(unconstrainedNumber, string)
+	const rule = union(unconstrainedNumber, unconstrainedString)
 	const output: number | string = rule(input)
 	assert.equal(output, input)
 })

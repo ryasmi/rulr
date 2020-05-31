@@ -7,7 +7,7 @@ export class InvalidStringError extends BaseError {
 }
 
 /** You might want to consider constraining this somehow to avoid display and storage bugs. */
-export function string(input: unknown) {
+export function unconstrainedString(input: unknown) {
 	if (typeof input === 'string') {
 		return input
 	}

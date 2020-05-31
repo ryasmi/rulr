@@ -24,6 +24,9 @@ export {
 	unconstrainedNumber,
 	InvalidNumberError,
 } from './valueRules/unconstrainedNumber/unconstrainedNumber'
-export { string, InvalidStringError } from './valueRules/string/string'
+export {
+	unconstrainedString,
+	InvalidStringError,
+} from './valueRules/unconstrainedString/unconstrainedString'
 export { symbol, InvalidSymbolError } from './valueRules/symbol/symbol'
 export { unknown } from './valueRules/unknown/unknown'

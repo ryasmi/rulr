@@ -1,5 +1,5 @@
 import { BaseError } from 'make-error'
-import { string as unconstrainedString } from '../../valueRules/string/string'
+import { unconstrainedString } from '../../valueRules/unconstrainedString/unconstrainedString'
 import { constrain } from '../../core'
 
 export class ConstrainedStringError extends BaseError {

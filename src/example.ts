@@ -62,7 +62,7 @@ demoValidation('Constrained Array Demo', () => {
 
 demoValidation('Constrained Dictionary Demo', () => {
 	function dictionaryKey(input: unknown) {
-		const stringInput = rulr.string(input)
+		const stringInput = rulr.unconstrainedString(input)
 		if (stringInput.length < 1 || stringInput.length > 2) {
 			throw new Error('expected string between 1 and 2 characters')
 		}
@@ -79,14 +79,14 @@ demoValidation('Constrained Dictionary Demo', () => {
 })
 
 demoValidation('Union Demo', () => {
-	const constrainToStringOrBoolean = rulr.union(rulr.string, rulr.boolean)
+	const constrainToStringOrBoolean = rulr.union(rulr.unconstrainedString, rulr.boolean)
 	type StringOrBoolean = rulr.Static<typeof constrainToStringOrBoolean>
 	const stringOrBoolean: StringOrBoolean = constrainToStringOrBoolean(1)
 	return [stringOrBoolean]
 })
 
 demoValidation('Tuple Demo', () => {
-	const stringBooleanTuple = rulr.tuple(rulr.string, rulr.boolean)
+	const stringBooleanTuple = rulr.tuple(rulr.unconstrainedString, rulr.boolean)
 	type StringBooleanTuple = rulr.Static<typeof stringBooleanTuple>
 	const myStringBooleanTuple: StringBooleanTuple = stringBooleanTuple(1)
 	return [myStringBooleanTuple]
@@ -164,7 +164,7 @@ demoValidation('RunTypes Example', () => {
 
 	const crewMember = rulr.object({
 		required: {
-			name: rulr.string,
+			name: rulr.unconstrainedString,
 			age: rulr.unconstrainedNumber,
 			rank: rank,
 			home: planet,
@@ -176,7 +176,7 @@ demoValidation('RunTypes Example', () => {
 			type: rulr.constant<'ship', string>('ship'),
 			location: vector,
 			mass: rulr.unconstrainedNumber,
-			name: rulr.string,
+			name: rulr.unconstrainedString,
 			crew: rulr.array(crewMember),
 		},
 	})

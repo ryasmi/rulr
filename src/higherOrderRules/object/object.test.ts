@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { object, InvalidObjectError, unconstrainedNumber, string } from '../../lib'
+import { object, InvalidObjectError, unconstrainedNumber, unconstrainedString } from '../../lib'
 
 test('dictionary should not allow non-object input', () => {
 	const rule = object({})
@@ -96,12 +96,18 @@ test('object should not allow missing property that is required and optional', (
 
 test('object should not allow invalid required property that is valid optional property', () => {
 	const input = { test: 0 }
-	const rule = object({ required: { test: string }, optional: { test: unconstrainedNumber } })
+	const rule = object({
+		required: { test: unconstrainedString },
+		optional: { test: unconstrainedNumber },
+	})
 	assert.throws(() => rule(input))
 })
 
 test('object should not allow invalid optional property that is valid required property', () => {
 	const input = { test: '0' }
-	const rule = object({ required: { test: string }, optional: { test: unconstrainedNumber } })
+	const rule = object({
+		required: { test: unconstrainedString },
+		optional: { test: unconstrainedNumber },
+	})
 	assert.throws(() => rule(input))
 })
