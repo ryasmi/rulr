@@ -1,7 +1,7 @@
 import { BaseError } from 'make-error'
 import { constrain } from '../../core'
 
-export class ConstrainedConstantError<T> extends BaseError {
+export class InvalidConstantError<T> extends BaseError {
 	constructor(public readonly constantValue: T) {
 		super(`expected ${constantValue}`)
 	}
@@ -12,6 +12,6 @@ export function constant<ConstraintId extends string, Type>(constantValue: Type)
 		if (input === constantValue) {
 			return constrain<ConstraintId, Type>(input as Type)
 		}
-		throw new ConstrainedConstantError(constantValue)
+		throw new InvalidConstantError(constantValue)
 	}
 }
