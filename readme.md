@@ -61,7 +61,7 @@ The following validation rules that we've frequently used in our applications ha
 - [any](./src/valueRules/any/readme.md)
 - [array](./src/higherOrderRules/array/readme.md)
 - [bigint](./src/valueRules/bigint/readme.md)
-- boolean
+- [boolean](./src/valueRules/boolean/readme.md)
 - constant
 - date
 - dictionary
