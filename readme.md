@@ -25,7 +25,7 @@ function constrainToPositiveNumber(input: unknown) {
 	throw new Error('expected positive number')
 }
 
-type PositiveNumber = Static<typeof constrainToPositiveNumber>
+type PositiveNumber = rulr.Static<typeof constrainToPositiveNumber>
 
 // Compile-time error.
 const positiveNumber1: PositiveNumber = -1
