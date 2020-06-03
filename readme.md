@@ -11,13 +11,13 @@ function constrainToNumber(input: unknown) {
 	}
 	// If the input is invalid, just throw any error.
 	throw new Error('expected number')
-	// You can throw a rulr.HigherOrderValidationError to return many errors at once to help correct data quickly.
+	// You can throw a rulr.HigherOrderValidationError to return many errors.
 }
 
-// Use Rulr to turn your rules into static types so you don't have to redefine them.
+// Rulr can turn your rules into static types to avoid duplicating information.
 type ValidNumber = rulr.Static<typeof constrainToNumber>
 
-// For more safety, use Rulr's constrain function to guarantee at compile-time your data will be validated at runtime.
+// Rulr's constrain function can guarantee your data will be validated at runtime.
 function constrainToPositiveNumber(input: unknown) {
 	if (typeof input === 'number' && input >= 0) {
 		return rulr.constrain<'Positive Number', number>(input)
