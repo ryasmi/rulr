@@ -1,44 +1,37 @@
 # Rulr
-> Rule your data like a king.
-
-Rulr is a JavaScript validation package written in TypeScript that saves you time defining validation rules and correcting data. In Rulr, a validation rule is any function that takes unknown data as input and returns the known data back as output. If the input is invalid, we try to throw an error containing all of the problems in one function call to help you correct data quickly.
+> Rule your data like a king in TypeScript.
 
 ```ts
-function validateNumber(input: unknown) {
+import * as rulr from 'rulr'
+
+// In Rulr, a rule is a function that takes unknown input and returns known valid output.
+function constrainToNumber(input: unknown) {
 	if (typeof input === 'number') {
 		return input
 	}
+	// If the input is invalid, just throw any error.
 	throw new Error('expected number')
+	// You can throw a rulr.HigherOrderValidationError to return many errors at once to help correct data quickly.
 }
-```
 
-Defining validation rules in this way, you can use Rulr's `Static` type to gain static type checking without redefining your data types.
+// Use Rulr to turn your rules into static types so you don't have to redefine them.
+type ValidNumber = rulr.Static<typeof constrainToNumber>
 
-```ts
-import { Static } from 'rulr'
-
-type ValidNumber = Static<typeof validateNumber>
-```
-
-When you need a bit more safety from constrained (branded) data like positive numbers, you can use Rulr's core `constrain` function to guarantee at compile-time that data will be validated at runtime.
-
-```ts
-import { constrain } from 'rulr'
-
-function validatePositiveNumber(input: unknown) {
+// For more safety, use Rulr's constrain function to guarantee at compile-time your data will be validated at runtime.
+function constrainToPositiveNumber(input: unknown) {
 	if (typeof input === 'number' && input >= 0) {
-		return constrain<'Positive Number', number>(input)
+		return rulr.constrain<'Positive Number', number>(input)
 	}
 	throw new Error('expected positive number')
 }
 
-type PositiveNumber = Static<typeof validatePositiveNumber>
+type PositiveNumber = Static<typeof constrainToPositiveNumber>
 
 // Compile-time error.
 const positiveNumber1: PositiveNumber = -1
 
 // Run-time error.
-const positiveNumber2: PositiveNumber = validatePositiveNumber(-1)
+const positiveNumber2: PositiveNumber = constrainToPositiveNumber(-1)
 ```
 
 Get started by installing it with NPM.
@@ -47,7 +40,7 @@ Get started by installing it with NPM.
 npm i rulr
 ```
 
-The following validation rules that we've frequently used in our applications have been built into Rulr to save you time writing them yourself. We plan to expand this list in the future.
+To save you some time, Rulr comes with these rules we've frequently used.
 
 - [allowNull](./src/higherOrderRules/allowNull/readme.md)
 - [allowUndefined](./src/higherOrderRules/allowUndefined/readme.md)
