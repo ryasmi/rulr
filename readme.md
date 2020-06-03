@@ -1,12 +1,7 @@
 # Rulr
+> Rule your data like a king.
 
-A JavaScript validation package that saves you time defining validation rules and correcting data. Get started by installing it with NPM.
-
-```sh
-npm i rulr
-```
-
-In Rulr, a validation rule is any function that takes unknown data as input and returns the known data back as output.
+Rulr is a JavaScript validation package written in TypeScript that saves you time defining validation rules and correcting data. In Rulr, a validation rule is any function that takes unknown data as input and returns the known data back as output. If the input is invalid, we try to throw an error containing all of the problems in one function call to help you correct data quickly.
 
 ```ts
 function validateNumber(input: unknown) {
@@ -17,15 +12,7 @@ function validateNumber(input: unknown) {
 }
 ```
 
-If the input is invalid, the rule can simply throw an error containing all of the problems with the input in one function call to help you correct data quickly.
-
-```ts
-import { ValidationErrors } from 'rulr'
-
-throw new ValidationErrors(errors)
-```
-
-Defining validation rules in this way, you can use Rulr's `Static` type to gain static type checking from TypeScript's type inference functionality without redefining your data types.
+Defining validation rules in this way, you can use Rulr's `Static` type to gain static type checking without redefining your data types.
 
 ```ts
 import { Static } from 'rulr'
@@ -33,7 +20,7 @@ import { Static } from 'rulr'
 type ValidNumber = Static<typeof validateNumber>
 ```
 
-For more constrained (branded) data like positive numbers, you can use Rulr's core `constrain` function to guarantee at compile-time that data will be validated at runtime.
+When you need a bit more safety from constrained (branded) data like positive numbers, you can use Rulr's core `constrain` function to guarantee at compile-time that data will be validated at runtime.
 
 ```ts
 import { constrain } from 'rulr'
@@ -52,6 +39,12 @@ const positiveNumber1: PositiveNumber = -1
 
 // Run-time error.
 const positiveNumber2: PositiveNumber = validatePositiveNumber(-1)
+```
+
+Get started by installing it with NPM.
+
+```sh
+npm i rulr
 ```
 
 The following validation rules that we've frequently used in our applications have been built into Rulr to save you time writing them yourself. We plan to expand this list in the future.
