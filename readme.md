@@ -58,7 +58,7 @@ To save you some time, Rulr comes with these rules we've frequently used.
 - [string](./src/constrainedValues/string/readme.md)
 - [symbol](./src/valueRules/symbol/readme.md)
 - tuple
-- unconstrainedNumber
+- [unconstrainedNumber](./src/valueRules/unconstrainedNumber/readme.md)
 - unconstrainedString
 - union
 - unknown
