@@ -30,6 +30,8 @@ const positiveNumber1: PositiveNumber = -1
 const positiveNumber2: PositiveNumber = constrainToPositiveNumber(-1)
 ```
 
+### Getting Started
+
 To save you some time, Rulr comes with the following rules.
 
 - [allowNull](./src/higherOrderRules/allowNull/readme.md)
