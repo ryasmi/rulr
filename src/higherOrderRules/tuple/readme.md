@@ -2,7 +2,7 @@
 
 [Back to root readme.md](../../../readme.md)
 
-This function validates that the input is an array and uses the sub-rules to validate each item as shown in the example below. This function is a higher order rule as it uses a sub-rule to validate each item in the tuple input. This function should only throw errors from the sub-rule or the `rulr.InvalidArrayError`. Each error thrown from the sub-rules will be wrapped in `rulr.KeyedValidationError` and these errors will be combined and thrown as a `rulr.ValidationErrors`.
+This function validates that the input is an array and uses the sub-rules to validate each item as shown in the example below. This function is a higher order rule as it uses a sub-rule to validate each item in the tuple input. This function should only throw errors from the sub-rule or the `rulr.InvalidArrayError`. Each error thrown from the sub-rules will be wrapped in `rulr.KeyedValidationError` and these errors will be combined and thrown as `rulr.ValidationErrors`.
 
 ```ts
 import * as rulr from 'rulr'
