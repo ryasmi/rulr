@@ -60,6 +60,8 @@ To save you some time, Rulr comes with these rules we've frequently used.
 - [union](./src/higherOrderRules/union/readme.md)
 - [unknown](./src/valueRules/unknown/readme.md)
 
+In future we'll also add some convenient rules for the string validators provided in [Chris O'Hara's extensive validator package](https://www.npmjs.com/package/validator).
+
 Rulr was started in 2016 and continues to be maintained to save us time writing validation logic in our TypeScript projects and to save our users time correcting data by returning as many validation errors as possible in one function call.
 
 Rulr has not been publicised until 2020 because as a full-time Software Engineer on a commercially supported open source project, I understand the committment and responsbility that is required. Over the four years between 2016 and 2020, TypeScript has gained many great validation libraries. I have greatly admired the work of [Tom Crockett in RunTypes](https://github.com/pelotom/runtypes) and more recently [Colin McDonnell in Zod](https://github.com/vriad/zod). Their work has influenced some parts of Rulr over the last four years. It is my hope that if nothing else, publicising Rulr will influence these packages and future validation packages for the better, to save time writing validation logic, and to save time correcting data.
