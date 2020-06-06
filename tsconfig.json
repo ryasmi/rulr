@@ -5,6 +5,9 @@
 		"strict": true,
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
-		"lib": ["ES2020.BigInt"]
-	}
+		"lib": ["ES2020.BigInt"],
+		"outDir": "dist",
+		"declaration": true
+	},
+	"files": ["src/lib.ts"]
 }

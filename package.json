@@ -2,19 +2,25 @@
 	"name": "rulr",
 	"version": "0.0.0-development",
 	"description": "A package that saves you time defining validation rules and correcting data",
-	"main": "dist/index.js",
+	"main": "dist/lib.js",
 	"author": "ryansmith94",
 	"license": "ISC",
-	"typings": "dist/index.d.ts",
+	"typings": "dist/lib.d.ts",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/ryansmith94/rulr.git"
 	},
+	"files": [
+		"dist",
+		"readme.md"
+	],
 	"scripts": {
 		"test": "jest",
 		"test:dev": "jest --watch",
 		"start": "ts-node src/example.ts",
-		"lint": "eslint --cache --fix src"
+		"lint": "eslint --cache --fix src",
+		"lint:ci": "eslint src",
+		"build": "tsc"
 	},
 	"dependencies": {
 		"make-error": "^1.3.6"
