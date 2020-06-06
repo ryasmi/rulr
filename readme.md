@@ -11,7 +11,7 @@ function constrainToNumber(input: unknown) {
 	if (typeof input === 'number') {
 		return input
 	}
-	// If the input is invalid, just throw any error.
+	// If the input is invalid, just throw an error.
 	throw new Error('expected number')
 	// You can throw a rulr.HigherOrderValidationError to return many errors.
 }
@@ -24,6 +24,8 @@ function constrainToPositiveNumber(input: unknown) {
 	if (typeof input === 'number' && input >= 0) {
 		return rulr.constrain<'Positive Number', number>(input)
 	}
+	// Consider creating your own error class for specific errors.
+	// You can catch errors and use `instanceof` to translate them into different languages.
 	throw new Error('expected positive number')
 }
 
