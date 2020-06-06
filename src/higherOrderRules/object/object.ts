@@ -1,7 +1,7 @@
 import { BaseError } from 'make-error'
 import { Rule, Static } from '../../core'
 import { KeyedValidationError } from '../../errors/KeyedValidationError'
-import { HigherOrderValidationError } from '../../errors/HigherOrderValidationError'
+import { ValidationErrors } from '../../errors/ValidationErrors'
 
 export class InvalidObjectError extends BaseError {
 	constructor() {
@@ -82,7 +82,7 @@ export function object<Required extends Schema, Optional extends Schema>(opts: {
 		const optionalObjectResult = validatePartialObject(optional, objectInput)
 		const errors = [...requiredObjectResult.errors, ...optionalObjectResult.errors]
 		if (errors.length > 0) {
-			throw new HigherOrderValidationError(errors)
+			throw new ValidationErrors(errors)
 		}
 		return {
 			...requiredObjectResult.output,

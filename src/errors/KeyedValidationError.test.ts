@@ -1,6 +1,6 @@
 import * as assert from 'assert'
 import { KeyedValidationError } from '../lib'
-import { HigherOrderValidationError } from './HigherOrderValidationError'
+import { ValidationErrors } from './ValidationErrors'
 
 test('KeyedValidationError should return correct JSON with string error', () => {
 	const keyedValidationError = new KeyedValidationError(null, 'error', 'key')
@@ -22,7 +22,7 @@ test('KeyedValidationError should return correct message with errors', () => {
 
 test('KeyedValidationError should return correct JSON with nested validation error', () => {
 	const nestedKeyedValidationError = new KeyedValidationError(null, 'error', 'level2')
-	const higherOrderValidationError = new HigherOrderValidationError([nestedKeyedValidationError])
+	const higherOrderValidationError = new ValidationErrors([nestedKeyedValidationError])
 	const keyedValidationError = new KeyedValidationError(null, higherOrderValidationError, 'level1')
 	assert.deepEqual(keyedValidationError.toJSON(), [
 		{
@@ -35,7 +35,7 @@ test('KeyedValidationError should return correct JSON with nested validation err
 
 test('KeyedValidationError should return correct message with nested validation error', () => {
 	const nestedKeyedValidationError = new KeyedValidationError(null, 'error', 'level2')
-	const higherOrderValidationError = new HigherOrderValidationError([nestedKeyedValidationError])
+	const higherOrderValidationError = new ValidationErrors([nestedKeyedValidationError])
 	const keyedValidationError = new KeyedValidationError(null, higherOrderValidationError, 'level1')
 	const actualMessage = keyedValidationError.message
 	const path = `${keyedValidationError.key}.${nestedKeyedValidationError.key}`

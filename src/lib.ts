@@ -1,7 +1,7 @@
 export { constrain, Constrained, Rule, Static, Key } from './core'
 export { number, ConstrainedNumberError } from './constrainedValues/number/number'
 export { string, ConstrainedStringError } from './constrainedValues/string/string'
-export { HigherOrderValidationError } from './errors/HigherOrderValidationError'
+export { ValidationErrors } from './errors/ValidationErrors'
 export { KeyedValidationError } from './errors/KeyedValidationError'
 export { ValidationError } from './errors/ValidationError'
 export { allowNull } from './higherOrderRules/allowNull/allowNull'

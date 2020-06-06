@@ -2,7 +2,7 @@
 import { Rule } from '../../core'
 import { validateArray } from '../array/array'
 import { KeyedValidationError } from '../../errors/KeyedValidationError'
-import { HigherOrderValidationError } from '../../errors/HigherOrderValidationError'
+import { ValidationErrors } from '../../errors/ValidationErrors'
 
 type Tuple<Rules extends [Rule<any>, ...Rule<any>[]] | []> = {
 	[K in keyof Rules]: Rules[K] extends Rule<infer Type> ? Type : never
@@ -29,7 +29,7 @@ export function tuple<Rules extends [Rule<any>, ...Rule<any>[]]>(...rules: Rules
 			return result
 		}, initialResult)
 		if (finalResult.errors.length > 0) {
-			throw new HigherOrderValidationError(finalResult.errors)
+			throw new ValidationErrors(finalResult.errors)
 		}
 		return finalResult.output as Tuple<Rules>
 	}

@@ -1,7 +1,7 @@
 import * as assert from 'assert'
 import {
 	InvalidArrayError,
-	HigherOrderValidationError,
+	ValidationErrors,
 	tuple,
 	unconstrainedNumber,
 	unconstrainedString,
@@ -30,7 +30,7 @@ test('tuple should allow array with valid items', () => {
 test('tuple should not allow array with too few items', () => {
 	const input = [1]
 	const rule = tuple(unconstrainedNumber, unconstrainedString)
-	assert.throws(() => rule(input), HigherOrderValidationError)
+	assert.throws(() => rule(input), ValidationErrors)
 })
 
 test('tuple should allow and remove items not specified in tuple', () => {
@@ -43,5 +43,5 @@ test('tuple should allow and remove items not specified in tuple', () => {
 test('tuple should not allow invalid item values', () => {
 	const input = [1, 1]
 	const rule = tuple(unconstrainedNumber, unconstrainedString)
-	assert.throws(() => rule(input), HigherOrderValidationError)
+	assert.throws(() => rule(input), ValidationErrors)
 })

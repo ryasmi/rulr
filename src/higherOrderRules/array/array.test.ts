@@ -3,7 +3,7 @@ import {
 	array,
 	InvalidArrayError,
 	unconstrainedNumber,
-	HigherOrderValidationError,
+	ValidationErrors,
 	KeyedValidationError,
 } from '../../lib'
 
@@ -24,12 +24,12 @@ test('array should not allow array with invalid items', () => {
 		array(unconstrainedNumber)([1, '2', 3])
 		assert.fail('Expected error')
 	} catch (error) {
-		if (error instanceof HigherOrderValidationError) {
+		if (error instanceof ValidationErrors) {
 			assert.equal(error.errors.length, 1)
 			assert.ok(error.errors[0] instanceof KeyedValidationError)
 			return
 		} else {
-			assert.fail('Expected HigherOrderValidationError')
+			assert.fail('Expected ValidationErrors')
 		}
 	}
 })

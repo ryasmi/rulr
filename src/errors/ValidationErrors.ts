@@ -1,7 +1,7 @@
 import { ValidationError, ErrorJson } from './ValidationError'
 import { KeyedValidationError } from './KeyedValidationError'
 
-export class HigherOrderValidationError extends ValidationError {
+export class ValidationErrors extends ValidationError {
 	constructor(public readonly errors: KeyedValidationError[]) {
 		super()
 	}

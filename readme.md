@@ -17,7 +17,7 @@ function constrainToNumber(input: unknown) {
 	}
 	// If the input is invalid, just throw an error.
 	throw new Error('expected number')
-	// You can throw a rulr.HigherOrderValidationError to return many errors.
+	// You can throw a rulr.ValidationErrors to return many errors.
 }
 
 // Rulr can turn your rules into static types to avoid duplicating information.

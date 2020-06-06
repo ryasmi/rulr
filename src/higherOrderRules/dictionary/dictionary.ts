@@ -1,7 +1,7 @@
 import { Rule, Key } from '../../core'
 import { validateObject } from '../object/object'
 import { KeyedValidationError } from '../../errors/KeyedValidationError'
-import { HigherOrderValidationError } from '../../errors/HigherOrderValidationError'
+import { ValidationErrors } from '../../errors/ValidationErrors'
 
 export class DictionaryKeyValidationError extends KeyedValidationError {
 	constructor(error: unknown, key: Key) {
@@ -46,7 +46,7 @@ export function dictionary<K extends Key, Value>(keyRule: Rule<K>, valueRule: Ru
 			return result
 		}, initialResult)
 		if (finalResult.errors.length > 0) {
-			throw new HigherOrderValidationError(finalResult.errors)
+			throw new ValidationErrors(finalResult.errors)
 		}
 		return finalResult.output
 	}

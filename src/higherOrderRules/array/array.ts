@@ -1,7 +1,7 @@
 import { Rule } from '../../core'
 import { BaseError } from 'make-error'
 import { KeyedValidationError } from '../../errors/KeyedValidationError'
-import { HigherOrderValidationError } from '../../errors/HigherOrderValidationError'
+import { ValidationErrors } from '../../errors/ValidationErrors'
 
 export class InvalidArrayError extends BaseError {
 	constructor() {
@@ -36,7 +36,7 @@ export function array<T>(itemRule: Rule<T>) {
 			return result
 		}, initialResult)
 		if (finalResult.errors.length > 0) {
-			throw new HigherOrderValidationError(finalResult.errors)
+			throw new ValidationErrors(finalResult.errors)
 		}
 		return finalResult.output
 	}

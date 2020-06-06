@@ -4,7 +4,7 @@
 
 This function validates that the input is an object and uses the provided schemas for the required and optional properties. The schemas are objects where the keys define the property name and the associated value defines the rule to validate the input property's value.
 
-This function can throw the `rulr.InvalidObjectError` for invalid objects. All errors thrown by the schema rules will be wrapped in the `rulr.HigherOrderValidationError`. For valid data, this function returns an object with only the properties defined in the schemas.
+This function can throw the `rulr.InvalidObjectError` for invalid objects. All errors thrown by the schema rules will be wrapped in the `rulr.ValidationErrors`. For valid data, this function returns an object with only the properties defined in the schemas.
 
 ```ts
 import * as rulr from 'rulr'

@@ -7,7 +7,7 @@ import {
 	InvalidNumberError,
 } from '../../lib'
 import { KeyedValidationError } from '../../errors/KeyedValidationError'
-import { HigherOrderValidationError } from '../../errors/HigherOrderValidationError'
+import { ValidationErrors } from '../../errors/ValidationErrors'
 
 test('union should allow valid input', () => {
 	const input = 0
@@ -52,7 +52,7 @@ test('UnionValidationError should return correct JSON with validation errors', (
 	const input = true
 	const numberError = new InvalidNumberError()
 	const keyError = new KeyedValidationError(input, numberError, 'test')
-	const objectError = new HigherOrderValidationError([keyError])
+	const objectError = new ValidationErrors([keyError])
 	const higherOrderValidationError = new UnionValidationError(input, [objectError])
 	assert.deepEqual(higherOrderValidationError.toJSON(), [
 		{
