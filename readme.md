@@ -55,7 +55,7 @@ To save you some time, Rulr comes with these rules we've frequently used.
 - [enum](./src/valueRules/enum/readme.md)
 - [number](./src/constrainedValues/number/readme.md)
 - [object](./src/higherOrderRules/object/readme.md)
-- string
+- [string](./src/constrainedValues/string/readme.md)
 - symbol
 - tuple
 - unconstrainedNumber
