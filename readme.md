@@ -1,4 +1,5 @@
 # Rulr
+
 > Rule your data like a king in TypeScript.
 
 ```ts
@@ -53,7 +54,7 @@ To save you some time, Rulr comes with these rules we've frequently used.
 - [dictionary](./src/higherOrderRules/dictionary/readme.md)
 - [enum](./src/valueRules/enum/readme.md)
 - [number](./src/constrainedValues/number/readme.md)
-- object
+- [object](./src/higherOrderRules/object/readme.md)
 - string
 - symbol
 - tuple
