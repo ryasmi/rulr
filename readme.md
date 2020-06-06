@@ -52,7 +52,7 @@ To save you some time, Rulr comes with these rules we've frequently used.
 - [object](./src/higherOrderRules/object/readme.md)
 - [string](./src/constrainedValues/string/readme.md)
 - [symbol](./src/valueRules/symbol/readme.md)
-- tuple
+- [tuple](./src/higherOrderRules/tuple/readme.md)
 - [unconstrainedNumber](./src/valueRules/unconstrainedNumber/readme.md)
 - [unconstrainedString](./src/valueRules/unconstrainedString/readme.md)
 - union
