@@ -1,6 +1,6 @@
-# Rulr
+# Rulr 👑
 
-> Rule your data like a king in TypeScript.
+> Rule your data like a TypeScript Emperor.
 
 ```ts
 // Install it with `npm i rulr`
