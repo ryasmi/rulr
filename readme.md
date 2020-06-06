@@ -10,20 +10,17 @@ Rule your data like a TypeScript Emperor.
 // Install it with `npm i rulr`
 import * as rulr from 'rulr'
 
-// In Rulr, a rule is a function that takes unknown input and returns known valid output.
+// A rule takes unknown input and returns valid output.
 function constrainToPositiveNumber(input: unknown) {
 	if (typeof input === 'number' && input >= 0) {
-		// Rulr's `constrain` function can guarantee your data will be validated at runtime.
+		// Rulr's `constrain` function guarantees data will be validated at runtime.
 		return rulr.constrain<'Positive Number', number>(input)
 	}
-	// If the input is invalid, just throw an error.
 	// You can throw `rulr.ValidationErrors` to return many errors.
 	throw new Error('expected positive number')
-	// Consider creating your own error class for specific errors.
-	// You can catch errors and use `instanceof` to translate them into different languages.
 }
 
-// Rulr can turn your rules into static types to avoid duplicating information.
+// Rulr can turn rules into types to avoid duplicating information.
 type PositiveNumber = rulr.Static<typeof constrainToPositiveNumber>
 
 // Compile-time error.
