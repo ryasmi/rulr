@@ -1,6 +1,0 @@
-{
-  "extends": ["./node_modules/@ht2-labs/typescript-project/configs/tslint.json"],
-  "rules": {
-    "only-arrow-functions": false
-  }
-}

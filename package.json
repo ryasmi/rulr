@@ -1,31 +1,121 @@
 {
-  "name": "rulr",
-  "author": "ryansmith94",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
-  "version": "0.0.0-development",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ryansmith94/rulr.git"
-  },
-  "scripts": {
-    "test": "npm run build && npm run lint",
-    "build": "tsc",
-    "clean": "rimraf dist",
-    "lint": "tslint -p ./tsconfig.json",
-    "release": "ht2-release-public-circleci-lib-dist"
-  },
-  "devDependencies": {
-    "@ht2-labs/semantic-release": "2.0.5",
-    "@ht2-labs/typescript-project": "2.0.34",
-    "@types/node": "9.6.56"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "renovate": {
-    "extends": [
-      "@ht2-labs:base"
-    ]
-  }
+	"name": "rulr",
+	"version": "0.0.0-development",
+	"description": "A package that saves you time defining validation rules and correcting data",
+	"main": "dist/lib.js",
+	"author": "ryansmith94",
+	"license": "ISC",
+	"typings": "dist/lib.d.ts",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/ryansmith94/rulr.git"
+	},
+	"files": [
+		"dist",
+		"readme.md"
+	],
+	"scripts": {
+		"test": "jest",
+		"test:dev": "jest --watch",
+		"start": "ts-node src/example.ts",
+		"lint": "eslint --cache --fix src",
+		"lint:ci": "eslint src",
+		"build": "tsc"
+	},
+	"dependencies": {
+		"make-error": "^1.3.6"
+	},
+	"devDependencies": {
+		"@commitlint/config-conventional": "8.3.4",
+		"@types/jest": "25.2.2",
+		"@types/node": "9.6.55",
+		"@typescript-eslint/eslint-plugin": "3.0.0",
+		"@typescript-eslint/parser": "3.0.0",
+		"commitlint": "8.3.5",
+		"eslint": "7.1.0",
+		"eslint-config-prettier": "6.11.0",
+		"husky": "4.2.5",
+		"jest": "26.0.1",
+		"prettier": "2.0.5",
+		"pretty-quick": "2.0.1",
+		"semantic-release": "17.0.7",
+		"ts-jest": "25.5.1",
+		"ts-node": "8.10.1",
+		"typescript": "3.9.2"
+	},
+	"jest": {
+		"preset": "ts-jest",
+		"testEnvironment": "node",
+		"bail": 1,
+		"collectCoverage": true,
+		"coverageThreshold": {
+			"global": {
+				"lines": 100
+			}
+		}
+	},
+	"prettier": {
+		"trailingComma": "es5",
+		"tabWidth": 2,
+		"useTabs": true,
+		"semi": false,
+		"singleQuote": true,
+		"printWidth": 100,
+		"arrowParens": "always"
+	},
+	"husky": {
+		"hooks": {
+			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+			"pre-commit": "jest --onlyChanged && pretty-quick --staged && yarn lint"
+		}
+	},
+	"commitlint": {
+		"extends": [
+			"@commitlint/config-conventional"
+		],
+		"rules": {
+			"scope-case": [
+				0,
+				"always",
+				[
+					"sentence-case"
+				]
+			],
+			"subject-case": [
+				0,
+				"always",
+				[
+					"sentence-case"
+				]
+			]
+		}
+	},
+	"releases": {
+		"branches": [
+			"master"
+		]
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"renovate": {
+		"extends": [
+			"@ht2-labs:base"
+		]
+	},
+	"eslintConfig": {
+		"root": true,
+		"parser": "@typescript-eslint/parser",
+		"plugins": [
+			"@typescript-eslint"
+		],
+		"extends": [
+			"eslint:recommended",
+			"plugin:@typescript-eslint/recommended",
+			"prettier/@typescript-eslint"
+		],
+		"rules": {
+			"@typescript-eslint/explicit-module-boundary-types": 0
+		}
+	}
 }
