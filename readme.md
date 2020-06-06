@@ -55,7 +55,7 @@ To save you some time, Rulr comes with these rules we've frequently used.
 - [tuple](./src/higherOrderRules/tuple/readme.md)
 - [unconstrainedNumber](./src/valueRules/unconstrainedNumber/readme.md)
 - [unconstrainedString](./src/valueRules/unconstrainedString/readme.md)
-- union
+- [union](./src/higherOrderRules/union/readme.md)
 - unknown
 
 Rulr was started in 2016 to allow me to save me time writing validation logic for a TypeScript project. At the time, TypeScript was starting to become popular and there were very few TypeScript packages that provided a way to simply define constrained validation rules with static type checking whilst also providing more than one error. The open source TypeScript project we were implementing needed to validate large complex inputs according to an equally large standard. This made it very important for us to return as many errors as possible to help our users locate and correct the mistakes in their data quickly. That project is used by some of the largest companies in the world and so it was equally important for us to have safer code using constrained (branded) data types.
