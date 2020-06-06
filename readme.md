@@ -30,7 +30,7 @@ const positiveNumber1: PositiveNumber = -1
 const positiveNumber2: PositiveNumber = constrainToPositiveNumber(-1)
 ```
 
-To save you some time, Rulr comes with these rules we've frequently used.
+To save you some time, Rulr comes with the following rules.
 
 - [allowNull](./src/higherOrderRules/allowNull/readme.md)
 - [allowUndefined](./src/higherOrderRules/allowUndefined/readme.md)
@@ -52,7 +52,9 @@ To save you some time, Rulr comes with these rules we've frequently used.
 - [union](./src/higherOrderRules/union/readme.md)
 - [unknown](./src/valueRules/unknown/readme.md)
 
-In future we'll also add some convenient rules for the string validators provided in [Chris O'Hara's extensive validator package](https://www.npmjs.com/package/validator).
+_In future we'll also add some convenient rules for the string validators provided in [Chris O'Hara's extensive validator package](https://www.npmjs.com/package/validator)._
+
+### Support
 
 Rulr was started in 2016 and continues to be maintained to save us time writing validation logic in our TypeScript projects and to save our users time correcting data by returning as many validation errors as possible in one function call.
 
