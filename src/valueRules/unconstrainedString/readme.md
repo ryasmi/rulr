@@ -20,11 +20,11 @@ type Example = rulr.Static<typeof constrainToExample>
 
 // Valid
 const example1: Example = constrainToExample({
-	example: 1,
+	example: '1',
 })
 
 // Invalid
 const example2: Example = constrainToExample({
-	example: '1',
+	example: 1,
 })
 ```
