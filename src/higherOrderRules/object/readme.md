@@ -21,7 +21,7 @@ const constrainToExample = rulr.object({
 type Example = rulr.Static<typeof constrainToExample>
 // {
 //   requiredExample: number;
-//   example?: number;
+//   optionalExample?: number;
 // }
 
 // Valid
