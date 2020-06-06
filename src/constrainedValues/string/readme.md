@@ -2,7 +2,7 @@
 
 [Back to root readme.md](../../../readme.md)
 
-This function can be used to check the type of the input is a string and matches the given constraints as shown in the example below. It should only throw `rulr.ConstrainedStringError`.
+This function can be used to check the type of the input is a string and matches the given constraints as shown in the example below. It should only throw `rulr.ConstrainedStringError`. If you don't need to constrain your string, you can use the [unconstrainedString rule](../../valueRules/unconstrainedString/readme.md).
 
 ```ts
 import * as rulr from 'rulr'
