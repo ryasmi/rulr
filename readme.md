@@ -3,6 +3,7 @@
 > Rule your data like a king in TypeScript.
 
 ```ts
+// Install it with `npm i rulr`
 import * as rulr from 'rulr'
 
 // In Rulr, a rule is a function that takes unknown input and returns known valid output.
@@ -33,12 +34,6 @@ const positiveNumber1: PositiveNumber = -1
 
 // Run-time error.
 const positiveNumber2: PositiveNumber = constrainToPositiveNumber(-1)
-```
-
-Get started by installing it with NPM.
-
-```sh
-npm i rulr
 ```
 
 To save you some time, Rulr comes with these rules we've frequently used.
