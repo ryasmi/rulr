@@ -31,8 +31,7 @@ const positiveNumber2: PositiveNumber = constrainToPositiveNumber(-1)
 
 To save you some time, Rulr comes with the following rules.
 
-- [allowNull](./src/higherOrderRules/allowNull/readme.md)
-- [allowUndefined](./src/higherOrderRules/allowUndefined/readme.md)
+- [allowNull](./src/higherOrderRules/allowNull/readme.md) & [allowUndefined](./src/higherOrderRules/allowUndefined/readme.md)
 - [any](./src/valueRules/any/readme.md)
 - [array](./src/higherOrderRules/array/readme.md)
 - [bigint](./src/valueRules/bigint/readme.md)
@@ -41,19 +40,18 @@ To save you some time, Rulr comes with the following rules.
 - [date](./src/valueRules/date/readme.md)
 - [dictionary](./src/higherOrderRules/dictionary/readme.md)
 - [enum](./src/valueRules/enum/readme.md)
-- [number](./src/constrainedValues/number/readme.md)
+- [number](./src/constrainedValues/number/readme.md) & [unconstrainedNumber](./src/valueRules/unconstrainedNumber/readme.md)
 - [object](./src/higherOrderRules/object/readme.md)
-- [string](./src/constrainedValues/string/readme.md)
+- [string](./src/constrainedValues/string/readme.md) & [unconstrainedString](./src/valueRules/unconstrainedString/readme.md)
 - [symbol](./src/valueRules/symbol/readme.md)
 - [tuple](./src/higherOrderRules/tuple/readme.md)
-- [unconstrainedNumber](./src/valueRules/unconstrainedNumber/readme.md)
-- [unconstrainedString](./src/valueRules/unconstrainedString/readme.md)
 - [union](./src/higherOrderRules/union/readme.md)
 - [unknown](./src/valueRules/unknown/readme.md)
 
 Rulr also comes with a growing list of convenient rules built on [Chris O'Hara's extensive and much loved validator package](https://www.npmjs.com/package/validator).
 
 - [email](./src/constrainedStrings/email/readme.md)
+- [iso8601Timestamp](./src/constrainedStrings/iso8601Timestamp/readme.md)
 
 ### Support
 

@@ -1,4 +1,8 @@
 export { email, InvalidEmailError } from './constrainedStrings/email/email'
+export {
+	iso8601Timestamp,
+	InvalidISO8601TimestampError,
+} from './constrainedStrings/iso8601Timestamp/iso8601Timestamp'
 export { constrain, Constrained, Rule, Static, Key } from './core'
 export { number, ConstrainedNumberError } from './constrainedValues/number/number'
 export { string, ConstrainedStringError } from './constrainedValues/string/string'
