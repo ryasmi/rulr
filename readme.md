@@ -1,6 +1,6 @@
 <h1 align="center">
-  <div>👑</div>
-  <div>rulr</div>
+  <div align="center">👑</div>
+  <div align="center">rulr</div>
 </h1>
 <p align="center">
 Rule your data like a TypeScript Emperor.
