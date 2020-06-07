@@ -88,8 +88,7 @@
 	},
 	"releases": {
 		"branches": [
-			"master",
-			"next"
+			"master"
 		]
 	},
 	"publishConfig": {
