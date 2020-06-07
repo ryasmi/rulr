@@ -2,9 +2,9 @@ name: Node CI
 
 on:
   push:
-    branches: [master]
+    branches: [master, next]
   pull_request:
-    branches: [master]
+    branches: [master, next]
 
 jobs:
   build:
@@ -24,7 +24,7 @@ jobs:
       - run: npm run build
       - run: npm run lint:ci
       - run: npm test
-      - run: npx semantic-release -d
+      - run: npx semantic-release
         if: matrix.node-version == '10.x'
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
