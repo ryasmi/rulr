@@ -6,10 +6,6 @@
 	"author": "ryansmith94",
 	"license": "ISC",
 	"typings": "dist/lib.d.ts",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/ryansmith94/rulr.git"
-	},
 	"files": [
 		"dist",
 		"readme.md"
