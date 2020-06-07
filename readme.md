@@ -1,10 +1,7 @@
-<h1 align="center">
-  <div align="center">👑</div>
-  <div align="center">rulr</div>
-</h1>
-<p align="center">
-Rule your data like a TypeScript Emperor.
-</p>
+<div align="center">
+	<h1>👑</br>rulr</h1>
+	<p>Rule your data like a TypeScript Emperor.</p>
+</div>
 
 ```ts
 // Install it with `npm i rulr`
