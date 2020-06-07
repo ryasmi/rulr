@@ -51,7 +51,9 @@ To save you some time, Rulr comes with the following rules.
 - [union](./src/higherOrderRules/union/readme.md)
 - [unknown](./src/valueRules/unknown/readme.md)
 
-_In future we'll also add some convenient rules for the string validators provided in [Chris O'Hara's extensive validator package](https://www.npmjs.com/package/validator)._
+Rulr also comes with a growing list of convenient rules built on [Chris O'Hara's extensive and much loved validator package](https://www.npmjs.com/package/validator).
+
+- [email](./src/constrainedStrings/email/readme.md)
 
 ### Support
 

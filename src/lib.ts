@@ -1,3 +1,4 @@
+export { email, InvalidEmailError } from './constrainedStrings/email/email'
 export { constrain, Constrained, Rule, Static, Key } from './core'
 export { number, ConstrainedNumberError } from './constrainedValues/number/number'
 export { string, ConstrainedStringError } from './constrainedValues/string/string'

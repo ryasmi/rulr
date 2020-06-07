@@ -12,19 +12,21 @@
 	],
 	"scripts": {
 		"test": "jest",
-		"test:dev": "jest --watch",
+		"test:dev": "jest --watch -o",
 		"start": "ts-node src/example.ts",
 		"lint": "eslint --cache --fix src",
 		"lint:ci": "eslint src",
 		"build": "tsc"
 	},
 	"dependencies": {
-		"make-error": "^1.3.6"
+		"make-error": "^1.3.6",
+		"validator": "^13.0.0"
 	},
 	"devDependencies": {
 		"@commitlint/config-conventional": "8.3.4",
 		"@types/jest": "25.2.3",
 		"@types/node": "9.6.55",
+		"@types/validator": "13.0.0",
 		"@typescript-eslint/eslint-plugin": "3.0.0",
 		"@typescript-eslint/parser": "3.0.0",
 		"commitlint": "8.3.5",
