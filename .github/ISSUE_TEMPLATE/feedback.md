@@ -1,6 +1,6 @@
 ---
 name: Feedback
-about: Describe your experiences using the project to help it improve. Whilst this project is maintained outside work hours and provided for free, go ahead and express your feelings (positive or negative) as part of your feedback. If you need some empathy, hopefully it can be provided.
+about: Describe your experiences and feelings towards the project in return for empathy and improvements that can be provided freely outside work hours.
 title: ''
 labels: 'feedback'
 assignees: ''
