@@ -7,7 +7,7 @@ This function validates arrays and their items as shown in the example below. Th
 ```ts
 import * as rulr from 'rulr'
 
-const constrainToExample = rulr.array(rulr.unconstrainedNumber)
+const constrainToExample = rulr.array(rulr.number)
 
 type Example = rulr.Static<typeof constrainToExample>
 // number[]

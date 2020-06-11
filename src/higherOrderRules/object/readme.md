@@ -11,10 +11,10 @@ import * as rulr from 'rulr'
 
 const constrainToExample = rulr.object({
 	required: {
-		requiredExample: rulr.unconstrainedNumber,
+		requiredExample: rulr.number,
 	},
 	optional: {
-		optionalExample: rulr.unconstrainedNumber,
+		optionalExample: rulr.number,
 	},
 })
 

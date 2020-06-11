@@ -9,7 +9,7 @@ import * as rulr from 'rulr'
 
 const constrainToExample = rulr.object({
 	required: {
-		example: rulr.allowUndefined(rulr.unconstrainedNumber),
+		example: rulr.allowUndefined(rulr.number),
 	},
 })
 
@@ -41,7 +41,7 @@ import * as rulr from 'rulr'
 
 const constrainToExample = rulr.object({
 	optional: {
-		example: rulr.unconstrainedNumber,
+		example: rulr.number,
 	},
 })
 

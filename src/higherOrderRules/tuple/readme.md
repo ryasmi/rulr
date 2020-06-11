@@ -7,7 +7,7 @@ This function validates that the input is an array and uses the sub-rules to val
 ```ts
 import * as rulr from 'rulr'
 
-const constrainToExample = rulr.tuple(rulr.unconstrainedNumber, rulr.unconstrainedString)
+const constrainToExample = rulr.tuple(rulr.number, rulr.string)
 
 type Example = rulr.Static<typeof constrainToExample>
 // [number, string]

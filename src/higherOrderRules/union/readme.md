@@ -9,7 +9,7 @@ import * as rulr from 'rulr'
 
 const constrainToExample = rulr.object({
 	required: {
-		example: rulr.union(rulr.unconstrainedNumber, rulr.unconstrainedString),
+		example: rulr.union(rulr.number, rulr.string),
 	},
 })
 

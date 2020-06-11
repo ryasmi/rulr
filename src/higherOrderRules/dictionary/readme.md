@@ -7,7 +7,7 @@ This function validates that the input is an object and uses the provided key su
 ```ts
 import * as rulr from 'rulr'
 
-const constrainToExample = rulr.dictionary(rulr.unconstrainedString, rulr.unconstrainedNumber)
+const constrainToExample = rulr.dictionary(rulr.string, rulr.number)
 
 type Example = rulr.Static<typeof constrainToExample>
 // Record<string, number>

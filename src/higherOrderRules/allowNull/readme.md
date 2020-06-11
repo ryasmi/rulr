@@ -9,7 +9,7 @@ import * as rulr from 'rulr'
 
 const constrainToExample = rulr.object({
 	required: {
-		example: rulr.allowNull(rulr.unconstrainedNumber),
+		example: rulr.allowNull(rulr.number),
 	},
 })
 
