@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { email, InvalidEmailError } from '../../lib'
+import { email, Email, InvalidEmailError } from '../../lib'
 
 test('email should not allow invalid string input', () => {
 	const input = 0
@@ -10,7 +10,7 @@ test('email should not allow invalid string input', () => {
 test('email should allow valid email input', () => {
 	const input = 'test@example.org'
 	const rule = email
-	const output = rule(input)
+	const output: Email = rule(input)
 	assert.equal(output, input)
 })
 
@@ -24,7 +24,7 @@ test('email should not allow invalid email input', () => {
 test('email should allow valid email input with generic TLD', () => {
 	const input = 'test@example.horse'
 	const rule = email
-	const output = rule(input)
+	const output: Email = rule(input)
 	assert.equal(output, input)
 })
 
@@ -32,6 +32,6 @@ test('email should allow valid email input with generic TLD', () => {
 test('email should allow valid email input with backtick', () => {
 	const input = 'te`st@example.com'
 	const rule = email
-	const output = rule(input)
+	const output: Email = rule(input)
 	assert.equal(output, input)
 })

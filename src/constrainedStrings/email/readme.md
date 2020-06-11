@@ -15,7 +15,7 @@ const constrainToExample = rulr.object({
 
 type Example = rulr.Static<typeof constrainToExample>
 // {
-//   example: rulr.Constraint<'Email', string>
+//   example: rulr.Email
 // }
 
 // Valid

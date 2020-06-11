@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { iso8601Duration, InvalidISO8601DurationError } from '../../lib'
+import { iso8601Duration, ISO8601Duration, InvalidISO8601DurationError } from '../../lib'
 
 test('ISO 8601 Duration should not allow invalid string input', () => {
 	const input = 0
@@ -8,13 +8,13 @@ test('ISO 8601 Duration should not allow invalid string input', () => {
 
 test('ISO 8601 Duration should allow valid ISO 8601 Duration', () => {
 	const input = 'P3Y6M4DT12H30M5S'
-	const output = iso8601Duration(input)
+	const output: ISO8601Duration = iso8601Duration(input)
 	assert.equal(output, input)
 })
 
 test('ISO 8601 Duration should allow valid ISO 8601 Duration using weeks', () => {
 	const input = 'P4W'
-	const output = iso8601Duration(input)
+	const output: ISO8601Duration = iso8601Duration(input)
 	assert.equal(output, input)
 })
 

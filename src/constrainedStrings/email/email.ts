@@ -1,7 +1,7 @@
 import { BaseError } from 'make-error'
 import validator from 'validator'
 import { string } from '../../valueRules/string/string'
-import { constrain } from '../../core'
+import { constrain, Static } from '../../core'
 
 export class InvalidEmailError extends BaseError {
 	constructor() {
@@ -9,7 +9,7 @@ export class InvalidEmailError extends BaseError {
 	}
 }
 
-const emailSymbol = Symbol()
+export const emailSymbol = Symbol()
 
 export function email(input: unknown) {
 	try {
@@ -22,3 +22,5 @@ export function email(input: unknown) {
 		throw new InvalidEmailError()
 	}
 }
+
+export type Email = Static<typeof email>
