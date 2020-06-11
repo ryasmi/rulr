@@ -15,7 +15,7 @@ const constrainToExample = rulr.object({
 
 type Example = rulr.Static<typeof constrainToExample>
 // {
-//   example: rulr.Constraint<'ISO 8601 Timestamp', string>
+//   example: rulr.Constraint<typeof iso8601TimestampSymbol, , string>
 // }
 
 // Valid
