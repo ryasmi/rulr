@@ -4,8 +4,6 @@ export {
 	InvalidISO8601TimestampError,
 } from './constrainedStrings/iso8601Timestamp/iso8601Timestamp'
 export { constrain, Constrained, Rule, Static, Key } from './core'
-export { number, ConstrainedNumberError } from './constrainedValues/number/number'
-export { string, ConstrainedStringError } from './constrainedValues/string/string'
 export { ValidationErrors } from './errors/ValidationErrors'
 export { KeyedValidationError } from './errors/KeyedValidationError'
 export { ValidationError } from './errors/ValidationError'
@@ -22,13 +20,7 @@ export { boolean, InvalidBooleanError } from './valueRules/boolean/boolean'
 export { constant, InvalidConstantError } from './valueRules/constant/constant'
 export { date, InvalidDateError } from './valueRules/date/date'
 export { enumerated, InvalidEnumError } from './valueRules/enum/enum'
-export {
-	unconstrainedNumber,
-	InvalidNumberError,
-} from './valueRules/unconstrainedNumber/unconstrainedNumber'
-export {
-	unconstrainedString,
-	InvalidStringError,
-} from './valueRules/unconstrainedString/unconstrainedString'
+export { number, InvalidNumberError } from './valueRules/number/number'
+export { string, InvalidStringError } from './valueRules/string/string'
 export { symbol, InvalidSymbolError } from './valueRules/symbol/symbol'
 export { unknown } from './valueRules/unknown/unknown'

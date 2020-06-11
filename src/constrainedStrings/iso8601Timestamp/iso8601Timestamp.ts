@@ -1,6 +1,6 @@
 import { BaseError } from 'make-error'
 import validator from 'validator'
-import { unconstrainedString } from '../../valueRules/unconstrainedString/unconstrainedString'
+import { string } from '../../valueRules/string/string'
 import { constrain } from '../../core'
 
 export class InvalidISO8601TimestampError extends BaseError {
@@ -9,11 +9,13 @@ export class InvalidISO8601TimestampError extends BaseError {
 	}
 }
 
+const iso8601TimestampSymbol = Symbol()
+
 export function iso8601Timestamp(input: unknown) {
 	try {
-		const stringInput = unconstrainedString(input)
+		const stringInput = string(input)
 		if (validator.isISO8601(stringInput, { strict: true })) {
-			return constrain<'ISO 8601 Timestamp', string>(stringInput)
+			return constrain(iso8601TimestampSymbol, stringInput)
 		}
 		throw new Error()
 	} catch (err) {

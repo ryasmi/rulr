@@ -7,11 +7,14 @@
 // Install it with `npm i rulr`
 import * as rulr from 'rulr'
 
+// Symbols can be used to guarantee constrained values are validated at runtime.
+const positiveNumberSymbol = Symbol()
+
 // A rule takes unknown input and returns valid output.
 function constrainToPositiveNumber(input: unknown) {
 	if (typeof input === 'number' && input >= 0) {
 		// Rulr's `constrain` function guarantees data will be validated at runtime.
-		return rulr.constrain<'Positive Number', number>(input)
+		return rulr.constrain(positiveNumberSymbol, input)
 	}
 	// You can throw `rulr.ValidationErrors` to return many errors.
 	throw new Error('expected positive number')
@@ -31,7 +34,8 @@ const positiveNumber2: PositiveNumber = constrainToPositiveNumber(-1)
 
 To save you some time, Rulr comes with the following rules.
 
-- [allowNull](./src/higherOrderRules/allowNull/readme.md) & [allowUndefined](./src/higherOrderRules/allowUndefined/readme.md)
+- [allowNull](./src/higherOrderRules/allowNull/readme.md)
+- [allowUndefined](./src/higherOrderRules/allowUndefined/readme.md)
 - [any](./src/valueRules/any/readme.md)
 - [array](./src/higherOrderRules/array/readme.md)
 - [bigint](./src/valueRules/bigint/readme.md)
@@ -40,9 +44,9 @@ To save you some time, Rulr comes with the following rules.
 - [date](./src/valueRules/date/readme.md)
 - [dictionary](./src/higherOrderRules/dictionary/readme.md)
 - [enum](./src/valueRules/enum/readme.md)
-- [number](./src/constrainedValues/number/readme.md) & [unconstrainedNumber](./src/valueRules/unconstrainedNumber/readme.md)
+- [number](./src/valueRules/number/readme.md)
 - [object](./src/higherOrderRules/object/readme.md)
-- [string](./src/constrainedValues/string/readme.md) & [unconstrainedString](./src/valueRules/unconstrainedString/readme.md)
+- [string](./src/valueRules/string/readme.md)
 - [symbol](./src/valueRules/symbol/readme.md)
 - [tuple](./src/higherOrderRules/tuple/readme.md)
 - [union](./src/higherOrderRules/union/readme.md)

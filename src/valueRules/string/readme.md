@@ -1,31 +1,30 @@
-# constant
+# string
 
 [Back to root readme.md](../../../readme.md)
 
-This function can be used to check the type of the input is a constant as shown in the example below. It should only throw `rulr.InvalidConstantError`.
+This function can be used to check the type of the input is a string as shown in the example below. It should only throw `rulr.InvalidStringError`. You might want to consider constraining strings somehow to avoid display and storage bugs.
 
 ```ts
 import * as rulr from 'rulr'
 
-const exampleSymbol = Symbol()
 const constrainToExample = rulr.object({
 	required: {
-		example: rulr.constant(exampleSymbol, true),
+		example: rulr.string,
 	},
 })
 
 type Example = rulr.Static<typeof constrainToExample>
 // {
-//   example: rulr.Constraint<typeof exampleSymbol, true>
+//   example: string
 // }
 
 // Valid
 const example1: Example = constrainToExample({
-	example: true,
+	example: '1',
 })
 
 // Invalid
 const example2: Example = constrainToExample({
-	example: false,
+	example: 1,
 })
 ```

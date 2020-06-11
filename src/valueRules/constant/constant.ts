@@ -7,10 +7,13 @@ export class InvalidConstantError<T> extends BaseError {
 	}
 }
 
-export function constant<ConstraintId extends string, Type>(constantValue: Type) {
+export function constant<ConstraintSymbol extends symbol, Type>(
+	symbol: ConstraintSymbol,
+	constantValue: Type
+) {
 	return (input: unknown) => {
 		if (input === constantValue) {
-			return constrain<ConstraintId, Type>(input as Type)
+			return constrain(symbol, input as Type)
 		}
 		throw new InvalidConstantError(constantValue)
 	}

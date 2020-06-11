@@ -1,27 +1,21 @@
 import * as assert from 'assert'
-import {
-	array,
-	InvalidArrayError,
-	unconstrainedNumber,
-	ValidationErrors,
-	KeyedValidationError,
-} from '../../lib'
+import { array, InvalidArrayError, number, ValidationErrors, KeyedValidationError } from '../../lib'
 
 test('array should allow empty array', () => {
 	const input: number[] = []
-	const output: number[] = array(unconstrainedNumber)(input)
+	const output: number[] = array(number)(input)
 	assert.deepEqual(output, input)
 })
 
 test('array should allow array with valid items', () => {
 	const input = [1, 2, 3]
-	const output: number[] = array(unconstrainedNumber)(input)
+	const output: number[] = array(number)(input)
 	assert.deepEqual(output, input)
 })
 
 test('array should not allow array with invalid items', () => {
 	try {
-		array(unconstrainedNumber)([1, '2', 3])
+		array(number)([1, '2', 3])
 		assert.fail('Expected error')
 	} catch (error) {
 		if (error instanceof ValidationErrors) {
@@ -36,6 +30,6 @@ test('array should not allow array with invalid items', () => {
 
 test('array should not allow non-array input', () => {
 	assert.throws(() => {
-		array(unconstrainedNumber)({})
+		array(number)({})
 	}, InvalidArrayError)
 })
