@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { InvalidArrayError, ValidationErrors, tuple, number, string } from '../../lib'
+import { InvalidArrayError, ValidationErrors, tuple, number, string, union } from '../../lib'
 
 test('tuple should not allow non-array input', () => {
 	const input = {}
@@ -38,4 +38,14 @@ test('tuple should not allow invalid item values', () => {
 	const input = [1, 1]
 	const rule = tuple(number, string)
 	assert.throws(() => rule(input), ValidationErrors)
+})
+
+test('tuple should allow circular items', () => {
+	const input = [[1, 1], 1]
+	type Output = [number | Output, number]
+	function rule(input: unknown): Output {
+		return tuple(union(number, rule), number)(input)
+	}
+	const output: Output = rule(input)
+	assert.deepEqual(output, input)
 })
