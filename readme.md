@@ -82,7 +82,7 @@ In an ideal world, we could simply use the code below for validation. Perhaps it
 class PositiveNumber extends Number {
 	constructor(value: number) {
 		if (value < 0) {
-			throw new Error('Number must be non-negative')
+			throw new Error('expected positive number')
 		}
 		super(value)
 	}
@@ -101,7 +101,7 @@ class PositiveNumber extends Number {
 	private readonly _value: number
 	constructor(value: number) {
 		if (value < 0) {
-			throw new Error('Number must be non-negative')
+			throw new Error('expected positive number')
 		}
 		super(value)
 		this._value = value
@@ -121,7 +121,7 @@ class PositiveNumber extends Number {
 	public readonly _value: number
 	constructor(value: number) {
 		if (value < 0) {
-			throw new Error('Number must be non-negative')
+			throw new Error('expected positive number')
 		}
 		super(value)
 		this._value = value
