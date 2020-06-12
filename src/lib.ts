@@ -1,4 +1,5 @@
 export { email, Email, InvalidEmailError } from './constrainedStrings/email/email'
+export { iri, IRI, InvalidIRIError } from './constrainedStrings/iri/iri'
 export {
 	iso8601Timestamp,
 	ISO8601Timestamp,
