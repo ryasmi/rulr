@@ -30,3 +30,13 @@ test('dictionary should not allow invalid dictionary values', () => {
 test('dictionary should not allow invalid dictionary keys or values', () => {
 	assert.throws(() => dictionary(number, number)({ test: '0' }))
 })
+
+test('dictionary should allow circular values', () => {
+	const input = { example: { example: {} } }
+	type Output = { [key: string]: Output }
+	function rule(input: unknown): Output {
+		return dictionary(string, rule)(input)
+	}
+	const output: Output = rule(input)
+	assert.deepEqual(output, input)
+})
