@@ -155,3 +155,43 @@ const adjustedPrice = price + 1 // Problem 2: Solved. This doesn't error.
 ```
 
 [Michal Zalecki](https://michalzalecki.com) has written a great [post on nominal typing techniques in TypeScript](https://michalzalecki.com/nominal-typing-in-typescript/). They have also referenced a [further discussion on nominal typing in the TypeScript Github repository](https://github.com/Microsoft/TypeScript/issues/202). Charles Pick from CodeMix has also written a great [post introducing opaque types and how they compare in TypeScript and Flow](https://codemix.com/opaque-types-in-javascript/).
+
+### The Symbol Requirement
+
+You might be wondering why we need symbols. The example below rewrites `rulr.Constrained` and `rulr.constrain` without the use of symbols to demonstrate why symbols are so important. Take note of the comment above the last line of code. You can try this symbol-less code in [the TypeScript playground](https://www.typescriptlang.org/play/index.html).
+
+```ts
+type Rule<Output> = (input: unknown) => Output
+type Static<Output> = Output extends Rule<infer V> ? V : Output
+
+type Constrained<Type> = Type & {
+	readonly _constraintSymbol: unique symbol
+}
+
+function constrain<T>(input: T) {
+	return input as Constrained<T>
+}
+
+function constrainToPositiveNumber(input: unknown) {
+	if (typeof input === 'number' && input >= 0) {
+		return constrain(input)
+	}
+	throw new Error('expected positive number')
+}
+
+function constraintToNegativeNumber(input: unknown) {
+	if (typeof input === 'number' && input <= 0) {
+		return constrain(input)
+	}
+	throw new Error('expected negative number')
+}
+
+type PositiveNumber = Static<typeof constrainToPositiveNumber>
+type NegativeNumber = Static<typeof constraintToNegativeNumber>
+
+// Whilst this line is valid.
+const positiveNumber: PositiveNumber = constrainToPositiveNumber(1)
+
+// This line is invalid, but TypeScript does not error.
+const negativeNumber: NegativeNumber = constrainToPositiveNumber(1)
+```
