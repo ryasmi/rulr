@@ -58,6 +58,7 @@ Rulr also comes with a growing list of convenient rules for constraining strings
 - [iri](./src/constrainedStrings/iri/readme.md)
 - [iso8601Duration](./src/constrainedStrings/iso8601Duration/readme.md)
 - [iso8601Timestamp](./src/constrainedStrings/iso8601Timestamp/readme.md)
+- [mongoId](./src/constrainedStrings/mongoId/readme.md)
 - [url](./src/constrainedStrings/url/readme.md)
 - [uuidv4](./src/constrainedStrings/uuidv4/readme.md)
 
