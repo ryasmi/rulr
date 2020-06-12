@@ -74,7 +74,7 @@ Rulr has not been publicised until 2020 because as a full-time Software Engineer
 
 The time you've taken to consider Rulr is appreciated. If it's not too much trouble, you can help everyone understand what you need from a validation package by providing feedback, bug reports, and feature requests via [a Rulr Github issue](https://github.com/ryansmith94/rulr/issues).
 
-### Using Classes
+### Class Validation Problems
 
 In an ideal world, we could simply use the code below for validation. Perhaps it's also a little verbose wrapped in a class, but it doesn't hide much complexity and the class has useful properties in terms of type checking. Unfortunately, there are two problems as shown below in code comments that arise from extending JavaScript's base classes.
 
