@@ -57,6 +57,7 @@ Rulr also comes with a growing list of convenient rules for constraining strings
 - [email](./src/constrainedStrings/email/readme.md)
 - [iso8601Duration](./src/constrainedStrings/iso8601Duration/readme.md)
 - [iso8601Timestamp](./src/constrainedStrings/iso8601Timestamp/readme.md)
+- [url](./src/constrainedStrings/url/readme.md)
 
 ### Support
 

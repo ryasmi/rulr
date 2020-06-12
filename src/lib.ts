@@ -9,6 +9,7 @@ export {
 	ISO8601Duration,
 	InvalidISO8601DurationError,
 } from './constrainedStrings/iso8601Duration/iso8601Duration'
+export { url, URL, InvalidURLError } from './constrainedStrings/url/url'
 export { constrain, Constrained, Rule, Static, Key } from './core'
 export { ValidationErrors } from './errors/ValidationErrors'
 export { KeyedValidationError } from './errors/KeyedValidationError'
