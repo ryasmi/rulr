@@ -1,5 +1,12 @@
 import * as assert from 'assert'
-import { array, InvalidArrayError, number, ValidationErrors, KeyedValidationError } from '../../lib'
+import {
+	array,
+	InvalidArrayError,
+	number,
+	ValidationErrors,
+	KeyedValidationError,
+	union,
+} from '../../lib'
 
 test('array should allow empty array', () => {
 	const input: number[] = []
@@ -32,4 +39,15 @@ test('array should not allow non-array input', () => {
 	assert.throws(() => {
 		array(number)({})
 	}, InvalidArrayError)
+})
+
+test('array should allow circular items', () => {
+	const input = [[1], 1]
+	type Output = number | Output[]
+	function rule(input: unknown): Output {
+		const itemRule = union(number, array(rule))
+		return itemRule(input)
+	}
+	const output: Output = rule(input)
+	assert.deepEqual(output, input)
 })
