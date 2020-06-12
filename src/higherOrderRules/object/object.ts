@@ -67,7 +67,12 @@ function validatePartialObject<T extends Schema>(schema: T, objectInput: PlainOb
 	return finalResult
 }
 
-export function object<Required extends Schema, Optional extends Schema>(opts: {
+const defaultSchema = {}
+
+export function object<
+	Required extends Schema = typeof defaultSchema,
+	Optional extends Schema = typeof defaultSchema
+>(opts: {
 	/** Defaults to empty object */
 	readonly required?: Required
 

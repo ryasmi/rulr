@@ -125,3 +125,12 @@ test('object should allow circular properties', () => {
 	const output: Output = rule(input)
 	assert.deepEqual(output, input)
 })
+
+test('object should not allow access to unspecified properties', () => {
+	const input = {}
+	const rule = object({})
+	const output = rule(input)
+	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+	// @ts-expect-error
+	assert.equal(output.example, undefined)
+})
