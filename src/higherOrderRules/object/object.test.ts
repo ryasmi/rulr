@@ -111,3 +111,17 @@ test('object should not allow invalid optional property that is valid required p
 	})
 	assert.throws(() => rule(input))
 })
+
+test('object should allow circular properties', () => {
+	interface Output {
+		example?: Output
+	}
+	const input = { example: { example: {} } }
+	function rule(input: unknown) {
+		return object({
+			optional: { example: rule },
+		})(input)
+	}
+	const output: Output = rule(input)
+	assert.deepEqual(output, input)
+})
