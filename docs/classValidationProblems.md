@@ -2,7 +2,7 @@
 
 [Back to root readme.md](../readme.md)
 
-In other languages you might use the code similar to the TypeScript below for validation. Perhaps it's a little verbose wrapped in a class, but it doesn't hide much complexity and the class has useful properties in terms of type checking. Unfortunately, there are two problems as shown below in code comments that arise from extending JavaScript's base classes.
+In other languages you might use code similar to the TypeScript below for validation. Perhaps it's a little verbose wrapped in a class, but it doesn't hide much complexity and the class has useful properties in terms of type checking. Unfortunately, there are two problems as shown below in code comments that arise from extending JavaScript's base classes.
 
 ```ts
 class PositiveNumber extends Number {
