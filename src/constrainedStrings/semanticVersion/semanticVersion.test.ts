@@ -3,19 +3,16 @@ import { semanticVersion, SemanticVersion, InvalidSemanticVersionError } from '.
 
 test('semanticVersion should not allow invalid string input', () => {
 	const input = 0
-	const rule = semanticVersion
-	assert.throws(() => rule(input), InvalidSemanticVersionError)
+	assert.throws(() => semanticVersion(input), InvalidSemanticVersionError)
 })
 
 test('semanticVersion should allow valid semanticVersion input', () => {
 	const input = '0.0.4'
-	const rule = semanticVersion
-	const output: SemanticVersion = rule(input)
+	const output: SemanticVersion = semanticVersion(input)
 	assert.equal(output, input)
 })
 
 test('semanticVersion should not allow invalid semanticVersion input', () => {
 	const input = '-invalid+invalid'
-	const rule = semanticVersion
-	assert.throws(() => rule(input), InvalidSemanticVersionError)
+	assert.throws(() => semanticVersion(input), InvalidSemanticVersionError)
 })
