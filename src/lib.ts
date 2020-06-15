@@ -10,6 +10,7 @@ export {
 	ISO8601Duration,
 	InvalidISO8601DurationError,
 } from './constrainedStrings/iso8601Duration/iso8601Duration'
+export { locale, Locale, InvalidLocaleError } from './constrainedStrings/locale/locale'
 export { mailto, Mailto, InvalidMailtoError } from './constrainedStrings/mailto/mailto'
 export { mimeType, MimeType, InvalidMimeTypeError } from './constrainedStrings/mimeType/mimeType'
 export { mongoId, MongoId, InvalidMongoIdError } from './constrainedStrings/mongoId/mongoId'
