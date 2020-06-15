@@ -60,7 +60,7 @@ const adjustedPrice = price.valueOf() + 1 // Problem 2: Solved. This doesn't err
 
 #### Avoiding the irritation of these two solutions
 
-Rulr gets around these two problems with "constrained" (nominal/branded) types as shown below.
+Rulr gets around these two problems with "constrained" (nominal/branded/opaque) types as shown below.
 
 ```ts
 import * as rulr from 'rulr'
