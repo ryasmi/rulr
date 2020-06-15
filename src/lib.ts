@@ -1,4 +1,9 @@
 export {
+	negativeNumber,
+	NegativeNumber,
+	InvalidNegativeNumberError,
+} from './constrainedValues/negativeNumber/negativeNumber'
+export {
 	positiveNumber,
 	PositiveNumber,
 	InvalidPositiveNumberError,

@@ -7,6 +7,12 @@ test('positiveNumber should not allow invalid number input', () => {
 })
 
 test('positiveNumber should allow valid positiveNumber input', () => {
+	const input = 1
+	const output: PositiveNumber = positiveNumber(input)
+	assert.equal(output, input)
+})
+
+test('positiveNumber should allow zero', () => {
 	const input = 0
 	const output: PositiveNumber = positiveNumber(input)
 	assert.equal(output, input)
