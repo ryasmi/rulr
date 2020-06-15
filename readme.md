@@ -61,6 +61,7 @@ Rulr also comes with a growing list of convenient rules for constraining strings
 - [iso8601Duration](./src/constrainedStrings/iso8601Duration/readme.md)
 - [iso8601Timestamp](./src/constrainedStrings/iso8601Timestamp/readme.md)
 - [mailto](./src/constrainedStrings/mailto/readme.md)
+- [mimeType](./src/constrainedStrings/mimeType/readme.md)
 - [mongoId](./src/constrainedStrings/mongoId/readme.md)
 - [semanticVersion](./src/constrainedStrings/semanticVersion/readme.md)
 - [sha1](./src/constrainedStrings/sha1/readme.md)
