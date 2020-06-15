@@ -14,6 +14,11 @@ export { mailto, Mailto, InvalidMailtoError } from './constrainedStrings/mailto/
 export { mimeType, MimeType, InvalidMimeTypeError } from './constrainedStrings/mimeType/mimeType'
 export { mongoId, MongoId, InvalidMongoIdError } from './constrainedStrings/mongoId/mongoId'
 export {
+	scormInteractionType,
+	ScormInteractionType,
+	InvalidScormInteractionTypeError,
+} from './constrainedStrings/scormInteractionType/scormInteractionType'
+export {
 	semanticVersion,
 	SemanticVersion,
 	InvalidSemanticVersionError,

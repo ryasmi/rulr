@@ -63,6 +63,7 @@ Rulr also comes with a growing list of convenient rules for constraining strings
 - [mailto](./src/constrainedStrings/mailto/readme.md)
 - [mimeType](./src/constrainedStrings/mimeType/readme.md)
 - [mongoId](./src/constrainedStrings/mongoId/readme.md)
+- [scormInteractionType](./src/constrainedStrings/scormInteractionType/readme.md)
 - [semanticVersion](./src/constrainedStrings/semanticVersion/readme.md)
 - [sha1](./src/constrainedStrings/sha1/readme.md)
 - [url](./src/constrainedStrings/url/readme.md)
