@@ -10,6 +10,7 @@ export {
 	ISO8601Duration,
 	InvalidISO8601DurationError,
 } from './constrainedStrings/iso8601Duration/iso8601Duration'
+export { mailto, Mailto, InvalidMailtoError } from './constrainedStrings/mailto/mailto'
 export { mongoId, MongoId, InvalidMongoIdError } from './constrainedStrings/mongoId/mongoId'
 export {
 	semanticVersion,
