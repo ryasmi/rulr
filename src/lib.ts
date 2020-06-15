@@ -1,3 +1,8 @@
+export {
+	positiveNumber,
+	PositiveNumber,
+	InvalidPositiveNumberError,
+} from './constrainedValues/positiveNumber/positiveNumber'
 export { email, Email, InvalidEmailError } from './constrainedStrings/email/email'
 export { iri, IRI, InvalidIRIError } from './constrainedStrings/iri/iri'
 export {

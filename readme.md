@@ -70,6 +70,12 @@ Rulr also comes with a growing list of convenient rules for constraining strings
 - [url](./src/constrainedStrings/url/readme.md)
 - [uuidv4](./src/constrainedStrings/uuidv4/readme.md)
 
+### Constraining Non-Strings
+
+In addition to the constrained strings, Rulr also comes with a few convenient rules to help you quickly validate non-string values.
+
+- [positiveNumber](./src/constrainedValues/positiveNumber/readme.md)
+
 ### Support
 
 Rulr was started in 2016 and continues to be maintained to save time writing validation logic and correcting data by returning as many validation errors as possible in one function call.
