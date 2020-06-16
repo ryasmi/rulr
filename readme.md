@@ -1,6 +1,7 @@
 <div align="center">
 	<h1>👑</br>rulr</h1>
 	<p>Rule your data like a TypeScript Emperor.</p>
+	<a href="https://github.com/semantic-release/semantic-release"><img src="https://camo.githubusercontent.com/59c84e3731ad0a45312b47b1546b0972ac4389ea/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2532302532302546302539462539332541362546302539462539412538302d73656d616e7469632d2d72656c656173652d6531303037392e737667" alt="Uses Semantic Release"></a>
 </div>
 
 ```ts
@@ -30,7 +31,7 @@ const positiveNumber1: PositiveNumber = -1
 const positiveNumber2: PositiveNumber = constrainToPositiveNumber(-1)
 ```
 
-### Frequently Awesome Questions
+### Frequently Awesome Questions 🤘
 
 - [Why not use classes?](./docs/classValidationProblems.md)
 - [Why do you need symbols?](./docs/symbolRequirement.md)
@@ -79,6 +80,7 @@ Rulr also comes with a growing list of convenient rules for constraining strings
 
 In addition to the constrained strings, Rulr also comes with a few convenient rules to help you quickly validate non-string values. If you haven't seen the rule you need and you think it might save you and other people some time, please feel free to [make a feature request](https://github.com/ryansmith94/rulr/issues/new?assignees=&labels=feat&template=feature_request.md&title=), or take a look at how simply the other rules are made to create the rule you need in a pull request.
 
+- [integer](./src/constrainedValues/integer/readme.md)
 - [negativeNumber](./src/constrainedValues/negativeNumber/readme.md)
 - [positiveNumber](./src/constrainedValues/positiveNumber/readme.md)
 

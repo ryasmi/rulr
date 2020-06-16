@@ -1,3 +1,4 @@
+export { integer, Integer, InvalidIntegerError } from './constrainedValues/integer/integer'
 export {
 	negativeNumber,
 	NegativeNumber,
