@@ -35,7 +35,8 @@ const positiveNumber2: PositiveNumber = constrainToPositiveNumber(-1)
 ### Frequently Awesome Questions 🤘
 
 - [Why not use classes?](./docs/classValidationProblems.md)
-- [Why do you need symbols?](./docs/symbolRequirement.md)
+- [Why are symbols needed?](./docs/symbolRequirement.md)
+- [How are recursive rules made?](./docs/recursiveRules.md)
 
 ### Getting Started
 

@@ -1,4 +1,4 @@
-### The Symbol Requirement
+# The Symbol Requirement
 
 [Back to root readme.md](../readme.md)
 
