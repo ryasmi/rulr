@@ -2,7 +2,7 @@
 	<h1>👑</br>rulr</h1>
 	<p>Rule your data like a TypeScript Emperor.</p>
 	<a href="https://github.com/semantic-release/semantic-release"><img src="https://camo.githubusercontent.com/59c84e3731ad0a45312b47b1546b0972ac4389ea/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2532302532302546302539462539332541362546302539462539412538302d73656d616e7469632d2d72656c656173652d6531303037392e737667" alt="Uses Semantic Release to correctly bump versions especially for breaking changes"></a>
-	<a href="https://renovatebot.com/"><img src="https://img.shields.io/badge/%F0%9F%94%84%20-renovate-ce3d70.svg" alt="Uses Renovate to keep dependencies updated"></a>
+	<a href="https://renovatebot.com/"><img src="https://img.shields.io/badge/%F0%9F%94%84%20-renovate%20bot-ce3d70.svg" alt="Uses Renovate to keep dependencies updated"></a>
 </div>
 
 ```ts
