@@ -28,7 +28,6 @@ jobs:
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GH_TOKEN }}
-          flag-name: run-${{ matrix.node-version }}
           parallel: true
       - run: npx semantic-release
         if: matrix.node-version == '10.x'
