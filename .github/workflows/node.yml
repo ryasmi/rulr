@@ -24,23 +24,8 @@ jobs:
       - run: npm run build
       - run: npm run lint:ci
       - run: npm test
-      - name: Coveralls Parallel
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.COVERALLS_REPO_TOKEN }}
-          parallel: true
       - run: npx semantic-release
         if: matrix.node-version == '10.x'
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-  coverage:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Coveralls Finished
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.COVERALLS_REPO_TOKEN }}
-          parallel-finished: true
