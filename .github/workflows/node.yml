@@ -24,6 +24,8 @@ jobs:
       - run: npm run build
       - run: npm run lint:ci
       - run: npm test
+      - name: Codecov
+        uses: codecov/codecov-action@v1.0.7
       - run: npx semantic-release
         if: matrix.node-version == '10.x'
         env:
