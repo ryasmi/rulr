@@ -41,6 +41,7 @@ const positiveNumber2: PositiveNumber = constrainToPositiveNumber(-1)
 - [Why are symbols needed?](./docs/symbolRequirement.md)
 - [How are recursive rules defined?](./docs/recursiveRules.md)
 - [Can Rulr be used with React Hooks and PropTypes?](./docs/react.md)
+- [Why are you using tabs!?!](https://www.reddit.com/r/javascript/comments/c8drjo/nobody_talks_about_the_real_reason_to_use_tabs/)
 
 ### Getting Started
 
