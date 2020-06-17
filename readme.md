@@ -5,6 +5,7 @@
 	<a href="https://renovatebot.com/"><img src="https://img.shields.io/badge/%F0%9F%94%84%F0%9F%A4%96%20-renovate%20bot-d9207b.svg" alt="Uses Renovate to keep dependencies updated"></a>
 	<a href="https://lgtm.com/projects/g/ryansmith94/rulr/alerts/"><img alt="Total alerts" src="https://img.shields.io/lgtm/alerts/g/ryansmith94/rulr.svg?logo=lgtm&logoWidth=18"/></a>
 	<a href="https://lgtm.com/projects/g/ryansmith94/rulr/context:javascript"><img alt="Language grade: JavaScript" src="https://img.shields.io/lgtm/grade/javascript/g/ryansmith94/rulr.svg?logo=lgtm&logoWidth=18"/></a>
+	<a href="https://codecov.io/gh/ryansmith94/rulr"><img alt="Master branch coverage percentage from Codecov" src="https://codecov.io/gh/ryansmith94/rulr/branch/master/graph/badge.svg" /></a>
 </div>
 
 ```ts
