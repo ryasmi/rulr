@@ -2,7 +2,7 @@
 
 [Back to root readme.md](../../../readme.md)
 
-This function can be used to check the type of the input is a boolean as shown in the example below. It should only throw `rulr.InvalidBooleanError`.
+This function uses `rulr.isBoolean` to check the input is a boolean as shown in the example below. It should only throw `rulr.InvalidBooleanError`.
 
 ```ts
 import * as rulr from 'rulr'

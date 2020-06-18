@@ -6,8 +6,12 @@ export class InvalidBooleanError extends BaseError {
 	}
 }
 
+export function isBoolean(input: unknown): input is boolean {
+	return typeof input === 'boolean'
+}
+
 export function boolean(input: unknown) {
-	if (typeof input === 'boolean') {
+	if (isBoolean(input)) {
 		return input
 	}
 	throw new InvalidBooleanError()
