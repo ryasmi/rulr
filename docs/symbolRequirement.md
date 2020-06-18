@@ -12,8 +12,8 @@ type Constrained<Type> = Type & {
 	readonly _constraintSymbol: unique symbol
 }
 
-function constrain<T>(input: T) {
-	return input as Constrained<T>
+function constrain<Type>(input: Type) {
+	return input as Constrained<Type>
 }
 
 function constrainToPositiveNumber(input: unknown) {
@@ -38,4 +38,33 @@ const positiveNumber: PositiveNumber = constrainToPositiveNumber(1)
 
 // This line is invalid, but TypeScript does not error.
 const negativeNumber: NegativeNumber = constrainToPositiveNumber(1)
+```
+
+Some other packages like [ts-essentials](https://github.com/krzkaczor/ts-essentials#Opaque-types) have used strings rather than symbols to create Opaque (constrained) types. As shown below, that too comes with a subtle issue.
+
+```
+type Constrained<ConstraintId extends string, Type> = Type & {
+	readonly _constraintId: ConstraintId
+}
+
+type GBP = Constrained<'currency', string>;
+
+function checkGbp(input: unknown): GBP {
+  if (isGbp(input)) {
+    return (input as any) as GBP
+  }
+  throw new Error('expected GBP')
+}
+
+type USD = Constrained<'currency', string>;
+
+function checkUsd(input: unknown): USD {
+  if (isUsd(input)) {
+    return (input as any) as USD
+  }
+  throw new Error('expected USD')
+}
+
+// This should throw an error but doesn't
+const dollars: USD = checkGbp(20)
 ```
