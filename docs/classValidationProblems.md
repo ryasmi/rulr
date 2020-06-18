@@ -80,7 +80,7 @@ const price: PositiveNumber = -1 // Problem 1: Solved. This does error.
 const adjustedPrice = price + 1 // Problem 2: Solved. This doesn't error.
 ```
 
-#### Additional Resource
+#### Additional Resources
 - [Michal Zalecki](https://michalzalecki.com) has written a great [post on nominal typing techniques in TypeScript](https://michalzalecki.com/nominal-typing-in-typescript/). They have also referenced a [further discussion on nominal typing in the TypeScript Github repository](https://github.com/Microsoft/TypeScript/issues/202).
 - Charles Pick from CodeMix has wrote an interesting [post introducing opaque types and how they compare in TypeScript and Flow](https://codemix.com/opaque-types-in-javascript/).
 - [Drew Colthorp](https://spin.atomicobject.com/author/colthorp/) has a post on [flavoured types](https://spin.atomicobject.com/2018/01/15/typescript-flexible-nominal-typing/) which are like branded types but allow inference.
