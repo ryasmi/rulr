@@ -3,9 +3,9 @@ import { constant, InvalidConstantError, Constrained } from '../../lib'
 
 test('constant should allow same value', () => {
 	const exampleSymbol = Symbol()
-	type Ten = Constrained<typeof exampleSymbol, number>
+	type Example = Constrained<typeof exampleSymbol, number>
 	const input = 10
-	const output: Ten = constant(exampleSymbol, 10)(input)
+	const output: Example = constant(exampleSymbol, 10)(input)
 	assert.equal(output, input)
 })
 

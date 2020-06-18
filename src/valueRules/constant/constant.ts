@@ -1,5 +1,5 @@
 import { BaseError } from 'make-error'
-import { constrain, Constrained } from '../../core'
+import { Constrained } from '../../core'
 
 export class InvalidConstantError<T> extends BaseError {
 	constructor(public readonly constantValue: T) {
@@ -7,13 +7,21 @@ export class InvalidConstantError<T> extends BaseError {
 	}
 }
 
+export function isConstant<ConstraintSymbol extends symbol, Type>(
+	_symbol: ConstraintSymbol,
+	constantValue: Type,
+	input: unknown
+): input is Constrained<ConstraintSymbol, Type> {
+	return input === constantValue
+}
+
 export function constant<ConstraintSymbol extends symbol, Type>(
 	symbol: ConstraintSymbol,
 	constantValue: Type
 ) {
 	return (input: unknown) => {
-		if (input === constantValue) {
-			return constrain(symbol, input as Type)
+		if (isConstant(symbol, constantValue, input)) {
+			return input
 		}
 		throw new InvalidConstantError(constantValue)
 	}
