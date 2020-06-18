@@ -55,7 +55,7 @@ export { boolean, isBoolean, InvalidBooleanError } from './valueRules/boolean/bo
 export { constant, InvalidConstantError } from './valueRules/constant/constant'
 export { date, isDate, InvalidDateError } from './valueRules/date/date'
 export { enumerated, isEnum, InvalidEnumError } from './valueRules/enum/enum'
-export { number, InvalidNumberError } from './valueRules/number/number'
+export { number, isNumber, InvalidNumberError } from './valueRules/number/number'
 export { string, isString, InvalidStringError } from './valueRules/string/string'
 export { symbol, InvalidSymbolError } from './valueRules/symbol/symbol'
 export { unknown } from './valueRules/unknown/unknown'
