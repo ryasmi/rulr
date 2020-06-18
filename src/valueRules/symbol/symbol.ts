@@ -6,8 +6,12 @@ export class InvalidSymbolError extends BaseError {
 	}
 }
 
+export function isSymbol(input: unknown): input is symbol {
+	return typeof input === 'symbol'
+}
+
 export function symbol(input: unknown) {
-	if (typeof input === 'symbol') {
+	if (isSymbol(input)) {
 		return input
 	}
 	throw new InvalidSymbolError()
