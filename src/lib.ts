@@ -50,7 +50,7 @@ export { object, InvalidObjectError, PlainObject } from './higherOrderRules/obje
 export { tuple } from './higherOrderRules/tuple/tuple'
 export { union, UnionValidationError } from './higherOrderRules/union/union'
 export { any } from './valueRules/any/any'
-export { bigint, InvalidBigIntError } from './valueRules/bigint/bigint'
+export { bigint, isBigInt, InvalidBigIntError } from './valueRules/bigint/bigint'
 export { boolean, InvalidBooleanError } from './valueRules/boolean/boolean'
 export { constant, InvalidConstantError } from './valueRules/constant/constant'
 export { date, InvalidDateError } from './valueRules/date/date'
