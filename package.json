@@ -4,7 +4,7 @@
 	"description": "A package that saves you time defining validation rules and correcting data",
 	"main": "dist/lib.js",
 	"author": "ryansmith94",
-	"license": "ISC",
+	"license": "MIT",
 	"typings": "dist/lib.d.ts",
 	"files": [
 		"dist",
