@@ -42,7 +42,7 @@ const negativeNumber: NegativeNumber = constrainToPositiveNumber(1)
 
 Some other packages like [ts-essentials](https://github.com/krzkaczor/ts-essentials#Opaque-types) have used strings rather than symbols to create Opaque (constrained) types. As shown below, that too comes with a subtle issue.
 
-```
+```ts
 type Constrained<ConstraintId extends string, Type> = Type & {
 	readonly _constraintId: ConstraintId
 }
