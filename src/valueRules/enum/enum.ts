@@ -8,12 +8,17 @@ export class InvalidEnumError<T> extends BaseError {
 
 type Values<T> = T[keyof T]
 
+export function isEnum<Output>(enumerator: Output, input: unknown): input is Values<Output> {
+	const enumValues = Object.values(enumerator)
+	return enumValues.includes(input)
+}
+
 export function enumerated<Output>(enumerator: Output) {
 	return (input: unknown) => {
-		const enumValues = Object.values(enumerator)
-		if (enumValues.includes(input)) {
+		if (isEnum(enumerator, input)) {
 			return input as Values<Output>
 		}
+		const enumValues = Object.values(enumerator)
 		throw new InvalidEnumError<Values<Output>>(enumValues)
 	}
 }
