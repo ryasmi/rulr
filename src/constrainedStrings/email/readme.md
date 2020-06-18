@@ -2,7 +2,7 @@
 
 [Back to root readme.md](../../../readme.md)
 
-This function can be used to check the type of the input is a valid email as shown in the example below. It should only throw `rulr.InvalidEmailError`. This function uses [the much loved validator package](https://github.com/validatorjs/validator.js).
+This function uses `rulr.isEmail` to check the input is a valid email as shown in the example below. It should only throw `rulr.InvalidEmailError`. This function uses [the much loved validator package](https://github.com/validatorjs/validator.js).
 
 ```ts
 import * as rulr from 'rulr'

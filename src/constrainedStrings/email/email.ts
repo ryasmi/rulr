@@ -1,7 +1,7 @@
 import { BaseError } from 'make-error'
 import validator from 'validator'
-import { string } from '../../valueRules/string/string'
-import { constrain, Static } from '../../core'
+import { isString } from '../../valueRules/string/string'
+import { Constrained } from '../../core'
 
 export class InvalidEmailError extends BaseError {
 	constructor() {
@@ -11,16 +11,15 @@ export class InvalidEmailError extends BaseError {
 
 export const emailSymbol = Symbol()
 
-export function email(input: unknown) {
-	try {
-		const stringInput = string(input)
-		if (validator.isEmail(stringInput)) {
-			return constrain(emailSymbol, stringInput)
-		}
-		throw new Error()
-	} catch (err) {
-		throw new InvalidEmailError()
-	}
+export type Email = Constrained<typeof emailSymbol, string>
+
+export function isEmail(input: unknown): input is Email {
+	return isString(input) && validator.isEmail(input)
 }
 
-export type Email = Static<typeof email>
+export function email(input: unknown) {
+	if (isEmail(input)) {
+		return input
+	}
+	throw new InvalidEmailError()
+}

@@ -9,7 +9,7 @@ export {
 	PositiveNumber,
 	InvalidPositiveNumberError,
 } from './constrainedValues/positiveNumber/positiveNumber'
-export { email, Email, InvalidEmailError } from './constrainedStrings/email/email'
+export { email, isEmail, Email, InvalidEmailError } from './constrainedStrings/email/email'
 export { iri, IRI, InvalidIRIError } from './constrainedStrings/iri/iri'
 export {
 	iso8601Timestamp,
@@ -56,6 +56,6 @@ export { constant, InvalidConstantError } from './valueRules/constant/constant'
 export { date, InvalidDateError } from './valueRules/date/date'
 export { enumerated, InvalidEnumError } from './valueRules/enum/enum'
 export { number, InvalidNumberError } from './valueRules/number/number'
-export { string, InvalidStringError } from './valueRules/string/string'
+export { string, isString, InvalidStringError } from './valueRules/string/string'
 export { symbol, InvalidSymbolError } from './valueRules/symbol/symbol'
 export { unknown } from './valueRules/unknown/unknown'
