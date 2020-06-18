@@ -6,8 +6,12 @@ export class InvalidBigIntError extends BaseError {
 	}
 }
 
+export function isBigInt(input: unknown): input is bigint {
+	return typeof input === 'bigint'
+}
+
 export function bigint(input: unknown) {
-	if (typeof input === 'bigint') {
+	if (isBigInt(input)) {
 		return input
 	}
 	throw new InvalidBigIntError()
