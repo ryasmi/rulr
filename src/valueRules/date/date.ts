@@ -6,8 +6,12 @@ export class InvalidDateError extends BaseError {
 	}
 }
 
+export function isDate(input: unknown): input is Date {
+	return input instanceof Date
+}
+
 export function date(input: unknown) {
-	if (input instanceof Date) {
+	if (isDate(input)) {
 		return input
 	}
 	throw new InvalidDateError()
