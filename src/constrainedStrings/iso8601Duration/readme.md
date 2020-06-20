@@ -2,7 +2,7 @@
 
 [Back to root readme.md](../../../readme.md)
 
-This function can be used to check the type of the input is a valid ISO 8601 Duration as shown in the example below. It should only throw `rulr.InvalidISO8601DurationError`.
+This function uses `rulr.isISO8601Duration` to check the input is a valid ISO 8601 Duration as shown in the example below. It should only throw `rulr.InvalidISO8601DurationError`.
 
 ```ts
 import * as rulr from 'rulr'

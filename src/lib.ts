@@ -19,15 +19,16 @@ export {
 export { email, isEmail, Email, InvalidEmailError } from './constrainedStrings/email/email'
 export { iri, isIRI, IRI, InvalidIRIError } from './constrainedStrings/iri/iri'
 export {
+	iso8601Duration,
+	isISO8601Duration,
+	ISO8601Duration,
+	InvalidISO8601DurationError,
+} from './constrainedStrings/iso8601Duration/iso8601Duration'
+export {
 	iso8601Timestamp,
 	ISO8601Timestamp,
 	InvalidISO8601TimestampError,
 } from './constrainedStrings/iso8601Timestamp/iso8601Timestamp'
-export {
-	iso8601Duration,
-	ISO8601Duration,
-	InvalidISO8601DurationError,
-} from './constrainedStrings/iso8601Duration/iso8601Duration'
 export { locale, Locale, InvalidLocaleError } from './constrainedStrings/locale/locale'
 export { mailto, Mailto, InvalidMailtoError } from './constrainedStrings/mailto/mailto'
 export { mimeType, MimeType, InvalidMimeTypeError } from './constrainedStrings/mimeType/mimeType'

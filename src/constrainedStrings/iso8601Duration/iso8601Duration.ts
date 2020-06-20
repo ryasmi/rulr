@@ -1,6 +1,6 @@
 import { BaseError } from 'make-error'
-import { string } from '../../valueRules/string/string'
-import { constrain, Static } from '../../core'
+import { isString } from '../../valueRules/string/string'
+import { Constrained } from '../../core'
 
 export class InvalidISO8601DurationError extends BaseError {
 	constructor() {
@@ -12,16 +12,15 @@ const iso8601DurationRegex = /^(-?)P(?=\d|T\d)(?:(\d+)Y)?(?:(\d+)M)?(?:(\d+)([DW
 
 export const iso8601DurationSymbol = Symbol()
 
-export function iso8601Duration(input: unknown) {
-	try {
-		const stringInput = string(input)
-		if (iso8601DurationRegex.test(stringInput)) {
-			return constrain(iso8601DurationSymbol, stringInput)
-		}
-		throw new Error()
-	} catch (err) {
-		throw new InvalidISO8601DurationError()
-	}
+export type ISO8601Duration = Constrained<typeof iso8601DurationSymbol, string>
+
+export function isISO8601Duration(input: unknown): input is ISO8601Duration {
+	return isString(input) && iso8601DurationRegex.test(input)
 }
 
-export type ISO8601Duration = Static<typeof iso8601Duration>
+export function iso8601Duration(input: unknown) {
+	if (isISO8601Duration(input)) {
+		return input
+	}
+	throw new InvalidISO8601DurationError()
+}
