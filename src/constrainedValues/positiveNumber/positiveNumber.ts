@@ -1,6 +1,6 @@
 import { BaseError } from 'make-error'
-import { number } from '../../valueRules/number/number'
-import { constrain, Static } from '../../core'
+import { isNumber } from '../../valueRules/number/number'
+import { Constrained } from '../../core'
 
 export class InvalidPositiveNumberError extends BaseError {
 	constructor() {
@@ -10,16 +10,15 @@ export class InvalidPositiveNumberError extends BaseError {
 
 export const positiveNumberSymbol = Symbol()
 
-export function positiveNumber(input: unknown) {
-	try {
-		const numberInput = number(input)
-		if (numberInput >= 0) {
-			return constrain(positiveNumberSymbol, numberInput)
-		}
-		throw new Error()
-	} catch (err) {
-		throw new InvalidPositiveNumberError()
-	}
+export type PositiveNumber = Constrained<typeof positiveNumberSymbol, number>
+
+export function isPositiveNumber(input: unknown): input is PositiveNumber {
+	return isNumber(input) && input >= 0
 }
 
-export type PositiveNumber = Static<typeof positiveNumber>
+export function positiveNumber(input: unknown) {
+	if (isPositiveNumber(input)) {
+		return input
+	}
+	throw new InvalidPositiveNumberError()
+}

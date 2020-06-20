@@ -12,6 +12,7 @@ export {
 } from './constrainedValues/negativeNumber/negativeNumber'
 export {
 	positiveNumber,
+	isPositiveNumber,
 	PositiveNumber,
 	InvalidPositiveNumberError,
 } from './constrainedValues/positiveNumber/positiveNumber'
