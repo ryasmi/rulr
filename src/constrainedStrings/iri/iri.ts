@@ -1,6 +1,6 @@
 import { BaseError } from 'make-error'
-import { string } from '../../valueRules/string/string'
-import { constrain, Static } from '../../core'
+import { isString } from '../../valueRules/string/string'
+import { Constrained } from '../../core'
 
 export class InvalidIRIError extends BaseError {
 	constructor() {
@@ -12,16 +12,15 @@ const iriRegex = /^\w+:/i
 
 export const iriSymbol = Symbol()
 
-export function iri(input: unknown) {
-	try {
-		const stringInput = string(input)
-		if (iriRegex.test(stringInput)) {
-			return constrain(iriSymbol, stringInput)
-		}
-		throw new Error()
-	} catch (err) {
-		throw new InvalidIRIError()
-	}
+export type IRI = Constrained<typeof iriSymbol, string>
+
+export function isIRI(input: unknown): input is IRI {
+	return isString(input) && iriRegex.test(input)
 }
 
-export type IRI = Static<typeof iri>
+export function iri(input: unknown) {
+	if (isIRI(input)) {
+		return input
+	}
+	throw new InvalidIRIError()
+}
