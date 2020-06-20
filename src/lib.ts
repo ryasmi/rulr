@@ -56,7 +56,7 @@ export {
 	SemanticVersion,
 	InvalidSemanticVersionError,
 } from './constrainedStrings/semanticVersion/semanticVersion'
-export { sha1, SHA1, InvalidSHA1Error } from './constrainedStrings/sha1/sha1'
+export { sha1, isSHA1, SHA1, InvalidSHA1Error } from './constrainedStrings/sha1/sha1'
 export { url, URL, InvalidURLError } from './constrainedStrings/url/url'
 export { uuidv4, UUIDV4, InvalidUUIDV4Error } from './constrainedStrings/uuidv4/uuidv4'
 export { constrain, Constrained, Rule, Static, Key } from './core'
