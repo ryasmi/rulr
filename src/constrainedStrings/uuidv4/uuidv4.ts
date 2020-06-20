@@ -1,7 +1,7 @@
 import { BaseError } from 'make-error'
 import validator from 'validator'
-import { string } from '../../valueRules/string/string'
-import { constrain, Static } from '../../core'
+import { isString } from '../../valueRules/string/string'
+import { Constrained } from '../../core'
 
 export class InvalidUUIDV4Error extends BaseError {
 	constructor() {
@@ -11,16 +11,15 @@ export class InvalidUUIDV4Error extends BaseError {
 
 export const uuidv4Symbol = Symbol()
 
-export function uuidv4(input: unknown) {
-	try {
-		const stringInput = string(input)
-		if (validator.isUUID(stringInput, 4)) {
-			return constrain(uuidv4Symbol, stringInput)
-		}
-		throw new Error()
-	} catch (err) {
-		throw new InvalidUUIDV4Error()
-	}
+export type UUIDV4 = Constrained<typeof uuidv4Symbol, string>
+
+export function isUUIDV4(input: unknown): input is UUIDV4 {
+	return isString(input) && validator.isUUID(input, 4)
 }
 
-export type UUIDV4 = Static<typeof uuidv4>
+export function uuidv4(input: unknown) {
+	if (isUUIDV4(input)) {
+		return input
+	}
+	throw new InvalidUUIDV4Error()
+}
