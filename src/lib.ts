@@ -52,6 +52,7 @@ export {
 } from './constrainedStrings/scormInteractionType/scormInteractionType'
 export {
 	semanticVersion,
+	isSemanticVersion,
 	SemanticVersion,
 	InvalidSemanticVersionError,
 } from './constrainedStrings/semanticVersion/semanticVersion'

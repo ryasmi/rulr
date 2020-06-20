@@ -1,7 +1,7 @@
 import { BaseError } from 'make-error'
 import validator from 'validator'
-import { string } from '../../valueRules/string/string'
-import { constrain, Static } from '../../core'
+import { isString } from '../../valueRules/string/string'
+import { Constrained } from '../../core'
 
 export class InvalidSemanticVersionError extends BaseError {
 	constructor() {
@@ -11,16 +11,15 @@ export class InvalidSemanticVersionError extends BaseError {
 
 export const semanticVersionSymbol = Symbol()
 
-export function semanticVersion(input: unknown) {
-	try {
-		const stringInput = string(input)
-		if (validator.isSemVer(stringInput)) {
-			return constrain(semanticVersionSymbol, stringInput)
-		}
-		throw new Error()
-	} catch (err) {
-		throw new InvalidSemanticVersionError()
-	}
+export type SemanticVersion = Constrained<typeof semanticVersionSymbol, string>
+
+export function isSemanticVersion(input: unknown): input is SemanticVersion {
+	return isString(input) && validator.isSemVer(input)
 }
 
-export type SemanticVersion = Static<typeof semanticVersion>
+export function semanticVersion(input: unknown) {
+	if (isSemanticVersion(input)) {
+		return input
+	}
+	throw new InvalidSemanticVersionError()
+}
