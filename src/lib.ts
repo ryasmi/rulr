@@ -32,7 +32,12 @@ export {
 } from './constrainedStrings/iso8601Timestamp/iso8601Timestamp'
 export { locale, isLocale, Locale, InvalidLocaleError } from './constrainedStrings/locale/locale'
 export { mailto, isMailto, Mailto, InvalidMailtoError } from './constrainedStrings/mailto/mailto'
-export { mimeType, MimeType, InvalidMimeTypeError } from './constrainedStrings/mimeType/mimeType'
+export {
+	mimeType,
+	isMimeType,
+	MimeType,
+	InvalidMimeTypeError,
+} from './constrainedStrings/mimeType/mimeType'
 export { mongoId, MongoId, InvalidMongoIdError } from './constrainedStrings/mongoId/mongoId'
 export {
 	scormInteractionType,

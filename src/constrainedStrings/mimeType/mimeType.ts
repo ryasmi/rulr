@@ -1,7 +1,7 @@
 import { BaseError } from 'make-error'
 import validator from 'validator'
-import { string } from '../../valueRules/string/string'
-import { constrain, Static } from '../../core'
+import { isString } from '../../valueRules/string/string'
+import { Constrained } from '../../core'
 
 export class InvalidMimeTypeError extends BaseError {
 	constructor() {
@@ -11,17 +11,16 @@ export class InvalidMimeTypeError extends BaseError {
 
 export const mimeTypeSymbol = Symbol()
 
-// MIME = Multi-purpose Internet Mail Extensions
-export function mimeType(input: unknown) {
-	try {
-		const stringInput = string(input)
-		if (validator.isMimeType(stringInput)) {
-			return constrain(mimeTypeSymbol, stringInput)
-		}
-		throw new Error()
-	} catch (err) {
-		throw new InvalidMimeTypeError()
-	}
+export type MimeType = Constrained<typeof mimeTypeSymbol, string>
+
+export function isMimeType(input: unknown): input is MimeType {
+	return isString(input) && validator.isMimeType(input)
 }
 
-export type MimeType = Static<typeof mimeType>
+// MIME = Multi-purpose Internet Mail Extensions
+export function mimeType(input: unknown) {
+	if (isMimeType(input)) {
+		return input
+	}
+	throw new InvalidMimeTypeError()
+}
