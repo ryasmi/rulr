@@ -1,7 +1,7 @@
 import { BaseError } from 'make-error'
 import validator from 'validator'
-import { string } from '../../valueRules/string/string'
-import { constrain, Static } from '../../core'
+import { isString } from '../../valueRules/string/string'
+import { Constrained } from '../../core'
 
 export class InvalidMailtoError extends BaseError {
 	constructor() {
@@ -11,16 +11,19 @@ export class InvalidMailtoError extends BaseError {
 
 export const mailtoSymbol = Symbol()
 
-export function mailto(input: unknown) {
-	try {
-		const stringInput = string(input)
-		if (/^mailto:/.test(stringInput) && validator.isEmail(stringInput.replace('mailto:', ''))) {
-			return constrain(mailtoSymbol, stringInput)
-		}
-		throw new Error()
-	} catch (err) {
-		throw new InvalidMailtoError()
-	}
+export type Mailto = Constrained<typeof mailtoSymbol, string>
+
+const mailtoRegex = /^mailto:/
+
+export function isMailto(input: unknown): input is Mailto {
+	return (
+		isString(input) && mailtoRegex.test(input) && validator.isEmail(input.replace(mailtoRegex, ''))
+	)
 }
 
-export type Mailto = Static<typeof mailto>
+export function mailto(input: unknown) {
+	if (isMailto(input)) {
+		return input
+	}
+	throw new InvalidMailtoError()
+}
