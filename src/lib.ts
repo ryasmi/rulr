@@ -1,4 +1,9 @@
-export { integer, Integer, InvalidIntegerError } from './constrainedValues/integer/integer'
+export {
+	integer,
+	isInteger,
+	Integer,
+	InvalidIntegerError,
+} from './constrainedValues/integer/integer'
 export {
 	negativeNumber,
 	NegativeNumber,

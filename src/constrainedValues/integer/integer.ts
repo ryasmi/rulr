@@ -1,6 +1,5 @@
 import { BaseError } from 'make-error'
-import { number } from '../../valueRules/number/number'
-import { constrain, Static } from '../../core'
+import { Constrained } from '../../core'
 
 export class InvalidIntegerError extends BaseError {
 	constructor() {
@@ -10,16 +9,15 @@ export class InvalidIntegerError extends BaseError {
 
 export const integerSymbol = Symbol()
 
-export function integer(input: unknown) {
-	try {
-		const numberInput = number(input)
-		if (Number.isInteger(numberInput)) {
-			return constrain(integerSymbol, numberInput)
-		}
-		throw new Error()
-	} catch (err) {
-		throw new InvalidIntegerError()
-	}
+export type Integer = Constrained<typeof integerSymbol, number>
+
+export function isInteger(input: unknown): input is Integer {
+	return Number.isInteger(input)
 }
 
-export type Integer = Static<typeof integer>
+export function integer(input: unknown) {
+	if (isInteger(input)) {
+		return input
+	}
+	throw new InvalidIntegerError()
+}

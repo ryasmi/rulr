@@ -2,7 +2,7 @@
 
 [Back to root readme.md](../../../readme.md)
 
-This function can be used to check the type of the input is a valid integer as shown in the example below. It should only throw `rulr.InvalidIntegerError`.
+This function uses `rulr.isInteger` to check the input is a valid integer as shown in the example below. It should only throw `rulr.InvalidIntegerError`.
 
 ```ts
 import * as rulr from 'rulr'
