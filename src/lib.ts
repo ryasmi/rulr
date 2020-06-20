@@ -38,7 +38,12 @@ export {
 	MimeType,
 	InvalidMimeTypeError,
 } from './constrainedStrings/mimeType/mimeType'
-export { mongoId, MongoId, InvalidMongoIdError } from './constrainedStrings/mongoId/mongoId'
+export {
+	mongoId,
+	isMongoId,
+	MongoId,
+	InvalidMongoIdError,
+} from './constrainedStrings/mongoId/mongoId'
 export {
 	scormInteractionType,
 	ScormInteractionType,

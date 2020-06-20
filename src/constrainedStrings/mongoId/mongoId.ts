@@ -1,7 +1,7 @@
 import { BaseError } from 'make-error'
 import validator from 'validator'
-import { string } from '../../valueRules/string/string'
-import { constrain, Static } from '../../core'
+import { isString } from '../../valueRules/string/string'
+import { Constrained } from '../../core'
 
 export class InvalidMongoIdError extends BaseError {
 	constructor() {
@@ -11,16 +11,15 @@ export class InvalidMongoIdError extends BaseError {
 
 export const mongoIdSymbol = Symbol()
 
-export function mongoId(input: unknown) {
-	try {
-		const stringInput = string(input)
-		if (validator.isMongoId(stringInput)) {
-			return constrain(mongoIdSymbol, stringInput)
-		}
-		throw new Error()
-	} catch (err) {
-		throw new InvalidMongoIdError()
-	}
+export type MongoId = Constrained<typeof mongoIdSymbol, string>
+
+export function isMongoId(input: unknown): input is MongoId {
+	return isString(input) && validator.isMongoId(input)
 }
 
-export type MongoId = Static<typeof mongoId>
+export function mongoId(input: unknown) {
+	if (isMongoId(input)) {
+		return input
+	}
+	throw new InvalidMongoIdError()
+}
