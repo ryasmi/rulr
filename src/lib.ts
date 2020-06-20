@@ -26,6 +26,7 @@ export {
 } from './constrainedStrings/iso8601Duration/iso8601Duration'
 export {
 	iso8601Timestamp,
+	isISO8601Timestamp,
 	ISO8601Timestamp,
 	InvalidISO8601TimestampError,
 } from './constrainedStrings/iso8601Timestamp/iso8601Timestamp'

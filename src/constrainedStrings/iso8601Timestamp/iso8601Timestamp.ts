@@ -1,7 +1,7 @@
 import { BaseError } from 'make-error'
 import validator from 'validator'
-import { string } from '../../valueRules/string/string'
-import { constrain, Static } from '../../core'
+import { string, isString } from '../../valueRules/string/string'
+import { constrain, Static, Constrained } from '../../core'
 
 export class InvalidISO8601TimestampError extends BaseError {
 	constructor() {
@@ -11,16 +11,15 @@ export class InvalidISO8601TimestampError extends BaseError {
 
 export const iso8601TimestampSymbol = Symbol()
 
-export function iso8601Timestamp(input: unknown) {
-	try {
-		const stringInput = string(input)
-		if (validator.isISO8601(stringInput, { strict: true })) {
-			return constrain(iso8601TimestampSymbol, stringInput)
-		}
-		throw new Error()
-	} catch (err) {
-		throw new InvalidISO8601TimestampError()
-	}
+export type ISO8601Timestamp = Constrained<typeof iso8601TimestampSymbol, string>
+
+export function isISO8601Timestamp(input: unknown): input is ISO8601Timestamp {
+	return isString(input) && validator.isISO8601(input, { strict: true })
 }
 
-export type ISO8601Timestamp = Static<typeof iso8601Timestamp>
+export function iso8601Timestamp(input: unknown) {
+	if (isISO8601Timestamp(input)) {
+		return input
+	}
+	throw new InvalidISO8601TimestampError()
+}
