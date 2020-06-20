@@ -1,5 +1,5 @@
 import { BaseError } from 'make-error'
-import { enumerated } from '../../valueRules/enum/enum'
+import { isEnum } from '../../valueRules/enum/enum'
 
 export class InvalidScormInteractionTypeError extends BaseError {
 	constructor() {
@@ -22,10 +22,13 @@ export enum ScormInteractionType {
 	Other = 'other',
 }
 
+export function isScormInteractionType(input: unknown): input is ScormInteractionType {
+	return isEnum(ScormInteractionType, input)
+}
+
 export function scormInteractionType(input: unknown) {
-	try {
-		return enumerated(ScormInteractionType)(input)
-	} catch (err) {
-		throw new InvalidScormInteractionTypeError()
+	if (isScormInteractionType(input)) {
+		return input
 	}
+	throw new InvalidScormInteractionTypeError()
 }

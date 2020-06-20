@@ -46,6 +46,7 @@ export {
 } from './constrainedStrings/mongoId/mongoId'
 export {
 	scormInteractionType,
+	isScormInteractionType,
 	ScormInteractionType,
 	InvalidScormInteractionTypeError,
 } from './constrainedStrings/scormInteractionType/scormInteractionType'
