@@ -1,7 +1,7 @@
 import { BaseError } from 'make-error'
 import validator from 'validator'
-import { string } from '../../valueRules/string/string'
-import { constrain, Static } from '../../core'
+import { isString } from '../../valueRules/string/string'
+import { Constrained } from '../../core'
 
 export class InvalidLocaleError extends BaseError {
 	constructor() {
@@ -11,16 +11,15 @@ export class InvalidLocaleError extends BaseError {
 
 export const localeSymbol = Symbol()
 
-export function locale(input: unknown) {
-	try {
-		const stringInput = string(input)
-		if (validator.isLocale(stringInput)) {
-			return constrain(localeSymbol, stringInput)
-		}
-		throw new Error()
-	} catch (err) {
-		throw new InvalidLocaleError()
-	}
+export type Locale = Constrained<typeof localeSymbol, string>
+
+export function isLocale(input: unknown): input is Locale {
+	return isString(input) && validator.isLocale(input)
 }
 
-export type Locale = Static<typeof locale>
+export function locale(input: unknown) {
+	if (isLocale(input)) {
+		return input
+	}
+	throw new InvalidLocaleError()
+}

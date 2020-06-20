@@ -30,7 +30,7 @@ export {
 	ISO8601Timestamp,
 	InvalidISO8601TimestampError,
 } from './constrainedStrings/iso8601Timestamp/iso8601Timestamp'
-export { locale, Locale, InvalidLocaleError } from './constrainedStrings/locale/locale'
+export { locale, isLocale, Locale, InvalidLocaleError } from './constrainedStrings/locale/locale'
 export { mailto, Mailto, InvalidMailtoError } from './constrainedStrings/mailto/mailto'
 export { mimeType, MimeType, InvalidMimeTypeError } from './constrainedStrings/mimeType/mimeType'
 export { mongoId, MongoId, InvalidMongoIdError } from './constrainedStrings/mongoId/mongoId'

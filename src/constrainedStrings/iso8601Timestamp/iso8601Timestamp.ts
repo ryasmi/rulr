@@ -1,7 +1,7 @@
 import { BaseError } from 'make-error'
 import validator from 'validator'
-import { string, isString } from '../../valueRules/string/string'
-import { constrain, Static, Constrained } from '../../core'
+import { isString } from '../../valueRules/string/string'
+import { Constrained } from '../../core'
 
 export class InvalidISO8601TimestampError extends BaseError {
 	constructor() {
