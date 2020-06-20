@@ -6,6 +6,7 @@ export {
 } from './constrainedValues/integer/integer'
 export {
 	negativeNumber,
+	isNegativeNumber,
 	NegativeNumber,
 	InvalidNegativeNumberError,
 } from './constrainedValues/negativeNumber/negativeNumber'

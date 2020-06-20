@@ -2,7 +2,7 @@
 
 [Back to root readme.md](../../../readme.md)
 
-This function can be used to check the type of the input is a valid negativeNumber as shown in the example below. It should only throw `rulr.InvalidNegativeNumberError`.
+This function uses `rulr.isNegativeNumber` to check the input is a valid negativeNumber as shown in the example below. It should only throw `rulr.InvalidNegativeNumberError`.
 
 ```ts
 import * as rulr from 'rulr'
