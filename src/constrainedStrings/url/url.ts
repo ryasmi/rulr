@@ -1,7 +1,7 @@
 import { BaseError } from 'make-error'
 import validator from 'validator'
-import { string } from '../../valueRules/string/string'
-import { constrain, Static } from '../../core'
+import { isString } from '../../valueRules/string/string'
+import { Constrained } from '../../core'
 
 export class InvalidURLError extends BaseError {
 	constructor() {
@@ -11,16 +11,15 @@ export class InvalidURLError extends BaseError {
 
 export const urlSymbol = Symbol()
 
-export function url(input: unknown) {
-	try {
-		const stringInput = string(input)
-		if (validator.isURL(stringInput)) {
-			return constrain(urlSymbol, stringInput)
-		}
-		throw new Error()
-	} catch (err) {
-		throw new InvalidURLError()
-	}
+export type URL = Constrained<typeof urlSymbol, string>
+
+export function isURL(input: unknown): input is URL {
+	return isString(input) && validator.isURL(input)
 }
 
-export type URL = Static<typeof url>
+export function url(input: unknown) {
+	if (isURL(input)) {
+		return input
+	}
+	throw new InvalidURLError()
+}
