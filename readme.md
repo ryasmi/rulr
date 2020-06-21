@@ -16,24 +16,47 @@ import * as rulr from 'rulr'
 // Symbols can be used to guarantee constrained values are validated at runtime.
 const positiveNumberSymbol = Symbol()
 
+// Rulr's `Constrained` type guarantees data will be validated at runtime.
+type PositiveNumber = Constrained<typeof positiveNumberSymbol, number>
+
+// A guard takes unknown input and returns true if the input is valid.
+function isPositiveNumber(input: unknown): input is PositiveNumber {
+	return typeof input === 'number' && input >= 0
+}
+
 // A rule takes unknown input and returns valid output.
-function constrainToPositiveNumber(input: unknown) {
-	if (typeof input === 'number' && input >= 0) {
-		// Rulr's `constrain` function guarantees data will be validated at runtime.
-		return rulr.constrain(positiveNumberSymbol, input)
+function positiveNumber(input: unknown): PositiveNumber {
+	if (isPositiveNumber(input)) {
+		return input
 	}
 	// You can throw `rulr.ValidationErrors` to return many errors.
 	throw new Error('expected positive number')
 }
 
-// Rulr can turn rules into types to avoid duplicating information.
-type PositiveNumber = rulr.Static<typeof constrainToPositiveNumber>
-
 // Compile-time error.
 const positiveNumber1: PositiveNumber = -1
 
 // Run-time error.
-const positiveNumber2: PositiveNumber = constrainToPositiveNumber(-1)
+const positiveNumber2: PositiveNumber = positiveNumber(-1)
+
+// Rulr comes with convenient rules and guards like `object`.
+const example = rulr.object({
+	required: {
+		price: positiveNumber,
+	},
+})
+
+// Rulr can turn rules into types to avoid duplicating information.
+type Example = rulr.Static<typeof example>
+
+// Rulr can also turn rules into guards to avoid duplicating code.
+const isExample = rulr.guard(example)
+
+// You can use rules and/or guards to guarantee your data is valid.
+const myExample: Example = example({ price: 12.34 })
+if (isExample(myExample)) {
+	console.log(myExample.price)
+}
 ```
 
 ### Frequently Awesome Questions 🤘

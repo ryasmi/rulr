@@ -59,7 +59,7 @@ export {
 export { sha1, isSHA1, SHA1, InvalidSHA1Error } from './constrainedStrings/sha1/sha1'
 export { url, isURL, URL, InvalidURLError } from './constrainedStrings/url/url'
 export { uuidv4, isUUIDV4, UUIDV4, InvalidUUIDV4Error } from './constrainedStrings/uuidv4/uuidv4'
-export { constrain, Constrained, Rule, Static, Key } from './core'
+export { constrain, guard, Constrained, Rule, Static, Key } from './core'
 export { ValidationErrors } from './errors/ValidationErrors'
 export { KeyedValidationError } from './errors/KeyedValidationError'
 export { ValidationError } from './errors/ValidationError'
