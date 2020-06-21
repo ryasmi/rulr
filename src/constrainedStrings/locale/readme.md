@@ -2,7 +2,7 @@
 
 [Back to root readme.md](../../../readme.md)
 
-This function uses `rulr.isLocale` to check the input is a valid locale as shown in the example below. It should only throw `rulr.InvalidLocaleError`. This function uses [the much loved validator package](https://github.com/validatorjs/validator.js).
+This function uses the `rulr.isLocale` guard to check the input is a valid locale as shown in the example below. It should only throw `rulr.InvalidLocaleError`. This function uses [the much loved validator package](https://github.com/validatorjs/validator.js).
 
 ```ts
 import * as rulr from 'rulr'

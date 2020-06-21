@@ -2,7 +2,7 @@
 
 [Back to root readme.md](../../../readme.md)
 
-This function uses `rulr.isBigInt` to check the input is a bigint as shown in the example below. It should only throw `rulr.InvalidBigIntError`.
+This function uses the `rulr.isBigInt` guard to check the input is a bigint as shown in the example below. It should only throw `rulr.InvalidBigIntError`.
 
 ```ts
 import * as rulr from 'rulr'

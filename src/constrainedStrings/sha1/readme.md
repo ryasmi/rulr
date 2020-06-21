@@ -2,7 +2,7 @@
 
 [Back to root readme.md](../../../readme.md)
 
-This function uses `rulr.isSHA1` to check the input is a valid SHA1 as shown in the example below. It should only throw `rulr.InvalidSHA1Error`. This function uses [the much loved validator package](https://github.com/validatorjs/validator.js).
+This function uses the `rulr.isSHA1` guard to check the input is a valid SHA1 as shown in the example below. It should only throw `rulr.InvalidSHA1Error`. This function uses [the much loved validator package](https://github.com/validatorjs/validator.js).
 
 ```ts
 import * as rulr from 'rulr'

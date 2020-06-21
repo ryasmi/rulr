@@ -2,7 +2,7 @@
 
 [Back to root readme.md](../../../readme.md)
 
-This function uses `rulr.isDate` to check the input is an instance of `Date` as shown in the example below. It should only throw `rulr.InvalidDateError`.
+This function uses the `rulr.isDate` guard to check the input is an instance of `Date` as shown in the example below. It should only throw `rulr.InvalidDateError`.
 
 ```ts
 import * as rulr from 'rulr'

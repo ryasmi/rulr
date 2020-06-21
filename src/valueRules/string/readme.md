@@ -2,7 +2,7 @@
 
 [Back to root readme.md](../../../readme.md)
 
-This function uses `rulr.isString` to check the input is a string as shown in the example below. It should only throw `rulr.InvalidStringError`. You might want to consider constraining strings somehow to avoid display and storage bugs.
+This function uses the `rulr.isString` guard to check the input is a string as shown in the example below. It should only throw `rulr.InvalidStringError`. You might want to consider constraining strings somehow to avoid display and storage bugs.
 
 ```ts
 import * as rulr from 'rulr'

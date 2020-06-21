@@ -2,7 +2,7 @@
 
 [Back to root readme.md](../../../readme.md)
 
-This function uses `rulr.isIRI` to check the input is a valid IRI as shown in the example below. It should only throw `rulr.InvalidIRIError`. You may want to consider using [the url rule](../url/readme.md) instead.
+This function uses the `rulr.isIRI` guard to check the input is a valid IRI as shown in the example below. It should only throw `rulr.InvalidIRIError`. You may want to consider using [the url rule](../url/readme.md) instead.
 
 ```ts
 import * as rulr from 'rulr'

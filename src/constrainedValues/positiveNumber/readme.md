@@ -2,7 +2,7 @@
 
 [Back to root readme.md](../../../readme.md)
 
-This function uses `rulr.isPositiveNumber` to check the input is a valid positiveNumber as shown in the example below. It should only throw `rulr.InvalidPositiveNumberError`.
+This function uses the `rulr.isPositiveNumber` guard to check the input is a valid positiveNumber as shown in the example below. It should only throw `rulr.InvalidPositiveNumberError`.
 
 ```ts
 import * as rulr from 'rulr'

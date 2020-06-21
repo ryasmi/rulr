@@ -2,7 +2,7 @@
 
 [Back to root readme.md](../../../readme.md)
 
-This function uses `rulr.isEnum` to check the input matches an enum value as shown in the example below. It should only throw `rulr.InvalidEnumError`.
+This function uses the `rulr.isEnum` guard to check the input matches an enum value as shown in the example below. It should only throw `rulr.InvalidEnumError`.
 
 ```ts
 import * as rulr from 'rulr'

@@ -2,7 +2,7 @@
 
 [Back to root readme.md](../../../readme.md)
 
-This function uses `rulr.isSymbol` to check the input is a symbol as shown in the example below. It should only throw `rulr.InvalidSymbolError`.
+This function uses the `rulr.isSymbol` guard to check the input is a symbol as shown in the example below. It should only throw `rulr.InvalidSymbolError`.
 
 ```ts
 import * as rulr from 'rulr'
