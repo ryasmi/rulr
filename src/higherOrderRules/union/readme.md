@@ -33,3 +33,38 @@ const example3: Example = constrainToExample({
 	example: true,
 })
 ```
+
+You may find the `rulr.guard` function useful to discriminate your union possibilities, especially if you're using union with `rulr.object` as shown below.
+
+```ts
+import * as rulr from 'rulr'
+
+const stringObjectSymbol = Symbol()
+
+const stringObject = rulr.object({
+	required: {
+		type: rulr.constant(stringObjectSymbol, 'text'),
+		text: rulr.string,
+	},
+})
+
+const isStringObject = rulr.guard(stringObject)
+
+const numberObjectSymbol = Symbol()
+
+const numberObject = rulr.object({
+	required: {
+		type: rulr.constant(numberObjectSymbol, 'num'),
+		num: rulr.number,
+	},
+})
+
+const constrainToExample = rulr.union(stringObject, numberObject)
+
+const example = constrainToExample({ type: 'text', text: 'hello' })
+if (isStringObject(example)) {
+	console.log(example.text)
+} else {
+	console.log(example.num)
+}
+```
