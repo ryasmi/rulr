@@ -34,7 +34,7 @@ const example3: Example = constrainToExample({
 })
 ```
 
-You may find the `rulr.guard` function useful to discriminate your union possibilities, especially if you're using union with `rulr.object` as shown below.
+You may find the `rulr.guard` function useful to discriminate your union possibilities, especially if you're using union with `rulr.object` as shown below. It's best to use guards on pre-validated and santized data because `rulr.guard` will ignore the sanitization provided by rules such as `rulr.object` which removes properties that were not specified in the provided schema.
 
 ```ts
 import * as rulr from 'rulr'
