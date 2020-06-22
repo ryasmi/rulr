@@ -29,7 +29,11 @@ type PartialObject<Schema> = {
 type UnconstrainedObject<RequiredSchema, OptionalSchema> = RequiredObject<RequiredSchema> &
 	PartialObject<OptionalSchema>
 
-function validateRequiredObject<T extends Schema>(schema: T, objectInput: PlainObject) {
+function validateRequiredObject<T extends Schema>(
+	schema: T,
+	objectInput: PlainObject,
+	bail = false
+) {
 	const keys: (keyof T)[] = Object.keys(schema)
 	const output = {} as RequiredObject<T>
 	const errors = [] as KeyedValidationError[]
@@ -40,6 +44,9 @@ function validateRequiredObject<T extends Schema>(schema: T, objectInput: PlainO
 			const rule = schema[key]
 			result.output[key] = rule(value)
 		} catch (err) {
+			if (bail) {
+				throw err
+			}
 			result.errors.push(new KeyedValidationError(value, err, key as string))
 		}
 		return result
@@ -47,7 +54,11 @@ function validateRequiredObject<T extends Schema>(schema: T, objectInput: PlainO
 	return finalResult
 }
 
-function validatePartialObject<T extends Schema>(schema: T, objectInput: PlainObject) {
+function validatePartialObject<T extends Schema>(
+	schema: T,
+	objectInput: PlainObject,
+	bail = false
+) {
 	const keys: (keyof T)[] = Object.keys(schema)
 	const output = {} as PartialObject<T>
 	const errors = [] as KeyedValidationError[]
@@ -60,6 +71,9 @@ function validatePartialObject<T extends Schema>(schema: T, objectInput: PlainOb
 				result.output[key] = rule(value)
 			}
 		} catch (err) {
+			if (bail) {
+				throw err
+			}
 			result.errors.push(new KeyedValidationError(value, err, key as string))
 		}
 		return result
@@ -78,13 +92,16 @@ export function object<
 
 	/** Defaults to empty object */
 	readonly optional?: Optional
+
+	/** Defaults to false. Will bail on first error. */
+	readonly bail?: boolean
 }) {
 	const required = opts.required ?? {}
 	const optional = opts.optional ?? {}
 	return (input: unknown) => {
 		const objectInput = validateObject(input)
-		const requiredObjectResult = validateRequiredObject(required, objectInput)
-		const optionalObjectResult = validatePartialObject(optional, objectInput)
+		const requiredObjectResult = validateRequiredObject(required, objectInput, opts.bail)
+		const optionalObjectResult = validatePartialObject(optional, objectInput, opts.bail)
 		const errors = [...requiredObjectResult.errors, ...optionalObjectResult.errors]
 		if (errors.length > 0) {
 			throw new ValidationErrors(errors)

@@ -1,5 +1,6 @@
 import * as assert from 'assert'
 import { object, InvalidObjectError, number, string } from '../../lib'
+import { InvalidNumberError } from '../../valueRules/number/number'
 
 test('dictionary should not allow non-object input', () => {
 	const rule = object({})
@@ -133,4 +134,14 @@ test('object should not allow access to unspecified properties', () => {
 	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 	// @ts-expect-error
 	assert.equal(output.example, undefined)
+})
+
+test('object should bail on first error in required properties', () => {
+	const rule = object({ required: { test: number }, bail: true })
+	assert.throws(() => rule({ test: '' }), InvalidNumberError)
+})
+
+test('object should bail on first error in optional properties', () => {
+	const rule = object({ optional: { test: number }, bail: true })
+	assert.throws(() => rule({ test: '' }), InvalidNumberError)
 })

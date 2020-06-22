@@ -16,6 +16,7 @@ const constrainToExample = rulr.object({
 	optional: {
 		optionalExample: rulr.number,
 	},
+	bail: true, // Throws at first error. Defaults to true.
 })
 
 type Example = rulr.Static<typeof constrainToExample>
