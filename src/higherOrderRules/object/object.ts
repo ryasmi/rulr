@@ -29,56 +29,52 @@ type PartialObject<Schema> = {
 type UnconstrainedObject<RequiredSchema, OptionalSchema> = RequiredObject<RequiredSchema> &
 	PartialObject<OptionalSchema>
 
-function validateRequiredObject<T extends Schema>(
-	schema: T,
-	objectInput: PlainObject,
-	bail = false
-) {
+function createRequiredValidator<T extends Schema>(schema: T, bail = false) {
 	const keys: (keyof T)[] = Object.keys(schema)
-	const output = {} as RequiredObject<T>
-	const errors = [] as KeyedValidationError[]
-	const initialResult = { output, errors }
-	const finalResult = keys.reduce((result, key) => {
-		const value = objectInput[key as string]
-		try {
+	return (objectInput: PlainObject) => {
+		const output = {} as RequiredObject<T>
+		const errors = [] as KeyedValidationError[]
+		const initialResult = { output, errors }
+		const finalResult = keys.reduce((result, key) => {
+			const value = objectInput[key as string]
 			const rule = schema[key]
-			result.output[key] = rule(value)
-		} catch (err) {
-			if (bail) {
-				throw err
+			try {
+				result.output[key] = rule(value)
+			} catch (err) {
+				if (bail) {
+					throw err
+				}
+				result.errors.push(new KeyedValidationError(value, err, key as string))
 			}
-			result.errors.push(new KeyedValidationError(value, err, key as string))
-		}
-		return result
-	}, initialResult)
-	return finalResult
+			return result
+		}, initialResult)
+		return finalResult
+	}
 }
 
-function validatePartialObject<T extends Schema>(
-	schema: T,
-	objectInput: PlainObject,
-	bail = false
-) {
+function createPartialValidator<T extends Schema>(schema: T, bail = false) {
 	const keys: (keyof T)[] = Object.keys(schema)
-	const output = {} as PartialObject<T>
-	const errors = [] as KeyedValidationError[]
-	const initialResult = { output, errors }
-	const finalResult = keys.reduce((result, key) => {
-		const value = objectInput[key as string]
-		try {
-			if (value !== undefined) {
-				const rule = schema[key]
-				result.output[key] = rule(value)
+	return (objectInput: PlainObject) => {
+		const output = {} as PartialObject<T>
+		const errors = [] as KeyedValidationError[]
+		const initialResult = { output, errors }
+		const finalResult = keys.reduce((result, key) => {
+			const value = objectInput[key as string]
+			const rule = schema[key]
+			try {
+				if (value !== undefined) {
+					result.output[key] = rule(value)
+				}
+			} catch (err) {
+				if (bail) {
+					throw err
+				}
+				result.errors.push(new KeyedValidationError(value, err, key as string))
 			}
-		} catch (err) {
-			if (bail) {
-				throw err
-			}
-			result.errors.push(new KeyedValidationError(value, err, key as string))
-		}
-		return result
-	}, initialResult)
-	return finalResult
+			return result
+		}, initialResult)
+		return finalResult
+	}
 }
 
 const defaultSchema = {}
@@ -98,10 +94,12 @@ export function object<
 }) {
 	const required = opts.required ?? {}
 	const optional = opts.optional ?? {}
+	const validateRequiredObject = createRequiredValidator(required, opts.bail)
+	const validatePartialObject = createPartialValidator(optional, opts.bail)
 	return (input: unknown) => {
 		const objectInput = validateObject(input)
-		const requiredObjectResult = validateRequiredObject(required, objectInput, opts.bail)
-		const optionalObjectResult = validatePartialObject(optional, objectInput, opts.bail)
+		const requiredObjectResult = validateRequiredObject(objectInput)
+		const optionalObjectResult = validatePartialObject(objectInput)
 		const errors = [...requiredObjectResult.errors, ...optionalObjectResult.errors]
 		if (errors.length > 0) {
 			throw new ValidationErrors(errors)
