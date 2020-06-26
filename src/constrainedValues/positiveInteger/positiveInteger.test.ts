@@ -18,12 +18,12 @@ test('positiveInteger should allow zero input', () => {
 	assert.equal(output, input)
 })
 
-test('positiveInteger should not allow valid negative integer input', () => {
+test('positiveInteger should not allow negative integer input', () => {
 	const input = -1
 	assert.throws(() => positiveInteger(input), InvalidPositiveIntegerError)
 })
 
-test('positiveInteger should not allow invalid positiveInteger input', () => {
+test('positiveInteger should not allow invalid integer input', () => {
 	const input = 1.1
 	assert.throws(() => positiveInteger(input), InvalidPositiveIntegerError)
 })

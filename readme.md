@@ -112,6 +112,7 @@ Rulr also comes with a growing list of convenient rules for constraining strings
 In addition to the constrained strings, Rulr also comes with a few convenient rules to help you quickly validate non-string values. If you haven't seen the rule you need and you think it might save you and other people some time, please feel free to [make a feature request](https://github.com/ryansmith94/rulr/issues/new?assignees=&labels=feat&template=feature_request.md&title=), or take a look at how simply the other rules are made to create the rule you need in a pull request.
 
 - [integer](./src/constrainedValues/integer/readme.md)
+- [negativeInteger](./src/constrainedValues/negativeInteger/readme.md)
 - [negativeNumber](./src/constrainedValues/negativeNumber/readme.md)
 - [positiveInteger](./src/constrainedValues/positiveInteger/readme.md)
 - [positiveNumber](./src/constrainedValues/positiveNumber/readme.md)

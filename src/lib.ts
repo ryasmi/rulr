@@ -5,6 +5,12 @@ export {
 	InvalidIntegerError,
 } from './constrainedValues/integer/integer'
 export {
+	negativeInteger,
+	isNegativeInteger,
+	NegativeInteger,
+	InvalidNegativeIntegerError,
+} from './constrainedValues/negativeInteger/negativeInteger'
+export {
 	negativeNumber,
 	isNegativeNumber,
 	NegativeNumber,
