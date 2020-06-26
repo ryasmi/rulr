@@ -113,6 +113,7 @@ In addition to the constrained strings, Rulr also comes with a few convenient ru
 
 - [integer](./src/constrainedValues/integer/readme.md)
 - [negativeNumber](./src/constrainedValues/negativeNumber/readme.md)
+- [positiveInteger](./src/constrainedValues/positiveInteger/readme.md)
 - [positiveNumber](./src/constrainedValues/positiveNumber/readme.md)
 
 ### Support
