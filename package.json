@@ -24,7 +24,7 @@
 	},
 	"devDependencies": {
 		"@commitlint/config-conventional": "9.1.1",
-		"@types/jest": "26.0.4",
+		"@types/jest": "26.0.5",
 		"@types/node": "9.6.56",
 		"@types/validator": "13.1.0",
 		"@typescript-eslint/eslint-plugin": "3.6.1",
