@@ -23,13 +23,13 @@
 		"validator": "^13.0.0"
 	},
 	"devDependencies": {
-		"@commitlint/config-conventional": "9.1.2",
+		"@commitlint/config-conventional": "11.0.0",
 		"@types/jest": "26.0.14",
 		"@types/node": "9.6.59",
 		"@types/validator": "13.1.0",
 		"@typescript-eslint/eslint-plugin": "3.10.1",
 		"@typescript-eslint/parser": "3.10.1",
-		"commitlint": "9.1.2",
+		"commitlint": "11.0.0",
 		"eslint": "7.9.0",
 		"eslint-config-prettier": "6.11.0",
 		"husky": "4.3.0",
