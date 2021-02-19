@@ -7,9 +7,7 @@ export class KeyedValidationError extends ValidationError {
 		public readonly error: unknown,
 		public readonly key: Key
 	) {
-		super(
-			ValidationError.getErrorsAsMessage(KeyedValidationError.getErrorAsJson(input, error, key))
-		)
+		super(ValidationError.getErrorsAsMessage(KeyedValidationError.getErrorAsJson(input, error, key)))
 	}
 
 	public static getErrorAsJson(input: unknown, error: unknown, key: Key) {

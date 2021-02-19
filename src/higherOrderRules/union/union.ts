@@ -4,9 +4,7 @@ import { ValidationError, ErrorJson } from '../../errors/ValidationError'
 
 export class UnionValidationError extends ValidationError {
 	constructor(public readonly input: unknown, public readonly errors: unknown[]) {
-		super(
-			ValidationError.getErrorsAsMessage(UnionValidationError.getErrorsAsJson(input, errors))
-		)
+		super(ValidationError.getErrorsAsMessage(UnionValidationError.getErrorsAsJson(input, errors)))
 	}
 
 	public static getErrorsAsJson(input: unknown, errors: unknown[]) {

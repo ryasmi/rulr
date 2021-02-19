@@ -3,9 +3,7 @@ import { KeyedValidationError } from './KeyedValidationError'
 
 export class ValidationErrors extends ValidationError {
 	constructor(public readonly errors: KeyedValidationError[]) {
-		super(
-			ValidationError.getErrorsAsMessage(ValidationErrors.getErrorsAsJson(errors))
-		)
+		super(ValidationError.getErrorsAsMessage(ValidationErrors.getErrorsAsJson(errors)))
 	}
 
 	public static getErrorsAsJson(errors: KeyedValidationError[]) {
