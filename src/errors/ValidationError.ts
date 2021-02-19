@@ -8,20 +8,24 @@ export interface ErrorJson {
 }
 
 export abstract class ValidationError extends BaseError {
-	constructor() {
-		super()
+	constructor(message: string) {
+		super(message)
 	}
 
-	public getMessages() {
-		return this.toJSON().map((errorJson) => {
+	public static getErrorsAsMessages(errors: ErrorJson[]) {
+		return errors.map((errorJson) => {
 			const path = errorJson.path.join('.')
 			const message = errorJson.error instanceof Error ? errorJson.error.message : errorJson.error
 			return `${path}: ${message}`
 		})
 	}
 
-	get message() {
-		return this.getMessages().join('\n')
+	public static getErrorsAsMessage(errors: ErrorJson[]) {
+		return ValidationError.getErrorsAsMessages(errors).join('\n')
+	}
+
+	public getMessages() {
+		return ValidationError.getErrorsAsMessages(this.toJSON());
 	}
 
 	public abstract toJSON(): ErrorJson[]

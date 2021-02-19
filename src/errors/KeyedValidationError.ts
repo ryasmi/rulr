@@ -7,21 +7,21 @@ export class KeyedValidationError extends ValidationError {
 		public readonly error: unknown,
 		public readonly key: Key
 	) {
-		super()
+		super(
+			ValidationError.getErrorsAsMessage(KeyedValidationError.getErrorAsJson(input, error, key))
+		)
+	}
+
+	public static getErrorAsJson(input: unknown, error: unknown, key: Key) {
+		if (error instanceof ValidationError) {
+			return error.toJSON().map((error) => {
+				return { ...error, path: [key, ...error.path] }
+			})
+		}
+		return [{ error, input, path: [key] }]
 	}
 
 	public toJSON(): ErrorJson[] {
-		if (this.error instanceof ValidationError) {
-			return this.error.toJSON().map((error) => {
-				return { ...error, path: [this.key, ...error.path] }
-			})
-		}
-		return [
-			{
-				error: this.error,
-				input: this.input,
-				path: [this.key],
-			},
-		]
+		return KeyedValidationError.getErrorAsJson(this.input, this.error, this.key);
 	}
 }

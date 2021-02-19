@@ -30,3 +30,16 @@ test('ValidationErrors should return correct message with errors', () => {
 	const expectedMessage = keyedValidationError.message
 	assert.equal(actualMessage, expectedMessage)
 })
+
+test('ValidationErrors should return correct messages without errors', () => {
+	const higherOrderValidationError = new ValidationErrors([])
+	assert.deepStrictEqual(higherOrderValidationError.getMessages(), [])
+})
+
+test('ValidationErrors should return correct messages with errors', () => {
+	const keyedValidationError = new KeyedValidationError(null, 'error', 'key')
+	const higherOrderValidationError = new ValidationErrors([keyedValidationError])
+	const actualMessages = higherOrderValidationError.getMessages()
+	const expectedMessages = keyedValidationError.getMessages()
+	assert.deepStrictEqual(actualMessages, expectedMessages)
+})

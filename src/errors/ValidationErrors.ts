@@ -3,13 +3,19 @@ import { KeyedValidationError } from './KeyedValidationError'
 
 export class ValidationErrors extends ValidationError {
 	constructor(public readonly errors: KeyedValidationError[]) {
-		super()
+		super(
+			ValidationError.getErrorsAsMessage(ValidationErrors.getErrorsAsJson(errors))
+		)
 	}
 
-	public toJSON(): ErrorJson[] {
-		return this.errors.reduce<ErrorJson[]>((errorJson, error) => {
+	public static getErrorsAsJson(errors: KeyedValidationError[]) {
+		return errors.reduce<ErrorJson[]>((errorJson, error) => {
 			errorJson.push(...error.toJSON())
 			return errorJson
 		}, [])
+	}
+
+	public toJSON(): ErrorJson[] {
+		return ValidationErrors.getErrorsAsJson(this.errors);
 	}
 }

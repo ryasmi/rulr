@@ -20,6 +20,13 @@ test('KeyedValidationError should return correct message with errors', () => {
 	assert.equal(actualMessage, expectedMessage)
 })
 
+test('KeyedValidationError should return correct messages with errors', () => {
+	const keyedValidationError = new KeyedValidationError(null, 'error', 'key')
+	const actualMessages = keyedValidationError.getMessages()
+	const expectedMessages = [`${keyedValidationError.key}: ${keyedValidationError.error}`]
+	assert.deepStrictEqual(actualMessages, expectedMessages)
+})
+
 test('KeyedValidationError should return correct JSON with nested validation error', () => {
 	const nestedKeyedValidationError = new KeyedValidationError(null, 'error', 'level2')
 	const higherOrderValidationError = new ValidationErrors([nestedKeyedValidationError])

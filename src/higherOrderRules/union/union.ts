@@ -4,22 +4,28 @@ import { ValidationError, ErrorJson } from '../../errors/ValidationError'
 
 export class UnionValidationError extends ValidationError {
 	constructor(public readonly input: unknown, public readonly errors: unknown[]) {
-		super()
+		super(
+			ValidationError.getErrorsAsMessage(UnionValidationError.getErrorsAsJson(input, errors))
+		)
 	}
 
-	public toJSON(): ErrorJson[] {
-		return this.errors.reduce<ErrorJson[]>((errors, error) => {
+	public static getErrorsAsJson(input: unknown, errors: unknown[]) {
+		return errors.reduce<ErrorJson[]>((errors, error) => {
 			if (error instanceof ValidationError) {
 				errors.push(...error.toJSON())
 				return errors
 			}
 			errors.push({
 				error: error,
-				input: this.input,
+				input: input,
 				path: [],
 			})
 			return errors
 		}, [])
+	}
+
+	public toJSON(): ErrorJson[] {
+		return UnionValidationError.getErrorsAsJson(this.input, this.errors);
 	}
 }
 
