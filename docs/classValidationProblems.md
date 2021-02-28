@@ -6,11 +6,11 @@ In other languages you might use code similar to the TypeScript below for valida
 
 ```ts
 class PositiveNumber extends Number {
-	constructor(value: number) {
-		if (value < 0) {
+	constructor(value: unknown) {
+		super(value)
+		if (typeof value !== 'number' || value < 0) {
 			throw new Error('expected positive number')
 		}
-		super(value)
 	}
 }
 
@@ -20,17 +20,16 @@ const adjustedPrice = price + 1 // Problem 2: This shouldn't error but does.
 
 #### Solution to Problem 1
 
-Problem 1 is caused by TypeScript's type equivalence checking, but we can work around this by adding some private property. This solution isn't ideal because it requires an unnecessary property and the knowledge of this problem since TypeScript won't raise an error for this problem.
+Problem 1 is caused by TypeScript's type equivalence checking, but we can work around this by adding a symbol as a protected property. This solution isn't ideal because it requires an unnecessary property and the knowledge of this problem since TypeScript won't raise an error for this problem.
 
 ```ts
 class PositiveNumber extends Number {
-	private readonly _value: number
-	constructor(value: number) {
-		if (value < 0) {
+	protected readonly constraint = Symbol()
+	constructor(value: unknown) {
+		super(value)
+		if (typeof value !== 'number' || value < 0) {
 			throw new Error('expected positive number')
 		}
-		super(value)
-		this._value = value
 	}
 }
 
@@ -44,13 +43,12 @@ Problem 2 is caused by TypeScript's requirement for the plus operator to be used
 
 ```ts
 class PositiveNumber extends Number {
-	public readonly _value: number
-	constructor(value: number) {
-		if (value < 0) {
+	protected readonly constraint = Symbol()
+	constructor(value: unknown) {
+		super(value)
+		if (typeof value !== 'number' || value < 0) {
 			throw new Error('expected positive number')
 		}
-		super(value)
-		this._value = value
 	}
 }
 
