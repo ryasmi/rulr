@@ -13,36 +13,16 @@
 // Install it with `npm i rulr`
 import * as rulr from 'rulr'
 
-// Symbols can be used to guarantee constrained values are validated at runtime.
-const positiveNumberSymbol = Symbol()
-
-// Rulr's `Constrained` type guarantees data will be validated at runtime.
-type PositiveNumber = Constrained<typeof positiveNumberSymbol, number>
-
-// A guard takes unknown input and returns true if the input is valid.
-function isPositiveNumber(input: unknown): input is PositiveNumber {
-	return typeof input === 'number' && input >= 0
-}
-
-// A rule takes unknown input and returns valid output.
-function positiveNumber(input: unknown): PositiveNumber {
-	if (isPositiveNumber(input)) {
-		return input
-	}
-	// You can throw `rulr.ValidationErrors` to return many errors.
-	throw new Error('expected positive number')
-}
-
 // Compile-time error.
-const positiveNumber1: PositiveNumber = -1
+const positiveNumber1: rulr.PositiveNumber = -1
 
 // Run-time error.
-const positiveNumber2: PositiveNumber = positiveNumber(-1)
+const positiveNumber2 = rulr.positiveNumber(-1)
 
 // Rulr comes with convenient rules and guards like `object`.
 const example = rulr.object({
 	required: {
-		price: positiveNumber,
+		price: rulr.positiveNumber,
 	},
 })
 
@@ -61,6 +41,8 @@ if (isExample(myExample)) {
 
 ### Frequently Awesome Questions 🤘
 
+- [How do I create my own rules?](./docs/customRules.md)
+- [Can I add new rules to this package?](./docs/newRules.md)
 - [Why not use classes?](./docs/classValidationProblems.md)
 - [Why are symbols needed?](./docs/symbolRequirement.md)
 - [How are recursive rules defined?](./docs/recursiveRules.md)
@@ -109,7 +91,7 @@ Rulr also comes with a growing list of convenient rules for constraining strings
 
 ### Constraining Non-Strings
 
-In addition to the constrained strings, Rulr also comes with a few convenient rules to help you quickly validate non-string values. If you haven't seen the rule you need and you think it might save you and other people some time, please feel free to [make a feature request](https://github.com/ryansmith94/rulr/issues/new?assignees=&labels=feat&template=feature_request.md&title=), or take a look at how simply the other rules are made to create the rule you need in a pull request.
+In addition to the constrained strings, Rulr also comes with a few convenient rules to help you quickly validate non-string values.
 
 - [integer](./src/constrainedValues/integer/readme.md)
 - [negativeInteger](./src/constrainedValues/negativeInteger/readme.md)
@@ -121,6 +103,6 @@ In addition to the constrained strings, Rulr also comes with a few convenient ru
 
 Rulr was started in 2016 and continues to be maintained to save time writing validation logic and correcting data by returning as many validation errors as possible in one function call.
 
-Rulr has not been publicised until 2020 because as a full-time Software Engineer on a commercially supported open source project, I understand the committment and responsbility that is required. Since 2016 TypeScript has gained many great validation libraries. I have greatly admired the work of [Tom Crockett in RunTypes](https://github.com/pelotom/runtypes) and more recently [Colin McDonnell in Zod](https://github.com/vriad/zod). Their work has influenced some parts of Rulr and it is my hope that if nothing else, publicising Rulr will influence existing and future validation packages for the better.
+Rulr was not publicised until 2020 because as a full-time Software Engineer on a commercially supported open source project, I understand the commitment and responsibility that is required. Since 2016 TypeScript has gained many great validation libraries. I have greatly admired the work of [Tom Crockett in RunTypes](https://github.com/pelotom/runtypes) and more recently [Colin McDonnell in Zod](https://github.com/vriad/zod). Their work has influenced some parts of Rulr and it is my hope that if nothing else, publicising Rulr will influence existing and future validation packages for the better.
 
 The time you've taken to consider Rulr is appreciated. If it's not too much trouble, you can help everyone understand what you need from a validation package by providing feedback, bug reports, and feature requests via [a Rulr Github issue](https://github.com/ryansmith94/rulr/issues).
