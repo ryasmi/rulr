@@ -1,7 +1,8 @@
 {
 	"compilerOptions": {
-		"target": "es5",
-		"module": "commonjs",
+		"target": "ESNext",
+		"module": "ESNext",
+		"moduleResolution": "Node",
 		"strict": true,
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
@@ -10,5 +11,5 @@
 		"declaration": true,
 		"sourceMap": true
 	},
-	"files": ["src/lib.ts"]
+	"files": ["src/rulr.ts"]
 }
