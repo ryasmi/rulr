@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { date, InvalidDateError } from '../../lib'
+import { date, InvalidDateError } from '../../rulr'
 
 test('date should allow date', () => {
 	const input = new Date()

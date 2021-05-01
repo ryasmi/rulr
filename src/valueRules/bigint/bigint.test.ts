@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { bigint, InvalidBigIntError } from '../../lib'
+import { bigint, InvalidBigIntError } from '../../rulr'
 
 test('bigint should allow bigint', () => {
 	const input = BigInt(9007199254740991)

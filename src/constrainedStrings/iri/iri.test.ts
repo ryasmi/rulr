@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { iri, IRI, InvalidIRIError } from '../../lib'
+import { iri, IRI, InvalidIRIError } from '../../rulr'
 
 function testInputIsValid(input: unknown, description: string) {
 	test(description, () => {

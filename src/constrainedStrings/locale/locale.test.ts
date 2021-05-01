@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { locale, Locale, InvalidLocaleError } from '../../lib'
+import { locale, Locale, InvalidLocaleError } from '../../rulr'
 
 test('locale should not allow invalid string input', () => {
 	const input = 0

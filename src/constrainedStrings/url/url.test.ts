@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { url, URL, InvalidURLError } from '../../lib'
+import { url, URL, InvalidURLError } from '../../rulr'
 
 test('url should not allow invalid string input', () => {
 	const input = 0

@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { symbol, InvalidSymbolError } from '../../lib'
+import { symbol, InvalidSymbolError } from '../../rulr'
 
 test('symbol should allow symbol', () => {
 	const input = Symbol()

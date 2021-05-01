@@ -6,7 +6,7 @@ import {
 	ValidationErrors,
 	KeyedValidationError,
 	union,
-} from '../../lib'
+} from '../../rulr'
 
 test('array should allow empty array', () => {
 	const input: number[] = []

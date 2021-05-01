@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { negativeInteger, NegativeInteger, InvalidNegativeIntegerError } from '../../lib'
+import { negativeInteger, NegativeInteger, InvalidNegativeIntegerError } from '../../rulr'
 
 test('negativeInteger should not allow invalid number input', () => {
 	const input = '0'

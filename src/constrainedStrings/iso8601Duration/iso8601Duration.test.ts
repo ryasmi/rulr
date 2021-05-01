@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { iso8601Duration, ISO8601Duration, InvalidISO8601DurationError } from '../../lib'
+import { iso8601Duration, ISO8601Duration, InvalidISO8601DurationError } from '../../rulr'
 
 test('ISO 8601 Duration should not allow invalid string input', () => {
 	const input = 0

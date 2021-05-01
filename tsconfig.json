@@ -10,5 +10,5 @@
 		"declaration": true,
 		"sourceMap": true
 	},
-	"files": ["src/lib.ts"]
+	"files": ["src/rulr.ts"]
 }

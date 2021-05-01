@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { semanticVersion, SemanticVersion, InvalidSemanticVersionError } from '../../lib'
+import { semanticVersion, SemanticVersion, InvalidSemanticVersionError } from '../../rulr'
 
 test('semanticVersion should not allow invalid string input', () => {
 	const input = 0

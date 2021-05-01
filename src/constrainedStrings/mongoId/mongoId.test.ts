@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { mongoId, MongoId, InvalidMongoIdError } from '../../lib'
+import { mongoId, MongoId, InvalidMongoIdError } from '../../rulr'
 
 test('mongoId should not allow invalid string input', () => {
 	const input = 0

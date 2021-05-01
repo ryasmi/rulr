@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { constrain, guard, Constrained, number } from './lib'
+import { constrain, guard, Constrained, number } from './rulr'
 
 test('constrain should return constrained type', () => {
 	const exampleSymbol = Symbol()

@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { sha1, SHA1, InvalidSHA1Error } from '../../lib'
+import { sha1, SHA1, InvalidSHA1Error } from '../../rulr'
 
 test('sha1 should not allow invalid string input', () => {
 	const input = 0

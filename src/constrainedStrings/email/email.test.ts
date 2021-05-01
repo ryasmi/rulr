@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { email, Email, InvalidEmailError } from '../../lib'
+import { email, Email, InvalidEmailError } from '../../rulr'
 
 test('email should not allow invalid string input', () => {
 	const input = 0

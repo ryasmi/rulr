@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { mailto, Mailto, InvalidMailtoError } from '../../lib'
+import { mailto, Mailto, InvalidMailtoError } from '../../rulr'
 
 test('mailto should not allow invalid string input', () => {
 	const input = 0

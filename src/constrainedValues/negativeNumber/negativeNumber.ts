@@ -1,6 +1,6 @@
 import { BaseError } from 'make-error'
 import { Constrained } from '../../core'
-import { isNumber } from 'util'
+import { isNumber } from '../../valueRules/number/number'
 
 export class InvalidNegativeNumberError extends BaseError {
 	constructor() {

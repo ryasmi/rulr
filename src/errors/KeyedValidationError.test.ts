@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { KeyedValidationError } from '../lib'
+import { KeyedValidationError } from '../rulr'
 import { ValidationErrors } from './ValidationErrors'
 
 test('KeyedValidationError should return correct JSON with string error', () => {
