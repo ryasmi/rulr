@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { dictionary, string, number, InvalidObjectError } from '../../lib'
+import { dictionary, string, number, InvalidObjectError } from '../../rulr'
 
 test('dictionary should not allow non-object input', () => {
 	assert.throws(() => {

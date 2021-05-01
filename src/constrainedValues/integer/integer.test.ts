@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { integer, Integer, InvalidIntegerError } from '../../lib'
+import { integer, Integer, InvalidIntegerError } from '../../rulr'
 
 test('integer should not allow invalid number input', () => {
 	const input = '0'

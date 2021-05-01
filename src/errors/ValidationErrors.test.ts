@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { ValidationErrors, KeyedValidationError } from '../lib'
+import { ValidationErrors, KeyedValidationError } from '../rulr'
 
 test('ValidationErrors should return correct JSON without errors', () => {
 	const higherOrderValidationError = new ValidationErrors([])

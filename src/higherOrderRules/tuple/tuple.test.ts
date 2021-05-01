@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { InvalidArrayError, ValidationErrors, tuple, number, string, union } from '../../lib'
+import { InvalidArrayError, ValidationErrors, tuple, number, string, union } from '../../rulr'
 
 test('tuple should not allow non-array input', () => {
 	const input = {}

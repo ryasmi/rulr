@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { number, InvalidNumberError } from '../../lib'
+import { number, InvalidNumberError } from '../../rulr'
 
 test('unconstrained number should allow number', () => {
 	const input = 10

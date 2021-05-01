@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { iso8601Timestamp, ISO8601Timestamp, InvalidISO8601TimestampError } from '../../lib'
+import { iso8601Timestamp, ISO8601Timestamp, InvalidISO8601TimestampError } from '../../rulr'
 
 test('ISO 8601 Timestamp should not allow invalid string input', () => {
 	const input = 0

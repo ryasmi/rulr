@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { enumerated, InvalidEnumError } from '../../lib'
+import { enumerated, InvalidEnumError } from '../../rulr'
 
 enum TestEnum {
 	TestValue,

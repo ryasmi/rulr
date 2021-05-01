@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { allowUndefined, number, InvalidNumberError } from '../../lib'
+import { allowUndefined, number, InvalidNumberError } from '../../rulr'
 
 test('allowUndefined should allow undefined', () => {
 	const input = undefined

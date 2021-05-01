@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { unknown } from '../../lib'
+import { unknown } from '../../rulr'
 
 test('unknown should allow numbers', () => {
 	const input = 10

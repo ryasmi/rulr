@@ -3,7 +3,7 @@ import {
 	scormInteractionType,
 	ScormInteractionType,
 	InvalidScormInteractionTypeError,
-} from '../../lib'
+} from '../../rulr'
 
 test('scormInteractionType should not allow invalid string input', () => {
 	const input = 0

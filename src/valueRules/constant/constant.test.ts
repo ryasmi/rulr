@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { constant, InvalidConstantError, Constrained } from '../../lib'
+import { constant, InvalidConstantError, Constrained } from '../../rulr'
 
 test('constant should allow same value', () => {
 	const exampleSymbol = Symbol()

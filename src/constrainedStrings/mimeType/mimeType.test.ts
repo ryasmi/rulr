@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { mimeType, MimeType, InvalidMimeTypeError } from '../../lib'
+import { mimeType, MimeType, InvalidMimeTypeError } from '../../rulr'
 
 test('mimeType should not allow invalid string input', () => {
 	const input = 0

@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { uuidv4, UUIDV4, InvalidUUIDV4Error } from '../../lib'
+import { uuidv4, UUIDV4, InvalidUUIDV4Error } from '../../rulr'
 
 test('uuidv4 should not allow invalid string input', () => {
 	const input = 0
