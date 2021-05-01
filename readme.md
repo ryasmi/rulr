@@ -7,6 +7,7 @@
 	<a href="https://lgtm.com/projects/g/ryansmith94/rulr/alerts/"><img alt="Total alerts" src="https://img.shields.io/lgtm/alerts/g/ryansmith94/rulr.svg?logo=lgtm&logoWidth=18"/></a>
 	<a href="https://lgtm.com/projects/g/ryansmith94/rulr/context:javascript"><img alt="Language grade: JavaScript" src="https://img.shields.io/lgtm/grade/javascript/g/ryansmith94/rulr.svg?logo=lgtm&logoWidth=18"/></a>
 	<a href="https://codecov.io/gh/ryansmith94/rulr"><img alt="Master branch coverage percentage from Codecov" src="https://codecov.io/gh/ryansmith94/rulr/branch/master/graph/badge.svg" /></a>
+	<a href="https://img.shields.io/bundlephobia/minzip/rulr.svg"><img alt="Package size from BundlePhobia" src="https://img.shields.io/bundlephobia/minzip/rulr.svg" /></a>
 </div>
 
 ```ts
