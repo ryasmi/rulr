@@ -7,7 +7,7 @@
 	<a href="https://lgtm.com/projects/g/ryansmith94/rulr/alerts/"><img alt="Total alerts" src="https://img.shields.io/lgtm/alerts/g/ryansmith94/rulr.svg?logo=lgtm&logoWidth=18"/></a>
 	<a href="https://lgtm.com/projects/g/ryansmith94/rulr/context:javascript"><img alt="Language grade: JavaScript" src="https://img.shields.io/lgtm/grade/javascript/g/ryansmith94/rulr.svg?logo=lgtm&logoWidth=18"/></a>
 	<a href="https://codecov.io/gh/ryansmith94/rulr"><img alt="Master branch coverage percentage from Codecov" src="https://codecov.io/gh/ryansmith94/rulr/branch/master/graph/badge.svg" /></a>
-	<a href="https://img.shields.io/bundlephobia/minzip/rulr.svg"><img alt="Package size from BundlePhobia" src="https://img.shields.io/bundlephobia/minzip/rulr.svg" /></a>
+	<a href="https://bundlephobia.com/result?p=rulr"><img alt="Package size from BundlePhobia" src="https://img.shields.io/bundlephobia/minzip/rulr.svg" /></a>
 </div>
 
 ```ts
@@ -49,6 +49,8 @@ if (isExample(myExample)) {
 - [How are recursive rules defined?](./docs/recursiveRules.md)
 - [Can Rulr be used with React Hooks and PropTypes?](./docs/react.md)
 - [Why are you using tabs!?!](https://www.reddit.com/r/javascript/comments/c8drjo/nobody_talks_about_the_real_reason_to_use_tabs/)
+- [Why is the bundle size quite large?](https://bundlephobia.com/result?p=rulr)
+- [How does the performance compare to other validation packages?](https://github.com/moltar/typescript-runtime-type-benchmarks)
 
 ### Getting Started
 
