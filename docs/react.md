@@ -2,7 +2,7 @@
 
 [Back to root readme.md](../readme.md)
 
-You can use parts of the JavaScript code below to create a `useRulr` hook in React which may be uesful for validating form inputs. In future it's hoped to create a `react-rulr` package written in TypeScript that comes with this hook or something similar.
+You can use parts of the JavaScript code below to create a `useRulr` hook in React which may be useful for validating form inputs. In future it's hoped to create a `react-rulr` package written in TypeScript that comes with this hook or something similar.
 
 ```jsx
 import React from 'react'
