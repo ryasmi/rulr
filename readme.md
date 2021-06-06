@@ -1,6 +1,6 @@
 <div align="center">
   <h1>📐</br>rulr</h1>
-  <p>Measure your data, tailor your application.</p>
+	<p>All the validation errors, one function call.</p>
 	<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-d9207b.svg" alt="License: MIT"></a>
 	<a href="https://github.com/semantic-release/semantic-release"><img src="https://camo.githubusercontent.com/59c84e3731ad0a45312b47b1546b0972ac4389ea/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2532302532302546302539462539332541362546302539462539412538302d73656d616e7469632d2d72656c656173652d6531303037392e737667" alt="Uses Semantic Release to correctly bump versions especially for breaking changes"></a>
 	<a href="https://renovatebot.com/"><img src="https://img.shields.io/badge/%F0%9F%94%84%F0%9F%A4%96%20-renovate%20bot-d9207b.svg" alt="Uses Renovate to keep dependencies updated"></a>
@@ -8,6 +8,8 @@
 	<a href="https://lgtm.com/projects/g/ryansmith94/rulr/context:javascript"><img alt="Language grade: JavaScript" src="https://img.shields.io/lgtm/grade/javascript/g/ryansmith94/rulr.svg?logo=lgtm&logoWidth=18"/></a>
 	<a href="https://codecov.io/gh/ryansmith94/rulr"><img alt="Master branch coverage percentage from Codecov" src="https://codecov.io/gh/ryansmith94/rulr/branch/master/graph/badge.svg" /></a>
 	<a href="https://bundlephobia.com/result?p=rulr"><img alt="Package size from BundlePhobia" src="https://img.shields.io/bundlephobia/minzip/rulr.svg" /></a>
+	<div>
+	</div>
 </div>
 
 ```ts
@@ -39,19 +41,6 @@ if (isExample(myExample)) {
 	console.log(myExample.price)
 }
 ```
-
-### Frequently Awesome Questions 🤘
-
-- [How do I create my own rules?](./docs/customRules.md)
-- [Can I add new rules to this package?](./docs/newRules.md)
-- [Why not use classes?](./docs/classValidationProblems.md)
-- [Why are symbols needed?](./docs/symbolRequirement.md)
-- [How are recursive rules defined?](./docs/recursiveRules.md)
-- [Can Rulr be used with React Hooks and PropTypes?](./docs/react.md)
-- [Can Rulr be used with Express?](./docs/express.md)
-- [Why are you using tabs!?!](https://www.reddit.com/r/javascript/comments/c8drjo/nobody_talks_about_the_real_reason_to_use_tabs/)
-- [Why is the bundle size quite large?](https://bundlephobia.com/result?p=rulr)
-- [How does the performance compare to other validation packages?](https://github.com/moltar/typescript-runtime-type-benchmarks)
 
 ### Getting Started
 
@@ -103,10 +92,21 @@ In addition to the constrained strings, Rulr also comes with a few convenient ru
 - [positiveInteger](./src/constrainedValues/positiveInteger/readme.md)
 - [positiveNumber](./src/constrainedValues/positiveNumber/readme.md)
 
-### Support
+### Frequently Awesome Questions 🤘
 
-Rulr was started in 2016 and continues to be maintained to save time writing validation logic and correcting data by returning as many validation errors as possible in one function call.
+- [How do I create my own rules?](./docs/customRules.md)
+- [Can I add new rules to this package?](./docs/newRules.md)
+- [Why not use classes?](./docs/classValidationProblems.md)
+- [Why are symbols needed?](./docs/symbolRequirement.md)
+- [How are recursive rules defined?](./docs/recursiveRules.md)
+- [Can Rulr be used with React Hooks and PropTypes?](./docs/react.md)
+- [Can Rulr be used with Express?](./docs/express.md)
+- [Why are you using tabs!?!](https://www.reddit.com/r/javascript/comments/c8drjo/nobody_talks_about_the_real_reason_to_use_tabs/)
+- [Why is the bundle size quite large?](https://bundlephobia.com/result?p=rulr)
+- [How does the performance compare to other validation packages?](https://github.com/moltar/typescript-runtime-type-benchmarks)
 
-[Rulr was not publicised until 2020](https://www.reddit.com/r/typescript/comments/hb1nt6/rulr_typescript_package_to_save_you_time_writing/) because as a full-time Software Engineer on a commercially supported open source project, I understand the commitment and responsibility that is required. Since 2016 TypeScript has gained many great validation libraries. I have greatly admired the work of [Tom Crockett in RunTypes](https://github.com/pelotom/runtypes) and more recently [Colin McDonnell in Zod](https://github.com/vriad/zod). Their work has influenced some parts of Rulr and it is my hope that if nothing else, publicising Rulr will influence existing and future validation packages for the better.
+### Background
 
-The time you've taken to consider Rulr is appreciated. If it's not too much trouble, you can help everyone understand what you need from a validation package by providing feedback, bug reports, and feature requests via [a Rulr Github issue](https://github.com/ryansmith94/rulr/issues).
+Rulr was started in 2016 and [first publicised in 2020](https://www.reddit.com/r/typescript/comments/hb1nt6/rulr_typescript_package_to_save_you_time_writing/). It continues to be maintained to save us time writing validation logic and correcting data by returning as many validation errors as possible in one function call.
+
+Rulr has been influenced by [Tom Crockett in RunTypes](https://github.com/pelotom/runtypes) and more recently [Colin McDonnell in Zod](https://github.com/vriad/zod). It's hoped that if nothing else, publicising Rulr will influence existing and future validation packages for the better.
