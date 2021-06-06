@@ -1,6 +1,6 @@
 <div align="center">
   <h1>📐</br>rulr</h1>
-	<p>All the validation errors, one function call.</p>
+	<p>All the validation errors, one function call.</br>Guarantees validation at compile-time.</p>
 	<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-d9207b.svg" alt="License: MIT"></a>
 	<a href="https://github.com/semantic-release/semantic-release"><img src="https://camo.githubusercontent.com/59c84e3731ad0a45312b47b1546b0972ac4389ea/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2532302532302546302539462539332541362546302539462539412538302d73656d616e7469632d2d72656c656173652d6531303037392e737667" alt="Uses Semantic Release to correctly bump versions especially for breaking changes"></a>
 	<a href="https://renovatebot.com/"><img src="https://img.shields.io/badge/%F0%9F%94%84%F0%9F%A4%96%20-renovate%20bot-d9207b.svg" alt="Uses Renovate to keep dependencies updated"></a>
@@ -22,27 +22,27 @@ const positiveNumber1: rulr.PositiveNumber = -1
 // Run-time error.
 const positiveNumber2 = rulr.positiveNumber(-1)
 
-// Rulr comes with convenient rules and guards like `object`.
+// Convenient rules and guards like `object`.
 const example = rulr.object({
 	required: {
 		price: rulr.positiveNumber,
 	},
 })
 
-// Rulr can turn rules into types to avoid duplicating information.
+// Turn rules into types to avoid duplicating information.
 type Example = rulr.Static<typeof example>
 
-// Rulr can also turn rules into guards to avoid duplicating code.
+// Turn rules into guards to avoid duplicating code.
 const isExample = rulr.guard(example)
 
-// You can use rules and/or guards to guarantee your data is valid.
+// Use rules and/or guards to guarantee your data is valid.
 const myExample: Example = example({ price: 12.34 })
 if (isExample(myExample)) {
 	console.log(myExample.price)
 }
 ```
 
-### Getting Started
+### Getting Started ✨
 
 To save you some time, Rulr comes with the following rules.
 
