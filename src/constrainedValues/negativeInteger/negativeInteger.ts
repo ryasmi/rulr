@@ -4,7 +4,7 @@ import { isInteger } from '../integer/integer'
 
 export class InvalidNegativeIntegerError extends BaseError {
 	constructor() {
-		super('expected positive integer')
+		super('expected negative integer')
 	}
 }
 

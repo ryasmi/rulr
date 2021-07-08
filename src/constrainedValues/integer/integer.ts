@@ -3,7 +3,7 @@ import { Constrained } from '../../core'
 
 export class InvalidIntegerError extends BaseError {
 	constructor() {
-		super('expected positive number')
+		super('expected integer')
 	}
 }
 

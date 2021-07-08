@@ -4,7 +4,7 @@ import { isNumber } from '../../valueRules/number/number'
 
 export class InvalidNegativeNumberError extends BaseError {
 	constructor() {
-		super('expected positive number')
+		super('expected negative number')
 	}
 }
 
