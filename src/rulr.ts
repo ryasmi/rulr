@@ -82,6 +82,20 @@ export { dictionary, DictionaryKeyValidationError } from './higherOrderRules/dic
 export { object, InvalidObjectError, PlainObject } from './higherOrderRules/object/object'
 export { tuple } from './higherOrderRules/tuple/tuple'
 export { union, UnionValidationError } from './higherOrderRules/union/union'
+export {
+	sanitizeNumberAsString,
+	isNumberAsString,
+	NumberAsString,
+	InvalidNumberAsStringError,
+} from './sanitizationRules/sanitizeNumberAsString/sanitizeNumberAsString'
+export {
+	sanitizeBooleanAsString,
+	isBooleanAsString,
+	BooleanAsString,
+	InvalidBooleanAsStringError,
+	truthyBooleanStrings,
+	falsyBooleanStrings,
+} from './sanitizationRules/sanitizeBooleanAsString/sanitizeBooleanAsString'
 export { any } from './valueRules/any/any'
 export { bigint, isBigInt, InvalidBigIntError } from './valueRules/bigint/bigint'
 export { boolean, isBoolean, InvalidBooleanError } from './valueRules/boolean/boolean'

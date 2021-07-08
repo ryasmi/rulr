@@ -92,6 +92,13 @@ In addition to the constrained strings, Rulr also comes with a few convenient ru
 - [positiveInteger](./src/constrainedValues/positiveInteger/readme.md)
 - [positiveNumber](./src/constrainedValues/positiveNumber/readme.md)
 
+### Sanitization Rules
+
+Finally, Rulr is starting to provide rules that sanitize inputs.
+
+- [sanitizeBooleanAsString](./src/sanitizationRules/sanitizeBooleanAsString/readme.md)
+- [sanitizeNumberAsString](./src/sanitizationRules/sanitizeNumberAsString/readme.md)
+
 ### Frequently Awesome Questions 🤘
 
 - [How do I create my own rules?](./docs/customRules.md)
