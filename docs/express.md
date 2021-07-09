@@ -11,16 +11,30 @@ import * as rulr from 'rulr'
 const app = express()
 const port = 3000
 
-const example = rulr.object({
+const addToPriceHeaders = rulr.object({
 	required: {
-		price: rulr.positiveNumber,
+		'content-type': rulr.constant(Symbol(), 'application/json'),
 	},
 })
 
-app.post('/echo-valid-price', (req, res) => {
+const addToPriceQuery = rulr.object({
+	required: {
+		priceToAdd: rulr.sanitizeNumberAsString(rulr.positiveNumber),
+	},
+})
+
+const addToPriceBody = rulr.object({
+	required: {
+		originalPrice: rulr.positiveNumber,
+	},
+})
+
+app.post('/add-to-price', (req, res) => {
 	try {
-		const body = example(req.body)
-		res.status(200).send(body.price)
+		const headers = echoValidPriceHeaders(req.headers)
+		const query = addToPriceQuery(req.query)
+		const body = addToPriceBody(req.body)
+		res.status(200).send(body.originalPrice + query.priceToAdd)
 	} catch (err) {
 		res.status(400).send(err.message)
 	}
