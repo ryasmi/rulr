@@ -20,7 +20,7 @@ test('sanitizeNumberAsString should now allow value that is not a number as a st
 	assert.throws(() => rule(input), InvalidNumberAsStringError)
 })
 
-test('sanitizeNumberAsString should now allow value that does not match rule', () => {
+test('sanitizeNumberAsString should now allow value that does not match the sub rule', () => {
 	const input = '-1'
 	const rule = sanitizeNumberAsString(positiveInteger)
 	assert.throws(() => rule(input), InvalidPositiveIntegerError)

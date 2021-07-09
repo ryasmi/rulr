@@ -83,12 +83,6 @@ export { object, InvalidObjectError, PlainObject } from './higherOrderRules/obje
 export { tuple } from './higherOrderRules/tuple/tuple'
 export { union, UnionValidationError } from './higherOrderRules/union/union'
 export {
-	sanitizeNumberAsString,
-	isNumberAsString,
-	NumberAsString,
-	InvalidNumberAsStringError,
-} from './sanitizationRules/sanitizeNumberAsString/sanitizeNumberAsString'
-export {
 	sanitizeBooleanAsString,
 	isBooleanAsString,
 	BooleanAsString,
@@ -96,6 +90,18 @@ export {
 	truthyBooleanStrings,
 	falsyBooleanStrings,
 } from './sanitizationRules/sanitizeBooleanAsString/sanitizeBooleanAsString'
+export {
+	sanitizeJsonAsString,
+	isJsonAsString,
+	JsonAsString,
+	InvalidJsonAsStringError,
+} from './sanitizationRules/sanitizeJsonAsString/sanitizeJsonAsString'
+export {
+	sanitizeNumberAsString,
+	isNumberAsString,
+	NumberAsString,
+	InvalidNumberAsStringError,
+} from './sanitizationRules/sanitizeNumberAsString/sanitizeNumberAsString'
 export { any } from './valueRules/any/any'
 export { bigint, isBigInt, InvalidBigIntError } from './valueRules/bigint/bigint'
 export { boolean, isBoolean, InvalidBooleanError } from './valueRules/boolean/boolean'
