@@ -31,7 +31,7 @@ const addToPriceBody = rulr.object({
 
 app.post('/add-to-price', (req, res) => {
 	try {
-		const headers = echoValidPriceHeaders(req.headers)
+		const headers = addToPriceHeaders(req.headers)
 		const query = addToPriceQuery(req.query)
 		const body = addToPriceBody(req.body)
 		res.status(200).send(body.originalPrice + query.priceToAdd)
