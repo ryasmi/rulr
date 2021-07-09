@@ -1,5 +1,5 @@
 import { BaseError } from 'make-error'
-import { InvalidStringError, isString } from '../../valueRules/string/string'
+import { isString } from '../../valueRules/string/string'
 import { Constrained, Rule } from '../../core'
 
 export class InvalidJsonAsStringError extends BaseError {
