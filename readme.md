@@ -56,6 +56,7 @@ To save you some time, Rulr comes with the following rules.
 - [date](./src/valueRules/date/readme.md)
 - [dictionary](./src/higherOrderRules/dictionary/readme.md)
 - [enum](./src/valueRules/enum/readme.md)
+- [literal](./src/valueRules/literal/readme.md)
 - [number](./src/valueRules/number/readme.md)
 - [object](./src/higherOrderRules/object/readme.md)
 - [string](./src/valueRules/string/readme.md)
