@@ -15,7 +15,7 @@ enum TrafficLight {
 
 const constrainToExample = rulr.object({
 	required: {
-		example: rulr.literal<TrafficLight.Red>(TrafficLight.Red),
+		example: rulr.literal(TrafficLight.Red as const),
 	},
 })
 
@@ -48,7 +48,7 @@ enum TrafficLight {
 
 const constrainToExample = rulr.object({
 	required: {
-		example: rulr.literal<TrafficLight.Red>(TrafficLight.Red),
+		example: rulr.literal(TrafficLight.Red as const),
 	},
 })
 
