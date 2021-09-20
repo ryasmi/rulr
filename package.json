@@ -23,16 +23,20 @@
 		"build": "microbundle"
 	},
 	"dependencies": {
+		"atob": "^2.1.2",
 		"make-error": "^1.3.6",
 		"validator": "^13.0.0"
 	},
 	"devDependencies": {
 		"@commitlint/config-conventional": "13.1.0",
+		"@types/atob": "2.1.2",
+		"@types/btoa": "1.2.3",
 		"@types/jest": "27.0.1",
 		"@types/node": "14.17.17",
 		"@types/validator": "13.6.3",
 		"@typescript-eslint/eslint-plugin": "4.31.1",
 		"@typescript-eslint/parser": "4.31.1",
+		"btoa": "1.2.1",
 		"commitlint": "13.1.0",
 		"eslint": "7.32.0",
 		"eslint-config-prettier": "8.3.0",
