@@ -36,7 +36,6 @@ export function sanitizeBasicAuthFromString(input: unknown): BasicAuth {
 	if (isString(input) && encodedRegex.test(input)) {
 		const values = decodeBasicAuthValuesFromString(input)
 		if (values.length === 2) {
-			// Use class because it provides instanceof usage when combined with union and bearer auth.
 			return new BasicAuth(values[0], values[1])
 		}
 	}
