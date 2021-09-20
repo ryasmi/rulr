@@ -83,6 +83,13 @@ export { object, InvalidObjectError, PlainObject } from './higherOrderRules/obje
 export { tuple } from './higherOrderRules/tuple/tuple'
 export { union, UnionValidationError } from './higherOrderRules/union/union'
 export {
+	sanitizeBasicAuthFromString,
+	isBasicAuthFromString,
+	BasicAuthAsString,
+	BasicAuthFromString,
+	InvalidBasicAuthFromString,
+} from './sanitizationRules/sanitizeBasicAuthFromString/sanitizeBasicAuthFromString'
+export {
 	sanitizeBooleanAsString,
 	isBooleanAsString,
 	BooleanAsString,
