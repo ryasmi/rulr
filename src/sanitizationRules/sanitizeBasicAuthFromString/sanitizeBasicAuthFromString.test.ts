@@ -1,6 +1,6 @@
 import * as assert from 'assert'
 import btoa from 'btoa'
-import { sanitizeBasicAuthFromString, BasicAuthFromString } from '../../rulr'
+import { sanitizeBasicAuthFromString, BasicAuth as BasicAuth } from '../../rulr'
 import {
 	BasicAuthAsString,
 	InvalidBasicAuthFromString,
@@ -12,8 +12,10 @@ test('sanitizeBasicAuthFromString should return key and secret for valid tokens'
 	const secret = 'z'
 	const basicAuthToken = `${key}:${secret}`
 	const input = `Basic ${btoa(basicAuthToken)}`
-	const output: BasicAuthFromString = sanitizeBasicAuthFromString(input)
-	assert.deepStrictEqual(output, { key, secret })
+	const output: BasicAuth = sanitizeBasicAuthFromString(input)
+	assert.ok(output instanceof BasicAuth)
+	assert.strictEqual(output.key, key)
+	assert.strictEqual(output.secret, secret)
 	assert.ok(isBasicAuthFromString(input))
 	const typeOutput: BasicAuthAsString = input
 	assert.strictEqual(typeOutput, input)

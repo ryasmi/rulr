@@ -86,7 +86,7 @@ export {
 	sanitizeBasicAuthFromString,
 	isBasicAuthFromString,
 	BasicAuthAsString,
-	BasicAuthFromString,
+	BasicAuth,
 	InvalidBasicAuthFromString,
 } from './sanitizationRules/sanitizeBasicAuthFromString/sanitizeBasicAuthFromString'
 export {

@@ -15,10 +15,10 @@ const constrainToExample = rulr.object({
 
 type Example = rulr.Static<typeof constrainToExample>
 // {
-//   example: rulr.BasicAuthFromString
+//   example: rulr.BasicAuth
 // }
 
-// Valid - Returns { key: 'abc', secret: 'def' }
+// Valid - Returns { key: 'abc', secret: 'def' } as instance of rulr.BasicAuth
 const example1: Example = constrainToExample({
 	example: `Basic ${btoa('abc:def')}`, // 'Basic YWJjOmRlZg=='
 })

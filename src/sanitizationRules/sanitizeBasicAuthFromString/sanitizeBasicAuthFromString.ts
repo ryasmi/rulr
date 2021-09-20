@@ -28,16 +28,16 @@ export function isBasicAuthFromString(input: unknown): input is BasicAuthAsStrin
 	)
 }
 
-export interface BasicAuthFromString {
-	readonly key: string
-	readonly secret: string
+export class BasicAuth {
+	constructor(public readonly key: string, public readonly secret: string) {}
 }
 
-export function sanitizeBasicAuthFromString(input: unknown): BasicAuthFromString {
+export function sanitizeBasicAuthFromString(input: unknown): BasicAuth {
 	if (isString(input) && encodedRegex.test(input)) {
 		const values = decodeBasicAuthValuesFromString(input)
 		if (values.length === 2) {
-			return { key: values[0], secret: values[1] }
+			// Use class because it provides instanceof usage when combined with union and bearer auth.
+			return new BasicAuth(values[0], values[1])
 		}
 	}
 	throw new InvalidBasicAuthFromString()
