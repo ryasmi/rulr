@@ -101,6 +101,7 @@ Finally, Rulr is starting to provide rules that sanitize inputs.
 - [sanitizeJsonFromString](./src/sanitizationRules/sanitizeJsonFromString/readme.md)
 - [sanitizeNumberFromString](./src/sanitizationRules/sanitizeNumberFromString/readme.md)
 - [sanitizeBasicAuthFromString](./src/sanitizationRules/sanitizeBasicAuthFromString/readme.md)
+- [sanitizeJWTBearerAuthFromString](./src/sanitizationRules/sanitizeJWTBearerAuthFromString/readme.md)
 
 ### Frequently Awesome Questions 🤘
 
