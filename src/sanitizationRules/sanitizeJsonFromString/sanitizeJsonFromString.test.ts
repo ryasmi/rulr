@@ -1,12 +1,12 @@
 import * as assert from 'assert'
 import * as rulr from '../../rulr'
 
-test('sanitizeJsonAsString should allow JSON as a string', () => {
+test('sanitizeJsonFromString should allow JSON as a string', () => {
 	interface Output {
 		someProp: number
 	}
 	const input = '{ "someProp": 1 }'
-	const rule = rulr.sanitizeJsonAsString(
+	const rule = rulr.sanitizeJsonFromString(
 		rulr.object({
 			required: {
 				someProp: rulr.number,
@@ -17,21 +17,21 @@ test('sanitizeJsonAsString should allow JSON as a string', () => {
 	assert.deepStrictEqual(output, { someProp: 1 })
 })
 
-test('sanitizeJsonAsString should now allow value that does not match the sub rule', () => {
+test('sanitizeJsonFromString should now allow value that does not match the sub rule', () => {
 	const input = 'true'
-	const rule = rulr.sanitizeJsonAsString(rulr.number)
+	const rule = rulr.sanitizeJsonFromString(rulr.number)
 	assert.throws(() => rule(input), rulr.InvalidNumberError)
 })
 
-test('sanitizeJsonAsString should now allow value that is not JSON as a string', () => {
+test('sanitizeJsonFromString should now allow value that is not JSON as a string', () => {
 	const input = 'abc'
-	const rule = rulr.sanitizeJsonAsString(rulr.number)
+	const rule = rulr.sanitizeJsonFromString(rulr.number)
 	assert.throws(() => rule(input), SyntaxError)
 })
 
-test('sanitizeJsonAsString should now allow value that is not a string', () => {
+test('sanitizeJsonFromString should now allow value that is not a string', () => {
 	const input = 1
-	const rule = rulr.sanitizeJsonAsString(rulr.number)
+	const rule = rulr.sanitizeJsonFromString(rulr.number)
 	assert.throws(() => rule(input), rulr.InvalidJsonAsStringError)
 })
 

@@ -9,13 +9,13 @@ test('ISO 8601 Duration should not allow invalid string input', () => {
 test('ISO 8601 Duration should allow valid ISO 8601 Duration', () => {
 	const input = 'P3Y6M4DT12H30M5S'
 	const output: ISO8601Duration = iso8601Duration(input)
-	assert.equal(output, input)
+	assert.strictEqual(output, input)
 })
 
 test('ISO 8601 Duration should allow valid ISO 8601 Duration using weeks', () => {
 	const input = 'P4W'
 	const output: ISO8601Duration = iso8601Duration(input)
-	assert.equal(output, input)
+	assert.strictEqual(output, input)
 })
 
 test('ISO 8601 Duration should not allow invalid ISO 8601 Duration missing P', () => {

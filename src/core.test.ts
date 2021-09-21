@@ -6,7 +6,7 @@ test('constrain should return constrained type', () => {
 	const input = 0
 	type Example = Constrained<typeof exampleSymbol, number>
 	const output: Example = constrain(exampleSymbol, input)
-	assert.equal(output, input)
+	assert.strictEqual(output, input)
 })
 
 test('guard should return true when input is valid', () => {
@@ -14,9 +14,9 @@ test('guard should return true when input is valid', () => {
 	const isNumber = guard(number)
 	if (isNumber(input)) {
 		const output: number = input
-		assert.equal(output, input)
+		assert.strictEqual(output, input)
 	}
-	assert.equal(isNumber(input), true)
+	assert.strictEqual(isNumber(input), true)
 })
 
 test('guard should return false when input is invalid', () => {
@@ -24,7 +24,7 @@ test('guard should return false when input is invalid', () => {
 	const isNumber = guard(number)
 	if (!isNumber(input)) {
 		const output: unknown = input
-		assert.equal(output, input)
+		assert.strictEqual(output, input)
 	}
-	assert.equal(isNumber(input), false)
+	assert.strictEqual(isNumber(input), false)
 })

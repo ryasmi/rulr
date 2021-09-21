@@ -9,7 +9,7 @@ test('mongoId should not allow invalid string input', () => {
 test('mongoId should allow valid mongoId input', () => {
 	const input = '507f1f77bcf86cd799439011'
 	const output: MongoId = mongoId(input)
-	assert.equal(output, input)
+	assert.strictEqual(output, input)
 })
 
 test('mongoId should not allow invalid mongoId input', () => {

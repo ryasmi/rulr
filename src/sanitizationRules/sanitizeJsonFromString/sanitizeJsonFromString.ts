@@ -25,7 +25,7 @@ export function isJsonAsString(input: unknown): input is JsonAsString {
 	return isString(input) && isJson(input)
 }
 
-export function sanitizeJsonAsString<T>(jsonRule: Rule<T>) {
+export function sanitizeJsonFromString<T>(jsonRule: Rule<T>) {
 	return (input: unknown) => {
 		if (isString(input)) {
 			return jsonRule(JSON.parse(input))
@@ -33,3 +33,8 @@ export function sanitizeJsonAsString<T>(jsonRule: Rule<T>) {
 		throw new InvalidJsonAsStringError()
 	}
 }
+
+/**
+ * @deprecated - Use `sanitizeJsonFromString` instead
+ **/
+export const sanitizeJsonAsString = sanitizeJsonFromString

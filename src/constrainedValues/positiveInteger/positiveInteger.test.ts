@@ -9,13 +9,13 @@ test('positiveInteger should not allow invalid number input', () => {
 test('positiveInteger should allow valid positive integer input', () => {
 	const input = 1
 	const output: PositiveInteger = positiveInteger(input)
-	assert.equal(output, input)
+	assert.strictEqual(output, input)
 })
 
 test('positiveInteger should allow zero input', () => {
 	const input = 0
 	const output: PositiveInteger = positiveInteger(input)
-	assert.equal(output, input)
+	assert.strictEqual(output, input)
 })
 
 test('positiveInteger should not allow negative integer input', () => {

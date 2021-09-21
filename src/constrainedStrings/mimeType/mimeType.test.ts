@@ -9,7 +9,7 @@ test('mimeType should not allow invalid string input', () => {
 test('mimeType should allow valid mimeType input', () => {
 	const input = 'application/json'
 	const output: MimeType = mimeType(input)
-	assert.equal(output, input)
+	assert.strictEqual(output, input)
 })
 
 test('mimeType should not allow invalid mimeType input', () => {
@@ -21,5 +21,5 @@ test('mimeType should not allow invalid mimeType input', () => {
 test('mimeType should allow valid MS Office document MIME type input', () => {
 	const input = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
 	const output: MimeType = mimeType(input)
-	assert.equal(output, input)
+	assert.strictEqual(output, input)
 })

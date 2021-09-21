@@ -1,4 +1,4 @@
-# sanitizeBooleanAsString
+# sanitizeBooleanFromString
 
 [Back to root readme.md](../../../readme.md)
 
@@ -9,7 +9,7 @@ import * as rulr from 'rulr'
 
 const constrainToExample = rulr.object({
 	required: {
-		example: rulr.sanitizeBooleanAsString,
+		example: rulr.sanitizeBooleanFromString,
 	},
 })
 

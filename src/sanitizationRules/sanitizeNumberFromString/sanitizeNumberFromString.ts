@@ -16,7 +16,7 @@ export function isNumberAsString(input: unknown): input is NumberAsString {
 	return isString(input) && !Number.isNaN(parseFloat(input))
 }
 
-export function sanitizeNumberAsString<T>(numberRule: Rule<T>) {
+export function sanitizeNumberFromString<T>(numberRule: Rule<T>) {
 	return (input: unknown) => {
 		if (isNumberAsString(input)) {
 			return numberRule(parseFloat(input))
@@ -24,3 +24,8 @@ export function sanitizeNumberAsString<T>(numberRule: Rule<T>) {
 		throw new InvalidNumberAsStringError()
 	}
 }
+
+/**
+ * @deprecated - Use `sanitizeNumberFromString` instead
+ **/
+export const sanitizeNumberAsString = sanitizeNumberFromString

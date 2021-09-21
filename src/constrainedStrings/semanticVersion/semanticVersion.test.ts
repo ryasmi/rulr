@@ -9,7 +9,7 @@ test('semanticVersion should not allow invalid string input', () => {
 test('semanticVersion should allow valid semanticVersion input', () => {
 	const input = '0.0.4'
 	const output: SemanticVersion = semanticVersion(input)
-	assert.equal(output, input)
+	assert.strictEqual(output, input)
 })
 
 test('semanticVersion should not allow invalid semanticVersion input', () => {

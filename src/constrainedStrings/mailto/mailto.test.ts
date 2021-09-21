@@ -9,7 +9,7 @@ test('mailto should not allow invalid string input', () => {
 test('mailto should allow valid mailto input', () => {
 	const input = 'mailto:test@example.org'
 	const output: Mailto = mailto(input)
-	assert.equal(output, input)
+	assert.strictEqual(output, input)
 })
 
 test('mailto should not allow invalid mailto input', () => {
@@ -21,12 +21,12 @@ test('mailto should not allow invalid mailto input', () => {
 test('mailto should allow valid mailto input with generic TLD', () => {
 	const input = 'mailto:test@example.horse'
 	const output: Mailto = mailto(input)
-	assert.equal(output, input)
+	assert.strictEqual(output, input)
 })
 
 // https://github.com/LearningLocker/StatementFactory/issues/10
 test('mailto should allow valid mailto input with backtick', () => {
 	const input = 'mailto:te`st@example.com'
 	const output: Mailto = mailto(input)
-	assert.equal(output, input)
+	assert.strictEqual(output, input)
 })

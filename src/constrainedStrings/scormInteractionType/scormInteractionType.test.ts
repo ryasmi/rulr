@@ -13,7 +13,7 @@ test('scormInteractionType should not allow invalid string input', () => {
 test('scormInteractionType should allow valid scormInteractionType input', () => {
 	Object.values(ScormInteractionType).forEach((input) => {
 		const output: ScormInteractionType = scormInteractionType(input)
-		assert.equal(output, input)
+		assert.strictEqual(output, input)
 	})
 })
 

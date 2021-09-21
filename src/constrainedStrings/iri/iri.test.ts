@@ -4,7 +4,7 @@ import { iri, IRI, InvalidIRIError } from '../../rulr'
 function testInputIsValid(input: unknown, description: string) {
 	test(description, () => {
 		const output: IRI = iri(input)
-		assert.equal(output, input)
+		assert.strictEqual(output, input)
 	})
 }
 

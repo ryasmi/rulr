@@ -97,9 +97,9 @@ In addition to the constrained strings, Rulr also comes with a few convenient ru
 
 Finally, Rulr is starting to provide rules that sanitize inputs.
 
-- [sanitizeBooleanAsString](./src/sanitizationRules/sanitizeBooleanAsString/readme.md)
-- [sanitizeJsonAsString](./src/sanitizationRules/sanitizeJsonAsString/readme.md)
-- [sanitizeNumberAsString](./src/sanitizationRules/sanitizeNumberAsString/readme.md)
+- [sanitizeBooleanFromString](./src/sanitizationRules/sanitizeBooleanFromString/readme.md)
+- [sanitizeJsonFromString](./src/sanitizationRules/sanitizeJsonFromString/readme.md)
+- [sanitizeNumberFromString](./src/sanitizationRules/sanitizeNumberFromString/readme.md)
 - [sanitizeBasicAuthFromString](./src/sanitizationRules/sanitizeBasicAuthFromString/readme.md)
 
 ### Frequently Awesome Questions 🤘

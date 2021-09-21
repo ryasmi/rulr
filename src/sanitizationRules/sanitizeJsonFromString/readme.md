@@ -1,4 +1,4 @@
-# sanitizeJsonAsString
+# sanitizeJsonFromString
 
 [Back to root readme.md](../../../readme.md)
 
@@ -9,7 +9,7 @@ import * as rulr from 'rulr'
 
 const constrainToExample = rulr.object({
 	required: {
-		example: rulr.sanitizeJsonAsString(
+		example: rulr.sanitizeJsonFromString(
 			rulr.object({
 				required: {
 					someProp: rulr.positiveInteger,

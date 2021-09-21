@@ -8,7 +8,7 @@ enum TestEnum {
 test('enum should allow enum value', () => {
 	const input = TestEnum.TestValue
 	const output: TestEnum = enumerated(TestEnum)(input)
-	assert.equal(output, input)
+	assert.strictEqual(output, input)
 })
 
 test('enum should not allow non-enum value', () => {

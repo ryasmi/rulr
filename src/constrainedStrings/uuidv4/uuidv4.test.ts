@@ -9,7 +9,7 @@ test('uuidv4 should not allow invalid string input', () => {
 test('uuidv4 should allow valid uuidv4 input', () => {
 	const input = '957f56b7-1d34-4b01-9408-3ffeb2053b28'
 	const output: UUIDV4 = uuidv4(input)
-	assert.equal(output, input)
+	assert.strictEqual(output, input)
 })
 
 test('uuidv4 should not allow invalid uuidv4 input', () => {

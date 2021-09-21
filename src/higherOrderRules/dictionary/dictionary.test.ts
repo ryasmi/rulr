@@ -10,13 +10,13 @@ test('dictionary should not allow non-object input', () => {
 test('dictionary should allow empty dictionary', () => {
 	const input = {}
 	const output: Record<string, number> = dictionary(string, number)(input)
-	assert.deepEqual(output, input)
+	assert.deepStrictEqual(output, input)
 })
 
 test('dictionary should allow valid dictionary entries', () => {
 	const input = { test: 0 }
 	const output: Record<string, number> = dictionary(string, number)(input)
-	assert.deepEqual(output, input)
+	assert.deepStrictEqual(output, input)
 })
 
 test('dictionary should not allow invalid dictionary keys', () => {
@@ -38,5 +38,5 @@ test('dictionary should allow circular values', () => {
 		return dictionary(string, rule)(input)
 	}
 	const output: Output = rule(input)
-	assert.deepEqual(output, input)
+	assert.deepStrictEqual(output, input)
 })

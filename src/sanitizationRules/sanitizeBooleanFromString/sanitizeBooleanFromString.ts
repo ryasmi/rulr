@@ -21,9 +21,14 @@ export function isBooleanAsString(input: unknown): input is BooleanAsString {
 	)
 }
 
-export function sanitizeBooleanAsString(input: unknown) {
+export function sanitizeBooleanFromString(input: unknown) {
 	if (isBooleanAsString(input)) {
 		return truthyBooleanStrings.includes(input)
 	}
 	throw new InvalidBooleanAsStringError()
 }
+
+/**
+ * @deprecated - Use `sanitizeBooleanFromString` instead
+ **/
+export const sanitizeBooleanAsString = sanitizeBooleanFromString

@@ -6,7 +6,7 @@ test('constant should allow same value', () => {
 	type Example = Constrained<typeof exampleSymbol, number>
 	const input = 10
 	const output: Example = constant(exampleSymbol, 10)(input)
-	assert.equal(output, input)
+	assert.strictEqual(output, input)
 })
 
 test('constant should not allow different value', () => {

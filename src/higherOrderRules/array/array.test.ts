@@ -11,13 +11,13 @@ import {
 test('array should allow empty array', () => {
 	const input: number[] = []
 	const output: number[] = array(number)(input)
-	assert.deepEqual(output, input)
+	assert.deepStrictEqual(output, input)
 })
 
 test('array should allow array with valid items', () => {
 	const input = [1, 2, 3]
 	const output: number[] = array(number)(input)
-	assert.deepEqual(output, input)
+	assert.deepStrictEqual(output, input)
 })
 
 test('array should not allow array with invalid items', () => {
@@ -26,7 +26,7 @@ test('array should not allow array with invalid items', () => {
 		assert.fail('Expected error')
 	} catch (error) {
 		if (error instanceof ValidationErrors) {
-			assert.equal(error.errors.length, 1)
+			assert.strictEqual(error.errors.length, 1)
 			assert.ok(error.errors[0] instanceof KeyedValidationError)
 			return
 		} else {
@@ -49,5 +49,5 @@ test('array should allow circular items', () => {
 		return itemRule(input)
 	}
 	const output: Output = rule(input)
-	assert.deepEqual(output, input)
+	assert.deepStrictEqual(output, input)
 })

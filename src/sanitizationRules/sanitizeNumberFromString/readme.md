@@ -1,4 +1,4 @@
-# sanitizeNumberAsString
+# sanitizeNumberFromString
 
 [Back to root readme.md](../../../readme.md)
 
@@ -9,7 +9,7 @@ import * as rulr from 'rulr'
 
 const constrainToExample = rulr.object({
 	required: {
-		example: rulr.sanitizeNumberAsString(rulr.positiveInteger),
+		example: rulr.sanitizeNumberFromString(rulr.positiveInteger),
 	},
 })
 
