@@ -14,6 +14,7 @@ const port = 3000
 const addToPriceHeaders = rulr.object({
 	required: {
 		'content-type': rulr.constant(Symbol(), 'application/json'),
+		authorization: rulr.sanitizeBasicAuthFromString,
 	},
 })
 
@@ -29,14 +30,21 @@ const addToPriceBody = rulr.object({
 	},
 })
 
+const appKey = 'abc'
+const appSecret = 'def'
+
 app.post('/add-to-price', (req, res) => {
 	try {
 		const headers = addToPriceHeaders(req.headers)
+		if (headers.authorization.key !== appKey || headers.authorization.secret !== appSecret) {
+		  res.status(403).send('Forbidden')
+		  return
+		}
 		const query = addToPriceQuery(req.query)
 		const body = addToPriceBody(req.body)
 		res.status(200).send(body.originalPrice + query.priceToAdd)
 	} catch (err) {
-		res.status(400).send(err.message)
+		res.status(400).send(err)
 	}
 })
 
