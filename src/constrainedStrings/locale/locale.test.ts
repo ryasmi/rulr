@@ -9,7 +9,7 @@ test('locale should not allow invalid string input', () => {
 test('locale should allow valid locale input', () => {
 	const input = 'en-US'
 	const output: Locale = locale(input)
-	assert.equal(output, input)
+	assert.strictEqual(output, input)
 })
 
 test('locale should not allow invalid locale input', () => {

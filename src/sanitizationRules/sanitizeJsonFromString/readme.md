@@ -1,15 +1,17 @@
-# sanitizeJsonAsString
+# sanitizeJsonFromString
 
 [Back to root readme.md](../../../readme.md)
 
 This function uses `rulr.isJsonAsString` and can be used when you want to sanitize an input to be a string containing JSON as shown in the example below. This function is a higher order rule as it uses a sub-rule to validate input that is JSON. This function should only throw `rulr.InvalidJsonAsStringError`, `SyntaxError`, and errors from the sub-rule.
+
+Note: `sanitizeJsonAsString` is deprecated, please use `sanitizeJsonFromString` instead.
 
 ```ts
 import * as rulr from 'rulr'
 
 const constrainToExample = rulr.object({
 	required: {
-		example: rulr.sanitizeJsonAsString(
+		example: rulr.sanitizeJsonFromString(
 			rulr.object({
 				required: {
 					someProp: rulr.positiveInteger,

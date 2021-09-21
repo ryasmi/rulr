@@ -9,7 +9,7 @@ test('url should not allow invalid string input', () => {
 test('url should allow valid url input', () => {
 	const input = 'foobar.com'
 	const output: URL = url(input)
-	assert.equal(output, input)
+	assert.strictEqual(output, input)
 })
 
 test('url should not allow invalid url input', () => {

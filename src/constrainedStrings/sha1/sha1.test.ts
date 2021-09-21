@@ -9,7 +9,7 @@ test('sha1 should not allow invalid string input', () => {
 test('sha1 should allow valid sha1 input', () => {
 	const input = '3ca25ae354e192b26879f651a51d92aa8a34d8d3'
 	const output: SHA1 = sha1(input)
-	assert.equal(output, input)
+	assert.strictEqual(output, input)
 })
 
 test('sha1 should not allow invalid sha1 input', () => {

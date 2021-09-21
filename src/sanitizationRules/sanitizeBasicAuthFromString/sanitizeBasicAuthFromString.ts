@@ -3,11 +3,16 @@ import atob from 'atob'
 import { isString } from '../../valueRules/string/string'
 import { Constrained } from '../../core'
 
-export class InvalidBasicAuthFromString extends BaseError {
+export class InvalidBasicAuthAsString extends BaseError {
 	constructor() {
 		super('expected basic auth from string')
 	}
 }
+
+/**
+ * @deprecated - Use `InvalidBasicAuthAsString` instead
+ **/
+export const InvalidBasicAuthFromString = InvalidBasicAuthAsString
 
 export const basicAuthFromStringSymbol = Symbol()
 
@@ -20,13 +25,18 @@ function decodeBasicAuthValuesFromString(input: string) {
 	return atob(input.substr(prefixLength)).split(':')
 }
 
-export function isBasicAuthFromString(input: unknown): input is BasicAuthAsString {
+export function isBasicAuthAsString(input: unknown): input is BasicAuthAsString {
 	return (
 		isString(input) &&
 		encodedRegex.test(input) &&
 		decodeBasicAuthValuesFromString(input).length === 2
 	)
 }
+
+/**
+ * @deprecated - Use `isBasicAuthAsString` instead
+ **/
+export const isBasicAuthFromString = isBasicAuthAsString
 
 export class BasicAuth {
 	constructor(public readonly key: string, public readonly secret: string) {}
@@ -39,5 +49,5 @@ export function sanitizeBasicAuthFromString(input: unknown): BasicAuth {
 			return new BasicAuth(values[0], values[1])
 		}
 	}
-	throw new InvalidBasicAuthFromString()
+	throw new InvalidBasicAuthAsString()
 }

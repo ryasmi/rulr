@@ -40,6 +40,7 @@
 		"commitlint": "13.1.0",
 		"eslint": "7.32.0",
 		"eslint-config-prettier": "8.3.0",
+		"eslint-plugin-deprecation": "1.2.1",
 		"husky": "4.3.8",
 		"jest": "27.2.0",
 		"microbundle": "0.13.3",
@@ -113,8 +114,14 @@
 	"eslintConfig": {
 		"root": true,
 		"parser": "@typescript-eslint/parser",
+		"parserOptions": {
+			"ecmaVersion": 2020,
+			"sourceType": "module",
+			"project": "./tsconfig.json"
+		},
 		"plugins": [
-			"@typescript-eslint"
+			"@typescript-eslint",
+			"deprecation"
 		],
 		"extends": [
 			"eslint:recommended",
@@ -122,7 +129,8 @@
 			"prettier"
 		],
 		"rules": {
-			"@typescript-eslint/explicit-module-boundary-types": 0
+			"@typescript-eslint/explicit-module-boundary-types": "off",
+			"deprecation/deprecation": "warn"
 		}
 	}
 }

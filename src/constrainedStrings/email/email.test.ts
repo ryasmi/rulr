@@ -9,7 +9,7 @@ test('email should not allow invalid string input', () => {
 test('email should allow valid email input', () => {
 	const input = 'test@example.org'
 	const output: Email = email(input)
-	assert.equal(output, input)
+	assert.strictEqual(output, input)
 })
 
 test('email should not allow invalid email input', () => {
@@ -21,12 +21,12 @@ test('email should not allow invalid email input', () => {
 test('email should allow valid email input with generic TLD', () => {
 	const input = 'test@example.horse'
 	const output: Email = email(input)
-	assert.equal(output, input)
+	assert.strictEqual(output, input)
 })
 
 // https://github.com/LearningLocker/StatementFactory/issues/10
 test('email should allow valid email input with backtick', () => {
 	const input = 'te`st@example.com'
 	const output: Email = email(input)
-	assert.equal(output, input)
+	assert.strictEqual(output, input)
 })

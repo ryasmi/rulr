@@ -4,43 +4,43 @@ import { unknown } from '../../rulr'
 test('unknown should allow numbers', () => {
 	const input = 10
 	const output: unknown = unknown(input)
-	assert.equal(output, input)
+	assert.strictEqual(output, input)
 })
 
 test('unknown should allow strings', () => {
 	const input = ''
 	const output: unknown = unknown(input)
-	assert.equal(output, input)
+	assert.strictEqual(output, input)
 })
 
 test('unknown should allow booleans', () => {
 	const input = true
 	const output: unknown = unknown(input)
-	assert.equal(output, input)
+	assert.strictEqual(output, input)
 })
 
 test('unknown should allow objects', () => {
 	const input = {}
 	const output: unknown = unknown(input)
-	assert.equal(output, input)
+	assert.strictEqual(output, input)
 })
 
 test('unknown should allow symbols', () => {
 	const input = Symbol()
 	const output: unknown = unknown(input)
-	assert.equal(output, input)
+	assert.strictEqual(output, input)
 })
 
 test('unknown should allow null', () => {
 	const input = null
 	const output: unknown = unknown(input)
-	assert.equal(output, input)
+	assert.strictEqual(output, input)
 })
 
 test('unknown should allow undefined', () => {
 	const input = undefined
 	const output: unknown = unknown(input)
-	assert.equal(output, input)
+	assert.strictEqual(output, input)
 })
 
 test('unknown should allow functions', () => {
@@ -48,5 +48,5 @@ test('unknown should allow functions', () => {
 		return
 	}
 	const output: unknown = unknown(input)
-	assert.equal(output, input)
+	assert.strictEqual(output, input)
 })

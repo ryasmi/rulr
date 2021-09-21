@@ -13,7 +13,7 @@ test('object should allow empty object with empty schema', () => {
 	const input = {}
 	const rule = object({})
 	const output: Output = rule(input)
-	assert.deepEqual(output, input)
+	assert.deepStrictEqual(output, input)
 })
 
 test('object should allow and remove properties not specified in schema', () => {
@@ -22,7 +22,7 @@ test('object should allow and remove properties not specified in schema', () => 
 	const input = { test: 1 }
 	const rule = object({})
 	const output: Output = rule(input)
-	assert.deepEqual(output, {})
+	assert.deepStrictEqual(output, {})
 })
 
 test('object should not allow missing required properties', () => {
@@ -37,7 +37,7 @@ test('object should allow missing optional properties', () => {
 	const input = {}
 	const rule = object({ optional: { test: number } })
 	const output: Output = rule(input)
-	assert.deepEqual(output, {})
+	assert.deepStrictEqual(output, {})
 })
 
 test('object should not allow invalid required property values', () => {
@@ -59,7 +59,7 @@ test('object should allow valid required property values', () => {
 	const input = { test: 0 }
 	const rule = object({ required: { test: number } })
 	const output: Output = rule(input)
-	assert.deepEqual(output, input)
+	assert.deepStrictEqual(output, input)
 })
 
 test('object should allow valid optional property values', () => {
@@ -69,7 +69,7 @@ test('object should allow valid optional property values', () => {
 	const input = { test: 0 }
 	const rule = object({ optional: { test: number } })
 	const output: Output = rule(input)
-	assert.deepEqual(output, input)
+	assert.deepStrictEqual(output, input)
 })
 
 test('object should allow valid required and optional property values', () => {
@@ -83,7 +83,7 @@ test('object should allow valid required and optional property values', () => {
 		optional: { optional: number },
 	})
 	const output: Output = rule(input)
-	assert.deepEqual(output, input)
+	assert.deepStrictEqual(output, input)
 })
 
 test('object should not allow missing property that is required and optional', () => {
@@ -124,7 +124,7 @@ test('object should allow circular properties', () => {
 		})(input)
 	}
 	const output: Output = rule(input)
-	assert.deepEqual(output, input)
+	assert.deepStrictEqual(output, input)
 })
 
 test('object should not allow access to unspecified properties', () => {
@@ -133,7 +133,7 @@ test('object should not allow access to unspecified properties', () => {
 	const output = rule(input)
 	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 	// @ts-expect-error
-	assert.equal(output.example, undefined)
+	assert.strictEqual(output.example, undefined)
 })
 
 test('object should bail on first error in required properties', () => {
