@@ -9,7 +9,9 @@ import {
 } from './sanitizeJWTBearerAuthFromString'
 
 test('sanitizeJWTBearerAuthFromString should return key and secret for valid tokens', () => {
-	const bearerAuthToken = 'a.b.c'
+	// Example from https://jwt.io/
+	const bearerAuthToken =
+		'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
 	const input = `Bearer ${bearerAuthToken}`
 	const output: JWTBearerAuth = sanitizeJWTBearerAuthFromString(input)
 	assert.ok(output instanceof JWTBearerAuth)
