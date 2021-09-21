@@ -14,6 +14,7 @@ export class InvalidBasicAuthAsString extends BaseError {
  **/
 export const InvalidBasicAuthFromString = InvalidBasicAuthAsString
 
+// @TODO - Change to basicAuthAsStringSymbol
 export const basicAuthFromStringSymbol = Symbol()
 
 export type BasicAuthAsString = Constrained<typeof basicAuthFromStringSymbol, string>
