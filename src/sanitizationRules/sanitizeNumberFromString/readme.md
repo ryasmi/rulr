@@ -4,6 +4,8 @@
 
 This function uses `rulr.isNumberAsString` and can be used when you want to sanitize an input to be a string containing a number as shown in the example below. This function is a higher order rule as it uses a sub-rule to validate input that is a number. This function should only throw `rulr.InvalidNumberAsStringError` and errors from the sub-rule.
 
+Note: `sanitizeNumberAsString` is deprecated, please use `sanitizeNumberFromString` instead.
+
 ```ts
 import * as rulr from 'rulr'
 
