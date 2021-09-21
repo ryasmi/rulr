@@ -2,7 +2,7 @@
 
 [Back to root readme.md](../../../readme.md)
 
-This function uses `rulr.isBasicAuthFromString` and can be used when you want to sanitize an input to be basic auth from a string as shown in the example below. This function should only throw `rulr.InvalidBasicAuthFromString`.
+This function uses `rulr.isBasicAuthAsString` and can be used when you want to sanitize an input to be basic auth from a string as shown in the example below. This function should only throw `rulr.InvalidBasicAuthAsString`.
 
 ```ts
 import * as rulr from 'rulr'
