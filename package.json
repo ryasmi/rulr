@@ -28,7 +28,7 @@
 		"validator": "^13.0.0"
 	},
 	"devDependencies": {
-		"@commitlint/config-conventional": "14.1.0",
+		"@commitlint/config-conventional": "15.0.0",
 		"@types/atob": "2.1.2",
 		"@types/btoa": "1.2.3",
 		"@types/jest": "27.0.3",
@@ -37,7 +37,7 @@
 		"@typescript-eslint/eslint-plugin": "5.4.0",
 		"@typescript-eslint/parser": "5.4.0",
 		"btoa": "1.2.1",
-		"commitlint": "14.1.0",
+		"commitlint": "15.0.0",
 		"eslint": "7.32.0",
 		"eslint-config-prettier": "8.3.0",
 		"eslint-plugin-deprecation": "1.2.1",
