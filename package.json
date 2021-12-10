@@ -42,7 +42,7 @@
 		"eslint-config-prettier": "8.3.0",
 		"eslint-plugin-deprecation": "1.2.1",
 		"husky": "4.3.8",
-		"jest": "27.4.3",
+		"jest": "27.4.4",
 		"microbundle": "0.14.2",
 		"prettier": "2.5.1",
 		"pretty-quick": "3.1.2",
