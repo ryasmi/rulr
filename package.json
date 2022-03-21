@@ -2,6 +2,10 @@
 	"name": "rulr",
 	"version": "0.0.0-development",
 	"description": "TypeScript validation package. All the validation errors, one function call. Guarantees validation at compile-time.",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/ryansmith94/rulr.git"
+	},
 	"source": "src/rulr.ts",
 	"main": "dist/rulr.js",
 	"exports": "./dist/rulr.modern.js",
