@@ -106,11 +106,6 @@
 	"publishConfig": {
 		"access": "public"
 	},
-	"renovate": {
-		"extends": [
-			"@ht2-labs:base"
-		]
-	},
 	"eslintConfig": {
 		"root": true,
 		"parser": "@typescript-eslint/parser",
