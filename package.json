@@ -6,6 +6,7 @@
 		"type": "git",
 		"url": "https://github.com/ryansmith94/rulr.git"
 	},
+	"type": "module",
 	"source": "src/rulr.ts",
 	"exports": {
 		"require": "./dist/rulr.cjs",
