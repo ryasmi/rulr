@@ -7,8 +7,11 @@
 		"url": "https://github.com/ryansmith94/rulr.git"
 	},
 	"source": "src/rulr.ts",
-	"main": "dist/rulr.js",
-	"exports": "./dist/rulr.modern.js",
+	"exports": {
+		"require": "./dist/rulr.cjs",
+		"default": "./dist/rulr.modern.js"
+	},
+	"main": "dist/rulr.cjs",
 	"module": "dist/rulr.module.js",
 	"unpkg": "dist/rulr.umd.js",
 	"typings": "dist/rulr.d.ts",
