@@ -1,5 +1,7 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
 	"extends": ["@ht2-labs:base"],
-	"platformCommit": true
+	"platformCommit": true,
+	"automergeType": "pr",
+	"schedule": "at any time"
 }
