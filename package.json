@@ -1,7 +1,7 @@
 {
 	"name": "rulr",
 	"version": "0.0.0-development",
-	"description": "TypeScript validation package. All the validation errors, one function call. Guarantees validation at compile-time.",
+	"description": "Validation and unit conversion errors in TypeScript at compile-time. Started in 2016.",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/ryansmith94/rulr.git"
