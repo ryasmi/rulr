@@ -38,7 +38,7 @@
 		"@types/atob": "2.1.2",
 		"@types/btoa": "1.2.3",
 		"@types/jest": "28.1.8",
-		"@types/node": "16.11.56",
+		"@types/node": "16.11.57",
 		"@types/validator": "13.7.6",
 		"@typescript-eslint/eslint-plugin": "5.36.1",
 		"@typescript-eslint/parser": "5.36.1",
