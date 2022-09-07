@@ -23,7 +23,7 @@ const encodedRegex = /^Basic [A-Za-z0-9+/=]+$/i
 const prefixLength = 'Basic '.length
 
 function decodeBasicAuthValuesFromString(input: string) {
-	return atob(input.substr(prefixLength)).split(':')
+	return atob(input.substring(prefixLength)).split(':')
 }
 
 export function isBasicAuthAsString(input: unknown): input is BasicAuthAsString {
