@@ -95,7 +95,7 @@ In addition to the constrained strings, Rulr also comes with a few convenient ru
 
 ### Sanitization Rules
 
-Finally, Rulr is starting to provide rules that sanitize inputs.
+Finally, Rulr is starting to provide rules that sanitize inputs from HTTP headers and URL params.
 
 - [sanitizeBooleanFromString](./src/sanitizationRules/sanitizeBooleanFromString/readme.md)
 - [sanitizeJsonFromString](./src/sanitizationRules/sanitizeJsonFromString/readme.md)
