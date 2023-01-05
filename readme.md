@@ -1,6 +1,6 @@
 <div align="center">
   <h1>📐</br>rulr</h1>
-	<p>Validation and unit conversion errors in TypeScript at compile-time.</p>
+	<p>Validation and <a href="./docs/unitConversionErrorProtection.md">unit conversion errors</a> in TypeScript at compile-time.</p>
 	<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-d9207b.svg" alt="License: MIT"></a>
 	<a href="https://github.com/semantic-release/semantic-release"><img src="https://camo.githubusercontent.com/59c84e3731ad0a45312b47b1546b0972ac4389ea/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2532302532302546302539462539332541362546302539462539412538302d73656d616e7469632d2d72656c656173652d6531303037392e737667" alt="Uses Semantic Release to correctly bump versions especially for breaking changes"></a>
 	<a href="https://renovatebot.com/"><img src="https://img.shields.io/badge/%F0%9F%94%84%F0%9F%A4%96%20-renovate%20bot-d9207b.svg" alt="Uses Renovate to keep dependencies updated"></a>
@@ -103,6 +103,7 @@ Finally, Rulr is starting to provide rules that sanitize inputs from HTTP header
 
 ### Frequently Awesome Questions 🤘
 
+- [How does Rulr protect against unit conversion errors?](./docs/unitConversionErrorProtection.md)
 - [How do I create my own rules?](./docs/customRules.md)
 - [Can I add new rules to this package?](./docs/newRules.md)
 - [Why not use classes?](./docs/classValidationProblems.md)
