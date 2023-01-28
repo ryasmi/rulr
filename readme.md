@@ -114,6 +114,7 @@ Finally, Rulr is starting to provide rules that sanitize inputs from HTTP header
 - [Why are you using tabs!?!](https://www.reddit.com/r/javascript/comments/c8drjo/nobody_talks_about_the_real_reason_to_use_tabs/)
 - [Why is the bundle size quite large?](https://bundlephobia.com/result?p=rulr)
 - [How does the performance compare to other validation packages?](https://github.com/moltar/typescript-runtime-type-benchmarks)
+- [How often are breaking changes/major version bumps released?](./docs/breakingChangeFrequency.md)
 
 ### Background
 
