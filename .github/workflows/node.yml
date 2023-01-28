@@ -28,7 +28,7 @@ jobs:
       - name: Codecov
         uses: codecov/codecov-action@v3.1.1
       - run: npx --no-install semantic-release
-        if: matrix.node-version == '14.x'
+        if: matrix.node-version == '18.x'
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
