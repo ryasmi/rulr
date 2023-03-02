@@ -39,7 +39,7 @@
 		"@types/btoa": "1.2.3",
 		"@types/jest": "29.4.0",
 		"@types/node": "18.14.4",
-		"@types/validator": "13.7.12",
+		"@types/validator": "13.7.13",
 		"@typescript-eslint/eslint-plugin": "5.54.0",
 		"@typescript-eslint/parser": "5.54.0",
 		"btoa": "1.2.1",
