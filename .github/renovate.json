@@ -9,12 +9,12 @@
 	"rangeStrategy": "replace",
 	"automerge": true,
 	"major": {
-      "automerge": false
-    },
-    "lockFileMaintenance": {
-      "enabled": true,
-      "schedule": [
-        "before 7am on every weekday"
-      ]
-    }
+		"automerge": false
+	},
+	"lockFileMaintenance": {
+		"enabled": true,
+		"schedule": [
+			"before 7am on every weekday"
+		]
+	}
 }
