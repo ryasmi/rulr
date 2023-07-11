@@ -1,7 +1,20 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"extends": ["@ht2-labs:base"],
+	"extends": ["config:js-lib"],
 	"platformCommit": true,
 	"automergeType": "pr",
-	"schedule": "at any time"
+	"schedule": "at any time",
+	"prConcurrentLimit": 5,
+	"rebaseWhen": "conflicted",
+	"rangeStrategy": "replace",
+	"automerge": true,
+	"major": {
+      "automerge": false
+    },
+    "lockFileMaintenance": {
+      "enabled": true,
+      "schedule": [
+        "before 7am on every weekday"
+      ]
+    }
 }
