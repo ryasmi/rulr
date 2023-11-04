@@ -27,8 +27,3 @@ export function sanitizeBooleanFromString(input: unknown) {
 	}
 	throw new InvalidBooleanAsStringError()
 }
-
-/**
- * @deprecated - Use `sanitizeBooleanFromString` instead
- **/
-export const sanitizeBooleanAsString = sanitizeBooleanFromString

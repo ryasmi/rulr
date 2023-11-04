@@ -84,18 +84,12 @@ export { tuple } from './higherOrderRules/tuple/tuple'
 export { union, UnionValidationError } from './higherOrderRules/union/union'
 export {
 	sanitizeBasicAuthFromString,
-	// eslint-disable-next-line deprecation/deprecation
-	isBasicAuthFromString,
 	isBasicAuthAsString,
 	BasicAuthAsString,
 	BasicAuth,
-	// eslint-disable-next-line deprecation/deprecation
-	InvalidBasicAuthFromString,
 	InvalidBasicAuthAsString,
 } from './sanitizationRules/sanitizeBasicAuthFromString/sanitizeBasicAuthFromString'
 export {
-	// eslint-disable-next-line deprecation/deprecation
-	sanitizeBooleanAsString,
 	sanitizeBooleanFromString,
 	isBooleanAsString,
 	BooleanAsString,
@@ -104,16 +98,12 @@ export {
 	falsyBooleanStrings,
 } from './sanitizationRules/sanitizeBooleanFromString/sanitizeBooleanFromString'
 export {
-	// eslint-disable-next-line deprecation/deprecation
-	sanitizeJsonAsString,
 	sanitizeJsonFromString,
 	isJsonAsString,
 	JsonAsString,
 	InvalidJsonAsStringError,
 } from './sanitizationRules/sanitizeJsonFromString/sanitizeJsonFromString'
 export {
-	// eslint-disable-next-line deprecation/deprecation
-	sanitizeNumberAsString,
 	sanitizeNumberFromString,
 	isNumberAsString,
 	NumberAsString,

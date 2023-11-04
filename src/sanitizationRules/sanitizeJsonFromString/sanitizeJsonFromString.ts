@@ -33,8 +33,3 @@ export function sanitizeJsonFromString<T>(jsonRule: Rule<T>) {
 		throw new InvalidJsonAsStringError()
 	}
 }
-
-/**
- * @deprecated - Use `sanitizeJsonFromString` instead
- **/
-export const sanitizeJsonAsString = sanitizeJsonFromString

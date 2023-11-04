@@ -4,8 +4,6 @@
 
 This function uses `rulr.isBasicAuthAsString` and can be used when you want to sanitize an input to be basic auth from a string as shown in the example below. This function should only throw `rulr.InvalidBasicAuthAsString`.
 
-Note: `isBasicAuthFromString` and `InvalidBasicAuthFromString` are deprecated, please use `isBasicAuthAsString` and `InvalidBasicAuthAsString` instead.
-
 ```ts
 import * as rulr from 'rulr'
 
