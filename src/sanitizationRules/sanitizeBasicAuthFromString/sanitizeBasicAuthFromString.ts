@@ -9,11 +9,6 @@ export class InvalidBasicAuthAsString extends BaseError {
 	}
 }
 
-/**
- * @deprecated - Use `InvalidBasicAuthAsString` instead
- **/
-export const InvalidBasicAuthFromString = InvalidBasicAuthAsString
-
 // @TODO - Change to basicAuthAsStringSymbol
 export const basicAuthFromStringSymbol = Symbol()
 
@@ -33,11 +28,6 @@ export function isBasicAuthAsString(input: unknown): input is BasicAuthAsString 
 		decodeBasicAuthValuesFromString(input).length === 2
 	)
 }
-
-/**
- * @deprecated - Use `isBasicAuthAsString` instead
- **/
-export const isBasicAuthFromString = isBasicAuthAsString
 
 export class BasicAuth {
 	constructor(public readonly key: string, public readonly secret: string) {}

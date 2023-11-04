@@ -24,8 +24,3 @@ export function sanitizeNumberFromString<T>(numberRule: Rule<T>) {
 		throw new InvalidNumberAsStringError()
 	}
 }
-
-/**
- * @deprecated - Use `sanitizeNumberFromString` instead
- **/
-export const sanitizeNumberAsString = sanitizeNumberFromString
