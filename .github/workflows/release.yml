@@ -1,38 +1,15 @@
-name: Node CI
-
+name: Release
 on:
   push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+    branches:
+      - master
 
 permissions:
   contents: read
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        # Reduce at EOL - https://github.com/nodejs/Release
-        node-version: [18.x, 20.x]
-
-    steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-      - run: npm ci
-      - run: npx --no-install microbundle
-      - run: npx --no-install eslint src
-      - run: npx --no-install jest
-      - name: Codecov
-        uses: codecov/codecov-action@v3.1.4
   release:
-    needs: build
-    if: success() && github.ref == 'refs/heads/master'
+    name: Release
     runs-on: ubuntu-latest
     permissions:
       contents: write # to be able to publish a GitHub release
@@ -48,8 +25,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 'lts/*'
-      - run: npm ci
-      - run: npx --no-install microbundle
+      - name: Install dependencies
+        run: npm clean-install
       - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
         run: npm audit signatures
       - name: Release
