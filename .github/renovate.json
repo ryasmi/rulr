@@ -4,12 +4,19 @@
 	"platformCommit": true,
 	"automergeType": "pr",
 	"schedule": "at any time",
-	"prConcurrentLimit": 5,
 	"rebaseWhen": "conflicted",
 	"rangeStrategy": "replace",
-	"automerge": true,
 	"major": {
-		"automerge": false
+		"automerge": false,
+		"prConcurrentLimit": 3,
+	},
+	"minor": {
+		"automerge": true,
+		"prConcurrentLimit": 3,
+	},
+	"patch": {
+		"automerge": true,
+		"prConcurrentLimit": 3,
 	},
 	"lockFileMaintenance": {
 		"enabled": true,
