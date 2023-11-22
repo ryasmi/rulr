@@ -37,7 +37,7 @@
 		"@commitlint/config-conventional": "18.4.2",
 		"@types/atob": "2.1.4",
 		"@types/btoa": "1.2.5",
-		"@types/jest": "29.5.9",
+		"@types/jest": "29.5.10",
 		"@types/node": "20.9.3",
 		"@types/validator": "13.11.7",
 		"@typescript-eslint/eslint-plugin": "6.12.0",
