@@ -8,15 +8,15 @@
 	"rangeStrategy": "replace",
 	"major": {
 		"automerge": false,
-		"prConcurrentLimit": 3,
+		"prConcurrentLimit": 3
 	},
 	"minor": {
 		"automerge": true,
-		"prConcurrentLimit": 3,
+		"prConcurrentLimit": 3
 	},
 	"patch": {
 		"automerge": true,
-		"prConcurrentLimit": 3,
+		"prConcurrentLimit": 3
 	},
 	"lockFileMaintenance": {
 		"automerge": true,
