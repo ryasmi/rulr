@@ -4,7 +4,7 @@ import { Constrained } from '../../core'
 
 export class InvalidTextError extends BaseError {
 	constructor() {
-		super('expected no more than 255 characters')
+		super('expected no more than 65,535 characters')
 	}
 }
 
