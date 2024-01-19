@@ -4,7 +4,7 @@
 	"description": "Validation and unit conversion errors in TypeScript at compile-time. Started in 2016.",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/ryansmith94/rulr.git"
+		"url": "https://github.com/ryasmi/rulr.git"
 	},
 	"type": "module",
 	"source": "src/rulr.ts",
