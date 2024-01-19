@@ -4,7 +4,7 @@ import { Constrained } from '../../core'
 
 export class InvalidMediumTextError extends BaseError {
 	constructor() {
-		super('expected no more than 255 characters')
+		super('expected no more than 16,777,215 characters')
 	}
 }
 
