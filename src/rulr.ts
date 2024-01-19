@@ -113,8 +113,26 @@ export {
 	nonEmptyString,
 	isNonEmptyString,
 	NonEmptyString,
-	InvalidNonEmptyStringError
+	InvalidNonEmptyStringError,
 } from './sizedStrings/nonEmptyString/nonEmptyString'
+export {
+	mediumText,
+	isMediumText,
+	MediumText,
+	InvalidMediumTextError,
+} from './sizedStrings/mediumText/mediumText'
+export {
+	text,
+	isText,
+	Text,
+	InvalidTextError,
+} from './sizedStrings/text/text'
+export {
+	tinyText,
+	isTinyText,
+	TinyText,
+	InvalidTinyTextError,
+} from './sizedStrings/tinyText/tinyText'
 export { any } from './valueRules/any/any'
 export { bigint, isBigInt, InvalidBigIntError } from './valueRules/bigint/bigint'
 export { boolean, isBoolean, InvalidBooleanError } from './valueRules/boolean/boolean'

@@ -68,6 +68,9 @@ To save you some time, Rulr comes with the following rules.
 Since it's quite common to want to restrict the size of strings, Rulr comes with some convenient rules for doing just that.
 
 - [nonEmptyString](./src/sizedStrings/nonEmptyString/readme.md)
+- [tinyText](./src/sizedStrings/tinyText/readme.md) (0 - 255 characters)
+- [text](./src/sizedStrings/text/readme.md) (0 - 65,535 characters)
+- [mediumText](./src/sizedStrings/mediumText/readme.md) (0 - 16,777,215 characters)
 
 ### Constraining Strings
 
