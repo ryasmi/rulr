@@ -63,6 +63,12 @@ To save you some time, Rulr comes with the following rules.
 - [union](./src/higherOrderRules/union/readme.md)
 - [unknown](./src/valueRules/unknown/readme.md)
 
+### Sized Strings
+
+Since it's quite common to want to restrict the size of strings, Rulr comes with some convenient rules for doing just that.
+
+- [nonEmptyString](./src/sizedStrings/nonEmptyString/readme.md)
+
 ### Constraining Strings
 
 Rulr also comes with a growing list of convenient rules for constraining strings that are mostly built on [Chris O'Hara's extensive and much loved validator package](https://www.npmjs.com/package/validator).
