@@ -109,6 +109,12 @@ export {
 	NumberAsString,
 	InvalidNumberAsStringError,
 } from './sanitizationRules/sanitizeNumberFromString/sanitizeNumberFromString'
+export {
+	nonEmptyString,
+	isNonEmptyString,
+	NonEmptyString,
+	InvalidNonEmptyStringError
+} from './sizedStrings/nonEmptyString/nonEmptyString'
 export { any } from './valueRules/any/any'
 export { bigint, isBigInt, InvalidBigIntError } from './valueRules/bigint/bigint'
 export { boolean, isBoolean, InvalidBooleanError } from './valueRules/boolean/boolean'
