@@ -40,7 +40,7 @@ const positiveNumber: PositiveNumber = constrainToPositiveNumber(1)
 const negativeNumber: NegativeNumber = constrainToPositiveNumber(1)
 ```
 
-Some other packages like [ts-essentials](https://github.com/krzkaczor/ts-essentials#Opaque-types) have used strings rather than symbols to create Opaque (constrained) types. As shown below, that too comes with a subtle issue.
+Some other packages like [ts-essentials](https://github.com/krzkaczor/ts-essentials#Opaque-types) and [Zod](https://github.com/colinhacks/zod?tab=readme-ov-file#brand) have used strings rather than symbols to create Opaque (constrained/branded) types. As shown below, that too comes with a subtle issue.
 
 ```ts
 type Constrained<ConstraintId extends string, Type> = Type & {
