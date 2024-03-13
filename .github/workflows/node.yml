@@ -37,7 +37,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
       - run: npx --no-install jest
-      - uses: codecov/codecov-action@v3.1.6
+      - uses: codecov/codecov-action@v4.1.0
   release:
     needs: test
     if: success() && github.ref == 'refs/heads/master'
