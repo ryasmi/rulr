@@ -38,6 +38,8 @@ jobs:
       - run: npm ci
       - run: npx --no-install jest
       - uses: codecov/codecov-action@v4.1.0
+         env:
+           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
   release:
     needs: test
     if: success() && github.ref == 'refs/heads/master'
