@@ -116,7 +116,7 @@ Finally, Rulr is starting to provide rules that sanitize inputs from HTTP header
 - [How do I create my own rules?](./docs/customRules.md)
 - [Can I add new rules to this package?](./docs/newRules.md)
 - [Why not use classes?](./docs/classValidationProblems.md)
-- [Why are symbols needed?](./docs/symbolRequirement.md)
+- [Why are unique symbols needed for each type?](./docs/symbolRequirement.md)
 - [How are recursive rules defined?](./docs/recursiveRules.md)
 - [Can Rulr be used with React Hooks and PropTypes?](./docs/react.md)
 - [Can Rulr be used with Express?](./docs/express.md)
