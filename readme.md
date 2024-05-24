@@ -65,7 +65,7 @@ To save you some time, Rulr comes with the following rules.
 
 ### Sized Strings
 
-Since it's quite common to want to restrict the size of strings, Rulr comes with some convenient rules for doing just that.
+Since it's quite common to want to restrict the size of strings to avoid UI overflow bugs and DB storage errors, Rulr comes with some convenient rules for doing just that.
 
 - [nonEmptyString](./src/sizedStrings/nonEmptyString/readme.md)
 - [tinyText](./src/sizedStrings/tinyText/readme.md) (0 - 255 characters)
@@ -74,7 +74,7 @@ Since it's quite common to want to restrict the size of strings, Rulr comes with
 
 ### Constraining Strings
 
-Rulr also comes with a growing list of convenient rules for constraining strings that are mostly built on [Chris O'Hara's extensive and much loved validator package](https://www.npmjs.com/package/validator).
+Rulr also comes with a growing list of convenient rules for constraining strings that are mostly built on [Chris O'Hara's extensive and much loved validator package](https://www.npmjs.com/package/validator). As with the rules for sized strings above, this can help prevent UI overflow bugs, DB storage errors, and processing errors.
 
 - [email](./src/constrainedStrings/email/readme.md)
 - [iri](./src/constrainedStrings/iri/readme.md)
