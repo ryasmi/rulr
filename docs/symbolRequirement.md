@@ -2,7 +2,7 @@
 
 [Back to root readme.md](../readme.md)
 
-You might be wondering why we need symbols. The example below rewrites `rulr.Constrained` and `rulr.constrain` without the use of symbols to demonstrate why symbols are so important. Take note of the comment above the last line of code. You can try this symbol-less code in [the TypeScript playground](https://www.typescriptlang.org/play/index.html).
+You might be wondering why we need unique symbols for each type. The example below rewrites `rulr.Constrained` and `rulr.constrain` without the use of unique symbols for each type to demonstrate why it's so important. Take note of the comment above the last line of code. You can try this code in [the TypeScript playground](https://www.typescriptlang.org/play/index.html).
 
 ```ts
 type Rule<Output> = (input: unknown) => Output
