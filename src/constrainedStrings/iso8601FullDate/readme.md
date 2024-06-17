@@ -2,7 +2,7 @@
 
 [Back to root readme.md](../../../readme.md)
 
-This function uses the `rulr.isISO8601FullDate` guard to check the input is a valid ISO 8601 Full Date as shown in the example below. It should only throw `rulr.InvalidISO8601FullDateError`. This function uses [the much loved validator package](https://github.com/validatorjs/validator.js) and passes the strict option to the `validator.isISO8601` function.
+This function uses the `rulr.isISO8601FullDate` guard to check the input is a valid ISO 8601 Full Date as shown in the example below. It should only throw `rulr.InvalidISO8601FullDateError`.
 
 ```ts
 import * as rulr from 'rulr'
