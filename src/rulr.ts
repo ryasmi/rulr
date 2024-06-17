@@ -31,6 +31,12 @@ export {
 export { email, isEmail, Email, InvalidEmailError } from './constrainedStrings/email/email'
 export { iri, isIRI, IRI, InvalidIRIError } from './constrainedStrings/iri/iri'
 export {
+	iso8601FullDate,
+	isISO8601FullDate,
+	ISO8601FullDate,
+	InvalidISO8601FullDateError,
+} from './constrainedStrings/iso8601FullDate/iso8601FullDate'
+export {
 	iso8601Duration,
 	isISO8601Duration,
 	ISO8601Duration,
