@@ -139,6 +139,12 @@ export {
 	TinyText,
 	InvalidTinyTextError,
 } from './sizedStrings/tinyText/tinyText'
+export {
+	largeText,
+	isLargeText,
+	LargeText,
+	InvalidLargeTextError,
+} from './sizedStrings/largeText/largeText'
 export { any } from './valueRules/any/any'
 export { bigint, isBigInt, InvalidBigIntError } from './valueRules/bigint/bigint'
 export { boolean, isBoolean, InvalidBooleanError } from './valueRules/boolean/boolean'
