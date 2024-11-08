@@ -150,4 +150,4 @@ export { number, isNumber, InvalidNumberError } from './valueRules/number/number
 export { string, isString, InvalidStringError } from './valueRules/string/string'
 export { symbol, isSymbol, InvalidSymbolError } from './valueRules/symbol/symbol'
 export { unknown } from './valueRules/unknown/unknown'
-export { numberRange, InvalidNumberRangeError } from './valueRules/numberRange/numberRange'
+export { numberRange, InvalidNumberRangeError } from './ruleConstructors/numberRange/numberRange'
