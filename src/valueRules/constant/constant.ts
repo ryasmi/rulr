@@ -26,3 +26,9 @@ export function constant<ConstraintSymbol extends symbol, Type>(
 		throw new InvalidConstantError(constantValue)
 	}
 }
+
+const trueSymbol = Symbol('true')
+export const trueConstant = constant(trueSymbol, true)
+
+const falseSymbol = Symbol('false')
+export const falseConstant = constant(falseSymbol, false)

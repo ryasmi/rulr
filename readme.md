@@ -51,6 +51,8 @@ To save you some time, Rulr comes with the following rules.
 - [bigint](./src/valueRules/bigint/readme.md)
 - [boolean](./src/valueRules/boolean/readme.md)
 - [constant](./src/valueRules/constant/readme.md)
+	- [true](./src/valueRules/constant/readme.md#trueConstant)
+	- [false](./src/valueRules/constant/readme.md#falseConstant)
 - [date](./src/valueRules/date/readme.md)
 - [dictionary](./src/higherOrderRules/dictionary/readme.md)
 - [enum](./src/valueRules/enum/readme.md)
