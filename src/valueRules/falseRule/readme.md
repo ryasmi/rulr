@@ -1,6 +1,6 @@
 # falseRule
 
-This function uses the `rulr.isFalse` guard to check the input is false as shown in the example below. It should only throw `rulr.InvalidFalseError`.
+This function uses the `rulr.isFalse` guard to check the input is false as shown in the example below. It should only throw `rulr.InvalidFalseError`. This rule is typically used alongside [union](../../higherOrderRules/union/readme.md) and [trueRule](../trueRule/readme.md) for validating HTTP responses that contain a boolean `ok` property.
 
 ```ts
 import * as rulr from 'rulr'
