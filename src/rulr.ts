@@ -142,7 +142,7 @@ export {
 export { any } from './valueRules/any/any'
 export { bigint, isBigInt, InvalidBigIntError } from './valueRules/bigint/bigint'
 export { boolean, isBoolean, InvalidBooleanError } from './valueRules/boolean/boolean'
-export { constant, isConstant, InvalidConstantError } from './valueRules/constant/constant'
+export { constant, isConstant, InvalidConstantError, trueConstant, falseConstant } from './valueRules/constant/constant'
 export { date, isDate, InvalidDateError } from './valueRules/date/date'
 export { enumerated, isEnum, InvalidEnumError } from './valueRules/enum/enum'
 export { literal, isLiteral, InvalidLiteralError } from './valueRules/literal/literal'
