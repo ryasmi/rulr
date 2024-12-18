@@ -50,8 +50,8 @@ To save you some time, Rulr comes with the following rules.
 - [array](./src/higherOrderRules/array/readme.md)
 - [bigint](./src/valueRules/bigint/readme.md)
 - [boolean](./src/valueRules/boolean/readme.md)
-	- [trueRule](./src/valueRules/trueRule/readme.md)
-	- [falseRule](./src/valueRules/falseRule/readme.md)
+  - [trueRule](./src/valueRules/trueRule/readme.md)
+  - [falseRule](./src/valueRules/falseRule/readme.md)
 - [constant](./src/valueRules/constant/readme.md)
 - [date](./src/valueRules/date/readme.md)
 - [dictionary](./src/higherOrderRules/dictionary/readme.md)
@@ -76,7 +76,7 @@ Since it's quite common to want to restrict the size of strings to avoid UI over
 
 ### Constraining Strings
 
-Rulr also comes with a growing list of convenient rules for constraining strings that are mostly built on [Chris O'Hara's extensive and much loved validator package](https://www.npmjs.com/package/validator). As with the rules for sized strings above, this can help prevent UI overflow bugs, DB storage errors, and processing errors.
+Rulr comes with a growing list of convenient rules for constraining strings that are mostly built on [Chris O'Hara's extensive and much loved validator package](https://www.npmjs.com/package/validator). As with the rules for sized strings above, this can help prevent UI overflow bugs, DB storage errors, and processing errors.
 
 - [email](./src/constrainedStrings/email/readme.md)
 - [iri](./src/constrainedStrings/iri/readme.md)
@@ -95,7 +95,7 @@ Rulr also comes with a growing list of convenient rules for constraining strings
 
 ### Constraining Non-Strings
 
-In addition to the constrained strings, Rulr also comes with a few convenient rules to help you quickly validate non-string values.
+In addition to the constrained strings, Rulr comes with a few convenient rules to help you quickly validate non-string values.
 
 - [integer](./src/constrainedValues/integer/readme.md)
 - [negativeInteger](./src/constrainedValues/negativeInteger/readme.md)
@@ -105,13 +105,19 @@ In addition to the constrained strings, Rulr also comes with a few convenient ru
 
 ### Sanitization Rules
 
-Finally, Rulr is starting to provide rules that sanitize inputs from HTTP headers and URL params.
+Rulr provides rules that sanitize inputs from HTTP headers and URL params.
 
 - [sanitizeBooleanFromString](./src/sanitizationRules/sanitizeBooleanFromString/readme.md)
 - [sanitizeJsonFromString](./src/sanitizationRules/sanitizeJsonFromString/readme.md)
 - [sanitizeNumberFromString](./src/sanitizationRules/sanitizeNumberFromString/readme.md)
 - [sanitizeBasicAuthFromString](./src/sanitizationRules/sanitizeBasicAuthFromString/readme.md)
 - [sanitizeJWTBearerAuthFromString](./src/sanitizationRules/sanitizeJWTBearerAuthFromString/readme.md)
+
+### Rule Constructors
+
+Finally, Rulr is starting to provide rule constructors that allow you quickly make your own rules.
+
+- [regexRuleConstructor](./src/ruleConstructors/regexRuleConstructor/readme.md)
 
 ### Frequently Awesome Questions 🤘
 
