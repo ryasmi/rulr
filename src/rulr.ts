@@ -88,6 +88,7 @@ export { dictionary, DictionaryKeyValidationError } from './higherOrderRules/dic
 export { object, InvalidObjectError, PlainObject } from './higherOrderRules/object/object'
 export { tuple } from './higherOrderRules/tuple/tuple'
 export { union, UnionValidationError } from './higherOrderRules/union/union'
+export { regexRuleConstructor } from './ruleConstructors/regexRuleConstructor/regexRuleConstructor'
 export {
 	sanitizeBasicAuthFromString,
 	isBasicAuthAsString,
