@@ -6,7 +6,7 @@ const [rule, InvalidValueError] = sizedArrayRuleConstructor(number, 2, 3, ruleSy
 
 test('sizedArrayRuleConstructor rule should allow a valid array within size range', () => {
 	const input = [1, 2]
-	const output: Constrained<typeof ruleSymbol, unknown[]> = rule(input)
+	const output: Constrained<typeof ruleSymbol, number[]> = rule(input)
 	assert.deepStrictEqual(output, input)
 	assert.ok(InvalidValueError)
 })

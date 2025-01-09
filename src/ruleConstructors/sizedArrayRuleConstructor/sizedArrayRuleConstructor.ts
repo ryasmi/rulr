@@ -2,8 +2,8 @@ import { BaseError } from 'make-error';
 import { Constrained, Rule } from '../../core'
 import { array } from '../../higherOrderRules/array/array'
 
-type Result<T extends symbol> = [
-	Rule<Constrained<T, unknown[]>>,
+type Result<Item, T extends symbol> = [
+	Rule<Constrained<T, Item[]>>,
 	typeof BaseError
 ]
 
@@ -12,7 +12,7 @@ export function sizedArrayRuleConstructor<Item, RuleSymbol extends symbol>(
 	minSize: number,
 	maxSize: number,
 	symbol: RuleSymbol,
-): Result<RuleSymbol> {
+): Result<Item, RuleSymbol> {
 	type SizedArray = Constrained<typeof symbol, Item[]>;
 	const arrayRule = array(itemRule);
 
