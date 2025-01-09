@@ -118,6 +118,7 @@ Rulr provides rules that sanitize inputs from HTTP headers and URL params.
 Finally, Rulr is starting to provide rule constructors that allow you quickly make your own rules.
 
 - [regexRuleConstructor](./src/ruleConstructors/regexRuleConstructor/readme.md)
+- [sizedArrayRuleConstructor](./src/ruleConstructors/sizedArrayRuleConstructor/readme.md)
 
 ### Frequently Awesome Questions 🤘
 
