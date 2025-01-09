@@ -89,6 +89,7 @@ export { object, InvalidObjectError, PlainObject } from './higherOrderRules/obje
 export { tuple } from './higherOrderRules/tuple/tuple'
 export { union, UnionValidationError } from './higherOrderRules/union/union'
 export { regexRuleConstructor } from './ruleConstructors/regexRuleConstructor/regexRuleConstructor'
+export { sizedArrayRuleConstructor } from './ruleConstructors/sizedArrayRuleConstructor/sizedArrayRuleConstructor'
 export {
 	sanitizeBasicAuthFromString,
 	isBasicAuthAsString,
