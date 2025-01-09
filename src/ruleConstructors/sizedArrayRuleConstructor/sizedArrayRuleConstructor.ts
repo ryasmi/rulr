@@ -1,51 +1,34 @@
 import { BaseError } from 'make-error';
 import { Constrained, Rule } from '../../core'
-import { array, InvalidArrayError } from '../../higherOrderRules/array/array'
-import { KeyedValidationError } from '../../errors/KeyedValidationError'
-import { ValidationErrors } from '../../errors/ValidationErrors'
+import { array } from '../../higherOrderRules/array/array'
 
 type Result<T extends symbol> = [
 	Rule<Constrained<T, unknown[]>>,
-	typeof BaseError,
-	(input: unknown) => input is Constrained<T, unknown[]>
+	typeof BaseError
 ]
 
-export function sizedArrayRuleConstructor<T extends symbol>(
-	itemRule: Rule<unknown>,
+export function sizedArrayRuleConstructor<Item, RuleSymbol extends symbol>(
+	itemRule: Rule<Item>,
 	minSize: number,
 	maxSize: number,
-	symbol: T,
-	ruleName = 'valid array'
-): Result<T> {
-	type SizedArray = Constrained<typeof symbol, unknown[]>
+	symbol: RuleSymbol,
+): Result<RuleSymbol> {
+	type SizedArray = Constrained<typeof symbol, Item[]>;
+	const arrayRule = array(itemRule);
 
-	function guard(input: unknown): input is SizedArray {
-		if (!Array.isArray(input)) {
-			return false
-		}
-		if (input.length < minSize || input.length > maxSize) {
-			return false
-		}
-		try {
-			array(itemRule)(input)
-			return true
-		} catch {
-			return false
-		}
-	}
-
-	class InvalidValueError extends BaseError {
+	class InvalidArraySizeError extends BaseError {
 		constructor() {
-			super(`expected ${ruleName}`)
+			super(`expected only ${minSize} to ${maxSize} items`)
 		}
 	}
 
 	function rule(input: unknown): SizedArray {
-		if (guard(input)) {
-			return input
+		const arrayInput = arrayRule(input);
+		if (arrayInput.length >= minSize && arrayInput.length <= maxSize) {
+			return arrayInput as SizedArray;
 		}
-		throw new InvalidValueError()
+		throw new InvalidArraySizeError();
 	}
 
-	return [rule, InvalidValueError, guard]
+	return [rule, InvalidArraySizeError]
 }

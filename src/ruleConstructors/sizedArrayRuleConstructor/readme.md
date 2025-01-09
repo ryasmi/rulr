@@ -2,13 +2,18 @@
 
 [Back to root readme.md](../../../readme.md)
 
-This function can be used to construct rules that ensure an array input has a size within a specified range and that each item in the array satisfies a given rule. The function also generates an error class and a guard function. The rule should only throw errors with the generated error class.
+This function can be used to construct rules that ensure an array input has a size within a specified range and that each item in the array satisfies a given rule. The function also generates an error class. The rule should only throw errors with the generated error class or the errors from [the array rule](../../higherOrderRules/array/readme.md).
 
 ```ts
 import * as rulr from 'rulr'
 
 const exampleSymbol = Symbol()
-const [exampleArray, ExampleArrayError, exampleArrayGuard] = rulr.sizedArrayRuleConstructor(rulr.number, 1, 3, exampleSymbol)
+const [exampleArray, ExampleArrayError, exampleArrayGuard] = rulr.sizedArrayRuleConstructor(
+	rulr.number,
+	1,
+	3,
+	exampleSymbol
+)
 
 const constrainToExample = rulr.object({
 	required: {
