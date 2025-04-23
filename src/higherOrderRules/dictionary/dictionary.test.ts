@@ -7,6 +7,12 @@ test('dictionary should not allow non-object input', () => {
 	}, InvalidObjectError)
 })
 
+test('dictionary should allow Object.create(null) input', () => {
+	const input = Object.create(null)
+	const output: Record<string, number> = dictionary(string, number)(input)
+	assert.deepStrictEqual(output, {})
+})
+
 test('dictionary should allow empty dictionary', () => {
 	const input = {}
 	const output: Record<string, number> = dictionary(string, number)(input)

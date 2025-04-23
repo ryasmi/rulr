@@ -2,9 +2,18 @@ import * as assert from 'assert'
 import { object, InvalidObjectError, number, string } from '../../rulr'
 import { InvalidNumberError } from '../../valueRules/number/number'
 
-test('dictionary should not allow non-object input', () => {
+test('object should not allow non-object input', () => {
 	const rule = object({})
 	assert.throws(() => rule([]), InvalidObjectError)
+})
+
+test('object should allow Object.create(null) input', () => {
+	// eslint-disable-next-line @typescript-eslint/no-empty-interface
+	interface Output {}
+	const input = Object.create(null)
+	const rule = object({})
+	const output: Output = rule(input)
+	assert.deepStrictEqual(output, {})
 })
 
 test('object should allow empty object with empty schema', () => {
@@ -13,7 +22,7 @@ test('object should allow empty object with empty schema', () => {
 	const input = {}
 	const rule = object({})
 	const output: Output = rule(input)
-	assert.deepStrictEqual(output, input)
+	assert.deepStrictEqual(output, {})
 })
 
 test('object should allow and remove properties not specified in schema', () => {

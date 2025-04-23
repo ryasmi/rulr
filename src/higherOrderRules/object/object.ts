@@ -12,7 +12,14 @@ export class InvalidObjectError extends BaseError {
 export type PlainObject = { [key: string]: unknown }
 
 export function validateObject(input: unknown) {
-	if (typeof input === 'object' && input !== null && input.constructor === Object) {
+	if (
+		typeof input === 'object' // Prevents primitives like strings which extend Object
+		&& input !== null // Prevent nulls
+		&& (
+			input.constructor === Object // Prevents arrays and other build-in objects
+			|| input.constructor === undefined // Allows Object.create(null)
+		)
+	) {
 		return input as PlainObject
 	}
 	throw new InvalidObjectError()
