@@ -1,3 +1,4 @@
+import { test } from '@jest/globals'
 import * as assert from 'assert'
 import { sha1, SHA1, InvalidSHA1Error } from '../../rulr'
 

@@ -1,3 +1,4 @@
+import { test } from '@jest/globals'
 import * as assert from 'assert'
 import { InvalidNonEmptyStringError, NonEmptyString, nonEmptyString } from '../../rulr'
 

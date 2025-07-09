@@ -1,3 +1,4 @@
+import { test } from '@jest/globals'
 import * as assert from 'assert'
 import { allowUndefined, number, InvalidNumberError } from '../../rulr'
 
