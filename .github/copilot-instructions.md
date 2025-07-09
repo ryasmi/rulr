@@ -27,7 +27,6 @@ Rulr is a TypeScript library for compile-time and runtime validation with a focu
 ### TypeScript Patterns
 ```typescript
 // 1. Import pattern - always from relative paths
-import * as rulr from '../../rulr'  // Use centralized export
 import { specificRule } from './specificRule'
 
 // 2. Symbol and type definition pattern
@@ -60,7 +59,7 @@ export class InvalidTypeNameError extends BaseError {
 ```typescript
 // Use Jest with assert module
 import * as assert from 'assert'
-import { ruleName, InvalidRuleNameError } from '../../rulr'
+import { ruleName, InvalidRuleNameError } from '../../rulr' // Use centralized export in tests
 
 test('ruleName should allow valid input', () => {
     const input = 'valid'
