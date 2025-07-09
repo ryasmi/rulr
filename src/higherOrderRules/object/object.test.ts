@@ -134,6 +134,8 @@ test('object should not allow access to unspecified properties', () => {
 	const input = { example: 1 }
 	const rule = object({})
 	const output = rule(input)
+	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+	// @ts-expect-error
 	assert.strictEqual(output.example, undefined)
 })
 

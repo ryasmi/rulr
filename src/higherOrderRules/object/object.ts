@@ -85,8 +85,8 @@ function createPartialValidator<T extends Schema>(schema: T, bail = false) {
 }
 
 export function object<
-	Required extends Schema = Record<string, never>,
-	Optional extends Schema = Record<string, never>
+	Required extends Schema = Record<never, never>,
+	Optional extends Schema = Record<never, never>
 >(opts: {
 	/** Defaults to empty object */
 	readonly required?: Required
