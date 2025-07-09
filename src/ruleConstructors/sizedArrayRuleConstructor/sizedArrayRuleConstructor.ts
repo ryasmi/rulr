@@ -11,10 +11,9 @@ export function sizedArrayRuleConstructor<Item, RuleSymbol extends symbol>(
 	itemRule: Rule<Item>,
 	minSize: number,
 	maxSize: number,
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	symbol: RuleSymbol,
+	_symbol: RuleSymbol,
 ): Result<Item, RuleSymbol> {
-	type SizedArray = Constrained<typeof symbol, Item[]>;
+	type SizedArray = Constrained<typeof _symbol, Item[]>;
 	const arrayRule = array(itemRule);
 
 	class InvalidArraySizeError extends BaseError {
