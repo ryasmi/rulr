@@ -1,3 +1,4 @@
+import { test } from '@jest/globals'
 import * as assert from 'assert'
 import { number, string, union, UnionValidationError, InvalidNumberError } from '../../rulr'
 import { KeyedValidationError } from '../../errors/KeyedValidationError'

@@ -1,5 +1,12 @@
+import { test } from '@jest/globals'
 import * as assert from 'assert'
-import { sizedArrayRuleConstructor, Constrained, number, ValidationErrors, KeyedValidationError } from '../../rulr'
+import {
+	sizedArrayRuleConstructor,
+	Constrained,
+	number,
+	ValidationErrors,
+	KeyedValidationError,
+} from '../../rulr'
 
 const ruleSymbol = Symbol()
 const [rule, InvalidValueError] = sizedArrayRuleConstructor(number, 2, 3, ruleSymbol)

@@ -1,3 +1,4 @@
+import { test } from '@jest/globals'
 import * as assert from 'assert'
 import { uuidv4, UUIDV4, InvalidUUIDV4Error } from '../../rulr'
 

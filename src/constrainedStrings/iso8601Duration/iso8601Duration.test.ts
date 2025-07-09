@@ -1,3 +1,4 @@
+import { test } from '@jest/globals'
 import * as assert from 'assert'
 import { iso8601Duration, ISO8601Duration, InvalidISO8601DurationError } from '../../rulr'
 

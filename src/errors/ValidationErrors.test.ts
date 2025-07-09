@@ -1,3 +1,4 @@
+import { test } from '@jest/globals'
 import * as assert from 'assert'
 import { ValidationErrors, KeyedValidationError } from '../rulr'
 
