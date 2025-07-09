@@ -11,6 +11,7 @@ export function sizedArrayRuleConstructor<Item, RuleSymbol extends symbol>(
 	itemRule: Rule<Item>,
 	minSize: number,
 	maxSize: number,
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	_symbol: RuleSymbol,
 ): Result<Item, RuleSymbol> {
 	type SizedArray = Constrained<typeof _symbol, Item[]>;
