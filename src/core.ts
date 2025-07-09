@@ -15,7 +15,7 @@ export function guard<R extends Rule<unknown>>(rule: R) {
 		try {
 			rule(input)
 			return true
-		} catch (err) {
+		} catch {
 			return false
 		}
 	}

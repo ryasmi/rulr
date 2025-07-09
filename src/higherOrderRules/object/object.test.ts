@@ -8,30 +8,27 @@ test('object should not allow non-object input', () => {
 })
 
 test('object should allow Object.create(null) input', () => {
-	// eslint-disable-next-line @typescript-eslint/no-empty-interface
-	interface Output {}
 	const input = Object.create(null)
 	const rule = object({})
-	const output: Output = rule(input)
+	const output: Record<never, never> = rule(input)
 	assert.deepStrictEqual(output, {})
 })
 
 test('object should allow empty object with empty schema', () => {
-	// eslint-disable-next-line @typescript-eslint/no-empty-interface
-	interface Output {}
 	const input = {}
 	const rule = object({})
-	const output: Output = rule(input)
+	const output: Record<never, never> = rule(input)
 	assert.deepStrictEqual(output, {})
 })
 
 test('object should allow and remove properties not specified in schema', () => {
-	// eslint-disable-next-line @typescript-eslint/no-empty-interface
-	interface Output {}
 	const input = { test: 1 }
 	const rule = object({})
-	const output: Output = rule(input)
+	const output: Record<never, never> = rule(input)
 	assert.deepStrictEqual(output, {})
+	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+	// @ts-expect-error
+	assert.strictEqual(output.test, undefined)
 })
 
 test('object should not allow missing required properties', () => {
@@ -134,15 +131,6 @@ test('object should allow circular properties', () => {
 	}
 	const output: Output = rule(input)
 	assert.deepStrictEqual(output, input)
-})
-
-test('object should not allow access to unspecified properties', () => {
-	const input = {}
-	const rule = object({})
-	const output = rule(input)
-	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-	// @ts-expect-error
-	assert.strictEqual(output.example, undefined)
 })
 
 test('object should bail on first error in required properties', () => {
