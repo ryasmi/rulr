@@ -12,6 +12,8 @@ on:
 jobs:
   analyse:
     name: Analyse
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
 
     steps:
