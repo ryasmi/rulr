@@ -6,6 +6,7 @@
 	"schedule": "at any time",
 	"rebaseWhen": "conflicted",
 	"rangeStrategy": "replace",
+	"minimumReleaseAge": "3 days",
 	"major": {
 		"automerge": false,
 		"prConcurrentLimit": 3
