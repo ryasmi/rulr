@@ -52,7 +52,7 @@
 		"microbundle": "0.15.1",
 		"prettier": "3.6.2",
 		"pretty-quick": "4.2.2",
-		"semantic-release": "24.2.9",
+		"semantic-release": "25.0.1",
 		"ts-jest": "29.4.5",
 		"ts-node": "10.9.2",
 		"typescript": "5.9.3"
