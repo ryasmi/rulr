@@ -18,8 +18,9 @@ jobs:
         with:
           node-version: 22.x
       - run: npm ci
-      - run: npx --no-install microbundle
-      - run: npx --no-install eslint src
+      - run: npm run lockfile:lint
+      - run: npm run build
+      - run: npm run lint
 
   test:
     needs: bundle-and-lint
@@ -36,7 +37,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
-      - run: npx --no-install jest
+      - run: npm run test
       - uses: codecov/codecov-action@v5.5.1
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
@@ -57,7 +58,7 @@ jobs:
         with:
           node-version: 22.x
       - run: npm ci
-      - run: npx --no-install microbundle
+      - run: npm run build
       - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
         run: npm audit signatures
       - name: Release
