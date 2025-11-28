@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v6
         with:
-          node-version: 24.x
+          node-version-file: '.nvmrc'
       - run: npm ci
       - run: npm run lockfile:lint
       - run: npm run build
@@ -35,7 +35,7 @@ jobs:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v6
         with:
-          node-version-file: '.nvmrc'
+          node-version: ${{ matrix.node-version }}
       - run: npm ci
       - run: npm run test
       - uses: codecov/codecov-action@v5.5.1
