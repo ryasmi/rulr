@@ -50,7 +50,7 @@
 		"eslint-config-prettier": "10.1.8",
 		"husky": "9.1.7",
 		"jest": "30.2.0",
-		"lint-staged": "16.2.6",
+		"lint-staged": "16.2.7",
 		"lockfile-lint": "4.14.1",
 		"microbundle": "0.15.1",
 		"prettier": "3.6.2",
