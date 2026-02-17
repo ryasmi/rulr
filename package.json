@@ -51,7 +51,7 @@
 		"husky": "9.1.7",
 		"jest": "30.2.0",
 		"lint-staged": "16.2.7",
-		"lockfile-lint": "4.14.1",
+		"lockfile-lint": "5.0.0",
 		"microbundle": "0.15.1",
 		"prettier": "3.8.1",
 		"pretty-quick": "4.2.2",
