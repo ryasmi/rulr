@@ -110,6 +110,9 @@
 	"publishConfig": {
 		"access": "public"
 	},
+	"overrides": {
+		"rollup-plugin-typescript2": "0.37.0"
+	},
 	"lint-staged": {
 		"*.{ts,js}": "eslint --cache --fix",
 		"*.{ts,js,css,md}": "prettier --write"
