@@ -23,7 +23,7 @@
 		"prepare": "husky",
 		"test": "jest",
 		"start": "ts-node src/example.ts",
-		"build": "tsc --noEmit && rollup -c && tsc --emitDeclarationOnly",
+		"build": "tsc --noEmit && rollup -c",
 		"lint": "eslint src",
 		"lockfile:lint": "lockfile-lint --path package-lock.json --type npm --allowed-hosts npm --validate-https"
 	},

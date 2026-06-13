@@ -6,7 +6,7 @@ const external = ['make-error', 'atob', 'validator']
 export default {
 	input: 'src/rulr.ts',
 	external,
-	plugins: [typescript()],
+	plugins: [typescript({ declaration: true, declarationDir: './dist', outDir: './dist' })],
 	output: [
 		{ file: 'dist/rulr.cjs', format: 'cjs', sourcemap: true, plugins: [terser()] },
 		{ file: 'dist/rulr.modern.js', format: 'es', sourcemap: true, plugins: [terser()] },

@@ -12,6 +12,5 @@
 		"sourceMap": true
 	},
 	"include": ["./src/**/*.ts"],
-	"files": ["./src/rulr.ts"],
-	"exclude": ["**/*.test.ts", "src/example.ts"]
+	"files": ["./src/rulr.ts"]
 }
