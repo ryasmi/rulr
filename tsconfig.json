@@ -1,16 +1,17 @@
 {
 	"compilerOptions": {
-		"target": "es5",
-		"module": "commonjs",
-		"moduleResolution": "node",
+		"target": "ES2022",
+		"module": "ESNext",
+		"moduleResolution": "bundler",
 		"strict": true,
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
-		"lib": ["ES2020.BigInt"],
+		"lib": ["ES2022"],
 		"outDir": "dist",
 		"declaration": true,
 		"sourceMap": true
 	},
 	"include": ["./src/**/*.ts"],
-	"files": ["./src/rulr.ts"]
+	"files": ["./src/rulr.ts"],
+	"exclude": ["**/*.test.ts", "src/example.ts"]
 }
