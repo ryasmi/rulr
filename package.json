@@ -116,5 +116,10 @@
 	"lint-staged": {
 		"*.{ts,js}": "eslint --cache --fix",
 		"*.{ts,js,css,md}": "prettier --write"
+	},
+	"overrides": {
+		"glob": "14.0.3",
+		"minimatch": "11.0.4",
+		"test-exclude": "8.0.0"
 	}
 }
