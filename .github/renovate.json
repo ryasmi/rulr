@@ -1,27 +1,4 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"extends": ["config:js-lib"],
-	"platformCommit": "enabled",
-	"automergeType": "pr",
-	"schedule": "at any time",
-	"rebaseWhen": "conflicted",
-	"rangeStrategy": "replace",
-	"minimumReleaseAge": "3 days",
-	"major": {
-		"automerge": false,
-		"prConcurrentLimit": 3
-	},
-	"minor": {
-		"automerge": true,
-		"prConcurrentLimit": 3
-	},
-	"patch": {
-		"automerge": true,
-		"prConcurrentLimit": 3
-	},
-	"lockFileMaintenance": {
-		"automerge": true,
-		"enabled": true,
-		"schedule": ["before 7am every weekday"]
-	}
+	"enabled": false
 }
